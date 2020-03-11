@@ -1,5 +1,7 @@
 package com.brainstormers.airdoc.models;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,8 +12,29 @@ public class Cabinet {
     private String id;
 	private String name;
     private String description;
+    private List<Review> reviews;
+    private User createdBy;
+    private float rating;
     
-    public String getId() {
+    public List<Review> getReviews() {
+		return reviews;
+	}
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+	public User getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
+	}
+	public float getRating() {
+		return rating;
+	}
+	public void setRating(float rating) {
+		this.rating = rating;
+	}
+	public String getId() {
     	return id;
 	}
 	public void setId(String id) {

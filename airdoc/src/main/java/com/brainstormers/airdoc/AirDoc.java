@@ -9,5 +9,4 @@ public class AirDoc {
     public static void main(String[] args) {
         SpringApplication.run(AirDoc.class, args);
     }
-
 }
