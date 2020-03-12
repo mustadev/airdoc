@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
 import com.brainstormers.airdoc.models.Cabinet;
 import com.brainstormers.airdoc.services.CabinetService;
 
@@ -29,31 +30,27 @@ public class CabinetController {
 	private CabinetService cabinetService;
 	
 	@GetMapping(value = "/")
-    public List<Cabinet> getAllStudents() {
-        List<Cabinet> cabinets = cabinetService.findAll();
-//        cabinets.forEach(( cabinet) -> {
-//        	msg = String.format("Cabinet Name :: %s Cabinet Description %s", cabinet.)
-//        	logger.debug("Cabinet Name :::::::::: " + cabinet);
-//        });
+    public List<Cabinet> getAllStudents() throws ResourceNotFoundException {
         
+		List<Cabinet> cabinets = cabinetService
+        		.findAll()
+        		.orElseThrow(() -> new ResourceNotFoundException("No Cabinets Found::")); 
+        
+        cabinets.forEach((cabinet) -> {
+        	String msg = String.format("Cabinet Name :: %s Cabinet Description %s", cabinet.getName(), cabinet.getDescription());
+        	logger.debug(msg);
+        	} 
+        );
+            	
         return cabinets;
     }
 
     @GetMapping(value = "/{id}")
-    public Cabinet getCabinetById(@PathVariable("id") String id) {
-        return cabinetService.findCabinetById(id);
+    public Cabinet getCabinetById(@PathVariable("id") String id) throws ResourceNotFoundException {
+        return cabinetService.findCabinetById(id)
+        		.orElseThrow(() -> new ResourceNotFoundException("No Cabinet with id ::" + id ));
     }
-    
-    @GetMapping(value = "/add")
-    public void addtest() {
-    	System.out.println("addtest started");
-    	Cabinet cabinet = new Cabinet();
-    	cabinet.setName("testname");
-    	cabinet.setDescription("description test");
-    	cabinetService.saveOrUpdateCabinet(cabinet);
-    	System.out.println("cabinet added");
-    }
-    
+
     @PostMapping(value = "/")
     public ResponseEntity<?> saveOrUpdateCabinet(@RequestBody Cabinet cabinet) {
     	cabinetService.saveOrUpdateCabinet(cabinet);
@@ -64,6 +61,20 @@ public class CabinetController {
     public void deleteStudent(@PathVariable String id) {
     	cabinetService.deleteCabinetById(id);
     	//cabinetService.deleteCabinet(cabinetService.findBy(studentNumber).getId());
+    }
+    
+    @GetMapping(value = "/search/{query}")
+    public List<Cabinet> search(@PathVariable("query") String query) throws ResourceNotFoundException{
+    	List<Cabinet> results = cabinetService.search(query)
+    			.orElseThrow(() -> new ResourceNotFoundException("No Cabinets Match your query :: " + query));
+    	System.out.println(":::::::::::::::::::::::::::::::");
+    	results.forEach((cabinet) -> {
+        	String msg = String.format("Cabinet Name :: %s Cabinet Description %s", cabinet.getName(), cabinet.getDescription());
+        	logger.debug(msg);
+        	} 
+        );
+    	System.out.println(":::::::::::::::::::::::::::::::");
+    	return results;
     }
 
 }

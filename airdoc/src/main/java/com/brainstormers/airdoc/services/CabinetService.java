@@ -1,18 +1,20 @@
 package com.brainstormers.airdoc.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.brainstormers.airdoc.models.Cabinet;
 
 public interface CabinetService {
 	
-	List<Cabinet> findAll();
+	Optional<List<Cabinet>> findAll();
 	
-	Cabinet findCabinetById(String id);
+	Optional<Cabinet> findCabinetById(String id);
 	
 	void saveOrUpdateCabinet(Cabinet cabinet);
 
     void deleteCabinetById(String id);
-
+    
+    Optional<List<Cabinet>> search(String query);
 	
 }
