@@ -2,42 +2,47 @@ package com.brainstormers.airdoc.exceptions;
 
 import java.util.Date;
 
+
+
+/**
+ * un class pour representer les error
+ * @author Mustapha De BrainStormers
+ * @since 13-03-2020
+ * 
+ */
 public class ErrorDetails {
 
- private Date timestamp;
+	private Date timestamp;
+	private String message;
+	private String details;
+	
+	public ErrorDetails(Date timestamp, String message, String details) {
 
- private String message;
+		super();
+		this.timestamp = timestamp;
+		this.message = message;
+		this.details = details;
+	}
 
- private String details;
+	/**
+	 * @return date
+	 */
+	public Date getTimestamp() {
+		return timestamp;
+	}
 
- public ErrorDetails(Date timestamp, String message, String details) {
+	/**
+	 * @return message
+	 */
+	public String getMessage() {
+		return message;
+	}
 
-  super();
-
-  this.timestamp = timestamp;
-
-  this.message = message;
-
-  this.details = details;
-
- }
-
- public Date getTimestamp() {
-
-  return timestamp;
-
- }
-
- public String getMessage() {
-
-  return message;
-
- }
-
- public String getDetails() {
-
-  return details;
-
- }
+	/**
+	 * @return details
+	 */
+	public String getDetails() {
+		return details;
+	}
 
 }

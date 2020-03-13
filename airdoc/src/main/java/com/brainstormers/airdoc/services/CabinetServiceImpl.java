@@ -11,12 +11,19 @@ import org.springframework.stereotype.Service;
 import com.brainstormers.airdoc.models.Cabinet;
 import com.brainstormers.airdoc.repositories.CabinetRepository;
 
+/**
+ * implementation de {@link CabinetService CabinetService.class}
+ * @author Mustapha De BrainStormers
+ * @since 13-03-2020
+ * 
+ */
 @Service
 public class CabinetServiceImpl implements CabinetService {
 	
 	@Autowired
 	private CabinetRepository cabinetRepo;
 
+	
 	@Override
 	public Optional<List<Cabinet>> findAll() {
 		
@@ -64,6 +71,8 @@ public class CabinetServiceImpl implements CabinetService {
 		return Optional.of(results);
 		
 	}
+
+	
 
 	
 

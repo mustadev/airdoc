@@ -8,22 +8,52 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+/**
+ * le Model Cabinet 
+ * c'est lutilisateur
+ * @author Mustapha De BrainStormers
+ * @since 13-03-2020
+ * 
+ */
 @ApiModel(description = "cabinet details")
 @Document(collection = "cabinets")
 public class Cabinet {
 	
+	/**
+	 * ID de Cabinet
+	 */
 	@ApiModelProperty(notes = "Cabinet ID")
 	@Id
     private String id;
-	@ApiModelProperty(notes = "Cabinet Name")
+
+	/**
+	 * nom de cabinet
+	 */
+	@ApiModelProperty(notes = "nom de cabinet")
 	private String name;
-	@ApiModelProperty(notes = "Cabinet")
+
+	/**
+	 * description de cabinet
+	 */
+	@ApiModelProperty(notes = "description de cabinet")
     private String description;
-	@ApiModelProperty(notes = "Reviews")
+
+	/**
+	 * les revues de cabinet
+	 */
+	@ApiModelProperty(notes = "les revues de cabinet")
     private List<Review> reviews;
-	@ApiModelProperty(notes = "User Owner")
+
+	/**
+	 * propriétaire de cabinet
+	 */
+	@ApiModelProperty(notes = "propriétaire de cabinet")
     private User createdBy;
-	@ApiModelProperty(notes = "Cabinet Rating")
+
+	/**
+	 * Évaluation du Cabinet
+	 */
+	@ApiModelProperty(notes = "Évaluation du Cabinet")
     private float rating;
     
     public List<Review> getReviews() {
