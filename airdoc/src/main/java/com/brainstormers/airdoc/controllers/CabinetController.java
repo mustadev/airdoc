@@ -109,7 +109,8 @@ public class CabinetController {
     @ApiOperation(value = "chercher les cabinet", response = ResponseEntity.class)
     @GetMapping(value = "/search/{query}")
     public List<Cabinet> search(
-    		@ApiParam(value = "Search query", required = true) @PathVariable("query") String query) throws ResourceNotFoundException{
+    		@ApiParam(value = "Search query", required = true)
+    		@PathVariable("query") String query) throws ResourceNotFoundException{
     	List<Cabinet> results = cabinetService.search(query)
     			.orElseThrow(() -> new ResourceNotFoundException("No Cabinets Match your query :: " + query));
     	System.out.println(":::::::::::::::::::::::::::::::");

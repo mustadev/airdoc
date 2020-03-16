@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import com.brainstormers.airdoc.models.Cabinet;
@@ -49,28 +49,15 @@ public class CabinetServiceImpl implements CabinetService {
 	public Optional<List<Cabinet>> search(String query) {
 		System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::");
 		System.out.println("Query " + query);
-		Cabinet c = new Cabinet();
-		c.setName(query);
-//		ExampleMatcher matcher = ExampleMatcher.matchingAll()
-//										  .withIgnoreCase(true)
-//										  .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
-
-//		Example<Cabinet> example = Example.of(c, ExampleMatcher.matchingAny());
-		
-//		ExampleMatcher matcher = ExampleMatcher.matching()
-//        .withMatcher("country", startsWith().ignoreCase())
-//        .withMatcher("postcode", startsWith().ignoreCase())
-//        .withMatcher("street", contains().ignoreCase())
-//        .withMatcher("streetNumber", contains().ignoreCase())
-//        .withMatcher("city", String::contains().ignoreCase());
-		//TODO implements a working search
-		ExampleMatcher matcher = ExampleMatcher.matching()
-				.withMatcher("name", ExampleMatcher.GenericPropertyMatchers.exact());
-		Example<Cabinet> example = Example.of(c, matcher);
-		List<Cabinet> results = cabinetRepo.findAll(example);
+		List<Cabinet> results = cabinetRepo.searchNameByRegex(query);
 		return Optional.of(results);
-		
+	/*  Query jquery = new Query();
+		jquery.fields().exclude("description");
+		jquery.addCriteria(Criteria.where("name").regex(query));
+		List<Cabinet> results = cabinetRepo.fin;
+		return Optional.of(results); */
 	}
+	
 
 	
 
