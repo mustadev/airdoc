@@ -5,12 +5,15 @@ import java.util.Optional;
 import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
 import com.brainstormers.airdoc.models.Cabinet;
 
+import org.springframework.stereotype.Service;
+
 /**
  * une services  pour accéder et modifier la base de données
  *  
  * @author Mustapha de BrainStormers
  * @since 13-03-2020
  */
+@Service
 public interface CabinetService {
 	
 	
