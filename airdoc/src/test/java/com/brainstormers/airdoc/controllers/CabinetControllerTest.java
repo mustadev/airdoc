@@ -18,6 +18,14 @@ public class CabinetControllerTest{
 
 		assertThat(controller).isNotNull();
 	}
+
+
+
+	@Test
+	public void deleteReturn() throws Exception {
+		//TODO test using RestTemplate and MockMvc
+
+	}
 }
 
 

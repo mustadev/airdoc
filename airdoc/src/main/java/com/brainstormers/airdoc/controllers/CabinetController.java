@@ -48,7 +48,7 @@ public class CabinetController {
 	 * @throws ResourceNotFoundException
 	 */
 	@ApiOperation(value = "obtenir tous les cabinets", response = List.class)
-	@GetMapping(value = "/")
+	@GetMapping(produces = "application/json")
     public List<Cabinet> getAllCabinets() throws ResourceNotFoundException {
 		List<Cabinet> cabinets = cabinetService
         		.findAll()
@@ -70,7 +70,7 @@ public class CabinetController {
 	 * @throws ResourceNotFoundException
 	 */
 	@ApiOperation(value = "trouver un cabinet par son id", response = Cabinet.class)
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{id}", produces = "application/json")
     public Cabinet getCabinetById(@PathVariable("id") String id) throws ResourceNotFoundException {
         return cabinetService.findCabinetById(id)
         		.orElseThrow(() -> new ResourceNotFoundException("No Cabinet with id ::" + id ));
@@ -81,8 +81,8 @@ public class CabinetController {
 	 * @param cabinet
 	 * @return ResponseEntity
 	 */
-	@ApiOperation(value = "ajouter ou modifier un Cabinet ", response = ResponseEntity.class)
-    @PostMapping(value = "/")
+    @ApiOperation(value = "ajouter ou modifier un Cabinet ", response = ResponseEntity.class)
+    @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<?> saveOrUpdateCabinet(
     		@ApiParam(value = "Cabinet", required = true) @RequestBody Cabinet cabinet) {
     	cabinetService.saveOrUpdateCabinet(cabinet);
@@ -107,19 +107,17 @@ public class CabinetController {
      * @throws ResourceNotFoundException
      */
     @ApiOperation(value = "chercher les cabinet", response = ResponseEntity.class)
-    @GetMapping(value = "/search/{query}")
+    @GetMapping(value = "/search/{query}" , produces = "application/json")
     public List<Cabinet> search(
     		@ApiParam(value = "Search query", required = true)
     		@PathVariable("query") String query) throws ResourceNotFoundException{
     	List<Cabinet> results = cabinetService.search(query)
     			.orElseThrow(() -> new ResourceNotFoundException("No Cabinets Match your query :: " + query));
-    	System.out.println(":::::::::::::::::::::::::::::::");
     	results.forEach((cabinet) -> {
         	String msg = String.format("Cabinet Name :: %s Cabinet Description %s", cabinet.getName(), cabinet.getDescription());
         	logger.debug(msg);
         	} 
         );
-    	System.out.println(":::::::::::::::::::::::::::::::");
     	return results;
     }
 
