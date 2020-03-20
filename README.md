@@ -6,4 +6,8 @@ done
 ```bash
 mvn spring-boot:run
 ```
+## Tester par
+```bash
+mvn clean test
+```
 ## Voir [Rest Documentation ](http://localhost:8080/swagger-ui.html)
