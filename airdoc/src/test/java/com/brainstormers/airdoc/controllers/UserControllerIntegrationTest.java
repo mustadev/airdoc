@@ -32,8 +32,9 @@ import static org.assertj.core.api.Assertions.assertThat;
  * l'integration test utilisent {@link RestAssured}
  * voir docs en https://github.com/rest-assured/rest-assured/wiki/Usage
  * */
+@Disabled //TODO Ayoub supprimmer @Disabled
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class UserControllerJunitTest {
+class UserControllerIntergationTest {
 	
 
 

@@ -23,6 +23,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+@Disabled //TODO supprimer @Disabled
 @WebMvcTest(CabinetController.class) //TODO Ayoub metre votre controlleur ici
 public class UserControllerUnitTest{
 
@@ -30,7 +31,7 @@ public class UserControllerUnitTest{
 	private MockMvc mockMvc;
 
 	@MockBean
-	private CabinetService service;
+	private CabinetService service;//TODO changer a UserService
 
 	@Test
 	public void verifier_status_code() throws Exception {
