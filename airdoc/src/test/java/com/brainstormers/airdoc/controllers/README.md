@@ -3,6 +3,5 @@
 ```bash
 mvn test
 ```
-ajouter/supperimer  l'annotation @Disabled pour activer/desactiver 
-les test.
+ajouter/supperimer  l'annotation @Disabled pour activer/desactiver les test.
 
