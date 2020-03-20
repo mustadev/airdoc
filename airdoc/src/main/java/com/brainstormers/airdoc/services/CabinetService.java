@@ -35,8 +35,16 @@ public interface CabinetService {
 	 * ajouter ou modifier un Cabinet
 	 * @param cabinet
 	 */
-	void saveOrUpdateCabinet(Cabinet cabinet);
+	Optional<Cabinet> saveCabinet(Cabinet cabinet);
 	/**
+	
+	/**
+	 * modifier un Cabinet
+	 * @param cabinet
+	 */
+	Optional<Cabinet> updateCabinet(Cabinet cabinet);
+
+     /**
      * supprimer un Cabinet par son Id
      * @param id
      */

@@ -1,0 +1,47 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Cabinet set",
+    "type": "array",
+    "items": {
+        "title": "Cabinet",
+        "type": "object",
+        "properties": {
+            "id": {
+                "description": "The unique identifier for a cabinet",
+                "type": "string"
+            },
+            "name": {
+                "type": "string"
+            },
+	    "description": {
+                "type": "string"
+            },
+            "rating": {
+                "type": "number",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "reviews": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+		    "properties": {
+		        "content": {"type": "string"},
+		        "auther": {"type": "object"},
+		        "likes": {"type": "number"}
+		    }
+                }
+            },
+            "createdBy": {
+                "type": "object",
+                "properties": {
+                    "id": {"type": "string"},
+                    "firstName": {"type": "string"},
+                    "lastName": {"type": "string"}
+                },
+                "required": ["id", "lastName", "firstName"]
+            }
+        },
+        "required": ["id", "name", "createdBy"]
+    }
+}

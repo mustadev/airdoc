@@ -10,53 +10,43 @@
 <version>2.2.2.RELEASE</version>
 </parent>
 	<dependencies>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
 	
-
-		<dependency>
-                          <groupId>org.springframework.boot</groupId>
-                         <artifactId>spring-boot-starter-data-mongodb</artifactId>
-         </dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+	
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		<exclusions>
+			<exclusion>  <!-- declare the exclusion here -->
+				<groupId>org.hamcrest</groupId>
+				<artifactId>hamcrest-core</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-devtools</artifactId>
+		<scope>runtime</scope>
+		<optional>true</optional>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-test</artifactId>
+		<scope>test</scope>
+		<exclusions>
+			<exclusion>
+				<groupId>org.junit.vintage</groupId>
+				<artifactId>junit-vintage-engine</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
 <!-- comment out spring restassured
  <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>spring-mock-mvc</artifactId>
-      <version>4.3.0</version>
-      <scope>test</scope>
-</dependency>
-
-<dependency>
-      <groupId>io.rest-assured</groupId>
-      <artifactId>rest-assured</artifactId>
-      <version>4.3.0</version>
-      <scope>test</scope>
-</dependency>
-<dependency>
-      <groupId>io.rest-assured</groupId>
-      <artifactId>json-path</artifactId>
       <version>4.3.0</version>
       <scope>test</scope>
 </dependency>
@@ -67,6 +57,39 @@
       <scope>test</scope>
 </dependency>
 -->
+
+<!--  restassured dependancies  -->
+<dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <scope>test</scope>
+</dependency>
+<dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>json-path</artifactId>
+      <scope>test</scope>
+</dependency>
+
+<dependency>
+   <groupId>io.rest-assured</groupId>
+   <artifactId>json-schema-validator</artifactId>
+   <scope>test</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+  <dependency>
+   <groupId>org.junit.jupiter</groupId>
+   <artifactId>junit-jupiter-engine</artifactId>
+   <scope>test</scope>
+  </dependency>
+  <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
+  <dependency>
+   <groupId>org.junit.platform</groupId>
+   <artifactId>junit-platform-launcher</artifactId>
+   <scope>test</scope>
+  </dependency>
+
+
 <dependency>
     <groupId>io.springfox</groupId>
     <artifactId>springfox-swagger2</artifactId>
@@ -85,16 +108,27 @@
 	</dependencies>
 
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-    				<addResources>true</addResources>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+	<plugins>
+		<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+			<configuration>
+				<addResources>true</addResources>
+			</configuration>
+		</plugin>
+			 <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <dependencies>
+     <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-surefire-provider</artifactId>
+      <version>1.2.0</version>
+     </dependency>
+    </dependencies>
+   </plugin>
+	</plugins>
+</build>
 
 </project>
 

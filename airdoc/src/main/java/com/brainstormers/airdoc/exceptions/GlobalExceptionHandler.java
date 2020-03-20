@@ -30,6 +30,19 @@ public class GlobalExceptionHandler {
 	}
 
 	/**
+	 * generer reponse global
+	 * @param ex ResourceNotFoundException jeter
+	 * @param request WebRequest
+	 * @return ResponseEntity 
+	 */
+	@ExceptionHandler(ResourceAlreadyExistsException.class)
+ 	public ResponseEntity<?> ResourceAlreadyExistsException(ResourceAlreadyExistsException ex, WebRequest request) {
+		ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+		return new ResponseEntity<>(errorDetails, HttpStatus.CONFLICT);
+
+	}
+
+	/**
 	 * generer reponse global 
 	 * @param ex Exception jeter
 	 * @param request WebRequest 

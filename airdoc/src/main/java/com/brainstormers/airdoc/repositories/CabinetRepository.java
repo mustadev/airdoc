@@ -25,7 +25,7 @@ public interface CabinetRepository extends MongoRepository<Cabinet, String> {
 		 * @param id
 		 * @return cabinet {@link Cabinet Cabinet.class}
 		 */
-		Cabinet findCabinetById(String id);
+//		Cabinet findCabinetById(String id);
 		@Query("{ 'name' : { $regex: ?0 } }")
 		List<Cabinet> searchNameByRegex(String query);
 }
