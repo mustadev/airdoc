@@ -5,7 +5,8 @@ done
 
 ## Demarer par 
 
-``` java -jar airdoc-0.0.1-SNAPSHOT.jar
+``` 
+java -jar airdoc-0.0.1-SNAPSHOT.jar
 ```
 ## ou a partir de source code par
 
