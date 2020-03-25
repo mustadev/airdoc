@@ -117,34 +117,7 @@ class CabinetControllerJunitTest {
 
 	@Test
 	void test_update(){
-		Cabinet cabinet = new Cabinet();
-		cabinet.setId("123");
-		cabinet.setName("testName");
-		// add the cabinet first then update it.
-		given().
-		contentType(ContentType.JSON).
-		accept(ContentType.JSON).
-		body(cabinet).
-		when().
-		post().
-		then().
-		assertThat().
-		body("$", hasKey("id"));
-		
-		//change the cabinet 
-		cabinet.setName("otherTestName");
-		given().
-		contentType(ContentType.JSON).
-		accept(ContentType.JSON).
-		when().
-		body(cabinet).
-		put("/123").
-		then().
-		assertThat().
-		statusCode(HttpStatus.OK.value()).
-		body("id", equalTo("123")).
-		body("name", equalTo("otherTestName"));
-
+		fail("not yet implemented");
 	}
 	
 	
