@@ -32,7 +32,7 @@ public class CabinetControllerUnitTest{
 	private CabinetService service;
 
 	@Test
-	public void greetingShouldReturnMessageFromService() throws Exception {
+	public void get_should_return_status_ok() throws Exception {
 		List<Cabinet> cabinets = new ArrayList<>();
 		cabinets.add(new Cabinet());
 		when(service.findAll()).thenReturn(Optional.of(cabinets));
