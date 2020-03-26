@@ -41,7 +41,7 @@ public class CabinetStartupRunner implements CommandLineRunner {
 	Cabinet cabinet1 = new Cabinet();
 	cabinet1.setName("asafar");
 	cabinet1.setDescription("asafar Description");
-	cabinet1.setCreatedBy(new User("musta", "pha"));
+	cabinet1.setCreatedBy(new User("musta", "pha",12,"musta@gmail.com"));
 	Cabinet savedCabinet = cabinetRepository.save(cabinet1);
 	logger.debug("id: " +savedCabinet.getId() + " name: " + savedCabinet.getName());
 //	logger.debug("cabint 1 saved");

@@ -1,5 +1,6 @@
 package com.brainstormers.airdoc.models;
 
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,10 +9,10 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 /**
- * le Model User {@link User User.class}
- * c'est lutilisateur
- * @author Mustapha De BrainStormers
- * @since 13-03-2020
+ * Modele User {@link User User.class}
+ * c'est une classe "user" qui constitue toutes les attributes nécessaire pour un utilisateur
+ * @author Ayoub BenHaimoud<ayoubbenhaimoud@gmail.com>
+ * @since 18-03-2020
  * 
  */
 @ApiModel(description = "Détails de l'utilisateur")
@@ -19,27 +20,41 @@ import io.swagger.annotations.ApiModelProperty;
 public class User {
 	
 	/**
-	 * ID de Utilisateur
+	 * ID d'Utilisateur
 	 */
-	@ApiModelProperty(notes = "ID de Utilisateur")
+	@ApiModelProperty(notes = "ID d'Utilisateur")
 	@Id
 	private String id;
 	/**
-	 * le prenom de utilisateur.
+	 * Prénom d'utilisateur.
 	 */
-	@ApiModelProperty(notes = "prenom de utilisateur.")
+	@ApiModelProperty(notes = "prénom d'Utilisateur.")
 	private String firstName;
 	/**
-	 * le nom de utilisateur.
+	 * Nom d'utilisateur.
 	 */
-	@ApiModelProperty(notes = "nom de utilisateur")
+	@ApiModelProperty(notes = "nom d'Utilisateur")
 	private String lastName;
+	/**
+	 * Age d'utilisateur
+	 */
+	@ApiModelProperty(notes = "aged'Utilisateur.")
+    private int age;
+	/**
+	 * Email d'utilisateur
+	 */
+	@ApiModelProperty(notes = "mail d'Utilisateur.")
+    private String mail;
 	
 	
-	public User(String firstName, String lastName) {
+	public User(String firstName, String lastName,int age,String mail) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.age = age;
+		this.mail = mail;
+		
 	}
+	public User() {}
 	public String getId() {
 		return id;
 	}
@@ -58,5 +73,18 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+    
+ 
 }

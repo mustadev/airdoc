@@ -5,7 +5,7 @@ import java.util.Date;
 
 
 /**
- * un class pour representer les error
+ * un class pour représenter les erreurs
  * @author Mustapha De BrainStormers
  * @since 13-03-2020
  * 

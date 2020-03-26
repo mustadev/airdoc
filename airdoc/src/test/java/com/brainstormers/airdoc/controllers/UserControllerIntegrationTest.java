@@ -29,10 +29,13 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * l'integration test utilisent {@link RestAssured}
+ * Integration test utilise {@link RestAssured}
  * voir docs en https://github.com/rest-assured/rest-assured/wiki/Usage
+ * @author Ayoub Benhaimoud<ayoubbenhaimoud@gmail.com>
+ * @since 20-3-2020
+ * 
  * */
-@Disabled //TODO Ayoub supprimmer @Disabled
+//@Disabled
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class UserControllerIntergationTest {
 	
@@ -52,18 +55,20 @@ class UserControllerIntergationTest {
 
 	@Test
 	void test_create_user() {
-		//TODO Ayoub 
+		 
 
-		/*
-		Cabinet cabinet = new Cabinet();
-		cabinet.setName("doctor who hospital");
-		cabinet.setCreatedBy(new User("doctor", "who"));
-		cabinet.setDescription("this is doctor who's hospital");
+		
+		User user = new User();
+		user.setFirstName("jean");
+		user.setLastName("frero");
+		user.setAge(12);
+		user.setMail("xxx.gmail.com");
+		
 
 		given().
 		contentType(ContentType.JSON).
 		accept(ContentType.JSON).
-		body(cabinet).
+		body(user).
 		when().
 		post().
 		then().
@@ -71,16 +76,12 @@ class UserControllerIntergationTest {
 		statusCode(HttpStatus.CREATED.value()).
 		contentType(ContentType.JSON).
 		body("$", hasKey("id"));
-		*/
-		fail("not yet implemented");
-		
+	
 	}
 
 	@Test
 	void test_delete_response_and_status_code(){
-		//TODO Ayoub 
-		// voir CabinetController.deleteCabinet
-		/*
+		
 		given().
 		contentType(ContentType.JSON).
 		accept(ContentType.JSON).
@@ -89,15 +90,13 @@ class UserControllerIntergationTest {
 		then().
 		assertThat().
 		statusCode(HttpStatus.OK.value()).
-		body("message", containsString("cabinet successfully deleted"));
-		*/
-		fail("not yet implemented");
+		body("message", containsString("user successfully deleted"));
+		
 
 	}
 
 	@Test
 	void test_get_all(){
-		// ca marche il est pas nécessaire de changer
 		get().
 		then().
 		assertThat().
@@ -107,29 +106,18 @@ class UserControllerIntergationTest {
 	
 	@Test
 	void test_get_by_id(){
-		//TODO Ayoub implementer 
-		//voir ci-dessous
-		/*
-		get("/cabinet_id_does_not_exist").
+		get("/user_id_does_not_exist").
 			then().
 			assertThat().
 			statusCode(HttpStatus.NOT_FOUND.value()).
 			contentType(ContentType.JSON).
-			body("message", equalTo("No Cabinet with id : cabinet_id_does_not_exist"));
-			*/
-		fail("not yet implemented");
+			body("message", equalTo("No User with id : user_id_does_not_exist"));
 	}
 
-	@Disabled //TODO supprimer cette annotation pour tester ce methode
+	
 	@Test
 	void test_get_all_response_using_validator(){
-		//TODO Ayoub create users.json validator file //SEE cabinets.json
-		/*
-		get().then().assertThat().body(matchesJsonSchemaInClasspath("cabinets.json"));
-		*/
-		//TODO clean database 
-		//to make this test work
-		fail("not yet implemented");
+		get().then().assertThat().body(matchesJsonSchemaInClasspath("users.json"));
 	}
 
 	@Test

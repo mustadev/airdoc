@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
 /**
- * un Class Pour gérer les exceptions
+ * cette classe pour gérer les exceptions
  * @author Mustapha De BrainStormers
  * @since 13-03-2020
  * 
@@ -17,7 +17,7 @@ import org.springframework.web.context.request.WebRequest;
 public class GlobalExceptionHandler {
 
 	/**
-	 * generer reponse global
+	 * générer une réponse globale
 	 * @param ex ResourceNotFoundException jeter
 	 * @param request WebRequest
 	 * @return ResponseEntity 
@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
 	}
 
 	/**
-	 * generer reponse global
+	 * générer une réponse globale
 	 * @param ex ResourceNotFoundException jeter
 	 * @param request WebRequest
 	 * @return ResponseEntity 
@@ -43,7 +43,7 @@ public class GlobalExceptionHandler {
 	}
 
 	/**
-	 * generer reponse global 
+	 * générer une réponse globale
 	 * @param ex Exception jeter
 	 * @param request WebRequest 
 	 * @return ResponseEntity 
