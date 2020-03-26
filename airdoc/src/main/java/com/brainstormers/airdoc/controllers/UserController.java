@@ -7,9 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.brainstormers.airdoc.exceptions.ResourceAlreadyExistsException;
 import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
 import com.brainstormers.airdoc.models.User;
 import com.brainstormers.airdoc.services.UserService;
+
+import io.swagger.annotations.ApiParam;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +35,7 @@ public class UserController {
     }
 
     /**
-     * to find all users
+     * pour trouver tous les utilisateurs
      * @return List<User>
      * @throws ResourceNotFoundException
      */
@@ -42,14 +45,14 @@ public class UserController {
                    .findAll()
                    .orElseThrow(()-> new ResourceNotFoundException("no User found"));
            result.forEach((user)-> {
-                    String msg = String.format("User name: %s User mail: %s",user.getName(),user.getMail());
+                    String msg = String.format("User name: %s User mail: %s",user.getFirstName(),user.getMail());
                     logger.debug(msg);
            });
            return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     /**
-     * find an user with id
+     * récupérer un utilisateur en utilisant son id
      * @param id
      * @return {@link ResponseEntity}
      * @throws ResourceNotFoundException
@@ -65,20 +68,22 @@ public class UserController {
     }
 
     /**
-     * this method serves to create new User
+     * cette méthode sert à créer un utilisateur
      * @param user
      * @return User
-     * @throws ResourceNotFoundException
+     * @throws ResourceAlreadyExistsException
+     * @throws ResourceNotFoundException 
      */
     @PostMapping(value = {"","/"})
-    public ResponseEntity<User> createUser(@RequestBody User user) throws ResourceNotFoundException{
+    public ResponseEntity<User> createUser(
+    		@ApiParam(value = "Cabinet", required = true)@RequestBody User user) throws ResourceAlreadyExistsException{
             User result = userService.insertUser(user)
-                    .orElseThrow(() -> new ResourceNotFoundException("could not create " +	user.toString()));
+                    .orElseThrow(() -> new ResourceAlreadyExistsException("could not create " +	user.toString()));
         return new ResponseEntity<User>(result, HttpStatus.CREATED);
     }
 
     /**
-     * this method serve to update the users
+     * cette méthode sert à modifier un utilisateur
      * @param user
      * @return User
      * @throws ResourceNotFoundException
@@ -91,7 +96,7 @@ public class UserController {
     }
 
     /**
-     * this method serve to delete an user using id
+     * cette méthode sert à supprimer un utilisateur en utilisant son id
      * @param id
      * @return HttpStatus
      */

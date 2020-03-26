@@ -1,8 +1,6 @@
 package com.brainstormers.airdoc.services;
 
 
-
-
 import org.springframework.stereotype.Service;
 
 import com.brainstormers.airdoc.models.User;
@@ -10,37 +8,37 @@ import com.brainstormers.airdoc.models.User;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * this interface to declare all methods that we well use in UserServiceImpl class
+/** 
+ * cet interface pour déclarer toutes les méthodes à utiliser sur la classe UserServiceImpl
  * @author Ayoub BenHaimoud<ayoubbenhaimoud@gmail.com>
- * @since 17-03-202à
+ * @since 17-03-2020
  */
 
 @Service
 public interface UserService {
 
     /**
-     * this method to find all users
+     * cette méthode pour récupérer tous les utilisateur 
      * @return List<User>
      */
     Optional<List<User>> findAll();
 
     /**
-     * this method to find User by id
+     * cette méthode sert à trouver des utilisateur en utilissant l'id
      * @param id
      * @return
      */
     Optional<User> findUserById(String id);
 
     /**
-     * this method to create or insert new User
+     * cette méthode sert à créer des nouvaux utilisateur
      * @param user
      * @return
      */
     Optional<User> insertUser(User user);
 
     /**
-     * this method to update User
+     * cette méthode sert à modifier un utilisateur
      * @param user
      * @return
      */

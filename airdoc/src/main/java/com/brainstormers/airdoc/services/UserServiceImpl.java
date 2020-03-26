@@ -5,6 +5,7 @@ package com.brainstormers.airdoc.services;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.brainstormers.airdoc.models.User;
 import com.brainstormers.airdoc.repositories.UserRepository;
@@ -13,11 +14,11 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * this class implements {@link UserService}
+ * cette classe implemente {@link UserService}
  * @author Ayoub BenHaimoud <ayoubbenhaimoud@gmail.com>
  * @since 17-3-2020
  */
-
+@Service
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
