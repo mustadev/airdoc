@@ -55,7 +55,7 @@ class CabinetControllerJunitTest {
 
 		Cabinet cabinet = new Cabinet();
 		cabinet.setName("doctor who hospital");
-		cabinet.setCreatedBy(new User("doctor", "who"));
+		cabinet.setCreatedBy(new User("doctor", "who",12,"xxxxx@gmail.com"));
 		cabinet.setDescription("this is doctor who's hospital");
 
 		given().
