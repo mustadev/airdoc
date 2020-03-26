@@ -20,6 +20,12 @@ mvn clean test
 ```
 ## Voir [Rest Documentation ](http://localhost:8080/swagger-ui.html)
 
+## Démarer AirDocClient (Angular Web App) par:
+```bash
+cd airdoc-client
+ng serve --open
+```
+
 #Contribution au code:
 1. creé un branch basé sur la branch de Develop
 ```bash
@@ -34,3 +40,4 @@ git add --all
 git commit -m [message]
 git push
 ```
+4. faire une Pull Request dans Github de votre branch vers la branch develop.
