@@ -19,3 +19,18 @@ mvn spring-boot:run
 mvn clean test
 ```
 ## Voir [Rest Documentation ](http://localhost:8080/swagger-ui.html)
+
+#Contribution au code:
+1. creé un branch basé sur la branch de Develop
+```bash
+git checkout develop
+git checkout -b [nom de branch]
+git push --set-upstream origin [nom de branch]
+```
+2. fait votre tache
+3. commit et push
+```bash
+git add --all
+git commit -m [message]
+git push
+```
