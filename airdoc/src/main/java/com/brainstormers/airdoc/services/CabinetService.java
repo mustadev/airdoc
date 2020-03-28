@@ -5,6 +5,8 @@ import java.util.Optional;
 import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
 import com.brainstormers.airdoc.models.Cabinet;
 
+import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Service;
 
 /**
@@ -22,6 +24,14 @@ public interface CabinetService {
 	 * @return List<Cabinet> 
 	 */
 	Optional<List<Cabinet>> findAll();
+
+	/**
+	 * trouver les cabinets
+	 * @param {@link Criteria} criteria
+	 * @return List<Cabinet> 
+	 */
+	Optional<List<Cabinet>> findAll(String query, String city, Sort sort);
+	
 	
 	/**
 	 * trouver un cabinet par son id

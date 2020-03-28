@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.brainstormers.airdoc.models.Cabinet;
@@ -25,6 +28,11 @@ public class CabinetServiceImpl implements CabinetService {
 	@Override
 	public Optional<List<Cabinet>> findAll() {
 		return Optional.of(cabinetRepo.findAll());
+	}
+
+	@Override
+	public Optional<List<Cabinet>> findAll(String query, String city, Sort sort) {
+		return Optional.of(cabinetRepo.findAll(query, city,  sort));
 	}
 
 	@Override

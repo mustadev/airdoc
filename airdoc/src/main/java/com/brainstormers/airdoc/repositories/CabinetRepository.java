@@ -2,6 +2,7 @@ package com.brainstormers.airdoc.repositories;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -25,5 +26,8 @@ public interface CabinetRepository extends MongoRepository<Cabinet, String> {
 //		Cabinet findCabinetById(String id);
 		@Query("{ 'name' : { $regex: ?0 } }")
 		List<Cabinet> searchNameByRegex(String query);
+
+		@Query("{'name': {$regex: ?0 }, 'city': {$regex: ?1} }")
+		List<Cabinet> findAll(String query, String city, Sort sort);
 
 }

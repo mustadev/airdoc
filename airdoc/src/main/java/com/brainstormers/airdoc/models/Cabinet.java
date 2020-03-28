@@ -1,6 +1,10 @@
 package com.brainstormers.airdoc.models;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mongodb.lang.NonNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -30,6 +34,7 @@ public class Cabinet {
 	 * nom de cabinet
 	 */
 	@ApiModelProperty(notes = "nom de cabinet")
+	@NonNull
 	private String name;
 
 	/**
@@ -39,15 +44,23 @@ public class Cabinet {
     private String description;
 
 	/**
+	 * ville de cabinet
+	 */
+	@ApiModelProperty(notes = "ville de cabinet")
+	@NonNull
+    private String city;
+
+	/**
 	 * les revues de cabinet
 	 */
 	@ApiModelProperty(notes = "les revues de cabinet")
-    private List<Review> reviews;
+    private List<Review> reviews = new ArrayList<>();
 
 	/**
 	 * propriétaire de cabinet
 	 */
 	@ApiModelProperty(notes = "propriétaire de cabinet")
+	@NonNull
     private User createdBy;
 
 	/**
@@ -75,7 +88,7 @@ public class Cabinet {
 		this.rating = rating;
 	}
 	public String getId() {
-    	return id;
+	return id;
 	}
 	public void setId(String id) {
 		this.id = id;
@@ -91,6 +104,13 @@ public class Cabinet {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getCity() {
+		return this.city;
+	}
+	public void setCity(String city) {
+		this.city= city;
 	}
     
 }
