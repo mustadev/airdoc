@@ -35,7 +35,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @since 20-3-2020
  * 
  * */
-//@Disabled
+@Disabled
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class UserControllerIntergationTest {
 	

@@ -1,36 +1,27 @@
 package com.brainstormers.airdoc.controllers;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 
 import com.brainstormers.airdoc.models.Cabinet;
-import com.brainstormers.airdoc.models.User;
-import com.brainstormers.airdoc.services.CabinetService;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.*;
 import static io.restassured.matcher.RestAssuredMatchers.*;
 import static io.restassured.module.jsv.JsonSchemaValidator.*;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.fail;
-import static org.assertj.core.api.Assertions.assertThat;
+//import static org.junit.jupiter.api.Assertions.fail;
 
-@Disabled
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class CabinetControllerJunitTest {
+class CabinetControllerIntergationTest {
 	
 
 
@@ -55,7 +46,7 @@ class CabinetControllerJunitTest {
 
 		Cabinet cabinet = new Cabinet();
 		cabinet.setName("doctor who hospital");
-		cabinet.setCreatedBy(new User("doctor", "who",12,"xxxxx@gmail.com"));
+		cabinet.setOwnerId("userID");
 		cabinet.setDescription("this is doctor who's hospital");
 
 		given().
@@ -107,11 +98,10 @@ class CabinetControllerJunitTest {
 			body("message", equalTo("No Cabinet with id : cabinet_id_does_not_exist"));
 	}
 
-	@Disabled
 	@Test
 	void test_get_all_format_using_validator(){
 		get().then().assertThat().body(matchesJsonSchemaInClasspath("cabinets.json"));
-		//TODO clean database 
+		//TODO clean Model
 		//to make this test work
 	}
 
@@ -122,46 +112,50 @@ class CabinetControllerJunitTest {
 		cabinet.setName("testName");
 		// add the cabinet first then update it.
 		given().
-		contentType(ContentType.JSON).
-		accept(ContentType.JSON).
-		body(cabinet).
+			contentType(ContentType.JSON).
+			accept(ContentType.JSON).
+			body(cabinet).
 		when().
-		post().
+			post().
 		then().
-		assertThat().
-		body("$", hasKey("id"));
+			log().
+			body().
+			assertThat().
+			body("$", hasKey("id"));
 		
 		//change the cabinet 
 		cabinet.setName("otherTestName");
 		given().
-		contentType(ContentType.JSON).
-		accept(ContentType.JSON).
+			contentType(ContentType.JSON).
+			accept(ContentType.JSON).
 		when().
-		body(cabinet).
-		put("/123").
+			body(cabinet).
+			put().
 		then().
-		assertThat().
-		statusCode(HttpStatus.OK.value()).
-		body("id", equalTo("123")).
-		body("name", equalTo("otherTestName"));
+			log().
+			body().
+			assertThat().
+			statusCode(HttpStatus.OK.value()).
+			body("id", equalTo("123")).
+			body("name", equalTo("otherTestName"));
 
 	}
 	
-	
-	@Test
-	void test_get_with_filtre(){
-		fail("not yet implemented");
-	}
+
 
 	@Test
-	void test_get_with_pagination(){
-
-		fail("not yet implemented");
-	}
-	
-
-	@Test
-	void test_search(){
-		fail("not yet implemented");
+	void test_search_by_params(){
+		given().
+			contentType(ContentType.JSON).
+			accept(ContentType.JSON).
+			param("query", "tes").
+			param("city", "fes").
+			param("sort", "rating").
+		when().
+			get().
+		then().
+			log().
+			body().
+			statusCode(HttpStatus.OK.value());
 	}
 }

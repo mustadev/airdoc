@@ -14,7 +14,6 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * le Model Cabinet 
- * c'est lutilisateur
  * @author Mustapha De BrainStormers
  * @since 13-03-2020
  * 
@@ -61,13 +60,13 @@ public class Cabinet {
 	 */
 	@ApiModelProperty(notes = "propriétaire de cabinet")
 	@NonNull
-    private User createdBy;
+    private String ownerId; //TODO @NonNull not working properly
 
 	/**
 	 * Évaluation du Cabinet
 	 */
 	@ApiModelProperty(notes = "Évaluation du Cabinet")
-    private float rating;
+    private float rating = 0.0f; //TODO set max 5.0 and min 0.0
     
     public List<Review> getReviews() {
 		return reviews;
@@ -75,11 +74,11 @@ public class Cabinet {
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
-	public User getCreatedBy() {
-		return createdBy;
+	public String getOwnerId() {
+		return ownerId;
 	}
-	public void setCreatedBy(User createdBy) {
-		this.createdBy = createdBy;
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
 	}
 	public float getRating() {
 		return rating;

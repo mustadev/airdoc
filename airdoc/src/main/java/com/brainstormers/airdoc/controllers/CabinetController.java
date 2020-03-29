@@ -66,14 +66,6 @@ public class CabinetController {
 		    throws ResourceNotFoundException {
 	    //see https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9
     		logger.info("getAllCabinets::: params :  query: " + query + " sort: " + sort +  " city " + city);
-		//List<Cabinet> results = cabinetService
-        		//.findAll()
-        		//.orElseThrow(() -> new ResourceNotFoundException("No Cabinets Found"));
-        	//results.forEach((cabinet) -> {
-        		//String msg = String.format("Cabinet Name :: %s Cabinet Description %s", cabinet.getName(), cabinet.getDescription());
-        		//logger.debug(msg);
-        	//} 
-        //);
 	List<Cabinet> results = cabinetService
        			.findAll(query, city, Sort.by(sort).descending())
         		.orElseThrow(() -> new ResourceNotFoundException("No Cabinets Found"));
@@ -108,8 +100,6 @@ public class CabinetController {
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Cabinet> createCabinet(
     		@ApiParam(value = "Cabinet", required = true) @RequestBody Cabinet cabinet) throws ResourceAlreadyExistsException{
-    	//cabinetService.saveCabinet(cabinet);
-        //return new ResponseEntity<>("Cabinet added successfully", HttpStatus.OK);
 	Cabinet result =  cabinetService.saveCabinet(cabinet).
 		orElseThrow(() -> new ResourceAlreadyExistsException("could not create " +	cabinet.toString()));
 	return new ResponseEntity<Cabinet>(result, HttpStatus.CREATED);

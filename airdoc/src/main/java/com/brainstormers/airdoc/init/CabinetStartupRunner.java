@@ -41,7 +41,7 @@ public class CabinetStartupRunner implements CommandLineRunner {
 	cabinet1.setDescription("asafar Description");
 	cabinet1.setCity("agadir");
 	cabinet1.setRating(4.5f);
-	cabinet1.setCreatedBy(new User("musta", "pha",12,"musta@gmail.com"));
+	cabinet1.setOwnerId("user1");
 	Cabinet savedCabinet = cabinetRepository.save(cabinet1);
 	logger.debug("id: " +savedCabinet.getId() + " name: " + savedCabinet.getName());
 
@@ -50,6 +50,7 @@ public class CabinetStartupRunner implements CommandLineRunner {
 	cabinet2.setDescription("max plank Description");
 	cabinet2.setCity("ait mellout");
 	cabinet2.setRating(4.5f);
+	cabinet2.setOwnerId("user2");
 	Cabinet savedCabinet2 = cabinetRepository.save(cabinet2);
 	logger.debug("id: " +savedCabinet2.getId() + " name: " + savedCabinet2.getName());
 
@@ -58,6 +59,7 @@ public class CabinetStartupRunner implements CommandLineRunner {
 	cabinet3.setDescription("bohr Description");
 	cabinet3.setCity("rabat");
 	cabinet3.setRating(3.5f);
+	cabinet3.setOwnerId("user3");
 	Cabinet savedCabinet3 = cabinetRepository.save(cabinet3);
 	logger.debug("id: " +savedCabinet3.getId() + " name: " + savedCabinet3.getName());
 
@@ -67,6 +69,7 @@ public class CabinetStartupRunner implements CommandLineRunner {
 	cabinet4.setDescription("tesla Description");
 	cabinet4.setCity("fes");
 	cabinet4.setRating(2.5f);
+	cabinet4.setOwnerId("user4");
 	Cabinet savedCabinet4 = cabinetRepository.save(cabinet4);
 	logger.debug("id: " +savedCabinet4.getId() + " name: " + savedCabinet4.getName());
 
@@ -75,6 +78,7 @@ public class CabinetStartupRunner implements CommandLineRunner {
 	cabinet5.setDescription("tesla Description");
 	cabinet5.setCity("fes");
 	cabinet5.setRating(3.5f);
+	cabinet5.setOwnerId("user5");
 	Cabinet savedCabinet5 = cabinetRepository.save(cabinet5);
 	logger.debug("id: " +savedCabinet5.getId() + " name: " + savedCabinet5.getName());
 
@@ -83,6 +87,7 @@ public class CabinetStartupRunner implements CommandLineRunner {
 	cabinet6.setDescription("tesla Description");
 	cabinet6.setCity("fes");
 	cabinet6.setRating(4.0f);
+	cabinet6.setOwnerId("user6");
 	Cabinet savedCabinet6 = cabinetRepository.save(cabinet6);
 	logger.debug("id: " +savedCabinet6.getId() + " name: " + savedCabinet6.getName());
 
@@ -91,6 +96,7 @@ public class CabinetStartupRunner implements CommandLineRunner {
 	cabinet7.setDescription("tesla Description");
 	cabinet7.setCity("kasbat");
 	cabinet7.setRating(4.0f);
+	cabinet7.setOwnerId("user7");
 	Cabinet savedCabinet7 = cabinetRepository.save(cabinet7);
 	logger.debug("id: " +savedCabinet7.getId() + " name: " + savedCabinet7.getName());
 

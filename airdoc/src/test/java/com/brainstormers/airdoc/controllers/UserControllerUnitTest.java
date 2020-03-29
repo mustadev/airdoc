@@ -32,6 +32,7 @@ import org.springframework.test.web.servlet.MockMvc;
  *@since 20-3-2020
  *
  */
+@Disabled
 @WebMvcTest(UserController.class) //TODO Ayoub metre votre controlleur ici
 public class UserControllerUnitTest{
 

@@ -16,6 +16,9 @@
 	    "description": {
                 "type": "string"
             },
+	    "city": {
+                "type": "string"
+            },
             "rating": {
                 "type": "number",
                 "minimum": 0,
@@ -32,16 +35,11 @@
 		    }
                 }
             },
-            "createdBy": {
-                "type": "object",
-                "properties": {
-                    "id": {"type": "string"},
-                    "firstName": {"type": "string"},
-                    "lastName": {"type": "string"}
-                },
-                "required": ["id", "lastName", "firstName"]
-            }
+            "ownerId": {
+                "type": "string"
+                }
+
         },
-        "required": ["id", "name", "createdBy"]
+        "required": ["id", "name", "ownerId"]
     }
 }
