@@ -1,6 +1,10 @@
 package com.brainstormers.airdoc.models;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mongodb.lang.NonNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,7 +14,6 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * le Model Cabinet 
- * c'est lutilisateur
  * @author Mustapha De BrainStormers
  * @since 13-03-2020
  * 
@@ -30,6 +33,7 @@ public class Cabinet {
 	 * nom de cabinet
 	 */
 	@ApiModelProperty(notes = "nom de cabinet")
+	@NonNull
 	private String name;
 
 	/**
@@ -39,10 +43,17 @@ public class Cabinet {
     private String description;
 
 	/**
+	 * ville de cabinet
+	 */
+	@ApiModelProperty(notes = "ville de cabinet")
+	@NonNull
+    private String city;
+
+	/**
 	 * les revues de cabinet
 	 */
 	@ApiModelProperty(notes = "les revues de cabinet")
-    private List<Review> reviews;
+    private List<Review> reviews = new ArrayList<>();
 
 	/**
 	 * les services de cabinet
@@ -79,13 +90,14 @@ public class Cabinet {
 	 * propriétaire de cabinet
 	 */
 	@ApiModelProperty(notes = "propriétaire de cabinet")
-    private User createdBy;
+	@NonNull
+    private String ownerId; //TODO @NonNull not working properly
 
 	/**
 	 * Évaluation du Cabinet
 	 */
 	@ApiModelProperty(notes = "Évaluation du Cabinet")
-    private float rating;
+    private float rating = 0.0f; //TODO set max 5.0 and min 0.0
     
     public List<Review> getReviews() {
 		return reviews;
@@ -93,11 +105,11 @@ public class Cabinet {
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
-	public User getCreatedBy() {
-		return createdBy;
+	public String getOwnerId() {
+		return ownerId;
 	}
-	public void setCreatedBy(User createdBy) {
-		this.createdBy = createdBy;
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
 	}
 	public float getRating() {
 		return rating;
@@ -106,7 +118,7 @@ public class Cabinet {
 		this.rating = rating;
 	}
 	public String getId() {
-    	return id;
+	return id;
 	}
 	public void setId(String id) {
 		this.id = id;
@@ -122,6 +134,13 @@ public class Cabinet {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getCity() {
+		return this.city;
+	}
+	public void setCity(String city) {
+		this.city= city;
 	}
     
 }

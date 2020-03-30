@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 
 /**
- * implimentation de {@link Exception Exception.class} 
+ * cette classe hérite de {@link Exception Exception.class} 
  * c'est un exception qui va etre jeter quand un resource n'existe pas 
- * @author Mustapha De BrainStormers
- * @since 13-03-2020
+ * @author Ayoub BenHaimoud <ayoubenhaimoud@gmail.com>
+ * @since 15-03-2020
  * 
  */
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
