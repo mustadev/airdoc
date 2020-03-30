@@ -43,18 +43,6 @@
                     </div>
                     <div class="card-body">
                     <div class="filter-widget">
-                        <div class="cal-icon">
-                            <input type="text" class="form-control datetimepicker" placeholder="Select Date">
-                        </div>			
-                    </div>
-                    <div class="filter-widget">
-                        <h4>Gender</h4>
-                        <div>
-                            <label class="custom_check">
-                                <input type="checkbox" name="gender_type" checked>
-                                <span class="checkmark"></span> Male Doctor
-                            </label>
-                        </div>
                         <div>
                             <label class="custom_check">
                                 <input type="checkbox" name="gender_type">
@@ -110,10 +98,7 @@
                 
             </div>
             <div class="col-md-12 col-lg-8 col-xl-9">
-                <app-cabinet *ngFor="let cabinet of cabinets" [cabinet]="cabinet"></app-cabinet>
-                <div class="load-more text-center">
-                    <a class="btn btn-primary btn-sm" href="javascript:void(0);">Load More</a>	
-                </div>	
+                <app-cabinet *ngFor="let cabinet of cabinets" [cabinet]="cabinet"></app-cabinet>	
             </div>
         </div>
 

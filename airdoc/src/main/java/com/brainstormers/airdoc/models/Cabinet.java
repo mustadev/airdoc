@@ -45,6 +45,37 @@ public class Cabinet {
     private List<Review> reviews;
 
 	/**
+	 * les services de cabinet
+	 */
+	@ApiModelProperty(notes = "les services de cabinet")
+    private List<String> services;
+
+	speciality:string;
+    rating:number;
+    averageRating:number;
+    services:Array<string>;
+    reviews:Array<Review>;
+    city:string;
+    country:string;
+    minPrice:number;
+    maxPrice:number;
+
+
+	/**
+	 * description de cabinet
+	 */
+	@ApiModelProperty(notes = "description de cabinet")
+    private String description;
+
+
+	/**
+	 * description de cabinet
+	 */
+	@ApiModelProperty(notes = "description de cabinet")
+    private String description;
+
+
+	/**
 	 * propriétaire de cabinet
 	 */
 	@ApiModelProperty(notes = "propriétaire de cabinet")
