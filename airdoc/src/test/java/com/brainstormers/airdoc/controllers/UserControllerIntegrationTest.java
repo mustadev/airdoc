@@ -13,9 +13,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 
-import com.brainstormers.airdoc.models.Cabinet;
+import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.User;
-import com.brainstormers.airdoc.services.CabinetService;
+import com.brainstormers.airdoc.services.DoctorService;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;

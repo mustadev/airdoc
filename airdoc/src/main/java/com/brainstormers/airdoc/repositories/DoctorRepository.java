@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.brainstormers.airdoc.models.Cabinet;
+import com.brainstormers.airdoc.models.Doctor;
 
 /**
  * implementation de {@link MongoRepository MongoRepository.class}
@@ -16,18 +16,18 @@ import com.brainstormers.airdoc.models.Cabinet;
  * 
  */
 @Repository
-public interface CabinetRepository extends MongoRepository<Cabinet, String> {
+public interface DoctorRepository extends MongoRepository<Doctor, String> {
 	 
 		/**
-		 * trouver cabinet par ID
+		 * trouver doctor par ID
 		 * @param id
-		 * @return cabinet {@link Cabinet Cabinet.class}
+		 * @return doctor {@link Doctor Doctor.class}
 		 */
-//		Cabinet findCabinetById(String id);
+//		Doctor findDoctorById(String id);
 		@Query("{ 'name' : { $regex: ?0 } }")
-		List<Cabinet> searchNameByRegex(String query);
+		List<Doctor> searchNameByRegex(String query);
 
 		@Query("{'name': {$regex: ?0 }, 'city': {$regex: ?1} }")
-		List<Cabinet> findAll(String query, String city, Sort sort);
+		List<Doctor> findAll(String query, String city, Sort sort);
 
 }

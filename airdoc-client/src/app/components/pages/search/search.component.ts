@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Cabinet } from 'src/app/models/Cabinet';
+import { Doctor } from 'src/app/models/Doctor';
 import { Review } from 'src/app/models/Review';
+import { DoctorService } from 'src/app/services/doctor.service';
 
 @Component({
   selector: 'app-search',
@@ -9,81 +10,87 @@ import { Review } from 'src/app/models/Review';
 })
 export class SearchComponent implements OnInit {
 
-  cabinets:Array<Cabinet>;
-  constructor() { }
+  doctors: Array<Doctor> = [];
+  constructor(private doctorService: DoctorService) { }
 
   ngOnInit(): void {
-    this.cabinets = [
-      {
-        name: "asafar",
-        speciality: "MS - Orthopaedics, MBBS, M.Ch - Orthopaedics",
-        rating: 4,
-        averageRating: 12,
-        reviews:[
-          new Review("review 1", 2, 1, "musta"),
-          new Review("review 1", 2, 1, "musta"),
-          new Review("review 1", 2, 1, "musta"),
-          new Review("review 1", 2, 1, "musta")
-        ],
-        city: "agadir",
-        country: "morocco",
-        services:[],
-        minPrice:100,
-        maxPrice: 1000
+    /* this.doctors = [
+       {
+         name: "asafar",
+         speciality: "MS - Orthopaedics, MBBS, M.Ch - Orthopaedics",
+         rating: 4,
+         averageRating: 12,
+         reviews:[
+           new Review("review 1", 2, 1, "musta"),
+           new Review("review 1", 2, 1, "musta"),
+           new Review("review 1", 2, 1, "musta"),
+           new Review("review 1", 2, 1, "musta")
+         ],
+         city: "agadir",
+         country: "morocco",
+         services:[],
+         minPrice:100,
+         maxPrice: 1000
+ 
+       },
+       {
+         name: "asafar",
+         speciality: "MS - Orthopaedics, MBBS, M.Ch - Orthopaedics",
+         rating: 4,
+         averageRating: 17,
+         reviews:[
+           new Review("review 1", 2, 1, "musta"),
+           new Review("review 1", 2, 1, "musta"),
+           new Review("review 1", 2, 1, "musta")
+         ],
+         city: "agadir",
+         country: "morocco",
+         services:["Dental Fillings", "Whitneing"],
+         minPrice:100,
+         maxPrice: 1000
+ 
+       },
+       {
+         name: "asafar",
+         speciality: "MS - Orthopaedics, MBBS, M.Ch - Orthopaedics",
+         rating: 4,
+         averageRating: 17,
+         reviews:[
+           new Review("review 1", 2, 1, "musta"),
+           new Review("review 1", 2, 1, "musta"),
+           new Review("review 1", 2, 1, "musta")
+         ],
+         city: "agadir",
+         country: "morocco",
+         services:["Dental Fillings", "Whitneing"],
+         minPrice:100,
+         maxPrice: 1000
+ 
+       },
+       {
+         name: "asafar",
+         speciality: "MS - Orthopaedics, MBBS, M.Ch - Orthopaedics",
+         rating: 4,
+         averageRating: 17,
+         reviews:[
+           new Review("review 1", 2, 1, "musta"),
+           new Review("review 1", 2, 1, "musta"),
+           new Review("review 1", 2, 1, "musta")
+         ],
+         city: "agadir",
+         country: "morocco",
+         services:["Dental Fillings", "Whitneing"],
+         minPrice:100,
+         maxPrice: 1000
+ 
+       }
+     ];
+     */
+    this.doctorService.getDoctors().subscribe((doctors) => {
+        console.log(doctors);
+        this.doctors = doctors;
+      });
 
-      },
-      {
-        name: "asafar",
-        speciality: "MS - Orthopaedics, MBBS, M.Ch - Orthopaedics",
-        rating: 4,
-        averageRating: 17,
-        reviews:[
-          new Review("review 1", 2, 1, "musta"),
-          new Review("review 1", 2, 1, "musta"),
-          new Review("review 1", 2, 1, "musta")
-        ],
-        city: "agadir",
-        country: "morocco",
-        services:["Dental Fillings", "Whitneing"],
-        minPrice:100,
-        maxPrice: 1000
-
-      },
-      {
-        name: "asafar",
-        speciality: "MS - Orthopaedics, MBBS, M.Ch - Orthopaedics",
-        rating: 4,
-        averageRating: 17,
-        reviews:[
-          new Review("review 1", 2, 1, "musta"),
-          new Review("review 1", 2, 1, "musta"),
-          new Review("review 1", 2, 1, "musta")
-        ],
-        city: "agadir",
-        country: "morocco",
-        services:["Dental Fillings", "Whitneing"],
-        minPrice:100,
-        maxPrice: 1000
-
-      },
-      {
-        name: "asafar",
-        speciality: "MS - Orthopaedics, MBBS, M.Ch - Orthopaedics",
-        rating: 4,
-        averageRating: 17,
-        reviews:[
-          new Review("review 1", 2, 1, "musta"),
-          new Review("review 1", 2, 1, "musta"),
-          new Review("review 1", 2, 1, "musta")
-        ],
-        city: "agadir",
-        country: "morocco",
-        services:["Dental Fillings", "Whitneing"],
-        minPrice:100,
-        maxPrice: 1000
-
-      }
-    ];
   }
 
 }

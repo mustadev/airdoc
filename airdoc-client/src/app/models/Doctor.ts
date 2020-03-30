@@ -1,6 +1,6 @@
 import { Review } from './Review';
 
-export class Cabinet {
+export class Doctor {
     name:string;
     speciality:string;
     rating:number;

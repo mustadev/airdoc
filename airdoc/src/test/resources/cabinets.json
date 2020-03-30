@@ -1,13 +1,13 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Cabinet set",
+    "title": "Doctor set",
     "type": "array",
     "items": {
-        "title": "Cabinet",
+        "title": "Doctor",
         "type": "object",
         "properties": {
             "id": {
-                "description": "The unique identifier for a cabinet",
+                "description": "The unique identifier for a doctor",
                 "type": "string"
             },
             "name": {

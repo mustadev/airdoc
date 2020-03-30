@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.brainstormers.airdoc.models.Cabinet;
+import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.User;
 
 import com.brainstormers.airdoc.repositories.UserRepository;
@@ -38,7 +38,7 @@ public class UserStartUpRunner {
 	logger.info("removing all databases records");
 	userRepository.deleteAll();
 	//la création des "dummy data"
-	List<Cabinet> users = new ArrayList<>();
+	List<Doctor> users = new ArrayList<>();
 	User user1 = new User();
 	user1.setFirstName("Ayoub");//setName("asafar");
 	user1.setLastName("ben");//setDescription("asafar Description");

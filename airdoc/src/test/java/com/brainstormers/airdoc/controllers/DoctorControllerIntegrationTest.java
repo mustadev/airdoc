@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 
-import com.brainstormers.airdoc.models.Cabinet;
+import com.brainstormers.airdoc.models.Doctor;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -21,7 +21,7 @@ import static org.hamcrest.Matchers.*;
 //import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class CabinetControllerIntergationTest {
+class DoctorControllerIntergationTest {
 	
 
 
@@ -37,22 +37,22 @@ class CabinetControllerIntergationTest {
 	void setUp() throws Exception {
 		RestAssured.baseURI = "http://localhost";
 		RestAssured.port = port;
-		RestAssured.basePath = "/cabinets";
+		RestAssured.basePath = "/doctors";
 	}
 
 
 	@Test
-	void test_create_cabinet() {
+	void test_create_doctor() {
 
-		Cabinet cabinet = new Cabinet();
-		cabinet.setName("doctor who hospital");
-		cabinet.setOwnerId("userID");
-		cabinet.setDescription("this is doctor who's hospital");
+		Doctor doctor = new Doctor();
+		doctor.setName("doctor who hospital");
+		doctor.setOwnerId("userID");
+		doctor.setDescription("this is doctor who's hospital");
 
 		given().
 		contentType(ContentType.JSON).
 		accept(ContentType.JSON).
-		body(cabinet).
+		body(doctor).
 		when().
 		post().
 		then().
@@ -73,7 +73,7 @@ class CabinetControllerIntergationTest {
 		then().
 		assertThat().
 		statusCode(HttpStatus.OK.value()).
-		body("message", containsString("cabinet successfully deleted"));
+		body("message", containsString("doctor successfully deleted"));
 
 	}
 
@@ -90,31 +90,31 @@ class CabinetControllerIntergationTest {
 	
 	@Test
 	void test_get_by_id(){
-		get("/cabinet_id_does_not_exist").
+		get("/doctor_id_does_not_exist").
 			then().
 			assertThat().
 			statusCode(HttpStatus.NOT_FOUND.value()).
 			contentType(ContentType.JSON).
-			body("message", equalTo("No Cabinet with id : cabinet_id_does_not_exist"));
+			body("message", equalTo("No Doctor with id : doctor_id_does_not_exist"));
 	}
 
 	@Test
 	void test_get_all_format_using_validator(){
-		get().then().assertThat().body(matchesJsonSchemaInClasspath("cabinets.json"));
+		get().then().assertThat().body(matchesJsonSchemaInClasspath("doctors.json"));
 		//TODO clean Model
 		//to make this test work
 	}
 
 	@Test
 	void test_update(){
-		Cabinet cabinet = new Cabinet();
-		cabinet.setId("123");
-		cabinet.setName("testName");
-		// add the cabinet first then update it.
+		Doctor doctor = new Doctor();
+		doctor.setId("123");
+		doctor.setName("testName");
+		// add the doctor first then update it.
 		given().
 			contentType(ContentType.JSON).
 			accept(ContentType.JSON).
-			body(cabinet).
+			body(doctor).
 		when().
 			post().
 		then().
@@ -123,13 +123,13 @@ class CabinetControllerIntergationTest {
 			assertThat().
 			body("$", hasKey("id"));
 		
-		//change the cabinet 
-		cabinet.setName("otherTestName");
+		//change the doctor 
+		doctor.setName("otherTestName");
 		given().
 			contentType(ContentType.JSON).
 			accept(ContentType.JSON).
 		when().
-			body(cabinet).
+			body(doctor).
 			put().
 		then().
 			log().

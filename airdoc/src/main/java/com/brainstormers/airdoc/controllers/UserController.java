@@ -76,7 +76,7 @@ public class UserController {
      */
     @PostMapping(value = {"","/"})
     public ResponseEntity<User> createUser(
-    		@ApiParam(value = "Cabinet", required = true)@RequestBody User user) throws ResourceAlreadyExistsException{
+    		@ApiParam(value = "Doctor", required = true)@RequestBody User user) throws ResourceAlreadyExistsException{
             User result = userService.insertUser(user)
                     .orElseThrow(() -> new ResourceAlreadyExistsException("could not create " +	user.toString()));
         return new ResponseEntity<User>(result, HttpStatus.CREATED);

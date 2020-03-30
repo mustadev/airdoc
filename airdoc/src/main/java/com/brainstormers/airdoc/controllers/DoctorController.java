@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
 import com.brainstormers.airdoc.exceptions.ResourceAlreadyExistsException;
-import com.brainstormers.airdoc.models.Cabinet;
-import com.brainstormers.airdoc.services.CabinetService;
+import com.brainstormers.airdoc.models.Doctor;
+import com.brainstormers.airdoc.services.DoctorService;
 
 import ch.qos.logback.classic.Logger;
 import io.swagger.annotations.Api;
@@ -37,26 +37,26 @@ import io.swagger.annotations.ApiParam;
  * 
  */
 @RestController
-@RequestMapping("cabinets")
-@Api(tags = "Cabinet Controlleur", value="Cabinets Management System", basePath = "/cabinets")
+@RequestMapping("doctors")
+@Api(tags = "Doctor Controlleur", value="Doctors Management System", basePath = "/doctors")
 @CrossOrigin(origins="*", maxAge=3600) //TODO Mustapha change this for security reasons
-public class CabinetController {
+public class DoctorController {
 	
 	
-	private final static Logger logger = (Logger) LoggerFactory.getLogger(CabinetController.class);
+	private final static Logger logger = (Logger) LoggerFactory.getLogger(DoctorController.class);
 	
 	@Autowired
-	private CabinetService cabinetService;
+	private DoctorService doctorService;
 	
 	
 	/**
-	 * obtenir tous les cabinets
-	 * @return List<Cabinet> 
+	 * obtenir tous les doctors
+	 * @return List<Doctor> 
 	 * @throws ResourceNotFoundException
 	 */
-	@ApiOperation(value = "obtenir tous les cabinets", response = List.class)
+	@ApiOperation(value = "obtenir tous les doctors", response = List.class)
 	@GetMapping(produces = "application/json")
-    public ResponseEntity<List<Cabinet>> getAllCabinets(
+    public ResponseEntity<List<Doctor>> getAllDoctors(
 		    @ApiParam(name ="query", value="requête de recherche") 
 		    @RequestParam(name = "query", defaultValue = "", required = false) String query,
 		    @ApiParam(name = "city", value="limiter la recherche pour cette ville") 
@@ -65,76 +65,76 @@ public class CabinetController {
 		    @RequestParam(name = "sort", defaultValue= "rating", required=false) String sort)
 		    throws ResourceNotFoundException {
 	    //see https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9
-    		logger.info("getAllCabinets::: params :  query: " + query + " sort: " + sort +  " city " + city);
-	List<Cabinet> results = cabinetService
+    		logger.info("getAllDoctors::: params :  query: " + query + " sort: " + sort +  " city " + city);
+	List<Doctor> results = doctorService
        			.findAll(query, city, Sort.by(sort).descending())
-        		.orElseThrow(() -> new ResourceNotFoundException("No Cabinets Found"));
+        		.orElseThrow(() -> new ResourceNotFoundException("No Doctors Found"));
  
 	return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
 	
 	/**
-	 * trouver un cabinet par son id
+	 * trouver un doctor par son id
 	 * @param id
 	 * @return {@link ResponseEntity}
 	 * @throws {@link ResourceNotFoundException}
 	 */
-	@ApiOperation(value = "trouver un cabinet par son id", response = Cabinet.class)
+	@ApiOperation(value = "trouver un doctor par son id", response = Doctor.class)
     @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<Cabinet> getCabinetById(@PathVariable("id") String id) throws ResourceNotFoundException {
-	System.out.println("get cabinet with id : " + id);
-        Cabinet result =  cabinetService.findCabinetById(id)
+    public ResponseEntity<Doctor> getDoctorById(@PathVariable("id") String id) throws ResourceNotFoundException {
+	System.out.println("get doctor with id : " + id);
+        Doctor result =  doctorService.findDoctorById(id)
         			.orElseThrow(()-> {
-					return new ResourceNotFoundException("No Cabinet with id : " + id );
+					return new ResourceNotFoundException("No Doctor with id : " + id );
 				});
-	return new ResponseEntity<Cabinet>(result, HttpStatus.OK);
+	return new ResponseEntity<Doctor>(result, HttpStatus.OK);
     }
 
 	/**
-	 * ajouter  un Cabinet
-	 * @param cabinet
-	 * @return Cabinet 
+	 * ajouter  un Doctor
+	 * @param doctor
+	 * @return Doctor 
 	 */
-    @ApiOperation(value = "ajouter un Cabinet ", response = Cabinet.class, code = 201)
+    @ApiOperation(value = "ajouter un Doctor ", response = Doctor.class, code = 201)
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Cabinet> createCabinet(
-    		@ApiParam(value = "Cabinet", required = true) @RequestBody Cabinet cabinet) throws ResourceAlreadyExistsException{
-	Cabinet result =  cabinetService.saveCabinet(cabinet).
-		orElseThrow(() -> new ResourceAlreadyExistsException("could not create " +	cabinet.toString()));
-	return new ResponseEntity<Cabinet>(result, HttpStatus.CREATED);
+    public ResponseEntity<Doctor> createDoctor(
+    		@ApiParam(value = "Doctor", required = true) @RequestBody Doctor doctor) throws ResourceAlreadyExistsException{
+	Doctor result =  doctorService.saveDoctor(doctor).
+		orElseThrow(() -> new ResourceAlreadyExistsException("could not create " +	doctor.toString()));
+	return new ResponseEntity<Doctor>(result, HttpStatus.CREATED);
     }
 
 	/**
-	 * modifier un Cabinet
-	 * @param cabinet
-	 * @return Cabinet
+	 * modifier un Doctor
+	 * @param doctor
+	 * @return Doctor
 	 */
-    @ApiOperation(value = "modifier un Cabinet ", response = Cabinet.class)
+    @ApiOperation(value = "modifier un Doctor ", response = Doctor.class)
     @PutMapping(consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Cabinet>  updateCabinet(
-    		@ApiParam(value = "Cabinet", required = true) @RequestBody Cabinet cabinet) throws ResourceAlreadyExistsException{
-    	//cabinetService.saveCabinet(cabinet);
-        //return new ResponseEntity<>("Cabinet added successfully", HttpStatus.OK);
-	Cabinet result = cabinetService.
-		saveCabinet(cabinet).orElseThrow( () -> new ResourceAlreadyExistsException("could not update" +	cabinet.toString()));
+    public ResponseEntity<Doctor>  updateDoctor(
+    		@ApiParam(value = "Doctor", required = true) @RequestBody Doctor doctor) throws ResourceAlreadyExistsException{
+    	//doctorService.saveDoctor(doctor);
+        //return new ResponseEntity<>("Doctor added successfully", HttpStatus.OK);
+	Doctor result = doctorService.
+		saveDoctor(doctor).orElseThrow( () -> new ResourceAlreadyExistsException("could not update" +	doctor.toString()));
 	return new ResponseEntity<>(result, HttpStatus.OK);
 
     }
 
 
     /**
-     * supprimer un Cabinet par son ID
+     * supprimer un Doctor par son ID
      * @param id
      */
-	@ApiOperation(value = "supprimer un cabinet", response = ResponseEntity.class)
+	@ApiOperation(value = "supprimer un doctor", response = ResponseEntity.class)
     @DeleteMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<Map<String, Object>> deleteCabinet(@PathVariable String id) {
-    	cabinetService.deleteCabinetById(id);
-    	//cabinetService.deleteCabinet(cabinetService.findBy(studentNumber).getId());
+    public ResponseEntity<Map<String, Object>> deleteDoctor(@PathVariable String id) {
+    	doctorService.deleteDoctorById(id);
+    	//doctorService.deleteDoctor(doctorService.findBy(studentNumber).getId());
 	Map<String, Object> msg = new HashMap<>();
-	msg.put("cabinetId", id);
-	msg.put("message", "cabinet successfully deleted");
+	msg.put("doctorId", id);
+	msg.put("message", "doctor successfully deleted");
 	return new ResponseEntity<Map<String, Object>>(msg , HttpStatus.OK);
     }
 }

@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.brainstormers.airdoc.models.Cabinet;
+import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.User;
-import com.brainstormers.airdoc.services.CabinetService;
+import com.brainstormers.airdoc.services.DoctorService;
 import com.brainstormers.airdoc.services.UserService;
 
 import org.junit.jupiter.api.Disabled;
