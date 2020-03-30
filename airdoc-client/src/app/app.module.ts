@@ -13,6 +13,8 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { ProfileComponent } from './components/pages/profile/profile.component';
 import { SinginComponent } from './components/pages/singin/singin.component';
 import { LoginComponent } from './components/pages/login/login.component';
+import { SearchComponent } from './components/pages/search/search.component';
+import { ReviewComponent } from './components/review/review.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { LoginComponent } from './components/pages/login/login.component';
     HomeComponent,
     ProfileComponent,
     SinginComponent,
-    LoginComponent
+    LoginComponent,
+    SearchComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
