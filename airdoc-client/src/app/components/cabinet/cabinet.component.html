@@ -1,1 +1,67 @@
-<p>cabinet works!</p>
+<div class="card">
+    <div class="card-body">
+        <div class="doctor-widget">
+            <div class="doc-info-left">
+                <div class="doctor-img">
+                    <a href="doctor-profile.html">
+                        <img src="assets/img/doctors/doctor-thumb-01.jpg" class="img-fluid" alt="User Image">
+                    </a>
+                </div>
+                <div class="doc-info-cont">
+                    <h4 class="doc-name"><a href="doctor-profile.html">{{cabinet.name}}</a></h4>
+                    <p class="doc-speciality">{{cabinet.speciality}}</p>
+                    <h5 class="doc-department"><img src="assets/img/specialities/specialities-05.png" class="img-fluid" alt="Speciality">Dentist</h5>
+                    <div class="rating">
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star filled"></i>
+                        <i class="fas fa-star"></i>
+                        <span class="d-inline-block average-rating">({{cabinet.averageRating}})</span>
+                    </div>
+                    <div class="clinic-details">
+                        <p class="doc-location"><i class="fas fa-map-marker-alt"></i>{{cabinet.country + " " + cabinet.city}}</p>
+                        <ul class="clinic-gallery">
+                            <li>
+                                <a href="assets/img/features/feature-01.jpg" data-fancybox="gallery">
+                                    <img src="assets/img/features/feature-01.jpg" alt="Feature">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="assets/img/features/feature-02.jpg" data-fancybox="gallery">
+                                    <img  src="assets/img/features/feature-02.jpg" alt="Feature">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="assets/img/features/feature-03.jpg" data-fancybox="gallery">
+                                    <img src="assets/img/features/feature-03.jpg" alt="Feature">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="assets/img/features/feature-04.jpg" data-fancybox="gallery">
+                                    <img src="assets/img/features/feature-04.jpg" alt="Feature">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clinic-services">
+                        <span *ngFor=" let service of cabinet.services"> {{service}} </span>
+                    </div>
+                </div>
+            </div>
+            <div class="doc-info-right">
+                <div class="clini-infos">
+                    <ul>
+                        <li><i class="far fa-comment"></i> {{cabinet.reviews.length}} Feedback</li>
+                        <li><i class="fas fa-map-marker-alt"></i> {{cabinet.country + " " + cabinet.city}}</li>
+                        <li><i class="far fa-money-bill-alt"></i> ${{cabinet.minPrice}} - ${{cabinet.maxPrice}}  </li>
+                    </ul>
+                </div>
+                <div class="clinic-booking">
+                    <a class="view-pro-btn" href="doctor-profile.html">Voire Cabinet</a>
+                    <a class="apt-btn" href="booking.html">Rendi-Vous</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
