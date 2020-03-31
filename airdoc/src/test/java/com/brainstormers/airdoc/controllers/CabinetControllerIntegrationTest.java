@@ -14,7 +14,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 
 import com.brainstormers.airdoc.models.Cabinet;
-import com.brainstormers.airdoc.models.User;
+import com.brainstormers.airdoc.models.Patient;
 import com.brainstormers.airdoc.services.CabinetService;
 
 import io.restassured.RestAssured;
@@ -55,7 +55,7 @@ class CabinetControllerJunitTest {
 
 		Cabinet cabinet = new Cabinet();
 		cabinet.setName("doctor who hospital");
-		cabinet.setCreatedBy(new User("doctor", "who",12,"xxxxx@gmail.com"));
+		cabinet.setCreatedBy(new Patient("doctor", "who",12,"xxxxx@gmail.com"));
 		cabinet.setDescription("this is doctor who's hospital");
 
 		given().

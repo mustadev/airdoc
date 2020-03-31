@@ -48,7 +48,7 @@ public class Cabinet {
 	 * propriétaire de cabinet
 	 */
 	@ApiModelProperty(notes = "propriétaire de cabinet")
-    private User createdBy;
+    private Patient createdBy;
 
 	/**
 	 * Évaluation du Cabinet
@@ -62,10 +62,10 @@ public class Cabinet {
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
-	public User getCreatedBy() {
+	public Patient getCreatedBy() {
 		return createdBy;
 	}
-	public void setCreatedBy(User createdBy) {
+	public void setCreatedBy(Patient createdBy) {
 		this.createdBy = createdBy;
 	}
 	public float getRating() {

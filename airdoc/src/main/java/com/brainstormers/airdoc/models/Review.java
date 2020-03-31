@@ -32,7 +32,7 @@ public class Review {
 	 * auteur de la revue
 	 */
 	@ApiModelProperty(notes = "auteur de la revue")
-	private User auther;
+	private Patient auther;
 	/**
 	 * nombre des likes
 	 */
@@ -40,7 +40,7 @@ public class Review {
 	private int likes;
 	
 	
-	public Review(String content, User auther, int likes) {
+	public Review(String content, Patient auther, int likes) {
 		this.content = content;
 		this.auther = auther;
 		this.likes = likes;
@@ -52,10 +52,10 @@ public class Review {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public User getAuther() {
+	public Patient getAuther() {
 		return auther;
 	}
-	public void setAuther(User auther) {
+	public void setAuther(Patient auther) {
 		this.auther = auther;
 	}
 	public int getLikes() {

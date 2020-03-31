@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.brainstormers.airdoc.models.Cabinet;
-import com.brainstormers.airdoc.models.User;
+import com.brainstormers.airdoc.models.Patient;
 import com.brainstormers.airdoc.repositories.CabinetRepository;
 import com.brainstormers.airdoc.services.CabinetService;
 
@@ -41,7 +41,7 @@ public class CabinetStartupRunner implements CommandLineRunner {
 	Cabinet cabinet1 = new Cabinet();
 	cabinet1.setName("asafar");
 	cabinet1.setDescription("asafar Description");
-	cabinet1.setCreatedBy(new User("musta", "pha",12,"musta@gmail.com"));
+	cabinet1.setCreatedBy(new Patient("musta", "pha",12,"musta@gmail.com"));
 	Cabinet savedCabinet = cabinetRepository.save(cabinet1);
 	logger.debug("id: " +savedCabinet.getId() + " name: " + savedCabinet.getName());
 //	logger.debug("cabint 1 saved");
