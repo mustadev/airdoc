@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * AirDoc application
- * le Airbnb de cabinets
+ * le Airbnb de doctors
  * @author Mustapha De BrainStormers
  * @since 13-03-2020
  * 
@@ -22,7 +22,7 @@ public class AirDoc {
 //		return new WebMvcConfigurer() {
 //			@Override
 //			public void addCorsMappings(CorsRegistry registry) {
-//				registry.addMapping("/cabinets").allowedOrigins("http://localhost:4200");
+//				registry.addMapping("/doctors").allowedOrigins("http://localhost:4200");
 //			}
 //		};
 //	}

@@ -43,9 +43,8 @@ public class RestDocConfig {
 
         return new ApiInfoBuilder()
         	.title("Spring Boot REST API")
-            .description("Cabinets Managements")
-            .contact(new Contact(  "Ayoub Benhaimoud","github.com/BENHAIMOUD", "ayoubbenhaimoud@gmail.com"))
-            .contact(new Contact(  "Mustapha de brainstormers","github.com/mustadev", "mustaphaemail@emailino.com"))
+            .description("Doctors Managements")
+            .contact(new Contact(  "Mustapha de brainstormers",          "github.com/mustadev", "ouarrain.mustapha@gmail.com"))
             .license("BrainStormers 1.0")
             .licenseUrl("http://www.brainstromers.com/licenses/LICENSE-2.0.html")
             .version("1.0.0")

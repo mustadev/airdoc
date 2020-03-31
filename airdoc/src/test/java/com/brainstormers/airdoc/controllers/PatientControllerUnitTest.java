@@ -13,6 +13,8 @@ import java.util.Optional;
 
 import com.brainstormers.airdoc.models.Patient;
 import com.brainstormers.airdoc.services.PatientService;
+import com.brainstormers.airdoc.models.Doctor;
+import com.brainstormers.airdoc.services.DoctorService;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

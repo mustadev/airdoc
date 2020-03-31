@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.brainstormers.airdoc.models.Cabinet;
-import com.brainstormers.airdoc.services.CabinetService;
+import com.brainstormers.airdoc.models.Doctor;
+import com.brainstormers.airdoc.services.DoctorService;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -20,24 +20,39 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.web.servlet.MockMvc;
 
-@Disabled
-@WebMvcTest(CabinetController.class)
-public class CabinetControllerUnitTest{
+@WebMvcTest(DoctorController.class)
+public class DoctorControllerUnitTest{
 
 	@Autowired
 	private MockMvc mockMvc;
 
 	@MockBean
-	private CabinetService service;
+	private DoctorService service;
 
 	@Test
 	public void get_should_return_status_ok() throws Exception {
-		List<Cabinet> cabinets = new ArrayList<>();
-		cabinets.add(new Cabinet());
-		when(service.findAll()).thenReturn(Optional.of(cabinets));
-		this.mockMvc.perform(get("/cabinets")).andDo(print()).andExpect(status().isOk());
+		List<Doctor> doctors = new ArrayList<>();
+		Doctor doctor1 = new Doctor();
+		doctor1.setName("test");
+		doctor1.setDescription("test");
+		doctor1.setRating(4.1f);
+		doctor1.setCity("test");
+
+		Doctor doctor2 = new Doctor();
+		doctor2.setName("test");
+		doctor2.setDescription("test");
+		doctor2.setRating(4.1f);
+		doctor2.setCity("test");
+		doctors.add(doctor1);
+		doctors.add(doctor1);
+		String query = "";
+		String city= "";
+		Sort sort = Sort.by("rating").descending();
+		when(service.findAll(query, city, sort)).thenReturn(Optional.of(doctors));
+		this.mockMvc.perform(get("/doctors/")).andDo(print()).andExpect(status().isOk());
 				//.andExpect(content().string(containsString("")));
 	}
 }

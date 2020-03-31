@@ -9,7 +9,7 @@
                         <li class="breadcrumb-item active" aria-current="page">Search</li>
                     </ol>
                 </nav>
-                <h2 class="breadcrumb-title">{{cabinets.length}} matches found for : Dentist In Bangalore</h2>
+                <h2 class="breadcrumb-title">{{doctors.length}} matches found for : Dentist In Bangalore</h2>
             </div>
             <div class="col-md-4 col-12 d-md-block d-none">
                 <div class="sort-by">
@@ -43,26 +43,6 @@
                     </div>
                     <div class="card-body">
                     <div class="filter-widget">
-                        <div class="cal-icon">
-                            <input type="text" class="form-control datetimepicker" placeholder="Select Date">
-                        </div>			
-                    </div>
-                    <div class="filter-widget">
-                        <h4>Gender</h4>
-                        <div>
-                            <label class="custom_check">
-                                <input type="checkbox" name="gender_type" checked>
-                                <span class="checkmark"></span> Male Doctor
-                            </label>
-                        </div>
-                        <div>
-                            <label class="custom_check">
-                                <input type="checkbox" name="gender_type">
-                                <span class="checkmark"></span> Female Doctor
-                            </label>
-                        </div>
-                    </div>
-                    <div class="filter-widget">
                         <h4>Select Specialist</h4>
                         <div>
                             <label class="custom_check">
@@ -94,12 +74,6 @@
                                 <span class="checkmark"></span> Cardiologist
                             </label>
                         </div>
-                        <div>
-                            <label class="custom_check">
-                                <input type="checkbox" name="select_specialist">
-                                <span class="checkmark"></span> Cardiologist
-                            </label>
-                        </div>
                     </div>
                         <div class="btn-search">
                             <button type="button" class="btn btn-block">Search</button>
@@ -110,10 +84,7 @@
                 
             </div>
             <div class="col-md-12 col-lg-8 col-xl-9">
-                <app-cabinet *ngFor="let cabinet of cabinets" [cabinet]="cabinet"></app-cabinet>
-                <div class="load-more text-center">
-                    <a class="btn btn-primary btn-sm" href="javascript:void(0);">Load More</a>	
-                </div>	
+                <app-doctor *ngFor="let doctor of doctors" [doctor]="doctor"></app-doctor>	
             </div>
         </div>
 

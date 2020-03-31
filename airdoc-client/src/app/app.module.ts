@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './components/user/user.component';
-import { CabinetComponent } from './components/cabinet/cabinet.component';
+import { DoctorComponent } from './components/doctor/doctor.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { AboutComponent } from './components/pages/about/about.component';
@@ -20,7 +21,7 @@ import { ReviewComponent } from './components/review/review.component';
   declarations: [
     AppComponent,
     UserComponent,
-    CabinetComponent,
+    DoctorComponent,
     HeaderComponent,
     FooterComponent,
     AboutComponent,
@@ -34,7 +35,8 @@ import { ReviewComponent } from './components/review/review.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
