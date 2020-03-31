@@ -23,6 +23,7 @@ mvn clean test
 ## Démarer AirDocClient (Angular Web App) par:
 ```bash
 cd airdoc-client
+npm install
 ng serve --open
 ```
 

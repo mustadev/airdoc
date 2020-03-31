@@ -10,7 +10,6 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 
 import com.brainstormers.airdoc.models.Doctor;
-
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
@@ -44,11 +43,11 @@ class DoctorControllerIntergationTest {
 	@Test
 	void test_create_doctor() {
 
+
 		Doctor doctor = new Doctor();
 		doctor.setName("doctor who hospital");
 		doctor.setOwnerId("userID");
 		doctor.setDescription("this is doctor who's hospital");
-
 		given().
 		contentType(ContentType.JSON).
 		accept(ContentType.JSON).
