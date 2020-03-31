@@ -9,52 +9,52 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 /**
- * Modele User {@link User User.class}
- * c'est une classe "user" qui constitue toutes les attributes nécessaire pour un utilisateur
+ * Modele Patient {@link Patient Patient.class}
+ * c'est une classe "Patient" qui constitue toutes les attributes nécessaire pour un Patient
  * @author Ayoub BenHaimoud<ayoubbenhaimoud@gmail.com>
  * @since 18-03-2020
  * 
  */
-@ApiModel(description = "Détails de l'utilisateur")
-@Document(collection = "users")
-public class User {
+@ApiModel(description = "Détails du Patient")
+@Document(collection = "patients")
+public class Patient {
 	
 	/**
 	 * ID d'Utilisateur
 	 */
-	@ApiModelProperty(notes = "ID d'Utilisateur")
+	@ApiModelProperty(notes = "ID du Patient")
 	@Id
 	private String id;
 	/**
 	 * Prénom d'utilisateur.
 	 */
-	@ApiModelProperty(notes = "prénom d'Utilisateur.")
+	@ApiModelProperty(notes = "prénom du Patient")
 	private String firstName;
 	/**
 	 * Nom d'utilisateur.
 	 */
-	@ApiModelProperty(notes = "nom d'Utilisateur")
+	@ApiModelProperty(notes = "nom du Patient")
 	private String lastName;
 	/**
 	 * Age d'utilisateur
 	 */
-	@ApiModelProperty(notes = "aged'Utilisateur.")
+	@ApiModelProperty(notes = "age du Patient")
     private int age;
 	/**
 	 * Email d'utilisateur
 	 */
-	@ApiModelProperty(notes = "mail d'Utilisateur.")
+	@ApiModelProperty(notes = "mail du Patient.")
     private String mail;
 	
 	
-	public User(String firstName, String lastName,int age,String mail) {
+	public Patient(String firstName, String lastName,int age,String mail) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
 		this.mail = mail;
 		
 	}
-	public User() {}
+	public Patient() {}
 	public String getId() {
 		return id;
 	}
