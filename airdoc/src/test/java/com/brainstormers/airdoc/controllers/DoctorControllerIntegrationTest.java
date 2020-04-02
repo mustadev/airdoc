@@ -45,7 +45,8 @@ class DoctorControllerIntergationTest {
 
 
 		Doctor doctor = new Doctor();
-		doctor.setName("doctor who hospital");
+		doctor.setFirstName("Mr");
+		doctor.setLastName("Who");
 		doctor.setOwnerId("userID");
 		doctor.setDescription("this is doctor who's hospital");
 		given().
@@ -108,7 +109,8 @@ class DoctorControllerIntergationTest {
 	void test_update(){
 		Doctor doctor = new Doctor();
 		doctor.setId("123");
-		doctor.setName("testName");
+		doctor.setFirstName("testName");
+		doctor.setLastName("testName");
 		// add the doctor first then update it.
 		given().
 			contentType(ContentType.JSON).
@@ -123,7 +125,8 @@ class DoctorControllerIntergationTest {
 			body("$", hasKey("id"));
 		
 		//change the doctor 
-		doctor.setName("otherTestName");
+		doctor.setFirstName("otherTestName");
+		doctor.setLastName("otherTestName");
 		given().
 			contentType(ContentType.JSON).
 			accept(ContentType.JSON).

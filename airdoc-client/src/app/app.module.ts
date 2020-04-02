@@ -16,6 +16,8 @@ import { SinginComponent } from './components/pages/singin/singin.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { SearchComponent } from './components/pages/search/search.component';
 import { ReviewComponent } from './components/review/review.component';
+import { SigninComponent } from './components/pages/doctor/signin/signin.component';
+import { SignupComponent } from './components/pages/doctor/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { ReviewComponent } from './components/review/review.component';
     SinginComponent,
     LoginComponent,
     SearchComponent,
-    ReviewComponent
+    ReviewComponent,
+    SigninComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

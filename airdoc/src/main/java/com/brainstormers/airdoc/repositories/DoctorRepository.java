@@ -27,7 +27,11 @@ public interface DoctorRepository extends MongoRepository<Doctor, String> {
 		@Query("{ 'name' : { $regex: ?0 } }")
 		List<Doctor> searchNameByRegex(String query);
 
-		@Query("{'name': {$regex: ?0 }, 'city': {$regex: ?1} }")
+		@Query("{'firstname': {$regex: ?0 }, 'city': {$regex: ?1} }")
 		List<Doctor> findAll(String query, String city, Sort sort);
+
+		Doctor findByEmail(String email);
+
+		boolean existsByEmail(String Email);
 
 }

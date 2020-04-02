@@ -3,7 +3,7 @@ package com.brainstormers.airdoc.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mongodb.lang.NonNull;
 
 import org.springframework.data.annotation.Id;
@@ -30,11 +30,31 @@ public class Doctor{
     private String id;
 
 	/**
-	 * nom de doctor
+	 * Prénom de doctor
 	 */
-	@ApiModelProperty(notes = "nom de doctor")
+	@ApiModelProperty(notes = "prénom de doctor")
 	@NonNull
-	private String name;
+	private String firstname;
+
+	/**
+	 * Nom de doctor
+	 */
+	@ApiModelProperty(notes = "Nom de doctor")
+    private String lastname;
+
+	/**
+	 * Email de doctor
+	 */
+	@ApiModelProperty(notes = "Email de doctor")
+	@NonNull
+    private String email;
+
+	/**
+	 * Mot de Pass de doctor
+	 */
+	@ApiModelProperty(notes = "Mot De Pass de doctor")
+	@NonNull
+    private String password;
 
 	/**
 	 * description de doctor
@@ -56,6 +76,13 @@ public class Doctor{
     private List<Review> reviews = new ArrayList<>();
 
 	/**
+	 * les authorité de doctor
+	 */
+	@ApiModelProperty(notes = "les authorité de doctor")
+    private List<Role> roles = Arrays.asList(Role.ROLE_CLIENT);
+
+
+/**
 	 * les services de doctor
 	 */
 	@ApiModelProperty(notes = "les services de doctor")
@@ -169,11 +196,17 @@ public class Doctor{
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstname) {
+		this.firstname = firstname;
+	}
+	public String getLasttName() {
+		return firstname;
+	}
+	public void setLastName(String lastname) {
+		this.lastname = lastname;
 	}
 	public String getDescription() {
 		return description;
@@ -188,5 +221,30 @@ public class Doctor{
 	public void setCity(String city) {
 		this.city= city;
 	}
+
+	 public String getEmail() {
+    		return email;
+	  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public List<Role> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(List<Role> roles) {
+    this.roles = roles;
+  }
+
     
 }

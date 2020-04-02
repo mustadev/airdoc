@@ -6,7 +6,6 @@ import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
 import com.brainstormers.airdoc.models.Doctor;
 
 import org.springframework.data.domain.Sort;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Service;
 
 /**
@@ -66,5 +65,23 @@ public interface DoctorService {
      * @return List<Doctor> doctors
      */
     Optional<List<Doctor>> search(String query);
+
+    /**
+     * Authentification de doctor
+     * @param username
+     * @param password
+     *
+     * */
+    String login(String email, String password);
+
+    /**
+     * Inscription de doctor
+     * @param doctor
+     *
+     * */
+    String signup(Doctor doctor);
+
+	
+
 	
 }

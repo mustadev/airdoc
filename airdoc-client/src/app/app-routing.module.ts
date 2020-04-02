@@ -7,16 +7,20 @@ import { ProfileComponent } from './components/pages/profile/profile.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { SinginComponent } from './components/pages/singin/singin.component';
 import { SearchComponent } from './components/pages/search/search.component';
+import { LoginComponent as DoctorLoginComponent } from './components/pages/doctor/login/login.component';
+import { SignupComponent as DoctorSignupComponent } from './components/pages/doctor/signup/signup.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path:  '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'contact' , component: ContactComponent },
   { path: 'about' , component: AboutComponent },
   { path: 'profile' , component: ProfileComponent },
   { path: 'login' , component: LoginComponent },
   { path: 'signin' , component: SinginComponent },
-  { path: 'search' , component: SearchComponent }
+  { path: 'search' , component: SearchComponent },
+  { path: 'doctor/login' , component: DoctorLoginComponent },
+  { path: 'doctor/signup' , component: DoctorSignupComponent }
 ];
 
 @NgModule({

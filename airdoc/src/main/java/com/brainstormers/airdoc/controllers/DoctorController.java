@@ -30,6 +30,7 @@ import ch.qos.logback.classic.Logger;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponses;
 
 /**
  * @author Mustapha De BrainStormers
@@ -137,4 +138,20 @@ public class DoctorController {
 	msg.put("message", "doctor successfully deleted");
 	return new ResponseEntity<Map<String, Object>>(msg , HttpStatus.OK);
     }
+
+
+    //TODO this should be put authserver
+   @PostMapping("/login")
+  @ApiOperation(value = "Doctor Login")
+  public String login(//
+      @ApiParam("Username") @RequestParam String username, //
+      @ApiParam("Password") @RequestParam String password) {
+    return doctorService.login(username, password);
+  }
+
+  @PostMapping("/signup")
+  @ApiOperation(value = "${UserController.signup}")
+  public String signup(@ApiParam("Signup User") @RequestBody Doctor doctor) {
+    return doctorService.signup(doctor);
+  }
 }
