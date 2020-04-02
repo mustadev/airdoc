@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'login' , component: LoginComponent },
   { path: 'signin' , component: SinginComponent },
   { path: 'search' , component: SearchComponent }
+
 ];
 
 @NgModule({
