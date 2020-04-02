@@ -23,10 +23,6 @@ public class DoctorStartupRunner implements CommandLineRunner {
 	@Autowired
 	private DoctorService doctorService;
 	
-
-	// @Autowired
-	// private DoctorService DoctorService;
-
 	@Override
 	public void run(String... args) throws Exception {
 		logger.info(

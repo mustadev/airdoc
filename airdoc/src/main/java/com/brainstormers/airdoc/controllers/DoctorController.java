@@ -34,8 +34,6 @@ import ch.qos.logback.classic.Logger;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 
 /**
  * @author Mustapha De BrainStormers
@@ -44,7 +42,7 @@ import io.swagger.annotations.ApiResponses;
  */
 @RestController
 @RequestMapping("doctors")
-@Api(tags = "Doctor Controlleur", value="Doctors Management System", basePath = "/doctors")
+@Api(tags = "Doctor Controlleur", value="Doctors Management System")
 @CrossOrigin(origins="*", maxAge=3600) //TODO Mustapha change this for security reasons
 public class DoctorController {
 	
@@ -146,7 +144,7 @@ public class DoctorController {
 
 
     //TODO this should be put authserver
-   @GetMapping("/login")
+   @PostMapping("/login")
    @ApiOperation(value = "Doctor Login")
    public String login(//
       @ApiParam("Email") @RequestParam String email, //
