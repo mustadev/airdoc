@@ -33,5 +33,7 @@ public interface DoctorRepository extends MongoRepository<Doctor, String> {
 		Doctor findByEmail(String email);
 
 		boolean existsByEmail(String Email);
+		
+		void deleteByEmail(String email);
 
 }

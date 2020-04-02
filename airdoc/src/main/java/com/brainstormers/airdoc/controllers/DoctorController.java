@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
+import com.brainstormers.airdoc.exceptions.AuthException;
 import com.brainstormers.airdoc.exceptions.ResourceAlreadyExistsException;
 import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.services.DoctorService;
@@ -30,6 +34,7 @@ import ch.qos.logback.classic.Logger;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 /**
@@ -141,17 +146,31 @@ public class DoctorController {
 
 
     //TODO this should be put authserver
-   @PostMapping("/login")
-  @ApiOperation(value = "Doctor Login")
-  public String login(//
-      @ApiParam("Username") @RequestParam String username, //
+   @GetMapping("/login")
+   @ApiOperation(value = "Doctor Login")
+   public String login(//
+      @ApiParam("Email") @RequestParam String email, //
       @ApiParam("Password") @RequestParam String password) {
-    return doctorService.login(username, password);
+	   System.out.println("email " + email + " password" + password);
+    return doctorService.login(email, password).orElseThrow(() -> 
+		new UsernameNotFoundException("User Not Found with username: " + email));
   }
 
   @PostMapping("/signup")
-  @ApiOperation(value = "${UserController.signup}")
+  @ApiOperation(value = "Doctor Inscription")
   public String signup(@ApiParam("Signup User") @RequestBody Doctor doctor) {
-    return doctorService.signup(doctor);
+    return doctorService.signup(doctor).orElseThrow(() -> 
+	new AuthException("aucun authentification trouver votre compte", 
+			HttpStatus.NETWORK_AUTHENTICATION_REQUIRED));
+  }
+  
+  @GetMapping(value = "/me")
+  @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
+  @ApiOperation(value = "Doctor Authentification", response = Doctor.class)
+  public Doctor whoami(HttpServletRequest req) {
+    return doctorService.whoami(req).
+    		orElseThrow(() -> 
+    		new AuthException("aucun authentification trouver pour votre compte", 
+    				HttpStatus.NETWORK_AUTHENTICATION_REQUIRED));
   }
 }

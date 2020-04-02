@@ -3,10 +3,10 @@ package com.brainstormers.airdoc.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -41,20 +41,20 @@ public class DoctorServiceImpl implements DoctorService {
 	@Autowired
 	 private AuthenticationManager authenticationManager;
 
-  	public String login(String email, String password) {
+  	public Optional<String> login(String email, String password) {
     	try {
       	authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-      	return jwtTokenProvider.createToken(email, doctorRepository.findByEmail(email).getRoles());
+      	return Optional.of(jwtTokenProvider.createToken(email, doctorRepository.findByEmail(email).getRoles()));
     	} catch (AuthenticationException e) {
       	throw new AuthException("Invalid email/password supplied", HttpStatus.UNPROCESSABLE_ENTITY);
     	}
     }
 
-  public String signup(Doctor doctor) {
+  public Optional<String> signup(Doctor doctor) {
     if (!doctorRepository.existsByEmail(doctor.getEmail())) {
       doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
       doctorRepository.save(doctor);
-      return jwtTokenProvider.createToken(doctor.getEmail(), doctor.getRoles());
+      return Optional.of(jwtTokenProvider.createToken(doctor.getEmail(), doctor.getRoles()));
     } else {
       throw new AuthException("Email is already in use", HttpStatus.UNPROCESSABLE_ENTITY);
     }
@@ -101,6 +101,24 @@ public class DoctorServiceImpl implements DoctorService {
 		List<Doctor> results = doctorRepository.fin;
 		return Optional.of(results); 
 	*/
+	}
+
+	 public void deleteByEmail(String email) {
+		    doctorRepository.deleteByEmail(email);
+	 }
+
+		
+
+	 public Optional<Doctor> whoami(HttpServletRequest req) {
+		    return Optional.of(doctorRepository.
+		    		findByEmail(jwtTokenProvider.
+		    				getUsername(jwtTokenProvider.resolveToken(req))));
+	 }
+
+	public Optional<String> refresh(String username) {
+		    return Optional.of(jwtTokenProvider.
+		    		createToken(username, doctorRepository.
+		    				findByEmail(username).getRoles()));
 	}
 	
 }

@@ -2,6 +2,9 @@ package com.brainstormers.airdoc.services;
 
 import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
+
 import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
 import com.brainstormers.airdoc.models.Doctor;
 
@@ -72,16 +75,20 @@ public interface DoctorService {
      * @param password
      *
      * */
-    String login(String email, String password);
+    Optional<String> login(String email, String password);
 
     /**
      * Inscription de doctor
      * @param doctor
      *
      * */
-    String signup(Doctor doctor);
+    Optional<String> signup(Doctor doctor);
 
-	
+    public void deleteByEmail(String email);
+
+    public Optional<Doctor> whoami(HttpServletRequest req);
+
+    public Optional<String> refresh(String email);
 
 	
 }
