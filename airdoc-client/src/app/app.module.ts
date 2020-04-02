@@ -11,11 +11,15 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 import { AboutComponent } from './components/pages/about/about.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { HomeComponent } from './components/pages/home/home.component';
-import { ProfileComponent } from './components/pages/profile/profile.component';
-import { SinginComponent } from './components/pages/singin/singin.component';
-import { LoginComponent } from './components/pages/login/login.component';
 import { SearchComponent } from './components/pages/search/search.component';
 import { ReviewComponent } from './components/review/review.component';
+import { SignupComponent as DoctorSignupComponent } from './components/pages/doctor/signup/signup.component';
+import { LoginComponent as DoctorLoginComponent } from './components/pages/doctor/login/login.component';
+import { ProfileComponent as DoctorProfileComponent } from './components/pages/doctor/profile/profile.component';
+import { SignupComponent as PatientSignupComponent } from './components/pages/patient/signup/signup.component';
+import { LoginComponent as PatientLoginComponent } from './components/pages/patient/login/login.component';
+import { ProfileComponent as PatientProfileComponent } from './components/pages/patient/profile/profile.component';
+
 
 @NgModule({
   declarations: [
@@ -27,11 +31,14 @@ import { ReviewComponent } from './components/review/review.component';
     AboutComponent,
     ContactComponent,
     HomeComponent,
-    ProfileComponent,
-    SinginComponent,
-    LoginComponent,
     SearchComponent,
-    ReviewComponent
+    ReviewComponent,
+    DoctorSignupComponent,
+    DoctorLoginComponent,
+    DoctorProfileComponent,
+    PatientSignupComponent,
+    PatientLoginComponent,
+    PatientProfileComponent
   ],
   imports: [
     BrowserModule,
