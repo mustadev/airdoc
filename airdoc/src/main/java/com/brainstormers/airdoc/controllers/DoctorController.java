@@ -38,7 +38,7 @@ import io.swagger.annotations.ApiParam;
  */
 @RestController
 @RequestMapping("doctors")
-@Api(tags = "Doctor Controlleur", value="Doctors Management System", basePath = "/doctors")
+@Api(tags = "Doctor Controlleur", value="Doctors Management System")
 @CrossOrigin(origins="*", maxAge=3600) //TODO Mustapha change this for security reasons
 public class DoctorController {
 	
@@ -84,7 +84,7 @@ public class DoctorController {
     @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<Doctor> getDoctorById(@PathVariable("id") String id) throws ResourceNotFoundException {
 	System.out.println("get doctor with id : " + id);
-        Doctor result =  doctorService.findDoctorById(id)
+        Doctor result =  doctorService.findById(id)
         			.orElseThrow(()-> {
 					return new ResourceNotFoundException("No Doctor with id : " + id );
 				});
@@ -100,7 +100,7 @@ public class DoctorController {
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Doctor> createDoctor(
     		@ApiParam(value = "Doctor", required = true) @RequestBody Doctor doctor) throws ResourceAlreadyExistsException{
-	Doctor result =  doctorService.saveDoctor(doctor).
+	Doctor result =  doctorService.save(doctor).
 		orElseThrow(() -> new ResourceAlreadyExistsException("could not create " +	doctor.toString()));
 	return new ResponseEntity<Doctor>(result, HttpStatus.CREATED);
     }
@@ -117,7 +117,7 @@ public class DoctorController {
     	//doctorService.saveDoctor(doctor);
         //return new ResponseEntity<>("Doctor added successfully", HttpStatus.OK);
 	Doctor result = doctorService.
-		saveDoctor(doctor).orElseThrow( () -> new ResourceAlreadyExistsException("could not update" +	doctor.toString()));
+		save(doctor).orElseThrow( () -> new ResourceAlreadyExistsException("could not update" +	doctor.toString()));
 	return new ResponseEntity<>(result, HttpStatus.OK);
 
     }
@@ -130,11 +130,13 @@ public class DoctorController {
 	@ApiOperation(value = "supprimer un doctor", response = ResponseEntity.class)
     @DeleteMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<Map<String, Object>> deleteDoctor(@PathVariable String id) {
-    	doctorService.deleteDoctorById(id);
+    	doctorService.deleteById(id);
     	//doctorService.deleteDoctor(doctorService.findBy(studentNumber).getId());
 	Map<String, Object> msg = new HashMap<>();
 	msg.put("doctorId", id);
 	msg.put("message", "doctor successfully deleted");
 	return new ResponseEntity<Map<String, Object>>(msg , HttpStatus.OK);
     }
+
+
 }

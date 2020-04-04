@@ -10,13 +10,37 @@
                 "description": "The unique identifier for a doctor",
                 "type": "string"
             },
-            "name": {
+            "lastName": {
                 "type": "string"
             },
-	    "description": {
+            "firstName": {
                 "type": "string"
             },
-	    "city": {
+            "password": {
+                "type": "string"
+            },
+            "email": {
+                "type": "string"
+            },
+            "speciality": {
+                "type": "string"
+            },
+            "roles":{
+            	"type": "array",
+            	"items":{
+            		"type":"string"
+            	}
+            },
+            "services":{
+            	"type": "array",
+            	"items":{
+            		"type":"string"
+            	}
+            },
+	    	"description": {
+                "type": "string"
+            },
+	    	"city": {
                 "type": "string"
             },
             "rating": {

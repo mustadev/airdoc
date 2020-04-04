@@ -36,13 +36,15 @@ public class DoctorControllerUnitTest{
 	public void get_should_return_status_ok() throws Exception {
 		List<Doctor> doctors = new ArrayList<>();
 		Doctor doctor1 = new Doctor();
-		doctor1.setName("test");
+		doctor1.setFirstname("testName");
+		doctor1.setLastname("testName");
 		doctor1.setDescription("test");
 		doctor1.setRating(4.1f);
 		doctor1.setCity("test");
 
 		Doctor doctor2 = new Doctor();
-		doctor2.setName("test");
+		doctor2.setFirstname("testName");
+		doctor2.setLastname("testName");
 		doctor2.setDescription("test");
 		doctor2.setRating(4.1f);
 		doctor2.setCity("test");

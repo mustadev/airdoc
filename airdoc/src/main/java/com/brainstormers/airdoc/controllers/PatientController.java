@@ -45,7 +45,7 @@ public class PatientController {
                    .findAll()
                    .orElseThrow(()-> new ResourceNotFoundException("no patient found"));
            result.forEach((patient)-> {
-                    String msg = String.format("patient name: %s patient mail: %s",patient.getFirstName(),patient.getMail());
+                    String msg = String.format("patient name: %s patient mail: %s",patient.getFirstName(),patient.getEmail());
                     logger.debug(msg);
            });
            return new ResponseEntity<>(result, HttpStatus.OK);

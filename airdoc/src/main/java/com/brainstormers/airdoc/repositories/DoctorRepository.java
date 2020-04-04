@@ -6,7 +6,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
-
 import com.brainstormers.airdoc.models.Doctor;
 
 /**
@@ -27,7 +26,15 @@ public interface DoctorRepository extends MongoRepository<Doctor, String> {
 		@Query("{ 'name' : { $regex: ?0 } }")
 		List<Doctor> searchNameByRegex(String query);
 
-		@Query("{'name': {$regex: ?0 }, 'city': {$regex: ?1} }")
+		@Query("{'firstname': {$regex: ?0 }, 'city': {$regex: ?1} }")
 		List<Doctor> findAll(String query, String city, Sort sort);
+
+		Doctor findByEmail(String email);
+		Doctor findByUsername(String username);
+
+		boolean existsByEmail(String Email);
+		boolean existsByUsername(String username);
+		
+		void deleteByEmail(String email);
 
 }
