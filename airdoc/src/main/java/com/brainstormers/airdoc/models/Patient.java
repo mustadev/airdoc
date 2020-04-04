@@ -31,10 +31,22 @@ public class Patient {
 	@ApiModelProperty(notes = "prénom du Patient")
 	private String firstName;
 	/**
-	 * Nom d'utilisateur.
+	 * Nom du Patient.
 	 */
 	@ApiModelProperty(notes = "nom du Patient")
 	private String lastName;
+	
+	/**
+	 * Nom d'utilisateur.
+	 */
+	@ApiModelProperty(notes = "Non D'utilisateur du Patient")
+	private String username;
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	/**
 	 * Age d'utilisateur
 	 */
@@ -44,14 +56,14 @@ public class Patient {
 	 * Email d'utilisateur
 	 */
 	@ApiModelProperty(notes = "mail du Patient.")
-    private String mail;
+    private String email;
 	
 	
 	public Patient(String firstName, String lastName,int age,String mail) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
-		this.mail = mail;
+		this.email = mail;
 		
 	}
 	public Patient() {}
@@ -79,11 +91,11 @@ public class Patient {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public String getMail() {
-		return mail;
+	public String getEmail() {
+		return email;
 	}
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setEmail(String mail) {
+		this.email = mail;
 	}
     
  

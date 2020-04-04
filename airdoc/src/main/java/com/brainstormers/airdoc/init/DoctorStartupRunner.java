@@ -1,27 +1,38 @@
 package com.brainstormers.airdoc.init;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.brainstormers.airdoc.models.Doctor;
+import com.brainstormers.airdoc.models.ERole;
 import com.brainstormers.airdoc.models.Role;
 import com.brainstormers.airdoc.repositories.DoctorRepository;
 import com.brainstormers.airdoc.services.DoctorService;
+import com.brainstormers.airdoc.services.RoleService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+@Order(2)
 @Component
 public class DoctorStartupRunner implements CommandLineRunner {
 
 	Logger logger = LoggerFactory.getLogger(DoctorStartupRunner.class);
-	@Autowired
-	private DoctorRepository doctorRepository;
 	
 	@Autowired
 	private DoctorService doctorService;
+	
+	@Autowired
+	private RoleService roleService;
+	
+	@Autowired
+	PasswordEncoder encoder;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -32,23 +43,21 @@ public class DoctorStartupRunner implements CommandLineRunner {
 		
 		// supprimer les doctor
 		logger.info("removing all databases records");
-		doctorRepository.deleteAll();
+		doctorService.deleteAll();
 		// la creation des "dummy data"
-		Doctor doctor1 = new Doctor();
-		doctor1.setFirstName("max");
-		doctor1.setLastName("Plank");
-		doctor1.setEmail("test@test.com");
-		doctor1.setPassword("test123");
-		doctor1.setRoles(Arrays.asList(Role.ROLE_ADMIN, Role.ROLE_CLIENT));
+		Doctor doctor1 = new Doctor("Max", "Plank", "test@test.com", encoder.encode("password"), "maxplank");
+		Set<Role> roles = new HashSet<Role>();
+		roles.add(roleService.findByName(ERole.ROLE_USER).
+				orElseThrow(() -> new Exception("Role " + ERole.ROLE_USER + " not Found in DB")));
+		doctor1.setRoles(roles);
 		doctor1.setDescription("asafar Description");
 		doctor1.setCity("agadir");
 		doctor1.setRating(4.5f);
-		doctor1.setOwnerId("user1");
 		doctor1.setAverageRating(1);
 		doctor1.setCountry("maroc");
 		doctor1.setServices(Arrays.asList("Dental Fillings", "Whitneing"));
 		doctor1.setSpeciality("Dentist");
-		doctorService.signup(doctor1);
+		doctorService.save(doctor1);
 
 //		Doctor doctor2 = new Doctor();
 //		doctor2.setFirstName("max");
@@ -130,7 +139,7 @@ public class DoctorStartupRunner implements CommandLineRunner {
 
 		// logger.info("inserting Records");
 		// List<Doctor> savedDoctors = doctorRepository.saveAll(doctors);
-		System.out.println("doctors saved");
+		logger.info("doctors saved");
 
 		// List<Doctor> savedDoctors = new ArrayList<>();
 		// doctors.forEach((Doctor doctor) ->
@@ -138,6 +147,6 @@ public class DoctorStartupRunner implements CommandLineRunner {
 		// savedDoctors.forEach((doctor) -> logger.debug("id: " + doctor.getId() + "
 		// name: " + doctor.getName()));
 
-		System.out.println("finished");
+		logger.info("finished");
 	}
 }

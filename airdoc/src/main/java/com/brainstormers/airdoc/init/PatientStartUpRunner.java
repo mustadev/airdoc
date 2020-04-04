@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 
@@ -21,6 +22,7 @@ import com.brainstormers.airdoc.repositories.PatientRepository;
  * @since 20-03-2020
  *
  */
+@Order(3)
 @Component
 public class PatientStartUpRunner implements CommandLineRunner {
 	
@@ -43,8 +45,9 @@ public class PatientStartUpRunner implements CommandLineRunner {
 	Patient patient1 = new Patient();
 	patient1.setFirstName("Ayoub");
 	patient1.setLastName("ben");
+	patient1.setUsername("ben");
 	patient1.setAge(23);
-	patient1.setMail("ayoub@gmail.com");
+	patient1.setEmail("ayoub@gmail.com");
 	Patient savedPatient1 = patientRepository.save(patient1);
 	logger.debug("id: " +savedPatient1.getId() + " name: " + savedPatient1.getFirstName()+""+savedPatient1.getLastName());
     logger.debug("patient "+savedPatient1.getId() + "saved");
@@ -54,8 +57,9 @@ public class PatientStartUpRunner implements CommandLineRunner {
     Patient patient2 = new Patient();
     patient2.setFirstName("mehdi");
     patient2.setLastName("ozi");
+    patient2.setUsername("ozi");
     patient2.setAge(24);
-    patient2.setMail("mehdi@gmail.com");
+    patient2.setEmail("mehdi@gmail.com");
     Patient savedPatient2 = patientRepository.save(patient2);
 	logger.debug("id: " +savedPatient2.getId() + " name: " + savedPatient2.getFirstName()+""+savedPatient2.getLastName());
     logger.debug("patient "+savedPatient2.getId() + "saved");
@@ -64,8 +68,9 @@ public class PatientStartUpRunner implements CommandLineRunner {
     Patient patient3 = new Patient();
     patient3.setFirstName("jean");
     patient3.setLastName("freroa");
+    patient3.setUsername("freroa");
     patient3.setAge(25);
-    patient3.setMail("jean@gmail.com");
+    patient3.setEmail("jean@gmail.com");
     Patient savedPatient3 = patientRepository.save(patient3);
 	logger.debug("id: " +savedPatient3.getId() + " name: " + savedPatient3.getFirstName()+""+savedPatient3.getLastName());
     logger.debug("patient "+savedPatient3.getId() + "saved");
@@ -73,8 +78,9 @@ public class PatientStartUpRunner implements CommandLineRunner {
     Patient patient4 = new Patient();
     patient4.setFirstName("fatima");
     patient4.setLastName("koam");
+    patient4.setUsername("koam");
     patient4.setAge(25);
-    patient4.setMail("fatima@gmail.com");
+    patient4.setEmail("fatima@gmail.com");
 	Patient savedPatient4 = patientRepository.save(patient4);
 	logger.debug("id: " +savedPatient4.getId() + " name: " + savedPatient4.getFirstName()+""+savedPatient4.getLastName());
     logger.debug("patient "+savedPatient4.getId() + "saved");

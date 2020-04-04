@@ -3,8 +3,6 @@ package com.brainstormers.airdoc.services;
 import java.util.List;
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
 import com.brainstormers.airdoc.models.Doctor;
 
@@ -15,14 +13,14 @@ import org.springframework.stereotype.Service;
  * une services  pour accéder et modifier la base de données
  *  
  * @author Mustapha de BrainStormers
- * @since 13-03-2020
+ * @since version 0.0.1
  */
-@Service
+
 public interface DoctorService {
 	
 	
 	/**
-	 * trouver les doctors
+	 * Trouver les doctors
 	 * @return List<Doctor> 
 	 */
 	Optional<List<Doctor>> findAll();
@@ -41,26 +39,26 @@ public interface DoctorService {
 	 * @return Optional<Doctor> doctor
 	 * @throws ResourceNotFoundException
 	 */
-	Optional<Doctor> findDoctorById(String id);
+	Optional<Doctor> findById(String id);
 	
 	/**
 	 * ajouter ou modifier un Doctor
 	 * @param doctor
 	 */
-	Optional<Doctor> saveDoctor(Doctor doctor);
+	Optional<Doctor> save(Doctor doctor);
 	/**
 	
 	/**
 	 * modifier un Doctor
 	 * @param doctor
 	 */
-	Optional<Doctor> updateDoctor(Doctor doctor);
+	Optional<Doctor> update(Doctor doctor);
 
      /**
      * supprimer un Doctor par son Id
      * @param id
      */
-    void deleteDoctorById(String id);
+    void deleteById(String id);
     
     /**
      * chercher les doctor
@@ -69,26 +67,50 @@ public interface DoctorService {
      */
     Optional<List<Doctor>> search(String query);
 
+ 
     /**
-     * Authentification de doctor
-     * @param username
-     * @param password
-     *
-     * */
-    Optional<String> login(String email, String password);
-
-    /**
-     * Inscription de doctor
+     *  supprimer un Doctor par son Email
      * @param doctor
      *
      * */
-    Optional<String> signup(Doctor doctor);
-
     public void deleteByEmail(String email);
+    
+    /**
+     *  supprimer tout les Doctors 
+     * @param doctor
+     *
+     * */
+    public void deleteAll();
+    
+    /**
+     * Trouver le doctor par son Email
+     * @param doctor
+     *
+     * */
+    public Optional<Doctor> findByEmail(String email);
+    
+    
+    /**
+     * Trouver le doctor par son nom d'utilisateur
+     * @param doctor
+     *
+     * */
+    public Optional<Doctor> findByUsername(String username);
+    
 
-    public Optional<Doctor> whoami(HttpServletRequest req);
+    /**
+     * Vérifier que le doctor existe par nom d'utilisateur
+     * @param doctor
+     *
+     * */
+    boolean existsByUsername(String username);
 
-    public Optional<String> refresh(String email);
+    /**
+     * Vérifier que le doctor existe par Email
+     * @param doctor
+     *
+     * */
+    boolean existsByEmail(String email);
 
 	
 }

@@ -3,8 +3,11 @@ import java.util.Date;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.AuthenticationException;
+//import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 /**
@@ -13,7 +16,7 @@ import org.springframework.web.context.request.WebRequest;
  * @since 13-03-2020
  * 
  */
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
 	/**
@@ -47,13 +50,16 @@ public class GlobalExceptionHandler {
 	 * @param ex Exception jeter
 	 * @param request WebRequest 
 	 * @return ResponseEntity 
+	 * @throws Exception 
 	 */
 	@ExceptionHandler(Exception.class)
- 	public ResponseEntity<?> globleExcpetionHandler(Exception ex, WebRequest request) {
-
+ 	public ResponseEntity<?> globleExcpetionHandler(Exception ex, WebRequest request) throws Exception {
+		if (ex instanceof AccessDeniedException ) throw ex;
 	  	ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
 	  	return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}
+	
+
 
 }

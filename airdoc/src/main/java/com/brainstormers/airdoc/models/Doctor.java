@@ -2,12 +2,18 @@ package com.brainstormers.airdoc.models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-//import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mongodb.lang.NonNull;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import io.swagger.annotations.ApiModel;
@@ -23,39 +29,80 @@ import io.swagger.annotations.ApiModelProperty;
 @Document(collection = "doctors")
 public class Doctor{
 	
+
+	
+	public Doctor(
+			@NotBlank @Size(max = 50) String firstname,
+			@NotBlank @Size(max = 50) String lastname, 
+			@NotBlank @Size(max = 50) @Email String email,
+			@NotBlank @Size(max = 120) String password, 
+			@NotBlank @Size(max = 20) String username) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.password = password;
+		this.username = username;
+	}
+
+	public Doctor() {
+		
+	}
 	/**
 	 * ID de Doctor
 	 */
 	@ApiModelProperty(notes = "Doctor ID")
 	@Id
     private String id;
-
+	
 	/**
 	 * Prénom de doctor
 	 */
 	@ApiModelProperty(notes = "prénom de doctor")
-	@NonNull
+	@NotBlank
+	@Size(max = 50)
 	private String firstname;
 
 	/**
 	 * Nom de doctor
 	 */
+	@NotBlank
+	@Size(max = 50)
 	@ApiModelProperty(notes = "Nom de doctor")
     private String lastname;
+	
+	/**
+	 * deuxième nom de doctor
+	 */
+	@Size(max = 50)
+	@ApiModelProperty(notes = "deuxième nom de doctor")
+    private String middlename = "";
 
 	/**
 	 * Email de doctor
 	 */
 	@ApiModelProperty(notes = "Email de doctor")
-	@NonNull
-    private String email;
+	@NotBlank
+	@Size(max = 50)
+	@Email
+	private String email;	
 
 	/**
 	 * Mot de Pass de doctor
 	 */
 	@ApiModelProperty(notes = "Mot De Pass de doctor")
-	@NonNull
-    private String password;
+	@JsonIgnore
+	@NotBlank
+	@Size(max = 120)
+	private String password;
+	
+	/**
+	 * Non d'utilisateur de doctor
+	 */
+	@ApiModelProperty(notes = "Nom d'utilisateur de doctor")
+	@NotBlank
+	@Size(max = 20)
+	private String username;
 
 	/**
 	 * description de doctor
@@ -67,7 +114,7 @@ public class Doctor{
 	 * ville de doctor
 	 */
 	@ApiModelProperty(notes = "ville de doctor")
-	@NonNull
+	@NotBlank
     private String city;
 
 	/**
@@ -80,8 +127,9 @@ public class Doctor{
 	 * les authorité de doctor
 	 */
 	@ApiModelProperty(notes = "les authorité de doctor")
-    private List<Role> roles = Arrays.asList(Role.ROLE_CLIENT);
-
+	@DBRef
+	private Set<Role> roles = new HashSet<>();
+	
 
 /**
 	 * les services de doctor
@@ -115,12 +163,7 @@ public class Doctor{
     private String speciality = "";
 
 
-	/**
-	 * propriétaire de doctor
-	 */
-	@ApiModelProperty(notes = "propriétaire de doctor")
-	@NonNull
-    private String ownerId; //TODO @NonNull not working properly
+	
 
 	/**
 	 * Évaluation du Doctor
@@ -179,12 +222,6 @@ public class Doctor{
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
-	public String getOwnerId() {
-		return ownerId;
-	}
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
-	}
 	public float getRating() {
 		return rating;
 	}
@@ -197,17 +234,45 @@ public class Doctor{
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getFirstName() {
+	public String getFirstname() {
 		return firstname;
 	}
-	public void setFirstName(String firstname) {
+	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
-	public String getLasttName() {
+	public String getLastname() {
 		return firstname;
 	}
-	public void setLastName(String lastname) {
+	public void setLastname(String lastname) {
 		this.lastname = lastname;
+	}	
+	
+	public String getMiddlename() {
+		return middlename;
+	}
+
+	public void setMiddlename(String middlename) {
+		this.middlename = middlename;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getDescription() {
 		return description;
@@ -222,30 +287,22 @@ public class Doctor{
 	public void setCity(String city) {
 		this.city= city;
 	}
-
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	 public String getEmail() {
     		return email;
 	  }
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+	 @Override
+		public String toString() {
+			return "Doctor [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
+					+ ", password=" + password + ", username=" + username + ", description=" + description + ", city="
+					+ city + ", reviews=" + reviews + ", roles=" + roles + ", services=" + services + ", minPrice="
+					+ minPrice + ", maxPrice=" + maxPrice + ", country=" + country + ", speciality=" + speciality
+					+ ", rating=" + rating + ", averageRating=" + averageRating + "]";
+		}
 
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public List<Role> getRoles() {
-    return roles;
-  }
-
-  public void setRoles(List<Role> roles) {
-    this.roles = roles;
-  }
 
     
 }

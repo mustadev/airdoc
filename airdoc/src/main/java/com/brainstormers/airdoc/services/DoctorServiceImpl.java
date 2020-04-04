@@ -3,63 +3,26 @@ package com.brainstormers.airdoc.services;
 import java.util.List;
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.brainstormers.airdoc.exceptions.AuthException;
 import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.repositories.DoctorRepository;
-import com.brainstormers.airdoc.security.JwtTokenProvider;
 
 /**
  * implementation de {@link DoctorService DoctorService.class}
  * @author Mustapha De BrainStormers
- * @since 13-03-2020
+ * @since version 0.0.1
  * 
  */
 @Service
 public class DoctorServiceImpl implements DoctorService {
 
-	 @Autowired
-  	 private PasswordEncoder passwordEncoder;
-
-  	 @Autowired
-  	private JwtTokenProvider jwtTokenProvider;
-
   		
 	@Autowired
 	private DoctorRepository doctorRepository;
-
-	@Autowired
-	 private AuthenticationManager authenticationManager;
-
-  	public Optional<String> login(String email, String password) {
-    	try {
-      	authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-      	return Optional.of(jwtTokenProvider.createToken(email, doctorRepository.findByEmail(email).getRoles()));
-    	} catch (AuthenticationException e) {
-      	throw new AuthException("Invalid email/password supplied", HttpStatus.UNPROCESSABLE_ENTITY);
-    	}
-    }
-
-  public Optional<String> signup(Doctor doctor) {
-    if (!doctorRepository.existsByEmail(doctor.getEmail())) {
-      doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
-      doctorRepository.save(doctor);
-      return Optional.of(jwtTokenProvider.createToken(doctor.getEmail(), doctor.getRoles()));
-    } else {
-      throw new AuthException("Email is already in use", HttpStatus.UNPROCESSABLE_ENTITY);
-    }
-  }
-
 	
 	@Override
 	public Optional<List<Doctor>> findAll() {
@@ -72,22 +35,22 @@ public class DoctorServiceImpl implements DoctorService {
 	}
 
 	@Override
-	public Optional<Doctor> findDoctorById(String id) {
+	public Optional<Doctor> findById(String id) {
 		return doctorRepository.findById(id);
 	}
 
 	@Override
-	public Optional<Doctor> saveDoctor(Doctor doctor) {
+	public Optional<Doctor> save(Doctor doctor) {
 		return Optional.of(doctorRepository.save(doctor));
 	}
 
 	@Override
-	public Optional<Doctor>  updateDoctor(Doctor doctor) {
+	public Optional<Doctor>  update(Doctor doctor) {
 		return Optional.of(doctorRepository.save(doctor));
 	}
 
 	@Override
-	public void deleteDoctorById(String id) {
+	public void deleteById(String id) {
 		doctorRepository.deleteById(id);
 	}
 
@@ -107,18 +70,38 @@ public class DoctorServiceImpl implements DoctorService {
 		    doctorRepository.deleteByEmail(email);
 	 }
 
+
+	@Override
+	public Optional<Doctor> findByEmail(String email) {
+		return Optional.of(doctorRepository.findByEmail(email));
 		
-
-	 public Optional<Doctor> whoami(HttpServletRequest req) {
-		    return Optional.of(doctorRepository.
-		    		findByEmail(jwtTokenProvider.
-		    				getUsername(jwtTokenProvider.resolveToken(req))));
-	 }
-
-	public Optional<String> refresh(String username) {
-		    return Optional.of(jwtTokenProvider.
-		    		createToken(username, doctorRepository.
-		    				findByEmail(username).getRoles()));
 	}
+
+	@Override
+	public Optional<Doctor> findByUsername(String username) {
+		System.out.println("username ::::::::::::::::::::::::::::::: " + username);
+		return Optional.of(doctorRepository.findByUsername(username));
+	}
+
+	@Override
+	public boolean existsByUsername(String username) {
+	
+		return doctorRepository.existsByUsername(username);
+	}
+
+	@Override
+	public void deleteAll() {
+		doctorRepository.deleteAll();
+		
+	}
+
+	@Override
+	public boolean existsByEmail(String email) {
+		
+		return doctorRepository.existsByEmail(email);
+	}
+
+	
+	
 	
 }

@@ -4,15 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,10 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
-import com.brainstormers.airdoc.exceptions.AuthException;
 import com.brainstormers.airdoc.exceptions.ResourceAlreadyExistsException;
 import com.brainstormers.airdoc.models.Doctor;
-import com.brainstormers.airdoc.models.LoginRequest;
 import com.brainstormers.airdoc.services.DoctorService;
 
 import ch.qos.logback.classic.Logger;
@@ -89,7 +84,7 @@ public class DoctorController {
     @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<Doctor> getDoctorById(@PathVariable("id") String id) throws ResourceNotFoundException {
 	System.out.println("get doctor with id : " + id);
-        Doctor result =  doctorService.findDoctorById(id)
+        Doctor result =  doctorService.findById(id)
         			.orElseThrow(()-> {
 					return new ResourceNotFoundException("No Doctor with id : " + id );
 				});
@@ -105,7 +100,7 @@ public class DoctorController {
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Doctor> createDoctor(
     		@ApiParam(value = "Doctor", required = true) @RequestBody Doctor doctor) throws ResourceAlreadyExistsException{
-	Doctor result =  doctorService.saveDoctor(doctor).
+	Doctor result =  doctorService.save(doctor).
 		orElseThrow(() -> new ResourceAlreadyExistsException("could not create " +	doctor.toString()));
 	return new ResponseEntity<Doctor>(result, HttpStatus.CREATED);
     }
@@ -122,7 +117,7 @@ public class DoctorController {
     	//doctorService.saveDoctor(doctor);
         //return new ResponseEntity<>("Doctor added successfully", HttpStatus.OK);
 	Doctor result = doctorService.
-		saveDoctor(doctor).orElseThrow( () -> new ResourceAlreadyExistsException("could not update" +	doctor.toString()));
+		save(doctor).orElseThrow( () -> new ResourceAlreadyExistsException("could not update" +	doctor.toString()));
 	return new ResponseEntity<>(result, HttpStatus.OK);
 
     }
@@ -135,7 +130,7 @@ public class DoctorController {
 	@ApiOperation(value = "supprimer un doctor", response = ResponseEntity.class)
     @DeleteMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<Map<String, Object>> deleteDoctor(@PathVariable String id) {
-    	doctorService.deleteDoctorById(id);
+    	doctorService.deleteById(id);
     	//doctorService.deleteDoctor(doctorService.findBy(studentNumber).getId());
 	Map<String, Object> msg = new HashMap<>();
 	msg.put("doctorId", id);
@@ -143,33 +138,5 @@ public class DoctorController {
 	return new ResponseEntity<Map<String, Object>>(msg , HttpStatus.OK);
     }
 
-
-    //TODO this should be put authserver
-   @PostMapping(path= "/login", consumes = "application/json")
-   @ApiOperation(value = "Doctor Login", consumes = "application/json")
-   public String login(//
-      @ApiParam("LoginRequest") @RequestBody LoginRequest loginRequest ){
-	   System.out.println("email " + loginRequest.getEmail() + " password" + loginRequest.getPassword());
-    return doctorService.login(loginRequest.getEmail(), loginRequest.getPassword()).orElseThrow(() -> 
-		new UsernameNotFoundException("User Not Found with username: " + loginRequest.getEmail()));
-  }
-
-  @PostMapping("/signup")
-  @ApiOperation(value = "Doctor Inscription")
-  public String signup(@ApiParam("Signup User") @RequestBody Doctor doctor) {
-    return doctorService.signup(doctor).orElseThrow(() -> 
-	new AuthException("aucun authentification trouver votre compte", 
-			HttpStatus.NETWORK_AUTHENTICATION_REQUIRED));
-  }
-  
-  @GetMapping(value = "/me")
-  @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
-  @ApiOperation(value = "Doctor Authentification", response = Doctor.class)
-  public Doctor whoami(HttpServletRequest req) {
-    return doctorService.whoami(req).
-    		orElseThrow(() -> 
-    		new AuthException("aucun authentification trouver pour votre compte", 
-    				HttpStatus.NETWORK_AUTHENTICATION_REQUIRED));
-  }
 
 }
