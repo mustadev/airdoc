@@ -28,6 +28,7 @@ import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
 import com.brainstormers.airdoc.exceptions.AuthException;
 import com.brainstormers.airdoc.exceptions.ResourceAlreadyExistsException;
 import com.brainstormers.airdoc.models.Doctor;
+import com.brainstormers.airdoc.models.LoginRequest;
 import com.brainstormers.airdoc.services.DoctorService;
 
 import ch.qos.logback.classic.Logger;
@@ -144,14 +145,13 @@ public class DoctorController {
 
 
     //TODO this should be put authserver
-   @PostMapping("/login")
-   @ApiOperation(value = "Doctor Login")
+   @PostMapping(path= "/login", consumes = "application/json")
+   @ApiOperation(value = "Doctor Login", consumes = "application/json")
    public String login(//
-      @ApiParam("Email") @RequestParam String email, //
-      @ApiParam("Password") @RequestParam String password) {
-	   System.out.println("email " + email + " password" + password);
-    return doctorService.login(email, password).orElseThrow(() -> 
-		new UsernameNotFoundException("User Not Found with username: " + email));
+      @ApiParam("LoginRequest") @RequestBody LoginRequest loginRequest ){
+	   System.out.println("email " + loginRequest.getEmail() + " password" + loginRequest.getPassword());
+    return doctorService.login(loginRequest.getEmail(), loginRequest.getPassword()).orElseThrow(() -> 
+		new UsernameNotFoundException("User Not Found with username: " + loginRequest.getEmail()));
   }
 
   @PostMapping("/signup")
@@ -171,4 +171,5 @@ public class DoctorController {
     		new AuthException("aucun authentification trouver pour votre compte", 
     				HttpStatus.NETWORK_AUTHENTICATION_REQUIRED));
   }
+
 }

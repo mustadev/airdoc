@@ -6,12 +6,10 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { ProfileComponent as DoctorProfileComponent } from './components/pages/doctor/profile/profile.component';
 import { LoginComponent as DoctorLoginComponent } from './components/pages/doctor/login/login.component';
 import { SignupComponent as DoctorSingupComponent} from './components/pages/doctor/signup/signup.component';
-import { ProfileComponent as PatientProfileComponent } from './components/pages/patient/profile/profile.component';
 import { LoginComponent as PatientLoginComponent } from './components/pages/patient/login/login.component';
 import { SignupComponent as PatientSingupComponent} from './components/pages/patient/signup/signup.component';
+import { ProfileComponent as PatientProfileComponent } from './components/pages/patient/profile/profile.component';
 import { SearchComponent } from './components/pages/search/search.component';
-import { LoginComponent as DoctorLoginComponent } from './components/pages/doctor/login/login.component';
-import { SignupComponent as DoctorSignupComponent } from './components/pages/doctor/signup/signup.component';
 
 const routes: Routes = [
   { path:  '', pathMatch: 'full', redirectTo: 'home' },
