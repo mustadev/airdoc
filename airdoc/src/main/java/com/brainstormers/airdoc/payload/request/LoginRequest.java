@@ -8,6 +8,9 @@ public class LoginRequest {
 
 	@NotBlank
 	private String password;
+	
+	@NotBlank
+	private String userType;
 
 	public String getUsername() {
 		return username;
@@ -24,4 +27,13 @@ public class LoginRequest {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+	
 }

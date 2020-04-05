@@ -7,6 +7,7 @@ package com.brainstormers.airdoc.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.Patient;
 import com.brainstormers.airdoc.repositories.PatientRepository;
 
@@ -46,4 +47,39 @@ public class PatientServiceImpl implements PatientService {
     public void deletePatientById(String id) {
     	patientRepository.deleteById(id);
     }
+    
+    public void deleteByEmail(String email) {
+    	patientRepository.deleteByEmail(email);
+ }
+
+	
+	@Override
+	public Optional<Patient> findByEmail(String email) {
+		return Optional.of(patientRepository.findByEmail(email));
+		
+	}
+	
+	@Override
+	public Optional<Patient> findByUsername(String username) {
+		return Optional.of(patientRepository.findByUsername(username));
+	}
+	
+	@Override
+	public boolean existsByUsername(String username) {
+	
+		return patientRepository.existsByUsername(username);
+	}
+	
+	@Override
+	public void deleteAll() {
+		patientRepository.deleteAll();
+		
+	}
+	
+	@Override
+	public boolean existsByEmail(String email) {
+		
+		return patientRepository.existsByEmail(email);
+	}
+	
 }

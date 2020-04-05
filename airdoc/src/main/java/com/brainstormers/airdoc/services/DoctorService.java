@@ -3,11 +3,9 @@ package com.brainstormers.airdoc.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
 import com.brainstormers.airdoc.models.Doctor;
 
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
 
 /**
  * une services  pour accéder et modifier la base de données
@@ -37,7 +35,6 @@ public interface DoctorService {
 	 * trouver un doctor par son id
 	 * @param id
 	 * @return Optional<Doctor> doctor
-	 * @throws ResourceNotFoundException
 	 */
 	Optional<Doctor> findById(String id);
 	
@@ -70,7 +67,7 @@ public interface DoctorService {
  
     /**
      *  supprimer un Doctor par son Email
-     * @param doctor
+     * @param email
      *
      * */
     public void deleteByEmail(String email);
@@ -84,7 +81,7 @@ public interface DoctorService {
     
     /**
      * Trouver le doctor par son Email
-     * @param doctor
+     * @param email
      *
      * */
     public Optional<Doctor> findByEmail(String email);
@@ -92,7 +89,7 @@ public interface DoctorService {
     
     /**
      * Trouver le doctor par son nom d'utilisateur
-     * @param doctor
+     * @param username
      *
      * */
     public Optional<Doctor> findByUsername(String username);
@@ -100,14 +97,14 @@ public interface DoctorService {
 
     /**
      * Vérifier que le doctor existe par nom d'utilisateur
-     * @param doctor
+     * @param username
      *
      * */
     boolean existsByUsername(String username);
 
     /**
      * Vérifier que le doctor existe par Email
-     * @param doctor
+     * @param email
      *
      * */
     boolean existsByEmail(String email);

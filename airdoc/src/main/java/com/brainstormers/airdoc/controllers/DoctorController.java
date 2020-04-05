@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -111,6 +112,7 @@ public class DoctorController {
 	 * @return Doctor
 	 */
     @ApiOperation(value = "modifier un Doctor ", response = Doctor.class)
+    @PreAuthorize("#doctor.id == principal.id")
     @PutMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Doctor>  updateDoctor(
     		@ApiParam(value = "Doctor", required = true) @RequestBody Doctor doctor) throws ResourceAlreadyExistsException{

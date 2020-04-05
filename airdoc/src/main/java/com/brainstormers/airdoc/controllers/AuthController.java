@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.brainstormers.airdoc.models.Doctor;
@@ -56,13 +57,15 @@ public class AuthController {
 	@Autowired
 	JwtUtils jwtUtils;
 
-	@PostMapping("/doctor/signin")
+	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 		System.out.println(":::::::::::::::::::::::::::::::::::: SIGNIN");
 		System.out.println(":::::::::::::::::::username : " + loginRequest.getUsername());
 		System.out.println(":::::::::::::::::::password : " + loginRequest.getPassword());
 	
 		try {
+			 
+	        
 			Authentication authentication = authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 			System.out.println("::::::::::::::::::: after authenticationmanager : " + loginRequest.getUsername());
@@ -78,6 +81,7 @@ public class AuthController {
 													 userDetails.getId(), 
 													 userDetails.getUsername(), 
 													 userDetails.getEmail(), 
+													 userDetails.getUserType(),
 													 roles));
 		}catch (AuthenticationException ex) {
 			System.out.println(ex);
@@ -90,12 +94,11 @@ public class AuthController {
 		
 	}
 
-	@PostMapping("/doctor/signup") //TODO add throw  Exception
+	@PostMapping("/signup") //TODO add throw  Exception
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 		System.out.println("username : " + signUpRequest.getUsername());
 		System.out.println("lastname : " + signUpRequest.getLastname());
 		System.out.println("firstname : " + signUpRequest.getFirstname());
-		System.out.println("middlename : " + signUpRequest.getMiddlename());
 		System.out.println("email : " + signUpRequest.getEmail());
 		System.out.println("password : " + signUpRequest.getPassword());
 		if (doctorService.existsByUsername(signUpRequest.getUsername())) {
@@ -115,7 +118,6 @@ public class AuthController {
 		user.setUsername(signUpRequest.getUsername());
 		user.setLastname(signUpRequest.getLastname());
 		user.setFirstname(signUpRequest.getFirstname());
-		user.setMiddlename(signUpRequest.getMiddlename());
 		user.setEmail( signUpRequest.getEmail());
 		user.setPassword(encoder.encode(signUpRequest.getPassword()));
 

@@ -79,7 +79,6 @@ public class DoctorServiceImpl implements DoctorService {
 
 	@Override
 	public Optional<Doctor> findByUsername(String username) {
-		System.out.println("username ::::::::::::::::::::::::::::::: " + username);
 		return Optional.of(doctorRepository.findByUsername(username));
 	}
 

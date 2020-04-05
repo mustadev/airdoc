@@ -17,4 +17,8 @@ public interface PatientRepository extends MongoRepository<Patient,String> {
 	Boolean existsByUsername(String username);
 
 	Boolean existsByEmail(String email);
+	
+	Patient findByEmail(String email);
+
+	void deleteByEmail(String email);
 }

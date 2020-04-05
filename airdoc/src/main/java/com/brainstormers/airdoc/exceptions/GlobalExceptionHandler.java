@@ -53,13 +53,18 @@ public class GlobalExceptionHandler {
 	 * @throws Exception 
 	 */
 	@ExceptionHandler(Exception.class)
- 	public ResponseEntity<?> globleExcpetionHandler(Exception ex, WebRequest request) throws Exception {
-		if (ex instanceof AccessDeniedException ) throw ex;
+ 	public ResponseEntity<?> globleExcpetionHandler(Exception ex, WebRequest request) {
+//		if (ex instanceof AccessDeniedException ) throw ex;
 	  	ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
 	  	return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}
 	
+	
+	@ExceptionHandler(AccessDeniedException.class)
+ 	public ResponseEntity<?> AccessDeniedExceptionHandler(AccessDeniedException ex, WebRequest request) throws AccessDeniedException {
+		throw ex;
+	}
 
 
 }
