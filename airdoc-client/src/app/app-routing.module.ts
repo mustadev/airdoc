@@ -10,7 +10,11 @@ import { LoginComponent as PatientLoginComponent } from './components/pages/pati
 import { SignupComponent as PatientSingupComponent} from './components/pages/patient/signup/signup.component';
 import { ProfileComponent as PatientProfileComponent } from './components/pages/patient/profile/profile.component';
 import { SearchComponent } from './components/pages/search/search.component';
+import {ChangePasswordComponent} from './components/pages/patient/change-password/change-password.component';
+import {AppointmentComponent} from './components/pages/patient/appointment/appointment.component';
 
+// @ts-ignore
+// @ts-ignore
 const routes: Routes = [
   { path:  '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
@@ -22,6 +26,8 @@ const routes: Routes = [
   { path: 'patient/profile' , component: PatientProfileComponent },
   { path: 'patient/login' , component: PatientLoginComponent },
   { path: 'patient/signup' , component: PatientSingupComponent },
+  { path: 'patient/appointment' , component: AppointmentComponent},
+  { path :  'patient/editPassword' , component: ChangePasswordComponent},
   { path: 'search' , component: SearchComponent }
 
 ];

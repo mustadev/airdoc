@@ -21,6 +21,7 @@ import { SignupComponent as PatientSignupComponent } from './components/pages/pa
 import { LoginComponent as PatientLoginComponent } from './components/pages/patient/login/login.component';
 import { ProfileComponent as PatientProfileComponent } from './components/pages/patient/profile/profile.component';
 import { AuthInterceptor } from './services/auth-interceptor.service';
+import { AppointmentComponent } from './components/pages/patient/appointment/appointment.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AuthInterceptor } from './services/auth-interceptor.service';
     DoctorProfileComponent,
     PatientSignupComponent,
     PatientLoginComponent,
-    PatientProfileComponent
+    PatientProfileComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,
