@@ -6,6 +6,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
 /**
@@ -17,6 +21,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "Détails du Patient")
 @Document(collection = "patients")
+@Data @ToString @AllArgsConstructor @NoArgsConstructor
 public class Patient {
 	
 	/**
@@ -58,45 +63,7 @@ public class Patient {
 	@ApiModelProperty(notes = "mail du Patient.")
     private String email;
 	
-	
-	public Patient(String firstName, String lastName,int age,String mail) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.age = age;
-		this.email = mail;
 		
-	}
-	public Patient() {}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String mail) {
-		this.email = mail;
-	}
-    
- 
+	
+	
 }

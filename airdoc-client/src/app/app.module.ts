@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,7 @@ import { LoginComponent as PatientLoginComponent } from './components/pages/pati
 import { ProfileComponent as PatientProfileComponent } from './components/pages/patient/profile/profile.component';
 import { AuthInterceptor } from './services/auth-interceptor.service';
 import { AppointmentComponent } from './components/pages/patient/appointment/appointment.component';
+import { ChangePasswordComponent} from './components/pages/patient/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AppointmentComponent } from './components/pages/patient/appointment/app
     PatientSignupComponent,
     PatientLoginComponent,
     PatientProfileComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
