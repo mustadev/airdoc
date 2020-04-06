@@ -9,9 +9,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.Authentication;
@@ -94,15 +92,15 @@ public class AuthController {
 	
 	public ResponseEntity<?> authenticate(@Valid @RequestBody LoginRequest loginRequest, DaoAuthenticationProvider daoAuthenticationProvider) {
 		System.out.println(":::::::::::::::::::::::::::::::::::: SIGNIN");
-		System.out.println(":::::::::::::::::::username : " + loginRequest.getUsername());
+		System.out.println(":::::::::::::::::::username : " + loginRequest.getEmail());
 		System.out.println(":::::::::::::::::::password : " + loginRequest.getPassword());
 	
 		try {
 			 
 			
 			Authentication authentication = daoAuthenticationProvider.authenticate(
-					new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-			System.out.println("::::::::::::::::::: after authenticationmanager : " + loginRequest.getUsername());
+					new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+			System.out.println("::::::::::::::::::: after authenticationmanager : " + loginRequest.getEmail());
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			String jwt = jwtUtils.generateJwtToken(authentication);
 			

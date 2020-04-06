@@ -3,7 +3,7 @@ import { AuthService } from '../../../../services/auth.service'
 import { TokenStorageService } from '../../../../services/token-storage.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-doctor-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authService.doctorLogin(this.form).subscribe(
       data => {
-        console.log("doctorlogin responce " + data);
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
 
@@ -36,7 +35,6 @@ export class LoginComponent implements OnInit {
         this.reloadPage();
       },
       err => {
-        console.log("doctorlogin error " + err);
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }
@@ -44,7 +42,6 @@ export class LoginComponent implements OnInit {
   }
 
   reloadPage() {
-    //window.location.reload();
-    window.location.href = "http://localhost:4200/home";
+    window.location.reload();
   }
 }

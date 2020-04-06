@@ -22,7 +22,6 @@ import com.brainstormers.airdoc.security.services.DoctorDetailsServiceImpl;
 import com.brainstormers.airdoc.security.services.EmployeeDetailsServiceImpl;
 import com.brainstormers.airdoc.security.services.PatientDetailsServiceImpl;
 import com.brainstormers.airdoc.security.services.UserDetailsImpl;
-//import com.brainstormers.airdoc.security.services.UserDetailsServiceImpl;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
 	@Autowired
@@ -60,9 +59,6 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 	            default:
 	            	userDetails = null;
 	        }
-				logger.debug("USER TYPE  : " + userType );
-				request.getSession().setAttribute("userType", userType);
-
 			
 				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
 						userDetails, null, userDetails.getAuthorities());

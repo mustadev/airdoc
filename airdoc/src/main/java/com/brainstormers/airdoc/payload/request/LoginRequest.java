@@ -1,23 +1,26 @@
 package com.brainstormers.airdoc.payload.request;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class LoginRequest {
+	
+	@Email
 	@NotBlank
-	private String username;
+	private String email;
 
+	@Size(min=6)
 	@NotBlank
 	private String password;
 	
-	@NotBlank
-	private String userType;
 
-	public String getUsername() {
-		return username;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -26,14 +29,6 @@ public class LoginRequest {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getUserType() {
-		return userType;
-	}
-
-	public void setUserType(String userType) {
-		this.userType = userType;
 	}
 	
 }
