@@ -18,14 +18,22 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.brainstormers.airdoc.security.services.UserDetailsServiceImpl;
+import com.brainstormers.airdoc.security.services.DoctorDetailsServiceImpl;
+import com.brainstormers.airdoc.security.services.EmployeeDetailsServiceImpl;
+import com.brainstormers.airdoc.security.services.PatientDetailsServiceImpl;
+import com.brainstormers.airdoc.security.services.UserDetailsImpl;
+//import com.brainstormers.airdoc.security.services.UserDetailsServiceImpl;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
 	@Autowired
 	private JwtUtils jwtUtils;
 
 	@Autowired
-	private UserDetailsServiceImpl userDetailsService;
+	private DoctorDetailsServiceImpl doctorDetailsService;
+	@Autowired
+	private PatientDetailsServiceImpl patientDetailsService;
+	@Autowired
+	private EmployeeDetailsServiceImpl employeeDetailsService;
 
 	private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
@@ -38,10 +46,24 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 				String username = jwtUtils.getUserNameFromJwtToken(jwt);
 				String userType = request.getHeader("User-Type");
 				
+				UserDetails userDetails;
+				switch(userType) {
+	            	case UserDetailsImpl.PATIENT:
+	            		userDetails = patientDetailsService.loadUserByUsername(username);
+	            		break;
+	            	case UserDetailsImpl.DOCTOR:
+	            		userDetails = doctorDetailsService.loadUserByUsername(username);
+	            		break;
+	            	case UserDetailsImpl.EMPLOYEE:
+	            		userDetails = employeeDetailsService.loadUserByUsername(username);
+	            		break;
+	            default:
+	            	userDetails = null;
+	        }
 				logger.debug("USER TYPE  : " + userType );
 				request.getSession().setAttribute("userType", userType);
 
-				UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+			
 				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
 						userDetails, null, userDetails.getAuthorities());
 				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

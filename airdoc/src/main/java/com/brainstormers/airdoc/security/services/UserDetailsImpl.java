@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class UserDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = 1L;
+	
+	public static final String PATIENT =  "PATIENT";
+	public static final String DOCTOR =  "DOCTOR";
+	public static final String EMPLOYEE =  "EMPLOYEE";
 
 	private String id;
 
@@ -47,17 +51,20 @@ public class UserDetailsImpl implements UserDetails {
 	 * @return UserDetailsImpl {@link UserDetailsImpl UserDetailsImpl.class}
 	 */
 	public static UserDetailsImpl build(Doctor user) {
+		System.out.println("UserDetailsImp called");
 		List<GrantedAuthority> authorities = user.getRoles().stream()
 				.map(role -> new SimpleGrantedAuthority(role.getName().name()))
 				.collect(Collectors.toList());
 
-		return new UserDetailsImpl(
+		UserDetailsImpl userI =  new UserDetailsImpl(
 				user.getId(), 
 				user.getUsername(), 
 				user.getEmail(),
 				user.getPassword(), 
-				 UserDetailsServiceImpl.DOCTOR,
+				DOCTOR,
 				authorities);
+		System.out.println("USER FOUND :: " + user.toString());
+		return userI;
 	}
 	
 	/**
@@ -75,7 +82,7 @@ public class UserDetailsImpl implements UserDetails {
 				user.getUsername(), 
 				user.getEmail(),
 				user.getPassword(), 
-				 UserDetailsServiceImpl.PATIENT,
+				PATIENT,
 				authorities);
 	}
 	
@@ -94,7 +101,7 @@ public class UserDetailsImpl implements UserDetails {
 				user.getUsername(), 
 				user.getEmail(),
 				user.getPassword(),
-				UserDetailsServiceImpl.EMPLOYEE,
+				EMPLOYEE,
 				authorities);
 	}
 

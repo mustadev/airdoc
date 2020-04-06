@@ -1,10 +1,6 @@
 package com.brainstormers.airdoc.repositories;
 
-import java.util.List;
-
-import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 import com.brainstormers.airdoc.models.Employee;
 
@@ -17,9 +13,6 @@ import com.brainstormers.airdoc.models.Employee;
 @Repository
 public interface EmployeeRepository extends MongoRepository<Employee, String> {
 	 
-
-		@Query("{'firstname': {$regex: ?0 }, 'city': {$regex: ?1} }")
-		List<Employee> findAll(String query, String city, Sort sort);
 
 		Employee findByEmail(String email);
 		Employee findByUsername(String username);

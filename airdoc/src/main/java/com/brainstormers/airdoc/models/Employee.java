@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiModelProperty;
  * 
  */
 @ApiModel(description = "Détails du Employé")
-@Document(collection = "employe")
+@Document(collection = "employees")
 public class Employee {
 	
 	/**

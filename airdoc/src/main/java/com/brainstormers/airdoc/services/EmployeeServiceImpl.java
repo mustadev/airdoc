@@ -64,7 +64,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Optional<Employee> findByUsername(String username) {
-		return Optional.of(employeeRepository.findByUsername(username));
+		
+		return Optional.ofNullable(employeeRepository.findByUsername(username));
+				
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -79,7 +80,10 @@ public class DoctorServiceImpl implements DoctorService {
 
 	@Override
 	public Optional<Doctor> findByUsername(String username) {
-		return Optional.of(doctorRepository.findByUsername(username));
+		
+		return Optional.ofNullable(doctorRepository.findByUsername(username));
+		
+		
 	}
 
 	@Override

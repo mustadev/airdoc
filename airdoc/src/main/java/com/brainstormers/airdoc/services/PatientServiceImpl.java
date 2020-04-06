@@ -61,7 +61,7 @@ public class PatientServiceImpl implements PatientService {
 	
 	@Override
 	public Optional<Patient> findByUsername(String username) {
-		return Optional.of(patientRepository.findByUsername(username));
+		return Optional.ofNullable(patientRepository.findByUsername(username));
 	}
 	
 	@Override
