@@ -15,7 +15,6 @@ public class SignupRequest {
     private String firstname;
     
     
-    
     @NotBlank
     @Size(min = 1, max = 20)
     private String lastname;
@@ -31,9 +30,6 @@ public class SignupRequest {
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
-    
-    @NotBlank
-    private String userType;
     
     
     public String getFirstname() {
@@ -85,13 +81,6 @@ public class SignupRequest {
       this.role = role;
     }
 
-	public String getUserType() {
-		return userType;
-	}
-
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
     
     
 }

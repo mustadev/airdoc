@@ -1,7 +1,9 @@
 package com.brainstormers.airdoc.controllers;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -158,7 +160,8 @@ public class AuthController {
 		Set<Role> roles = new HashSet<>();
 
 		if (strRoles == null) {
-			Role userRole = roleService.findByName(ERole.ROLE_USER)
+			Role userRole = roleService
+					.findByName(ERole.ROLE_USER)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 			roles.add(userRole);
 		} else {
@@ -186,14 +189,18 @@ public class AuthController {
 
 		user.setRoles(roles);
 		Optional<Doctor> doc = doctorService.save(user);
-		if(doc.isPresent()) {
-			System.out.println(":::::::::::::::::::::: DOC IS NOT NULL!!!");
-			System.out.println(":::::::::::::::::::::: " + doc.get().toString());
-		}else {
+		
+		if(!doc.isPresent()) {
 			System.out.println(":::::::::::::::::::::: DOC IS NULL!!!");
+			return ResponseEntity
+					.badRequest()
+					.body(new MessageResponse("Doctor DID NOT Registere!"));
 		}
-
-		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+		
+		System.out.println(":::::::::::::::::::::: DOC IS NOT NULL!!!");
+		System.out.println(":::::::::::::::::::::: " + doc.get().toString());
+		return ResponseEntity.ok(new MessageResponse("Doctor registered successfully!"));
+		
 	}
 	
 	@PostMapping("/patient/signup") //TODO add throw  Exception
@@ -255,13 +262,13 @@ public class AuthController {
 
 		user.setRoles(roles);
 		Optional<Patient> pat = patientService.insertPatient(user);
-		if(pat.isPresent()) {
-			System.out.println(":::::::::::::::::::::: PATIENT IS NOT NULL!!!");
-			System.out.println(":::::::::::::::::::::: " + pat.get().toString());
-		}else {
-			System.out.println(":::::::::::::::::::::: PATIENT IS NULL!!!");
+		if(!pat.isPresent()) {
+			return ResponseEntity
+					.badRequest()
+					.body(new MessageResponse("Patient DID NOT Registere!"));
 		}
-
+		System.out.println(":::::::::::::::::::::: PATIENT IS NOT NULL!!!");
+		System.out.println(":::::::::::::::::::::: " + pat.get().toString());
 		return ResponseEntity.ok(new MessageResponse("Patient registered successfully!"));
 	}
 	
@@ -324,14 +331,17 @@ public class AuthController {
 
 		user.setRoles(roles);
 		Optional<Employee> emp = employeeService.save(user);
-		if(emp.isPresent()) {
-			System.out.println(":::::::::::::::::::::: EMPLOYEE IS NOT NULL!!!");
-			System.out.println(":::::::::::::::::::::: " + emp.get().toString());
-		}else {
+		if(!emp.isPresent()) {
 			System.out.println(":::::::::::::::::::::: EMPLOYEE IS NULL!!!");
+			return ResponseEntity
+					.badRequest()
+					.body(new MessageResponse("Employee DID NOT Registere!"));
+			
 		}
 
-		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+		System.out.println(":::::::::::::::::::::: EMPLOYEE IS NOT NULL!!!");
+		System.out.println(":::::::::::::::::::::: " + emp.get().toString());
+		return ResponseEntity.ok(new MessageResponse("Employee registered successfully!"));
 	}
 	
 	
