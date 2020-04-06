@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'patient/login' , component: PatientLoginComponent },
   { path: 'patient/signup' , component: PatientSingupComponent },
   { path: 'search' , component: SearchComponent }
+
 ];
 
 @NgModule({
