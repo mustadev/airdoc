@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +26,8 @@ import { PatientAuthGuard } from './services/patient-auth-guard';
 import { AdminAuthGuard } from './services/admin-auth.guard';
 import { AdminProfileComponent } from './components/pages/admin/admin-profile/admin-profile.component';
 import { AdminLoginComponent } from './components/pages/admin/admin-login/admin-login.component';
+import { AppointmentComponent } from './components/pages/patient/appointment/appointment.component';
+import { ChangePasswordComponent} from './components/pages/patient/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { AdminLoginComponent } from './components/pages/admin/admin-login/admin-
     PatientProfileComponent,
     AdminProfileComponent,
     AdminLoginComponent
+    AppointmentComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

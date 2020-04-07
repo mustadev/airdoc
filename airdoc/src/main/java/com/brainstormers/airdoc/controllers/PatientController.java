@@ -22,6 +22,7 @@ import java.util.Map;
  * @Author Ayoub Benhaimoud <ayoubbenhaimoud@gmail.com>
  * @since 17-03-2020
  */
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("patients")
 public class PatientController {
