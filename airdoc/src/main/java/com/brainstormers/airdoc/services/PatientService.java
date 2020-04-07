@@ -44,6 +44,39 @@ public interface PatientService {
      */
     Optional<Patient> updatePatient(Patient patient);
     void deletePatientById(String id);
+    
+    /**
+     * Trouver le patient par son Email
+     * @param email
+     *
+     * */
+    public Optional<Patient> findByEmail(String email);
+    
+    
+    /**
+     * Trouver le patient par son nom d'utilisateur
+     * @param username
+     *
+     * */
+    public Optional<Patient> findByUsername(String username);
+    
+
+    /**
+     * Vérifier que le patient existe par nom d'utilisateur
+     * @param username
+     *
+     * */
+    boolean existsByUsername(String username);
+
+    /**
+     * Vérifier que le patient existe par Email
+     * @param email
+     *
+     * */
+    boolean existsByEmail(String email);
+    
+    public void deleteAll();
+
 
 }
 

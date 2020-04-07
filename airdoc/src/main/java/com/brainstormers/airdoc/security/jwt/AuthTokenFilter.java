@@ -18,14 +18,21 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.brainstormers.airdoc.security.services.UserDetailsServiceImpl;
+import com.brainstormers.airdoc.security.services.DoctorDetailsServiceImpl;
+import com.brainstormers.airdoc.security.services.AdminDetailsServiceImpl;
+import com.brainstormers.airdoc.security.services.PatientDetailsServiceImpl;
+import com.brainstormers.airdoc.security.services.UserDetailsImpl;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
 	@Autowired
 	private JwtUtils jwtUtils;
 
 	@Autowired
-	private UserDetailsServiceImpl userDetailsService;
+	private DoctorDetailsServiceImpl doctorDetailsService;
+	@Autowired
+	private PatientDetailsServiceImpl patientDetailsService;
+	@Autowired
+	private AdminDetailsServiceImpl adminDetailsService;
 
 	private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
@@ -36,8 +43,23 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 			String jwt = parseJwt(request);
 			if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
 				String username = jwtUtils.getUserNameFromJwtToken(jwt);
-
-				UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+				String userType = request.getHeader("User-Type");
+				
+				UserDetails userDetails;
+				switch(userType) {
+	            	case UserDetailsImpl.PATIENT:
+	            		userDetails = patientDetailsService.loadUserByUsername(username);
+	            		break;
+	            	case UserDetailsImpl.DOCTOR:
+	            		userDetails = doctorDetailsService.loadUserByUsername(username);
+	            		break;
+	            	case UserDetailsImpl.ADMIN:
+	            		userDetails = adminDetailsService.loadUserByUsername(username);
+	            		break;
+	            default:
+	            	userDetails = null;
+	        }
+			
 				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
 						userDetails, null, userDetails.getAuthorities());
 				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
@@ -47,6 +69,8 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 		} catch (Exception e) {
 			logger.error("Cannot set user authentication: {}", e);
 		}
+		
+		logger.info("request forwarded " + request.getServletPath() );
 
 		filterChain.doFilter(request, response);
 	}

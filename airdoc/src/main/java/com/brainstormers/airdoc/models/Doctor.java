@@ -71,12 +71,6 @@ public class Doctor{
 	@ApiModelProperty(notes = "Nom de doctor")
     private String lastname;
 	
-	/**
-	 * deuxième nom de doctor
-	 */
-	@Size(max = 50)
-	@ApiModelProperty(notes = "deuxième nom de doctor")
-    private String middlename = "";
 
 	/**
 	 * Email de doctor
@@ -246,14 +240,6 @@ public class Doctor{
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}	
-	
-	public String getMiddlename() {
-		return middlename;
-	}
-
-	public void setMiddlename(String middlename) {
-		this.middlename = middlename;
-	}
 
 	public String getPassword() {
 		return password;

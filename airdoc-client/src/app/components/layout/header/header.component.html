@@ -2,20 +2,20 @@
 <header class="header">
     <nav class="navbar navbar-expand-lg header-nav">
         <div class="navbar-header">
-            <a id="mobile_btn" routerLink="javascript:void(0);">
+            <a id="mobile_btn" href="javascript:void(0);">
                 <span class="bar-icon">
                     <span></span>
                     <span></span>
                     <span></span>
                 </span>
             </a>
-            <a routerLink="index-2.html" class="navbar-brand logo">
+            <a routerLink="home" class="navbar-brand logo">
                 <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
             </a>
         </div>
         <div class="main-menu-wrapper">
             <div class="menu-header">
-                <a routerLink="index-2.html" class="menu-logo">
+                <a routerLink="home" class="menu-logo">
                     <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
                 </a>
                 <a id="menu_close" class="menu-close" routerLink="javascript:void(0);">
@@ -26,8 +26,9 @@
                 <li class="active">
                     <a routerLink="home">Home</a>
                 </li>
-                <li class="has-submenu">
-                    <a href="#">Patient <i class="fas fa-chevron-down"></i></a>
+                <li class="has-submenu" *ngIf="showPatientMenu">
+                    <a href="#">Patients <i class="fas fa-chevron-down"></i></a>
+
                     <ul class="submenu">
                         <li><a routerLink="patient/profile">Profile</a></li>
                         <li><a routerLink="search">Search Doctors</a></li>
@@ -40,20 +41,21 @@
                       <li><a routerLink="#">Log Out</a></li>
 
                     </ul>
-                </li>
-                <li class="has-submenu">
+                </li>	
+                <li class="has-submenu" *ngIf="showDoctorMenu">
+
                     <a href="#">Doctors<i class="fas fa-chevron-down"></i></a>
                     <ul class="submenu">
                         <li><a routerLink="search">Search Doctor</a></li>
-                        <li><a routerLink="doctor/profile">Doctor Profile</a></li>
-                        <li><a routerLink="booking">Booking</a></li>
-                        <li><a routerLink="checkout">Checkout</a></li>
-                        <li><a routerLink="booking-success">Booking Success</a></li>
-                        <li><a routerLink="patient-dashboard">Patient Dashboard</a></li>
-                        <li><a routerLink="favourites">Favourites</a></li>
-                        <li><a routerLink="chat">Chat</a></li>
-                        <li><a routerLink="profile-settings">Profile Settings</a></li>
-                        <li><a routerLink="change-password">Change Password</a></li>
+                        <li><a routerLink="doctor/profile" routerLinkActive="active">Doctor Profile</a></li>
+                        <li><a routerLink="doctor/booking" routerLinkActive="active">Booking</a></li>
+                        <li><a routerLink="doctor/checkout" routerLinkActive="active">Checkout</a></li>
+                        <li><a routerLink="doctor/booking-success" routerLinkActive="active">Booking Success</a></li>
+                        <li><a routerLink="doctor/patient-dashboard" routerLinkActive="active">Patient Dashboard</a></li>
+                        <li><a routerLink="doctor/favourites" routerLinkActive="active">Favourites</a></li>
+                        <li><a routerLink="doctor/chat" routerLinkActive="active">Chat</a></li>
+                        <li><a routerLink="doctor/profile-settings" routerLinkActive="active">Profile Settings</a></li>
+                        <li><a routerLink="doctor/change-password" routerLinkActive="active">Change Password</a></li>
                     </ul>
                 </li>
                 <li class="has-submenu">
@@ -77,17 +79,24 @@
                         <li><a href="forgot-password.html">Forgot Password</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="admin/index.html" target="_blank">Admin</a>
+                <li *ngIf="showAdminMenu">
+                    <a href="admin" target="_blank">Admin</a>
                 </li>
                 <li class="login-link">
                     <a href="login.html">Login / Signup</a>
                 </li>
-            </ul>
-        </div>
-        <ul class="nav header-navbar-rht">
+            </ul>				 
+        </div>		 
+        <ul class="nav header-navbar-rht" *ngIf="!isLoggedIn">
             <li class="nav-item">
-                <a class="nav-link header-login" routerLink="patient/login">login / Signup </a>
+                <a class="nav-link header-login" routerLink="patient/login" >login / Signup </a>
+            </li>
+        </ul>
+
+        <ul class="nav header-navbar-rht" *ngIf="isLoggedIn">
+
+            <li class="nav-item">
+                <a class="btn nav-link header-login" (click)="logout()">logout </a>
             </li>
         </ul>
     </nav>

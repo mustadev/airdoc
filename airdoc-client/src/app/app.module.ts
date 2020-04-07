@@ -21,6 +21,11 @@ import { SignupComponent as PatientSignupComponent } from './components/pages/pa
 import { LoginComponent as PatientLoginComponent } from './components/pages/patient/login/login.component';
 import { ProfileComponent as PatientProfileComponent } from './components/pages/patient/profile/profile.component';
 import { AuthInterceptor } from './services/auth-interceptor.service';
+import { DoctorAuthGuard } from './services/doctor-auth.guard';
+import { PatientAuthGuard } from './services/patient-auth-guard';
+import { AdminAuthGuard } from './services/admin-auth.guard';
+import { AdminProfileComponent } from './components/pages/admin/admin-profile/admin-profile.component';
+import { AdminLoginComponent } from './components/pages/admin/admin-login/admin-login.component';
 import { AppointmentComponent } from './components/pages/patient/appointment/appointment.component';
 import { ChangePasswordComponent} from './components/pages/patient/change-password/change-password.component';
 
@@ -42,6 +47,8 @@ import { ChangePasswordComponent} from './components/pages/patient/change-passwo
     PatientSignupComponent,
     PatientLoginComponent,
     PatientProfileComponent,
+    AdminProfileComponent,
+    AdminLoginComponent
     AppointmentComponent,
     ChangePasswordComponent
   ],
@@ -51,7 +58,12 @@ import { ChangePasswordComponent} from './components/pages/patient/change-passwo
     HttpClientModule,
     FormsModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    DoctorAuthGuard,
+    PatientAuthGuard,
+    AdminAuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
