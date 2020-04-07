@@ -8,52 +8,33 @@ import com.brainstormers.airdoc.repositories.AppointmentRepository;
 
 public class AppointmentServiceImpl implements AppointmentService{
 	
-	private AppointmentRepository AppRepository;
+	private AppointmentRepository appRepository;
 
 	@Override
 	public Optional<List<Appointment>> findAll() {
-		return Optional.of(AppRepository.findAll());
+		return Optional.of(this.appRepository.findAll());
 	}
 
-	@Override
-	public Optional<Appointment> findByUserName(String userName) {
-		return Optional.of(AppRepository.findByUsername(userName));
-	}
 
 	@Override
 	public Optional<Appointment> save(Appointment appointment) {
 		
-		return Optional.of(AppRepository.save(appointment));
+		return Optional.of(this.appRepository.save(appointment));
 	}
 
 	@Override
 	public Optional<Appointment> update(Appointment appointment) {
 		
-		return Optional.of(AppRepository.save(appointment)) ;
+		return Optional.of(this.appRepository.save(appointment)) ;
 	}
 
-	@Override
-	public Optional<Appointment> searchbyEmail(String email) {
-		return Optional.of(AppRepository.findByEmail(email));
-	}
 
 	@Override
 	public void delete(Appointment appointment) {
-		AppRepository.delete(appointment);
+		this.appRepository.delete(appointment);
 		
 	}
 
-	@Override
-	public boolean existsByEmail(String email) {
-		    
-		return AppRepository.existsByEmail(email);
-	}
-
-	@Override
-	public boolean existsByUsername(String username) {
-		
-		return AppRepository.existsByUsername(username);
-	}
 	
 
 }
