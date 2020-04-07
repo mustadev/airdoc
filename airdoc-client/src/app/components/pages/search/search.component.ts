@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Doctor } from 'src/app/models/Doctor';
 import { Review } from 'src/app/models/Review';
 import { DoctorService } from 'src/app/services/doctor.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -11,9 +12,20 @@ import { DoctorService } from 'src/app/services/doctor.service';
 export class SearchComponent implements OnInit {
 
   doctors: Array<Doctor> = [];
-  constructor(private doctorService: DoctorService) { }
+  searchLocation:string = "";
+  searchQuery:string = "";
+
+  constructor(
+    private doctorService: DoctorService,
+    private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activatedRoute.queryParamMap
+                .subscribe(params => {
+            this.searchLocation = params.get('location') + "";
+            this.searchQuery = params.get('query') + "";
+            this.search(this.searchLocation, this.searchQuery);
+        });
     /* this.doctors = [
        {
          name: "asafar",
@@ -91,6 +103,11 @@ export class SearchComponent implements OnInit {
         this.doctors = doctors;
       });
 
+  }
+
+  search(location:string, query:string){
+    console.log("searchCom", "location: " + location, "query: " +query);
+    this.doctorService.search(location, query);
   }
 
 }
