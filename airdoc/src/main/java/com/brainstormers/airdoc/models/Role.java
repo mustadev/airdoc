@@ -1,5 +1,9 @@
 package com.brainstormers.airdoc.models;
 
+<<<<<<< HEAD
+=======
+import java.util.Set;
+>>>>>>> develop
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -16,9 +20,5 @@ public class Role {
   private String id;
 
   private ERole name;
-
-  public Role(ERole name) {
-    this.name = name;
-  }
 
 }

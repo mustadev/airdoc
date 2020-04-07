@@ -46,5 +46,4 @@ public class Review {
 	@ApiModelProperty(notes = "nombre des likes")
 	private int likes;
 	
-	
 }

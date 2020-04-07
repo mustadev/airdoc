@@ -173,8 +173,5 @@ public class Doctor{
 	@ApiModelProperty(notes = "Évaluation du Doctor")
     private int averageRating = 0; //TODO set max 5.0 and min 0.0
 	
-	
-    
-
     
 }

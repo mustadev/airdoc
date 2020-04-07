@@ -57,24 +57,7 @@ public class Patient {
 	@ApiModelProperty(notes = "Mot D'utilisateur du Patient")
 	private String password;
 	
-	public String getPassword() {
-		return password;
-	}
-
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-
-	public String getUsername() {
-		return username;
-	}
 	
-	
-	public void setUsername(String username) {
-		this.username = username;
-	}
 	/**
 	 * Age d'utilisateur
 	 */
@@ -96,14 +79,13 @@ public class Patient {
 	
 
 
-	public Patient(String firstName, String lastName,int age,String mail) {
+	public Patient(String firstName, String lastName,int age,String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
-		this.email = mail;
+		this.email = email;
 		
 	}
-	
 	
  
 }
