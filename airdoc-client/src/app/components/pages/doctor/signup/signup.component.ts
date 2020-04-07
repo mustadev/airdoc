@@ -3,7 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-signup',
+  selector: 'app-doctor-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })

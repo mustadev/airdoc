@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.brainstormers.airdoc.security.services.DoctorDetailsServiceImpl;
-import com.brainstormers.airdoc.security.services.EmployeeDetailsServiceImpl;
+import com.brainstormers.airdoc.security.services.AdminDetailsServiceImpl;
 import com.brainstormers.airdoc.security.services.PatientDetailsServiceImpl;
 import com.brainstormers.airdoc.security.services.UserDetailsImpl;
 
@@ -32,7 +32,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 	@Autowired
 	private PatientDetailsServiceImpl patientDetailsService;
 	@Autowired
-	private EmployeeDetailsServiceImpl employeeDetailsService;
+	private AdminDetailsServiceImpl adminDetailsService;
 
 	private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
@@ -53,8 +53,8 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 	            	case UserDetailsImpl.DOCTOR:
 	            		userDetails = doctorDetailsService.loadUserByUsername(username);
 	            		break;
-	            	case UserDetailsImpl.EMPLOYEE:
-	            		userDetails = employeeDetailsService.loadUserByUsername(username);
+	            	case UserDetailsImpl.ADMIN:
+	            		userDetails = adminDetailsService.loadUserByUsername(username);
 	            		break;
 	            default:
 	            	userDetails = null;

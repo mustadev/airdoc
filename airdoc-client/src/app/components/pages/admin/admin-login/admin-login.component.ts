@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service'
 import { TokenStorageService } from '../../../../services/token-storage.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/models/User';
+
 
 @Component({
   selector: 'app-admin-login',
@@ -35,15 +37,16 @@ export class AdminLoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.doctorLogin(this.form).subscribe(
-      data => {
-        this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUser(data);
-        this.tokenStorage.saveUserType(data.userType);
+    this.authService.adminLogin(this.form).subscribe(
+      (user:User) => {
+        this.tokenStorage.saveToken(user.accessToken);
+        this.tokenStorage.saveUser(user);
+        this.tokenStorage.saveUserType(user.userType);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
+        this.authService.getLoggedInUser.emit(user);
         console.log("login successful");
         console.log(this.tokenStorage.getUser());
         console.log( 'return to '+ this.retUrl);
@@ -52,6 +55,7 @@ export class AdminLoginComponent implements OnInit {
            } else {
                 this.router.navigate( ['admin/profile']);
            }
+           
         
       },
       err => {

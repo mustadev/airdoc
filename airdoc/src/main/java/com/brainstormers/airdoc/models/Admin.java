@@ -11,48 +11,48 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- *  classe "Employé" 
+ *  classe "Admin" 
  * @author Mustapha Ouarrain
  * @since version 0.0.2
  * 
  */
-@ApiModel(description = "Détails du Employé")
-@Document(collection = "employees")
-public class Employee {
+@ApiModel(description = "Détails du Admin")
+@Document(collection = "admins")
+public class Admin {
 	
 	/**
-	 * ID d'Employé
+	 * ID d'Admin
 	 */
-	@ApiModelProperty(notes = "ID du Employé")
+	@ApiModelProperty(notes = "ID du Admin")
 	@Id
 	private String id;
 	/**
-	 * Prénom d'Employé.
+	 * Prénom d'Admin.
 	 */
-	@ApiModelProperty(notes = "prénom du Employé")
+	@ApiModelProperty(notes = "prénom du Admin")
 	private String firstname;
 	/**
-	 * Nom du Employé.
+	 * Nom du Admin.
 	 */
-	@ApiModelProperty(notes = "nom du Employé")
+	@ApiModelProperty(notes = "nom du Admin")
 	private String lastname;
 	
 	/**
-	 * Nom d'Employé.
+	 * Nom d'Admin.
 	 */
-	@ApiModelProperty(notes = "Non D'utilisateur du Employé")
+	@ApiModelProperty(notes = "Non D'utilisateur du Admin")
 	private String username;
 	
 	/**
-	 * Mot de Pass d'Employé.
+	 * Mot de Pass d'Admin.
 	 */
-	@ApiModelProperty(notes = "Mot de Pass du Employé")
+	@ApiModelProperty(notes = "Mot de Pass du Admin")
 	private String password;
 	
 	/**
-	 * Email d'Employé
+	 * Email d'Admin
 	 */
-	@ApiModelProperty(notes = "email du Employé.")
+	@ApiModelProperty(notes = "email du Admin.")
     private String email;
 	
 	/**

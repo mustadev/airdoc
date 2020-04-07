@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.ERole;
-import com.brainstormers.airdoc.models.Employee;
+import com.brainstormers.airdoc.models.Admin;
 import com.brainstormers.airdoc.models.Patient;
 import com.brainstormers.airdoc.models.Role;
 import com.brainstormers.airdoc.payload.request.LoginRequest;
@@ -34,12 +34,12 @@ import com.brainstormers.airdoc.payload.request.SignupRequest;
 import com.brainstormers.airdoc.payload.response.JwtResponse;
 import com.brainstormers.airdoc.payload.response.MessageResponse;
 import com.brainstormers.airdoc.security.AuthProviders.DoctorAuthenticationProvider;
-import com.brainstormers.airdoc.security.AuthProviders.EmployeeAuthenticationProvider;
+import com.brainstormers.airdoc.security.AuthProviders.AdminAuthenticationProvider;
 import com.brainstormers.airdoc.security.AuthProviders.PatientAuthenticationProvider;
 import com.brainstormers.airdoc.security.jwt.JwtUtils;
 import com.brainstormers.airdoc.security.services.UserDetailsImpl;
 import com.brainstormers.airdoc.services.DoctorService;
-import com.brainstormers.airdoc.services.EmployeeService;
+import com.brainstormers.airdoc.services.AdminService;
 import com.brainstormers.airdoc.services.PatientService;
 import com.brainstormers.airdoc.services.RoleService;
 
@@ -48,7 +48,7 @@ import com.brainstormers.airdoc.services.RoleService;
 @RequestMapping("/api/auth")
 public class AuthController {
 	@Autowired
-	EmployeeAuthenticationProvider employeeAuthenticationProvider;
+	AdminAuthenticationProvider adminAuthenticationProvider;
 	
 	@Autowired
 	DoctorAuthenticationProvider doctorAuthenticationProvider;
@@ -63,7 +63,7 @@ public class AuthController {
 	PatientService patientService;
 	
 	@Autowired
-	EmployeeService employeeService;
+	AdminService adminService;
 	
 
 	@Autowired
@@ -87,9 +87,9 @@ public class AuthController {
 		return authenticate(loginRequest, patientAuthenticationProvider);
 	}
 	
-	@PostMapping("/employee/signin")
-	public ResponseEntity<?> authenticateEmployee(@Valid @RequestBody LoginRequest loginRequest) {
-		return authenticate(loginRequest, employeeAuthenticationProvider);
+	@PostMapping("/admin/signin")
+	public ResponseEntity<?> authenticateAdmin(@Valid @RequestBody LoginRequest loginRequest) {
+		return authenticate(loginRequest, adminAuthenticationProvider);
 	}
 	
 	public ResponseEntity<?> authenticate(@Valid @RequestBody LoginRequest loginRequest, DaoAuthenticationProvider daoAuthenticationProvider) {
@@ -221,8 +221,8 @@ public class AuthController {
 		return ResponseEntity.ok(new MessageResponse("Patient registered successfully!"));
 	}
 	
-	@PostMapping("/employee/signup") //TODO add throw  Exception
-	public ResponseEntity<?> registerEmployee(@Valid @RequestBody SignupRequest signUpRequest) {
+	@PostMapping("/admin/signup") //TODO add throw  Exception
+	public ResponseEntity<?> registerAdmin(@Valid @RequestBody SignupRequest signUpRequest) {
 		System.out.println("username : " + signUpRequest.getUsername());
 		System.out.println("lastname : " + signUpRequest.getLastname());
 		System.out.println("firstname : " + signUpRequest.getFirstname());
@@ -230,20 +230,20 @@ public class AuthController {
 		System.out.println("password : " + signUpRequest.getPassword());
 		System.out.println("phone : " + signUpRequest.getPhone());
 
-		if (employeeService.existsByUsername(signUpRequest.getUsername())) {
+		if (adminService.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity
 					.badRequest()
 					.body(new MessageResponse("Error: Username is already taken!"));
 		}
 
-		if (employeeService.existsByEmail(signUpRequest.getEmail())) {
+		if (adminService.existsByEmail(signUpRequest.getEmail())) {
 			return ResponseEntity
 					.badRequest()
 					.body(new MessageResponse("Error: Email is already in use!"));
 		}
 
 		// Create new user's account
-		Employee user = new Employee();
+		Admin user = new Admin();
 		user.setUsername(signUpRequest.getUsername());
 		user.setLastname(signUpRequest.getLastname());
 		user.setFirstname(signUpRequest.getFirstname());
@@ -255,18 +255,18 @@ public class AuthController {
 				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 		roles.add(adminRole);
 		user.setRoles(roles);
-		Optional<Employee> emp = employeeService.save(user);
+		Optional<Admin> emp = adminService.save(user);
 		if(!emp.isPresent()) {
-			System.out.println(":::::::::::::::::::::: EMPLOYEE IS NULL!!!");
+			System.out.println(":::::::::::::::::::::: ADMIN IS NULL!!!");
 			return ResponseEntity
 					.badRequest()
-					.body(new MessageResponse("Employee DID NOT Registere!"));
+					.body(new MessageResponse("Admin DID NOT Registere!"));
 			
 		}
 
-		System.out.println(":::::::::::::::::::::: EMPLOYEE IS NOT NULL!!!");
+		System.out.println(":::::::::::::::::::::: ADMIN IS NOT NULL!!!");
 		System.out.println(":::::::::::::::::::::: " + emp.get().toString());
-		return ResponseEntity.ok(new MessageResponse("Employee registered successfully!"));
+		return ResponseEntity.ok(new MessageResponse("Admin registered successfully!"));
 	}
 	
 	

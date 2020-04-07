@@ -10,7 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.brainstormers.airdoc.models.Doctor;
-import com.brainstormers.airdoc.models.Employee;
+import com.brainstormers.airdoc.models.Admin;
 import com.brainstormers.airdoc.models.Patient;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,7 +19,7 @@ public class UserDetailsImpl implements UserDetails {
 	
 	public static final String PATIENT =  "PATIENT";
 	public static final String DOCTOR =  "DOCTOR";
-	public static final String EMPLOYEE =  "EMPLOYEE";
+	public static final String ADMIN =  "ADMIN";
 
 	private String id;
 
@@ -91,7 +91,7 @@ public class UserDetailsImpl implements UserDetails {
 	 * @param patient
 	 * @return UserDetailsImpl {@link UserDetailsImpl UserDetailsImpl.class}
 	 */
-	public static UserDetailsImpl build(Employee user) {
+	public static UserDetailsImpl build(Admin user) {
 		List<GrantedAuthority> authorities = user.getRoles().stream()
 				.map(role -> new SimpleGrantedAuthority(role.getName().name()))
 				.collect(Collectors.toList());
@@ -101,7 +101,7 @@ public class UserDetailsImpl implements UserDetails {
 				user.getUsername(), 
 				user.getEmail(),
 				user.getPassword(),
-				EMPLOYEE,
+				ADMIN,
 				authorities);
 	}
 

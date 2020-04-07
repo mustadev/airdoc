@@ -8,23 +8,23 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.brainstormers.airdoc.services.EmployeeService;
+import com.brainstormers.airdoc.services.AdminService;
 
 @Service
-public class EmployeeDetailsServiceImpl implements UserDetailsService {
+public class AdminDetailsServiceImpl implements UserDetailsService {
 	
 	public static final String PATIENT =  "PATIENT";
 	public static final String DOCTOR =  "DOCTOR";
-	public static final String EMPLOYEE =  "EMPLOYEE";
+	public static final String ADMIN =  "ADMIN";
 	
 	@Autowired
-	EmployeeService employeeService;
+	AdminService adminService;
 
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return UserDetailsImpl.build(employeeService.findByEmail(username)
-				.orElseThrow(() -> new UsernameNotFoundException("Employee Not Found with Email: " + username)));
+        return UserDetailsImpl.build(adminService.findByEmail(username)
+				.orElseThrow(() -> new UsernameNotFoundException("Admin Not Found with Email: " + username)));
 
 	}
 

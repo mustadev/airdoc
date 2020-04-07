@@ -13,7 +13,7 @@
 //
 //import com.brainstormers.airdoc.security.jwt.AuthTokenFilter;
 //import com.brainstormers.airdoc.services.DoctorService;
-//import com.brainstormers.airdoc.services.EmployeeService;
+//import com.brainstormers.airdoc.services.AdminService;
 //import com.brainstormers.airdoc.services.PatientService;
 //
 //@Service
@@ -22,7 +22,7 @@
 //	private static String USER_TYPE = "User-Type";
 //	public static final String PATIENT =  "PATIENT";
 //	public static final String DOCTOR =  "DOCTOR";
-//	public static final String EMPLOYEE =  "EMPLOYEE";
+//	public static final String ADMIN =  "ADMIN";
 //	
 //	@Autowired
 //	DoctorService doctorService;
@@ -31,7 +31,7 @@
 //	PatientService patientService;
 //	
 //	@Autowired
-//	EmployeeService employeeService;
+//	AdminService adminService;
 //
 //	@Override
 //	@Transactional
@@ -51,8 +51,8 @@
 //            	user = UserDetailsImpl.build(doctorService.findByUsername(username)
 //        				.orElseThrow(() -> new UsernameNotFoundException("Doctor Not Found with username: " + username)));
 //                break;
-//            case EMPLOYEE:
-//            	user = UserDetailsImpl.build(employeeService.findByUsername(username)
+//            case ADMIN:
+//            	user = UserDetailsImpl.build(adminService.findByUsername(username)
 //        				.orElseThrow(() -> new UsernameNotFoundException("Doctor Not Found with username: " + username)));
 //                break;
 //            default:

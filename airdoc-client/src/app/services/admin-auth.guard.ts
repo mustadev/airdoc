@@ -6,7 +6,7 @@ import { TokenStorageService } from './token-storage.service';
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeAuthGuard implements CanActivate {
+export class AdminAuthGuard implements CanActivate {
   constructor(private router: Router, private authStorage: TokenStorageService) {
 
   }
@@ -15,11 +15,11 @@ export class EmployeeAuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if ((this.authStorage.getUser() == null) || (this.authStorage.getUserType() !== "EMPLOYEE")){
+      if ((this.authStorage.getUser() == null) || (this.authStorage.getUserType() !== "ADMIN")){
         alert('You are not allowed to view this page. You are redirected to login Page');
         console.log("next : " + next);
         console.log("state : " + state);
-        this.router.navigate(["employee/login"],{ queryParams: { retUrl: state.url} });
+        this.router.navigate(["admin/login"],{ queryParams: { retUrl: state.url} });
             return false;
       }
     return true;

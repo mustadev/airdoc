@@ -21,12 +21,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.brainstormers.airdoc.security.AuthProviders.DoctorAuthenticationProvider;
-import com.brainstormers.airdoc.security.AuthProviders.EmployeeAuthenticationProvider;
+import com.brainstormers.airdoc.security.AuthProviders.AdminAuthenticationProvider;
 import com.brainstormers.airdoc.security.AuthProviders.PatientAuthenticationProvider;
 import com.brainstormers.airdoc.security.jwt.AuthEntryPointJwt;
 import com.brainstormers.airdoc.security.jwt.AuthTokenFilter;
 import com.brainstormers.airdoc.security.services.DoctorDetailsServiceImpl;
-import com.brainstormers.airdoc.security.services.EmployeeDetailsServiceImpl;
+import com.brainstormers.airdoc.security.services.AdminDetailsServiceImpl;
 import com.brainstormers.airdoc.security.services.PatientDetailsServiceImpl;
 
 @Configuration
@@ -37,7 +37,7 @@ import com.brainstormers.airdoc.security.services.PatientDetailsServiceImpl;
 prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
-	EmployeeDetailsServiceImpl employeeDetailsService;
+	AdminDetailsServiceImpl adminDetailsService;
 	@Autowired
 	DoctorDetailsServiceImpl doctorDetailsService;
 	@Autowired
@@ -53,9 +53,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-		authenticationManagerBuilder.authenticationProvider(getEmployeeAuthenticationProvider());
-		authenticationManagerBuilder.authenticationProvider(getEmployeeAuthenticationProvider());
-		authenticationManagerBuilder.authenticationProvider(getEmployeeAuthenticationProvider());
+		authenticationManagerBuilder.authenticationProvider(getAdminAuthenticationProvider());
+		authenticationManagerBuilder.authenticationProvider(getAdminAuthenticationProvider());
+		authenticationManagerBuilder.authenticationProvider(getAdminAuthenticationProvider());
 
 	}
 
@@ -93,9 +93,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	public EmployeeAuthenticationProvider getEmployeeAuthenticationProvider() {
-		EmployeeAuthenticationProvider dao = new EmployeeAuthenticationProvider();
-		dao.setUserDetailsService(employeeDetailsService);
+	public AdminAuthenticationProvider getAdminAuthenticationProvider() {
+		AdminAuthenticationProvider dao = new AdminAuthenticationProvider();
+		dao.setUserDetailsService(adminDetailsService);
 		dao.setPasswordEncoder(passwordEncoder());
 		return dao;
 	}

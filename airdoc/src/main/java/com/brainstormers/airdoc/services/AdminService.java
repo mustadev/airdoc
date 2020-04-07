@@ -3,92 +3,92 @@ package com.brainstormers.airdoc.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.brainstormers.airdoc.models.Employee;
+import com.brainstormers.airdoc.models.Admin;
 
 /**
  * une services  pour accéder et modifier la base de données
- * de Employé
+ * de Admin
  *  
  * @author Mustapha Ouarrain
  * @since version 0.0.1
  */
 
-public interface EmployeeService {
+public interface AdminService {
 	
 	
 	/**
 	 * Trouver les doctors
 	 * @return List<Doctor> 
 	 */
-	Optional<List<Employee>> findAll();
+	Optional<List<Admin>> findAll();
 
 	
 	/**
-	 * trouver un Employé par son id
+	 * trouver un Admin par son id
 	 * @param id
 	 * @return Optional<Employe>
 	 */
-	Optional<Employee> findById(String id);
+	Optional<Admin> findById(String id);
 	
 	/**
-	 * ajouter ou modifier un Employee
-	 * @param employee
+	 * ajouter ou modifier un Admin
+	 * @param admin
 	 */
-	Optional<Employee> save(Employee employee);
+	Optional<Admin> save(Admin admin);
 	/**
 	
 	/**
-	 * modifier un Employee
+	 * modifier un Admin
 	 * @param doctor
 	 */
-	Optional<Employee> update(Employee employee);
+	Optional<Admin> update(Admin admin);
 
      /**
-     * supprimer un Employee par son Id
+     * supprimer un Admin par son Id
      * @param id
      */
     void deleteById(String id);
 
  
     /**
-     *  supprimer un Employee par son Email
+     *  supprimer un Admin par son Email
      * @param doctor
      *
      * */
     public void deleteByEmail(String email);
     
     /**
-     *  supprimer tout les Employees 
+     *  supprimer tout les Admins 
      * @param doctor
      *
      * */
     public void deleteAll();
     
     /**
-     * Trouver le Employee par son Email
+     * Trouver le Admin par son Email
      * @param email
      *
      * */
-    public Optional<Employee> findByEmail(String email);
+    public Optional<Admin> findByEmail(String email);
     
     
     /**
-     * Trouver le Employee par son nom d'utilisateur
+     * Trouver le Admin par son nom d'utilisateur
      * @param username
      *
      * */
-    public Optional<Employee> findByUsername(String username);
+    public Optional<Admin> findByUsername(String username);
     
 
     /**
-     * Vérifier que le Employee existe par nom d'utilisateur
+     * Vérifier que le Admin existe par nom d'utilisateur
      * @param username
      *
      * */
     boolean existsByUsername(String username);
 
     /**
-     * Vérifier que le Employee existe par Email
+     * Vérifier que le Admin existe par Email
      * @param email
      *
      * */

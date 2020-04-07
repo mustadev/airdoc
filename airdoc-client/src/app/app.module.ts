@@ -23,7 +23,7 @@ import { ProfileComponent as PatientProfileComponent } from './components/pages/
 import { AuthInterceptor } from './services/auth-interceptor.service';
 import { DoctorAuthGuard } from './services/doctor-auth.guard';
 import { PatientAuthGuard } from './services/patient-auth-guard';
-import { EmployeeAuthGuard } from './services/employee-auth.guard';
+import { AdminAuthGuard } from './services/admin-auth.guard';
 import { AdminProfileComponent } from './components/pages/admin/admin-profile/admin-profile.component';
 import { AdminLoginComponent } from './components/pages/admin/admin-login/admin-login.component';
 
@@ -58,7 +58,7 @@ import { AdminLoginComponent } from './components/pages/admin/admin-login/admin-
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     DoctorAuthGuard,
     PatientAuthGuard,
-    EmployeeAuthGuard
+    AdminAuthGuard
   ],
   bootstrap: [AppComponent]
 })

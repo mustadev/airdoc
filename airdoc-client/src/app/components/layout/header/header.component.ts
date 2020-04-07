@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/User';
 
 
   const DOCTOR = "DOCTOR";
   const PATIENT = "PATIENT";
-  const EMPLOYEE = "EMPLOYEE";
+  const ADMIN = "ADMIN";
   
   @Component({
     selector: 'app-header',
@@ -20,13 +22,15 @@ export class HeaderComponent implements OnInit {
   //showModeratorBoard = false;
   showDoctorMenu = false;
   showPatientMenu = false;
-  showEmployeeMenu = false;
+  showAdminMenu = false;
   username: string;
+  loggedInUser:any;
 
-  constructor(private tokenStorageService: TokenStorageService) { }
+  constructor(private tokenStorageService: TokenStorageService, private authService: AuthService) { }
 
   ngOnInit() {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
+    this.authService.getLoggedInUser.subscribe((user:User) => this.updateHeader(user));
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
@@ -37,7 +41,7 @@ export class HeaderComponent implements OnInit {
       //this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
       this.showDoctorMenu = userType == DOCTOR;
       this.showPatientMenu = userType == PATIENT;
-      this.showEmployeeMenu = userType == EMPLOYEE;
+      this.showAdminMenu = userType == ADMIN;
       console.log("userType " + userType);
       console.log("showDoctorMenu: " +  this.showDoctorMenu);
       this.username = user.username;
@@ -47,6 +51,22 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.tokenStorageService.signOut();
     window.location.reload();
+  }
+
+  updateHeader(user:User){
+    console.log("subscribe " + user);
+      this.isLoggedIn = true;
+      this.loggedInUser = user;
+      console.log("logged in user : " + this.loggedInUser);
+      this.showDoctorMenu = user.userType == DOCTOR;
+      console.log("showDoctorMenu");
+      console.log(this.showDoctorMenu);
+      this.showPatientMenu = user.userType == PATIENT;
+      console.log("this.showPatientMenu");
+      console.log(this.showPatientMenu);
+      this.showAdminMenu = user.userType == ADMIN;
+      console.log("this.showAdminMenu");
+      console.log(this.showAdminMenu);
   }
 
 }

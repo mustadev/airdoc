@@ -9,7 +9,7 @@ import com.brainstormers.airdoc.models.ERole;
 import com.brainstormers.airdoc.models.Role;
 import com.brainstormers.airdoc.repositories.DoctorRepository;
 import com.brainstormers.airdoc.services.DoctorService;
-import com.brainstormers.airdoc.services.EmployeeService;
+import com.brainstormers.airdoc.services.AdminService;
 import com.brainstormers.airdoc.services.RoleService;
 
 import org.slf4j.Logger;
@@ -22,12 +22,12 @@ import org.springframework.stereotype.Component;
 
 @Order(4)
 @Component
-public class EmployeeStartupRunner implements CommandLineRunner {
+public class AdminStartupRunner implements CommandLineRunner {
 
-	Logger logger = LoggerFactory.getLogger(EmployeeStartupRunner.class);
+	Logger logger = LoggerFactory.getLogger(AdminStartupRunner.class);
 	
 	@Autowired
-	private EmployeeService employeeService;
+	private AdminService adminService;
 	
 	@Autowired
 	private RoleService roleService;
@@ -44,7 +44,7 @@ public class EmployeeStartupRunner implements CommandLineRunner {
 		
 		// supprimer les doctor
 		logger.info("removing all databases records");
-		employeeService.deleteAll();
+		adminService.deleteAll();
 		// la creation des "dummy data"
 		
 
