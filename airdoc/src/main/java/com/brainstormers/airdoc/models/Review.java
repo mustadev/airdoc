@@ -46,23 +46,4 @@ public class Review {
 		this.likes = likes;
 	}
 	
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public Patient getAuther() {
-		return auther;
-	}
-	public void setAuther(Patient auther) {
-		this.auther = auther;
-	}
-	public int getLikes() {
-		return likes;
-	}
-	public void setLikes(int likes) {
-		this.likes = likes;
-	}
-	
 }
