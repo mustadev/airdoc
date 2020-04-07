@@ -122,8 +122,7 @@ public class AuthController {
 			return  ResponseEntity
 					.badRequest()
 					.body(new MessageResponse("Bad Credentials"));
-		}
-		
+		}	
 		
 		
 	}
@@ -136,6 +135,7 @@ public class AuthController {
 		System.out.println("firstname : " + signUpRequest.getFirstname());
 		System.out.println("email : " + signUpRequest.getEmail());
 		System.out.println("password : " + signUpRequest.getPassword());
+		System.out.println("phone : " + signUpRequest.getPhone());
 		if (doctorService.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity
 					.badRequest()
@@ -155,37 +155,10 @@ public class AuthController {
 		user.setFirstname(signUpRequest.getFirstname());
 		user.setEmail( signUpRequest.getEmail());
 		user.setPassword(encoder.encode(signUpRequest.getPassword()));
-
-		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
-
-		if (strRoles == null) {
-			Role userRole = roleService
-					.findByName(ERole.ROLE_USER)
-					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-			roles.add(userRole);
-		} else {
-			strRoles.forEach(role -> {
-				switch (role) {
-				case "admin":
-					Role adminRole = roleService.findByName(ERole.ROLE_ADMIN)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(adminRole);
-
-					break;
-				case "mod":
-					Role modRole = roleService.findByName(ERole.ROLE_MODERATOR)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(modRole);
-
-					break;
-				default:
-					Role userRole = roleService.findByName(ERole.ROLE_USER)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(userRole);
-				}
-			});
-		}
+		Role userRole = roleService.findByName(ERole.ROLE_USER)
+				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+		roles.add(userRole);
 
 		user.setRoles(roles);
 		Optional<Doctor> doc = doctorService.save(user);
@@ -210,6 +183,8 @@ public class AuthController {
 		System.out.println("firstname : " + signUpRequest.getFirstname());
 		System.out.println("email : " + signUpRequest.getEmail());
 		System.out.println("password : " + signUpRequest.getPassword());
+		System.out.println("phone : " + signUpRequest.getPhone());
+
 		if (patientService.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity
 					.badRequest()
@@ -230,36 +205,10 @@ public class AuthController {
 		user.setEmail( signUpRequest.getEmail());
 		user.setPassword(encoder.encode(signUpRequest.getPassword()));
 
-		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
-
-		if (strRoles == null) {
-			Role userRole = roleService.findByName(ERole.ROLE_USER)
-					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-			roles.add(userRole);
-		} else {
-			strRoles.forEach(role -> {
-				switch (role) {
-				case "admin":
-					Role adminRole = roleService.findByName(ERole.ROLE_ADMIN)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(adminRole);
-
-					break;
-				case "mod":
-					Role modRole = roleService.findByName(ERole.ROLE_MODERATOR)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(modRole);
-
-					break;
-				default:
-					Role userRole = roleService.findByName(ERole.ROLE_USER)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(userRole);
-				}
-			});
-		}
-
+		Role userRole = roleService.findByName(ERole.ROLE_USER)
+				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+		roles.add(userRole);
 		user.setRoles(roles);
 		Optional<Patient> pat = patientService.insertPatient(user);
 		if(!pat.isPresent()) {
@@ -279,6 +228,8 @@ public class AuthController {
 		System.out.println("firstname : " + signUpRequest.getFirstname());
 		System.out.println("email : " + signUpRequest.getEmail());
 		System.out.println("password : " + signUpRequest.getPassword());
+		System.out.println("phone : " + signUpRequest.getPhone());
+
 		if (employeeService.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity
 					.badRequest()
@@ -299,36 +250,10 @@ public class AuthController {
 		user.setEmail( signUpRequest.getEmail());
 		user.setPassword(encoder.encode(signUpRequest.getPassword()));
 
-		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
-
-		if (strRoles == null) {
-			Role userRole = roleService.findByName(ERole.ROLE_USER)
-					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-			roles.add(userRole);
-		} else {
-			strRoles.forEach(role -> {
-				switch (role) {
-				case "admin":
-					Role adminRole = roleService.findByName(ERole.ROLE_ADMIN)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(adminRole);
-
-					break;
-				case "mod":
-					Role modRole = roleService.findByName(ERole.ROLE_MODERATOR)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(modRole);
-
-					break;
-				default:
-					Role userRole = roleService.findByName(ERole.ROLE_USER)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(userRole);
-				}
-			});
-		}
-
+		Role adminRole = roleService.findByName(ERole.ROLE_ADMIN)
+				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+		roles.add(adminRole);
 		user.setRoles(roles);
 		Optional<Employee> emp = employeeService.save(user);
 		if(!emp.isPresent()) {

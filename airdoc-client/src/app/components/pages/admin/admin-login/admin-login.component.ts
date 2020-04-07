@@ -3,19 +3,18 @@ import { AuthService } from '../../../../services/auth.service'
 import { TokenStorageService } from '../../../../services/token-storage.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
-
 @Component({
-  selector: 'app-doctor-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-admin-login',
+  templateUrl: './admin-login.component.html',
+  styleUrls: ['./admin-login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class AdminLoginComponent implements OnInit {
   form: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
-  retUrl:string = "doctor/profile";
+  retUrl:string = "admin/profile";
 
   constructor(
     private authService: AuthService,
@@ -51,7 +50,7 @@ export class LoginComponent implements OnInit {
            if (this.retUrl!=null) {
                 this.router.navigate( [this.retUrl]);
            } else {
-                this.router.navigate( ['doctor/profile']);
+                this.router.navigate( ['admin/profile']);
            }
         
       },

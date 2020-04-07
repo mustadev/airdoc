@@ -21,6 +21,11 @@ import { SignupComponent as PatientSignupComponent } from './components/pages/pa
 import { LoginComponent as PatientLoginComponent } from './components/pages/patient/login/login.component';
 import { ProfileComponent as PatientProfileComponent } from './components/pages/patient/profile/profile.component';
 import { AuthInterceptor } from './services/auth-interceptor.service';
+import { DoctorAuthGuard } from './services/doctor-auth.guard';
+import { PatientAuthGuard } from './services/patient-auth-guard';
+import { EmployeeAuthGuard } from './services/employee-auth.guard';
+import { AdminProfileComponent } from './components/pages/admin/admin-profile/admin-profile.component';
+import { AdminLoginComponent } from './components/pages/admin/admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,9 @@ import { AuthInterceptor } from './services/auth-interceptor.service';
     DoctorProfileComponent,
     PatientSignupComponent,
     PatientLoginComponent,
-    PatientProfileComponent
+    PatientProfileComponent,
+    AdminProfileComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +54,12 @@ import { AuthInterceptor } from './services/auth-interceptor.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    DoctorAuthGuard,
+    PatientAuthGuard,
+    EmployeeAuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

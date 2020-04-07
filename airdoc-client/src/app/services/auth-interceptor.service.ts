@@ -21,6 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (userType != null) {
       authReq = req.clone({ headers: req.headers.set(USER_TYPE_HEADER_KEY, userType)});
     }
+    console.log("authReq : " + JSON.stringify(authReq));
     return next.handle(authReq);
   }
 }

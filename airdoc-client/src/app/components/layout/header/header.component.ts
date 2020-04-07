@@ -38,7 +38,8 @@ export class HeaderComponent implements OnInit {
       this.showDoctorMenu = userType == DOCTOR;
       this.showPatientMenu = userType == PATIENT;
       this.showEmployeeMenu = userType == EMPLOYEE;
-
+      console.log("userType " + userType);
+      console.log("showDoctorMenu: " +  this.showDoctorMenu);
       this.username = user.username;
     }
   }

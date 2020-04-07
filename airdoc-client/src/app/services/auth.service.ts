@@ -30,9 +30,12 @@ export class AuthService {
   //TODO define registration params
   register(user, api:string): Observable<any> {
     return this.http.post(DOCTOR_API + 'signup', {
-    //  username: user.username,
       email: user.email,
-      password: user.password
+      password: user.password,
+      phone: user.phone,
+      username: user.username,
+      lastname: user.lastname,
+      firstname: user.firstname
     }, httpOptions);
   }
   //TODO define patients
