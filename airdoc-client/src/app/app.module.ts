@@ -48,7 +48,7 @@ import { ChangePasswordComponent} from './components/pages/patient/change-passwo
     PatientLoginComponent,
     PatientProfileComponent,
     AdminProfileComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
     AppointmentComponent,
     ChangePasswordComponent
   ],

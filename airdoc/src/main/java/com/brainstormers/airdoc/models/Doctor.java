@@ -18,6 +18,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * le Model Doctor 
@@ -27,6 +31,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "doctor details")
 @Document(collection = "doctors")
+@Data @ToString @AllArgsConstructor @NoArgsConstructor
 public class Doctor{
 	
 
@@ -45,9 +50,6 @@ public class Doctor{
 		this.username = username;
 	}
 
-	public Doctor() {
-		
-	}
 	/**
 	 * ID de Doctor
 	 */
@@ -173,122 +175,6 @@ public class Doctor{
 	
 	
     
-    
-	public List<String> getServices() {
-		return services;
-	}
-	public void setServices(List<String> services) {
-		this.services = services;
-	}
-	public int getMinPrice() {
-		return minPrice;
-	}
-	public void setMinPrice(int minPrice) {
-		this.minPrice = minPrice;
-	}
-	public int getMaxPrice() {
-		return maxPrice;
-	}
-	public void setMaxPrice(int maxPrice) {
-		this.maxPrice = maxPrice;
-	}
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
-	public String getSpeciality() {
-		return speciality;
-	}
-	public void setSpeciality(String speciality) {
-		this.speciality = speciality;
-	}
-	public int getAverageRating() {
-		return averageRating;
-	}
-	public void setAverageRating(int averageRating) {
-		this.averageRating = averageRating;
-	}
-	public List<Review> getReviews() {
-		return reviews;
-	}
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
-	}
-	public float getRating() {
-		return rating;
-	}
-	public void setRating(float rating) {
-		this.rating = rating;
-	}
-	public String getId() {
-	return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getFirstname() {
-		return firstname;
-	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-	public String getLastname() {
-		return firstname;
-	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}	
-
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public Set<Role> getRoles() {
-		return roles;
-	}
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getCity() {
-		return this.city;
-	}
-	public void setCity(String city) {
-		this.city= city;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	 public String getEmail() {
-    		return email;
-	  }
-
-	 @Override
-		public String toString() {
-			return "Doctor [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
-					+ ", password=" + password + ", username=" + username + ", description=" + description + ", city="
-					+ city + ", reviews=" + reviews + ", roles=" + roles + ", services=" + services + ", minPrice="
-					+ minPrice + ", maxPrice=" + maxPrice + ", country=" + country + ", speciality=" + speciality
-					+ ", rating=" + rating + ", averageRating=" + averageRating + "]";
-		}
-
 
     
 }

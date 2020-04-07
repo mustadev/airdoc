@@ -1,8 +1,14 @@
 package com.brainstormers.airdoc.models;
+import java.util.Set;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
 
@@ -15,6 +21,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "Détails de la revue")
 @Document
+@Data @ToString @AllArgsConstructor @NoArgsConstructor
 public class Review {
 	
 	/**
@@ -39,30 +46,5 @@ public class Review {
 	@ApiModelProperty(notes = "nombre des likes")
 	private int likes;
 	
-	
-	public Review(String content, Patient auther, int likes) {
-		this.content = content;
-		this.auther = auther;
-		this.likes = likes;
-	}
-	
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public Patient getAuther() {
-		return auther;
-	}
-	public void setAuther(Patient auther) {
-		this.auther = auther;
-	}
-	public int getLikes() {
-		return likes;
-	}
-	public void setLikes(int likes) {
-		this.likes = likes;
-	}
 	
 }

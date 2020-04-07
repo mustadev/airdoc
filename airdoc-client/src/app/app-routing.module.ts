@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'search' , component: SearchComponent },
   { path: 'patient/appointment' , component: AppointmentComponent},
   { path :  'patient/editPassword' , component: ChangePasswordComponent},
-  { path: 'search' , component: SearchComponent }
+  { path: 'search' , component: SearchComponent },
   { path: '**', redirectTo: 'home' } //this must be the last
 
 ];
