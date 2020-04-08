@@ -20,30 +20,31 @@ import lombok.ToString;
  * 
  */
 @ApiModel(description = "Détails de la revue")
-@Document
 @Data @ToString @AllArgsConstructor @NoArgsConstructor
 public class Review {
 	
-	/**
-	 * ID de Revue
-	 */
-	@ApiModelProperty(notes = "Review ID")
-	@Id
-	private String id;
 	/**
 	 * le contenu de la revue
 	 */
 	@ApiModelProperty(notes = "le contenu de la revue")
 	private String content;
 	/**
-	 * auteur de la revue
+	 * ID auteur de la revue
 	 */
-	@ApiModelProperty(notes = "auteur de la revue")
-	private Patient auther;
+	@ApiModelProperty(notes = "ID auteur de la revue")
+	private String autherId;
 	/**
 	 * nombre des likes
 	 */
 	@ApiModelProperty(notes = "nombre des likes")
 	private int likes;
+	
+	/**
+	 * nombre des dislikes
+	 */
+	@ApiModelProperty(notes = "nombre des dislikes")
+	private int dislikes;
+	
+	
 	
 }

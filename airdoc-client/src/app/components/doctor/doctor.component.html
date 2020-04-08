@@ -3,13 +3,13 @@
         <div class="doctor-widget">
             <div class="doc-info-left">
                 <div class="doctor-img">
-                    <a href="doctor-profile.html">
+                    <a routerLink="/doctor/profile/{{doctor.username}}">
                         <img src="assets/img/doctors/doctor-thumb-01.jpg" class="img-fluid" alt="Patient Image">
                     </a>
                 </div>
                 <div class="doc-info-cont">
-                    <h4 class="doc-name"><a href="doctor-profile.html">{{doctor.name}}</a></h4>
-                    <p class="doc-speciality">{{doctor.speciality}}</p>
+                    <h4 class="doc-name"><a routerLink="/doctor/profile/{{doctor.username}}">{{doctor.firstname | titlecase}} {{doctor.lastname | titlecase}}</a></h4>
+                    <p class="doc-speciality">{{doctor.speciality }}</p>
                     <h5 class="doc-department"><img src="assets/img/specialities/specialities-05.png" class="img-fluid" alt="Speciality">{{doctor.speciality}}</h5>
                     <div class="rating">
                         <i class="fas fa-star filled"></i>
@@ -20,7 +20,7 @@
                         <span class="d-inline-block average-rating">({{doctor.averageRating}})</span>
                     </div>
                     <div class="clinic-details">
-                        <p class="doc-location"><i class="fas fa-map-marker-alt"></i>{{doctor.country + " " + doctor.city}}</p>
+                        <p class="doc-location"><i class="fas fa-map-marker-alt"></i>  {{doctor.clinic.country | titlecase }} {{doctor.clinic.city | titlecase}}</p>
                         <ul class="clinic-gallery">
                             <li>
                                 <a href="assets/img/features/feature-01.jpg" data-fancybox="gallery">
@@ -45,7 +45,7 @@
                         </ul>
                     </div>
                     <div class="clinic-services">
-                        <span *ngFor=" let service of doctor.services"> {{service}} </span>
+                        <span *ngFor=" let service of doctor.clinic.services"> {{service}} </span>
                     </div>
                 </div>
             </div>
@@ -53,13 +53,13 @@
                 <div class="clini-infos">
                     <ul>
                         <li><i class="far fa-comment"></i> {{doctor.reviews.length}} Feedback</li>
-                        <li><i class="fas fa-map-marker-alt"></i> {{doctor.country + " " + doctor.city}}</li>
-                        <li><i class="far fa-money-bill-alt"></i> ${{doctor.minPrice}} - ${{doctor.maxPrice}}  </li>
+                        <li><i class="fas fa-map-marker-alt"></i> {{doctor.clinic.country + " " + doctor.clinic.city}}</li>
+                        <li><i class="far fa-money-bill-alt"></i> {{doctor.clinic.minPrice | currency}} - ${{doctor.clinic.maxPrice | currency}}  </li>
                     </ul>
                 </div>
                 <div class="clinic-booking">
-                    <a class="view-pro-btn" href="doctor-profile.html">Voir Doctor</a>
-                    <a class="apt-btn" href="booking.html">Rendi-Vous</a>
+                    <a class="view-pro-btn" routerLink="/doctor/profile/{{doctor.username}}">Voir Doctor</a>
+                    <a class="apt-btn" routerLink="/booking/{{doctor.username}}">BOOK APPOINTMENT</a>
                 </div>
             </div>
         </div>

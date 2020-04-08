@@ -12,6 +12,7 @@ import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
 import com.brainstormers.airdoc.models.Patient;
 import com.brainstormers.airdoc.services.PatientService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 
 import java.util.HashMap;
@@ -22,9 +23,10 @@ import java.util.Map;
  * @Author Ayoub Benhaimoud <ayoubbenhaimoud@gmail.com>
  * @since 17-03-2020
  */
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("patients")
+@Api(tags = "Patient Controlleur", value="Patient Management System")
 public class PatientController {
 
     private final static Logger logger = (Logger) LoggerFactory.getLogger(PatientController.class);
@@ -40,14 +42,14 @@ public class PatientController {
      * @return List<Patient>
      * @throws ResourceNotFoundException
      */
-    @GetMapping(value = {"","/"})
+    @GetMapping(value = {"","/"})//TODO AYOUB REMOVE "/" you don't need "/"
     public ResponseEntity<List<Patient>> getAllPatients() throws ResourceNotFoundException {
            List<Patient> result = patientService
                    .findAll()
                    .orElseThrow(()-> new ResourceNotFoundException("no patient found"));
            result.forEach((patient)-> {
-                    String msg = String.format("patient name: %s patient mail: %s",patient.getFirstName(),patient.getEmail());
-                    logger.debug(msg);
+                   // String msg = String.format("patient name: %s patient mail: %s",patient.getFirstname(),patient.getEmail());
+                   // logger.debug(msg);
            });
            return new ResponseEntity<>(result, HttpStatus.OK);
     }

@@ -47,7 +47,7 @@ class DoctorControllerIntergationTest {
 		Doctor doctor = new Doctor();
 		doctor.setFirstname("Mr");
 		doctor.setLastname("Who");
-		doctor.setDescription("this is doctor who's hospital");
+		doctor.setAboutMe("this is doctor who's hospital");
 		given().
 		contentType(ContentType.JSON).
 		accept(ContentType.JSON).

@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+
 import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.repositories.DoctorRepository;
 
@@ -26,13 +27,13 @@ public class DoctorServiceImpl implements DoctorService {
 	private DoctorRepository doctorRepository;
 	
 	@Override
-	public Optional<List<Doctor>> findAll() {
-		return Optional.of(doctorRepository.findAll());
+	public Optional<List<Doctor>> findAll(Sort sort) {
+		return Optional.of(doctorRepository.findAll(sort));
 	}
 
 	@Override
-	public Optional<List<Doctor>> findAll(String query, String city, Sort sort) {
-		return Optional.of(doctorRepository.findAll(query, city,  sort));
+	public Optional<List<Doctor>> search(String query, String city, Sort sort) {
+		return Optional.of(doctorRepository.search(query, city, sort));
 	}
 
 	@Override
@@ -56,8 +57,8 @@ public class DoctorServiceImpl implements DoctorService {
 	}
 
 	@Override
-	public Optional<List<Doctor>> search(String query) {
-		List<Doctor> results = doctorRepository.searchNameByRegex(query);
+	public Optional<List<Doctor>> searchByCity(String city, Sort sort) {
+		List<Doctor> results = doctorRepository.searchByCity(city, sort);
 		return Optional.of(results);
 	/*  Query jquery = new Query();
 		jquery.fields().exclude("description");

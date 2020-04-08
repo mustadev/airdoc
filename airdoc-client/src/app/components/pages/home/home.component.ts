@@ -13,8 +13,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  search(location:string, query:string){
-    console.log("location: " + location, "query : " + query);
-    this.router.navigate(["search"], { queryParams: { "location": location, "query": query} });
+  search(city:string, query:string){
+    console.log("city: " + city, "query : " + query);
+    this.router.navigate(["search"], { queryParams: { "city": city, "query": query} });
   }
 }

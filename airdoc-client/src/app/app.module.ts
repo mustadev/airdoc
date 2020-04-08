@@ -28,6 +28,7 @@ import { AdminProfileComponent } from './components/pages/admin/admin-profile/ad
 import { AdminLoginComponent } from './components/pages/admin/admin-login/admin-login.component';
 import { AppointmentComponent } from './components/pages/patient/appointment/appointment.component';
 import { ChangePasswordComponent} from './components/pages/patient/change-password/change-password.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ChangePasswordComponent} from './components/pages/patient/change-passwo
     AdminProfileComponent,
     AdminLoginComponent,
     AppointmentComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,

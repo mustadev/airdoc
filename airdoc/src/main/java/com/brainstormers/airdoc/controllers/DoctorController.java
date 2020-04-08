@@ -67,11 +67,25 @@ public class DoctorController {
 		    throws ResourceNotFoundException {
 	    //see https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9
     		logger.info("getAllDoctors::: params :  query: " + query + " sort: " + sort +  " city " + city);
-	List<Doctor> results = doctorService
-       			.findAll(query, city, Sort.by(sort).descending())
-        		.orElseThrow(() -> new ResourceNotFoundException("No Doctors Found"));
- 
-	return new ResponseEntity<>(results, HttpStatus.OK);
+    		if (query.isEmpty() && city.isEmpty()) {
+    			List<Doctor> results = doctorService
+    	       			.findAll(Sort.by(sort).descending())
+    	        		.orElseThrow(() -> new ResourceNotFoundException("No Doctors Found"));
+    			return new ResponseEntity<>(results, HttpStatus.OK);
+    			
+    		}else if (query.isEmpty()) {
+    			System.out.println("query");
+    			List<Doctor> results = doctorService
+    	       			.searchByCity(city, Sort.by(sort).descending())
+    	        		.orElseThrow(() -> new ResourceNotFoundException("No Doctors Found"));
+    			return new ResponseEntity<>(results, HttpStatus.OK);
+    		}
+	
+    		List<Doctor> results = doctorService
+	       			.search(query, city, Sort.by(sort).descending())
+	        		.orElseThrow(() -> new ResourceNotFoundException("No Doctors Found"));
+			return new ResponseEntity<>(results, HttpStatus.OK);
+	
     }
 
 	
@@ -91,6 +105,25 @@ public class DoctorController {
 				});
 	return new ResponseEntity<Doctor>(result, HttpStatus.OK);
     }
+    
+	/**
+	 * trouver un doctor par son nom d'utilisateur
+	 * @param username
+	 * @return {@link ResponseEntity}
+	 * @throws {@link ResourceNotFoundException}
+	 */
+	@ApiOperation(value = "trouver un doctor par son nom d'utilisateur", response = Doctor.class)
+    @GetMapping(value = "/username/{username}", produces = "application/json")
+    public ResponseEntity<Doctor> getDoctorByUsername(@PathVariable("username") String username) throws ResourceNotFoundException {
+	System.out.println("get doctor with username : " + username);
+        Doctor result =  doctorService.findByUsername(username)
+        			.orElseThrow(()-> {
+					return new ResourceNotFoundException("No Doctor with id : " + username );
+				});
+	return new ResponseEntity<Doctor>(result, HttpStatus.OK);
+    }
+
+
 
 	/**
 	 * ajouter  un Doctor
@@ -112,7 +145,7 @@ public class DoctorController {
 	 * @return Doctor
 	 */
     @ApiOperation(value = "modifier un Doctor ", response = Doctor.class)
-    @PreAuthorize("#doctor.id == principal.id")
+//    @PreAuthorize("#doctor.id == principal.id")
     @PutMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Doctor>  updateDoctor(
     		@ApiParam(value = "Doctor", required = true) @RequestBody Doctor doctor) throws ResourceAlreadyExistsException{

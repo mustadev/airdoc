@@ -1,7 +1,6 @@
 package com.brainstormers.airdoc.models;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,30 +24,15 @@ import lombok.ToString;
 
 /**
  * le Model Doctor 
- * @author Mustapha De BrainStormers
+ * @author Mustapha Ouarrain
  * @since 13-03-2020
  * 
  */
-@ApiModel(description = "doctor details")
+@ApiModel(description = "Doctor Details")
 @Document(collection = "doctors")
 @Data @ToString @AllArgsConstructor @NoArgsConstructor
 public class Doctor{
 	
-
-	
-	public Doctor(
-			@NotBlank @Size(max = 50) String firstname,
-			@NotBlank @Size(max = 50) String lastname, 
-			@NotBlank @Size(max = 50) @Email String email,
-			@NotBlank @Size(max = 120) String password, 
-			@NotBlank @Size(max = 20) String username) {
-		super();
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-		this.password = password;
-		this.username = username;
-	}
 
 	/**
 	 * ID de Doctor
@@ -93,6 +77,19 @@ public class Doctor{
 	private String password;
 	
 	/**
+	 * À propos de doctor
+	 */
+	@ApiModelProperty(notes = "À propos de doctor")
+	private String aboutMe;
+	
+	/**
+	 * Clinique doctor
+	 */
+	@ApiModelProperty(notes = "Clinique de doctor")
+	private Clinic clinic;
+
+
+	/**
 	 * Non d'utilisateur de doctor
 	 */
 	@ApiModelProperty(notes = "Nom d'utilisateur de doctor")
@@ -100,19 +97,8 @@ public class Doctor{
 	@Size(max = 20)
 	private String username;
 
-	/**
-	 * description de doctor
-	 */
-	@ApiModelProperty(notes = "description de doctor")
-    private String description;
 
-	/**
-	 * ville de doctor
-	 */
-	@ApiModelProperty(notes = "ville de doctor")
-	@NotBlank
-    private String city;
-
+	
 	/**
 	 * les revues de doctor
 	 */
@@ -122,36 +108,11 @@ public class Doctor{
 	/**
 	 * les authorité de doctor
 	 */
+	@JsonIgnore
 	@ApiModelProperty(notes = "les authorité de doctor")
 	@DBRef
 	private Set<Role> roles = new HashSet<>();
 	
-
-/**
-	 * les services de doctor
-	 */
-	@ApiModelProperty(notes = "les services de doctor")
-    private List<String> services;
-
-
-	/**
-	 * minPrice de doctor
-	 */
-	@ApiModelProperty(notes = "minPrice de doctor")
-    private int minPrice = 0;
-
-	/**
-	 * maxPrice de doctor
-	 */
-	@ApiModelProperty(notes = "maxPrice de doctor")
-    private int maxPrice = 0;
-	
-	/**
-	 * pay de doctor
-	 */
-	@ApiModelProperty(notes = "pay de doctor")
-    private String country = "";
-
 	/**
 	 * specialité de doctor
 	 */
@@ -159,7 +120,7 @@ public class Doctor{
     private String speciality = "";
 
 
-	
+
 
 	/**
 	 * Évaluation du Doctor
