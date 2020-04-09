@@ -1,9 +1,7 @@
 package com.brainstormers.airdoc.controllers;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -43,8 +41,12 @@ import com.brainstormers.airdoc.services.AdminService;
 import com.brainstormers.airdoc.services.PatientService;
 import com.brainstormers.airdoc.services.RoleService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
+@Api(tags = "Authentification Controlleur", value="Authentification System")
 @RequestMapping("/api/auth")
 public class AuthController {
 	@Autowired
@@ -78,16 +80,19 @@ public class AuthController {
 	
 	
 	@PostMapping("/doctor/signin")
+	@ApiOperation(value = "Authentifie le doctors", response = ResponseEntity.class)
 	public ResponseEntity<?> authenticateDoctor(@Valid @RequestBody LoginRequest loginRequest) {
 		return authenticate(loginRequest, doctorAuthenticationProvider);
 	}
 	
 	@PostMapping("/patient/signin")
+	@ApiOperation(value = "Authentifie le patient", response = ResponseEntity.class)
 	public ResponseEntity<?> authenticatePatient(@Valid @RequestBody LoginRequest loginRequest) {	
 		return authenticate(loginRequest, patientAuthenticationProvider);
 	}
 	
 	@PostMapping("/admin/signin")
+	@ApiOperation(value = "Authentifie l'admin", response = ResponseEntity.class)
 	public ResponseEntity<?> authenticateAdmin(@Valid @RequestBody LoginRequest loginRequest) {
 		return authenticate(loginRequest, adminAuthenticationProvider);
 	}
@@ -127,8 +132,9 @@ public class AuthController {
 		
 	}
 	
-
+	
 	@PostMapping("/doctor/signup") //TODO add throw  Exception
+	@ApiOperation(value = "Inscrire un médecin", response = ResponseEntity.class)
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 		System.out.println("username : " + signUpRequest.getUsername());
 		System.out.println("lastname : " + signUpRequest.getLastname());
@@ -177,6 +183,7 @@ public class AuthController {
 	}
 	
 	@PostMapping("/patient/signup") //TODO add throw  Exception
+	@ApiOperation(value = "Inscrire un patient", response = ResponseEntity.class)
 	public ResponseEntity<?> registerPatient(@Valid @RequestBody SignupRequest signUpRequest) {
 		System.out.println("username : " + signUpRequest.getUsername());
 		System.out.println("lastname : " + signUpRequest.getLastname());
@@ -200,8 +207,8 @@ public class AuthController {
 		// Create new user's account
 		Patient user = new Patient();
 		user.setUsername(signUpRequest.getUsername());
-		user.setLastName(signUpRequest.getLastname());
-		user.setFirstName(signUpRequest.getFirstname());
+		user.setLastname(signUpRequest.getLastname());
+		user.setFirstname(signUpRequest.getFirstname());
 		user.setEmail( signUpRequest.getEmail());
 		user.setPassword(encoder.encode(signUpRequest.getPassword()));
 
@@ -222,6 +229,7 @@ public class AuthController {
 	}
 	
 	@PostMapping("/admin/signup") //TODO add throw  Exception
+	@ApiOperation(value = "Inscrire un admin", response = ResponseEntity.class)
 	public ResponseEntity<?> registerAdmin(@Valid @RequestBody SignupRequest signUpRequest) {
 		System.out.println("username : " + signUpRequest.getUsername());
 		System.out.println("lastname : " + signUpRequest.getLastname());

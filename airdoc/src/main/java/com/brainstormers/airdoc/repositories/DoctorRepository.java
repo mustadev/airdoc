@@ -23,11 +23,11 @@ public interface DoctorRepository extends MongoRepository<Doctor, String> {
 		 * @return doctor {@link Doctor Doctor.class}
 		 */
 //		Doctor findDoctorById(String id);
-		@Query("{ 'name' : { $regex: ?0 } }")
-		List<Doctor> searchNameByRegex(String query);
-
-		@Query("{'firstname': {$regex: ?0 }, 'city': {$regex: ?1} }")
-		List<Doctor> findAll(String query, String city, Sort sort);
+		@Query("{ 'clinic.city' : { $regex: ?0 , '$options' : 'i'} }")
+		List<Doctor> searchByCity(String query, Sort sort);
+		//$text: { $search: "clinic" }
+		@Query("{$text: { $search: ?0 }, 'clinic.city': {$regex: ?1 , '$options' : 'i'} }")
+		List<Doctor> search(String query, String city, Sort sort);
 
 		Doctor findByEmail(String email);
 		Doctor findByUsername(String username);

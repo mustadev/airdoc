@@ -9,21 +9,7 @@
                         <li class="breadcrumb-item active" aria-current="page">Search</li>
                     </ol>
                 </nav>
-                <h2 class="breadcrumb-title">{{doctors.length}} matches found for : {{searchQuery}} In {{searchLocation}}</h2>
-            </div>
-            <div class="col-md-4 col-12 d-md-block d-none">
-                <div class="sort-by">
-                    <span class="sort-title">Sort by</span>
-                    <span class="sortby-fliter">
-                        <select class="select">
-                            <option>Select</option>
-                            <option class="sorting">Rating</option>
-                            <option class="sorting">Popular</option>
-                            <option class="sorting">Latest</option>
-                            <option class="sorting">Free</option>
-                        </select>
-                    </span>
-                </div>
+                <h2 class="breadcrumb-title">{{doctors.length}} matches found for : {{searchQuery}} In {{searchCity}}</h2>
             </div>
         </div>
     </div>
@@ -34,13 +20,13 @@
     <div class="search-box">
         <form>
             <div class="form-group search-location">
-                <input #location type="text" class="form-control" placeholder="Search Location">
+                <input #city type="text" class="form-control" placeholder="Search City">
             </div>
             <div class="form-group search-info">
                 <input #query type="text" class="form-control" placeholder="Search Doctors, Clinics, Hospitals, Diseases Etc">
             </div>
             <div class="btn-search">
-                <button (click)="search(location.value, query.value)" type="button" class="btn btn-block">Search</button>
+                <button (click)="search(city.value, query.value)" type="button" class="btn btn-block">Search</button>
             </div>	
             
         </form>
@@ -53,56 +39,7 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
-            
-                <!-- Search Filter -->
-                <div class="card search-filter">
-                    <div class="card-header">
-                        <h4 class="card-title mb-0">Search Filter</h4>
-                    </div>
-                    <div class="card-body">
-                    <div class="filter-widget">
-                        <h4>Select Specialist</h4>
-                        <div>
-                            <label class="custom_check">
-                                <input type="checkbox" name="select_specialist" checked>
-                                <span class="checkmark"></span> Urology
-                            </label>
-                        </div>
-                        <div>
-                            <label class="custom_check">
-                                <input type="checkbox" name="select_specialist" checked>
-                                <span class="checkmark"></span> Neurology
-                            </label>
-                        </div>
-                        <div>
-                            <label class="custom_check">
-                                <input type="checkbox" name="select_specialist">
-                                <span class="checkmark"></span> Dentist
-                            </label>
-                        </div>
-                        <div>
-                            <label class="custom_check">
-                                <input type="checkbox" name="select_specialist">
-                                <span class="checkmark"></span> Orthopedic
-                            </label>
-                        </div>
-                        <div>
-                            <label class="custom_check">
-                                <input type="checkbox" name="select_specialist">
-                                <span class="checkmark"></span> Cardiologist
-                            </label>
-                        </div>
-                    </div>
-                        <div class="btn-search">
-                            <button type="button" class="btn btn-block">Search</button>
-                        </div>	
-                    </div>
-                </div>
-                <!-- /Search Filter -->
-                
-            </div>
-            <div class="col-md-12 col-lg-8 col-xl-9">
+            <div class="col-md-12 col-lg-8 col-xl-9 m-auto">
                 <app-doctor *ngFor="let doctor of doctors" [doctor]="doctor"></app-doctor>	
             </div>
         </div>

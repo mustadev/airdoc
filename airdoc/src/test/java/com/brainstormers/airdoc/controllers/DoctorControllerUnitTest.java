@@ -38,22 +38,18 @@ public class DoctorControllerUnitTest{
 		Doctor doctor1 = new Doctor();
 		doctor1.setFirstname("testName");
 		doctor1.setLastname("testName");
-		doctor1.setDescription("test");
 		doctor1.setRating(4.1f);
-		doctor1.setCity("test");
 
 		Doctor doctor2 = new Doctor();
 		doctor2.setFirstname("testName");
 		doctor2.setLastname("testName");
-		doctor2.setDescription("test");
 		doctor2.setRating(4.1f);
-		doctor2.setCity("test");
 		doctors.add(doctor1);
 		doctors.add(doctor1);
 		String query = "";
 		String city= "";
 		Sort sort = Sort.by("rating").descending();
-		when(service.findAll(query, city, sort)).thenReturn(Optional.of(doctors));
+		when(service.search(query, city, sort)).thenReturn(Optional.of(doctors));
 		this.mockMvc.perform(get("/doctors/")).andDo(print()).andExpect(status().isOk());
 				//.andExpect(content().string(containsString("")));
 	}

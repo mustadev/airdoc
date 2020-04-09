@@ -21,14 +21,8 @@ public interface DoctorService {
 	 * Trouver les doctors
 	 * @return List<Doctor> 
 	 */
-	Optional<List<Doctor>> findAll();
+	Optional<List<Doctor>> findAll(Sort sort);
 
-	/**
-	 * trouver les doctors
-	 * @param {@link Criteria} criteria
-	 * @return List<Doctor> 
-	 */
-	Optional<List<Doctor>> findAll(String query, String city, Sort sort);
 	
 	
 	/**
@@ -57,13 +51,7 @@ public interface DoctorService {
      */
     void deleteById(String id);
     
-    /**
-     * chercher les doctor
-     * @param query
-     * @return List<Doctor> doctors
-     */
-    Optional<List<Doctor>> search(String query);
-
+   
  
     /**
      *  supprimer un Doctor par son Email
@@ -108,6 +96,22 @@ public interface DoctorService {
      *
      * */
     boolean existsByEmail(String email);
+
+    /**
+     * chercher les doctor
+     * @param city
+     * @return List<Doctor> doctors
+     */
+	Optional<List<Doctor>> searchByCity(String city, Sort sort);
+
+	/**
+     * chercher les doctor
+     * @param query
+     * @param city
+     * @param sort
+     * @return List<Doctor> doctors
+     */
+	Optional<List<Doctor>> search(String query, String city, Sort sort);
 
 	
 }

@@ -43,46 +43,46 @@ public class PatientStartUpRunner implements CommandLineRunner {
 	
 	//------------------------------------------------------------------------------
 	Patient patient1 = new Patient();
-	patient1.setFirstName("Ayoub");
-	patient1.setLastName("ben");
+	patient1.setFirstname("Ayoub");
+	patient1.setLastname("ben");
 	patient1.setUsername("ben");
 	patient1.setAge(23);
 	patient1.setEmail("ayoub@gmail.com");
 	Patient savedPatient1 = patientRepository.save(patient1);
-	logger.debug("id: " +savedPatient1.getId() + " name: " + savedPatient1.getFirstName()+""+savedPatient1.getLastName());
+	logger.debug("id: " +savedPatient1.getId() + " name: " + savedPatient1.getFirstname()+""+savedPatient1.getLastname());
     logger.debug("patient "+savedPatient1.getId() + "saved");
     
     //------------------------------------------------------------------------------
     
     Patient patient2 = new Patient();
-    patient2.setFirstName("mehdi");
-    patient2.setLastName("ozi");
+    patient2.setFirstname("mehdi");
+    patient2.setLastname("ozi");
     patient2.setUsername("ozi");
     patient2.setAge(24);
     patient2.setEmail("mehdi@gmail.com");
     Patient savedPatient2 = patientRepository.save(patient2);
-	logger.debug("id: " +savedPatient2.getId() + " name: " + savedPatient2.getFirstName()+""+savedPatient2.getLastName());
+	logger.debug("id: " +savedPatient2.getId() + " name: " + savedPatient2.getFirstname()+""+savedPatient2.getLastname());
     logger.debug("patient "+savedPatient2.getId() + "saved");
     
    //------------------------------------------------------------------------------
     Patient patient3 = new Patient();
-    patient3.setFirstName("jean");
-    patient3.setLastName("freroa");
+    patient3.setFirstname("jean");
+    patient3.setLastname("freroa");
     patient3.setUsername("freroa");
     patient3.setAge(25);
     patient3.setEmail("jean@gmail.com");
     Patient savedPatient3 = patientRepository.save(patient3);
-	logger.debug("id: " +savedPatient3.getId() + " name: " + savedPatient3.getFirstName()+""+savedPatient3.getLastName());
+	logger.debug("id: " +savedPatient3.getId() + " name: " + savedPatient3.getFirstname()+""+savedPatient3.getLastname());
     logger.debug("patient "+savedPatient3.getId() + "saved");
   //------------------------------------------------------------------------------
     Patient patient4 = new Patient();
-    patient4.setFirstName("fatima");
-    patient4.setLastName("koam");
+    patient4.setFirstname("fatima");
+    patient4.setLastname("koam");
     patient4.setUsername("koam");
     patient4.setAge(25);
     patient4.setEmail("fatima@gmail.com");
 	Patient savedPatient4 = patientRepository.save(patient4);
-	logger.debug("id: " +savedPatient4.getId() + " name: " + savedPatient4.getFirstName()+""+savedPatient4.getLastName());
+	logger.debug("id: " +savedPatient4.getId() + " name: " + savedPatient4.getFirstname()+""+savedPatient4.getLastname());
     logger.debug("patient "+savedPatient4.getId() + "saved");
     
 	System.out.println("patients saved !");

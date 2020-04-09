@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient ,  HttpHeaders} from '@angular/common/http';
+import { HttpClient ,  HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Doctor } from '../models/Doctor';
 
@@ -34,8 +34,17 @@ export class DoctorService {
     return this.http.get<Doctor[]>(this.doctorUrl);
   }
 
+  getByUsername(username:string):Observable<Doctor>{
+    
+    return this.http.get<Doctor>(this.doctorUrl + "/username/" + username);
+  }
+
   
-  search(location:string, query:string){
-    console.log("doc service", "location: " + location, "query : " + query);
+  search(city:string, query:string):Observable<Doctor[]>{
+    const params = new HttpParams()
+      .set('city', city)
+      .set('query', query);
+    console.log("doc service", "city: " + city, "query : " + query);
+    return this.http.get<Doctor[]>(this.doctorUrl, {'params': params})
   }
 }

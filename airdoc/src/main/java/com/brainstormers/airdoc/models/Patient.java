@@ -8,6 +8,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -38,12 +40,12 @@ public class Patient {
 	 * Prénom d'utilisateur.
 	 */
 	@ApiModelProperty(notes = "prénom du Patient")
-	private String firstName;
+	private String firstname;
 	/**
 	 * Nom du Patient.
 	 */
 	@ApiModelProperty(notes = "nom du Patient")
-	private String lastName;
+	private String lastname;
 	
 	/**
 	 * Nom d'utilisateur.
@@ -54,6 +56,7 @@ public class Patient {
 	/**
 	 * Mot de pass d'utilisateur.
 	 */
+	@JsonIgnore
 	@ApiModelProperty(notes = "Mot D'utilisateur du Patient")
 	private String password;
 	
@@ -66,7 +69,7 @@ public class Patient {
 	/**
 	 * Email d'utilisateur
 	 */
-	@ApiModelProperty(notes = "mail du Patient.")
+	@ApiModelProperty(notes = "email du Patient.")
     private String email;
 	
 	/**
@@ -74,18 +77,9 @@ public class Patient {
 	 */
 	@ApiModelProperty(notes = "les authorité de patient")
 	@DBRef
+	@JsonIgnore
 	private Set<Role> roles = new HashSet<>();
 	
-	
-
-
-	public Patient(String firstName, String lastName,int age,String email) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.age = age;
-		this.email = email;
-		
-	}
 	
  
 }

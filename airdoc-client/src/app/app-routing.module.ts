@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'contact' , component: ContactComponent },
   { path: 'about' , component: AboutComponent },
-  { path: 'doctor/profile' , component: DoctorProfileComponent, canActivate : [DoctorAuthGuard]},
+  { path: 'doctor/profile/:username' , component: DoctorProfileComponent, },
   { path: 'doctor/login' , component: DoctorLoginComponent },
   { path: 'doctor/signup' , component: DoctorSingupComponent },
   { path: 'patient/profile' , component: PatientProfileComponent , canActivate : [PatientAuthGuard]},

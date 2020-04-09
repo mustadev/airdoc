@@ -1,15 +1,15 @@
 export class Patient {
-  firstName:string;
-  lastName: string;
+  firstname:string;
+  lastname: string;
   age : number;
   tel : string;
-  mail:string;
+  email:string;
 
-  constructor(firstName: string, lastName: string, age: number, tel: string, mail: string) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+  constructor(firstname: string, lastname: string, age: number, tel: string, email: string) {
+    this.firstname = firstname;
+    this.lastname = lastname;
     this.age = age;
     this.tel = tel;
-    this.mail = mail;
+    this.email = email;
   }
 }
