@@ -42,15 +42,11 @@ public class PatientController {
 
     private final static Logger logger = (Logger) LoggerFactory.getLogger(PatientController.class);
 
-    private final PatientService patientService;
-    
+
     @Autowired
-    private PhotoService photoService;
+    private PatientService patientService;
 
-    public PatientController(PatientService patientService) {
-        this.patientService = patientService;
-    }
-
+    @Autowired PhotoService photoService;
     /**
      * pour trouver tous les patientes
      * @return List<Patient>
@@ -61,10 +57,6 @@ public class PatientController {
            List<Patient> result = patientService
                    .findAll()
                    .orElseThrow(()-> new ResourceNotFoundException("no patient found"));
-           result.forEach((patient)-> {
-                   // String msg = String.format("patient name: %s patient mail: %s",patient.getFirstname(),patient.getEmail());
-                   // logger.debug(msg);
-           });
            return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

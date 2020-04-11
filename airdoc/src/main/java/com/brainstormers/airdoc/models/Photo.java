@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Document(collection = "photos")
-@Data@AllArgsConstructor@NoArgsConstructor
 public class Photo {
     @Id
     private String id;
@@ -17,4 +16,30 @@ public class Photo {
     private String ownerId;
          
     private Binary image;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getOwnerId() {
+		return ownerId;
+	}
+
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
+	}
+
+	public Binary getImage() {
+		return image;
+	}
+
+	public void setImage(Binary image) {
+		this.image = image;
+	}
+    
+    
 }
