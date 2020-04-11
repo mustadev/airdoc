@@ -21,7 +21,7 @@ import lombok.ToString;
  */
 @ApiModel(description = "Détails de la revue")
 @Document
-@Data @ToString @AllArgsConstructor @NoArgsConstructor
+//@Data @ToString @AllArgsConstructor @NoArgsConstructor
 public class Review {
 	
 	/**
@@ -36,14 +36,77 @@ public class Review {
 	@ApiModelProperty(notes = "le contenu de la revue")
 	private String content;
 	/**
-	 * auteur de la revue
+	 * Id auteur de la revue
 	 */
 	@ApiModelProperty(notes = "auteur de la revue")
-	private Patient auther;
+	private String autherId;
+	
+	/**
+	 * Nom d'utilisateur  de l'auteur de la revue
+	 */
+	@ApiModelProperty(notes = "Nom d'utilisateur de l'auteur de la revue")
+	private String autherUsername;
 	/**
 	 * nombre des likes
 	 */
 	@ApiModelProperty(notes = "nombre des likes")
 	private int likes;
+	
+	
+	/******** Getters and Setter and Constructors ********/
+	
+	public Review(String id, String content, String autherId, String autherUsername, int likes) {
+		super();
+		this.id = id;
+		this.content = content;
+		this.autherId = autherId;
+		this.autherUsername = autherUsername;
+		this.likes = likes;
+	}
+	
+	
+	public String getId() {
+		return id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public int getLikes() {
+		return likes;
+	}
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
+	public String getAutherId() {
+		return autherId;
+	}
+
+
+	public void setAutherId(String autherId) {
+		this.autherId = autherId;
+	}
+
+
+	public String getAutherUsername() {
+		return autherUsername;
+	}
+
+
+	public void setAutherUsername(String autherUsername) {
+		this.autherUsername = autherUsername;
+	}
+
+	
+	
+	
+	
 	
 }

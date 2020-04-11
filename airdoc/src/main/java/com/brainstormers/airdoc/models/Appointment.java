@@ -22,9 +22,9 @@ import lombok.ToString;
  * 
  */
 @Document(collection = "appointments")
-@AllArgsConstructor
-@NoArgsConstructor
-@Data  @ToString
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Data  @ToString
 public class Appointment {
 	
 	@Id
@@ -34,6 +34,36 @@ public class Appointment {
     private Date appDate;
 	//private Time startTime;
 	private String description;
+	
+	
+	/*********** Getters And Setters and Constructors ********/
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Collection<Doctor> getDoctors() {
+		return doctors;
+	}
+	public void setDoctors(Collection<Doctor> doctors) {
+		this.doctors = doctors;
+	}
+	public Date getAppDate() {
+		return appDate;
+	}
+	public void setAppDate(Date appDate) {
+		this.appDate = appDate;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	
 	
 	
 

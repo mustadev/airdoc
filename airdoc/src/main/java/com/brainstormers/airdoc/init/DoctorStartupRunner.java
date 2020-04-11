@@ -60,8 +60,8 @@ public class DoctorStartupRunner implements CommandLineRunner {
 		doctorService.save(doctor1);
 
 //		Doctor doctor2 = new Doctor();
-//		doctor2.setFirstName("max");
-//		doctor2.setLastName("Plank");
+//		doctor2.setFirstname("max");
+//		doctor2.setLastname("Plank");
 //		doctor2.setDescription("max plank Description");
 //		doctor2.setCity("ait mellout");
 //		doctor2.setRating(4.5f);
@@ -73,8 +73,8 @@ public class DoctorStartupRunner implements CommandLineRunner {
 //		doctorService.signup(doctor2);
 //
 //		Doctor doctor3 = new Doctor();
-//		doctor3.setFirstName("max");
-//		doctor3.setLastName("Plank");
+//		doctor3.setFirstname("max");
+//		doctor3.setLastname("Plank");
 //		doctor3.setDescription("bohr Description");
 //		doctor3.setCity("rabat");
 //		doctor3.setRating(3.5f);
@@ -86,8 +86,8 @@ public class DoctorStartupRunner implements CommandLineRunner {
 //		doctorService.signup(doctor3);
 //
 //		Doctor doctor4 = new Doctor();
-//		doctor4.setFirstName("max");
-//		doctor4.setLastName("Plank");
+//		doctor4.setFirstname("max");
+//		doctor4.setLastname("Plank");
 //		doctor4.setDescription("tesla Description");
 //		doctor4.setCity("fes");
 //		doctor4.setRating(2.5f);
@@ -99,8 +99,8 @@ public class DoctorStartupRunner implements CommandLineRunner {
 //		doctorService.signup(doctor4);
 //		
 //		Doctor doctor5 = new Doctor();
-//		doctor5.setFirstName("max");
-//		doctor5.setLastName("Plank");
+//		doctor5.setFirstname("max");
+//		doctor5.setLastname("Plank");
 //		doctor5.setDescription("tesla Description");
 //		doctor5.setCity("fes");
 //		doctor5.setRating(3.5f);
@@ -112,8 +112,8 @@ public class DoctorStartupRunner implements CommandLineRunner {
 //		doctorService.signup(doctor5);
 //
 //		Doctor doctor6 = new Doctor();
-//		doctor6.setFirstName("max");
-//		doctor6.setLastName("Plank");
+//		doctor6.setFirstname("max");
+//		doctor6.setLastname("Plank");
 //		doctor6.setDescription("tesla Description");
 //		doctor6.setCity("fes");
 //		doctor6.setRating(4.0f);
@@ -125,8 +125,8 @@ public class DoctorStartupRunner implements CommandLineRunner {
 //		doctorService.signup(doctor6);
 //
 //		Doctor doctor7 = new Doctor();
-//		doctor7.setFirstName("max");
-//		doctor7.setLastName("Plank");
+//		doctor7.setFirstname("max");
+//		doctor7.setLastname("Plank");
 //		doctor7.setDescription("tesla Description");
 //		doctor7.setCity("kasbat");
 //		doctor7.setRating(4.0f);

@@ -200,8 +200,8 @@ public class AuthController {
 		// Create new user's account
 		Patient user = new Patient();
 		user.setUsername(signUpRequest.getUsername());
-		user.setLastName(signUpRequest.getLastname());
-		user.setFirstName(signUpRequest.getFirstname());
+		user.setLastname(signUpRequest.getLastname());
+		user.setFirstname(signUpRequest.getFirstname());
 		user.setEmail( signUpRequest.getEmail());
 		user.setPassword(encoder.encode(signUpRequest.getPassword()));
 

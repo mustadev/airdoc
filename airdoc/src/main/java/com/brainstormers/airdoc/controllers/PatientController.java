@@ -3,6 +3,7 @@ package com.brainstormers.airdoc.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,11 +30,8 @@ public class PatientController {
 
     private final static Logger logger = (Logger) LoggerFactory.getLogger(PatientController.class);
 
-    private final PatientService patientService;
-
-    public PatientController(PatientService patientService) {
-        this.patientService = patientService;
-    }
+    @Autowired
+    private PatientService patientService;
 
     /**
      * pour trouver tous les patientes
@@ -45,10 +43,6 @@ public class PatientController {
            List<Patient> result = patientService
                    .findAll()
                    .orElseThrow(()-> new ResourceNotFoundException("no patient found"));
-           result.forEach((patient)-> {
-                    String msg = String.format("patient name: %s patient mail: %s",patient.getFirstName(),patient.getEmail());
-                    logger.debug(msg);
-           });
            return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
