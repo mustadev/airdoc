@@ -81,5 +81,11 @@ public class PatientServiceImpl implements PatientService {
 		
 		return patientRepository.existsByEmail(email);
 	}
+
+	@Override
+	public Optional<Patient> save(Patient patient) {
+		
+		return Optional.ofNullable(patientRepository.save(patient));
+	}
 	
 }

@@ -77,6 +77,12 @@ public class Doctor{
 	private String password;
 	
 	/**
+	 * Id Image de doctor
+	 */
+	@ApiModelProperty(notes = "Id Image de doctor")
+	private String avatar;
+	
+	/**
 	 * À propos de doctor
 	 */
 	@ApiModelProperty(notes = "À propos de doctor")

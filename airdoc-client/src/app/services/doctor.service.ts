@@ -47,4 +47,8 @@ export class DoctorService {
     console.log("doc service", "city: " + city, "query : " + query);
     return this.http.get<Doctor[]>(this.doctorUrl, {'params': params})
   }
+
+  getAvatar(id:string): Observable<any>{
+    return this.http.get(this.doctorUrl + '/photo/' + id);
+  }
 }

@@ -73,6 +73,12 @@ public class Patient {
     private String email;
 	
 	/**
+	 * Image de Patient
+	 */
+	@ApiModelProperty(notes = "Image du Patient.")
+    private String avatar;
+	
+	/**
 	 * les authorité de patient
 	 */
 	@ApiModelProperty(notes = "les authorité de patient")
