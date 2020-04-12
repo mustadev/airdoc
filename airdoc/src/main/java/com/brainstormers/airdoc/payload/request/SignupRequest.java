@@ -3,10 +3,6 @@ package com.brainstormers.airdoc.payload.request;
 
 import javax.validation.constraints.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 public class SignupRequest {
     
 	@NotBlank

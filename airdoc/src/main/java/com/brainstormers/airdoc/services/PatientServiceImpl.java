@@ -7,7 +7,6 @@ package com.brainstormers.airdoc.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.Patient;
 import com.brainstormers.airdoc.repositories.PatientRepository;
 

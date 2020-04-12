@@ -89,7 +89,9 @@ public class Patient {
 	 * Image de Patient
 	 */
 	@ApiModelProperty(notes = "Image du Patient.")
-    private String avatar;
+	@DBRef
+	@JsonIgnore
+    private Photo avatar;
 	
 	/**
 	 * les authorité de patient
@@ -241,11 +243,11 @@ public class Patient {
 		this.roles = roles;
 	}
 
-	public String getAvatar() {
+	public Photo getAvatar() {
 		return avatar;
 	}
 
-	public void setAvatar(String avatar) {
+	public void setAvatar(Photo avatar) {
 		this.avatar = avatar;
 	}
 	

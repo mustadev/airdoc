@@ -15,7 +15,6 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "Détails de la revue")
 @Document
-//@Data @ToString @AllArgsConstructor @NoArgsConstructor
 public class Review {
 	
 	/**

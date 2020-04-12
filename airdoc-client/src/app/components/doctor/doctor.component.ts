@@ -19,7 +19,7 @@ export class DoctorComponent implements OnInit {
   ngOnInit(): void {
     this.doctorService.getAvatar(this.doctor.avatar).subscribe(res=> {
       this.retrieveResonse = res;
-      this.base64Data = this.retrieveResonse.message;
+      this.base64Data = this.retrieveResonse.image.data;
       this.retrievedAvatar = 'data:image/jpeg;base64,' + this.base64Data;
       console.log(res);
       //console.log("base64", this.base64Data);

@@ -23,6 +23,7 @@ public interface DoctorRepository extends MongoRepository<Doctor, String> {
 		 * @param id
 		 * @return doctor {@link Doctor Doctor.class}
 		 */
+		@Override
 		Optional<Doctor> findById(String id);
 		@Query("{ 'clinic.city' : { $regex: ?0 , '$options' : 'i'} }")
 		List<Doctor> searchByCity(String query, Sort sort);

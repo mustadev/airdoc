@@ -36,13 +36,11 @@ public class PatientStartUpRunner implements CommandLineRunner {
     private PasswordEncoder encoder;
 
     
-    public void run(String...args) throws Exception {
+    @Override
+	public void run(String...args) throws Exception {
         logger.info("Application started with command-line arguments: {} . \n To kill this application, press Ctrl + C.", Arrays.toString(args));
 	System.out.println(":::::::::::::::::::::::  From StartUp");
-   	
-	//supprimer les patientes
-	logger.info("removing all databases records");
-	patientRepository.deleteAll();
+   
 	
 	
 	//------------------------------------------------------------------------------

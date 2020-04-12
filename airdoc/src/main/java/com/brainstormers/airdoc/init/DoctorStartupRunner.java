@@ -30,6 +30,7 @@ public class DoctorStartupRunner implements CommandLineRunner {
 	@Autowired
 	private DoctorService doctorService;
 	
+	
 	@Autowired
 	private RoleService roleService;
 	
@@ -43,10 +44,7 @@ public class DoctorStartupRunner implements CommandLineRunner {
 				Arrays.toString(args));
 		System.out.println(":::::::::::::::::::::::  From StartUp");
 		
-		// supprimer les doctor
-		logger.info("removing all databases records");
-		doctorService.deleteAll();
-		// la creation des "dummy data"
+	
 		Clinic clinic = new Clinic();
 		clinic.setName("Max Plank Clinic Name"); 
 		clinic.setDescription("Max Plank Clinic Description");

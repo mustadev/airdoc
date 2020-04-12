@@ -13,10 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.brainstormers.airdoc.exceptions.ResourceAlreadyExistsException;
 import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
-import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.Patient;
 import com.brainstormers.airdoc.models.Photo;
-import com.brainstormers.airdoc.payload.response.MessageResponse;
 import com.brainstormers.airdoc.services.PatientService;
 import com.brainstormers.airdoc.services.PhotoService;
 
@@ -25,7 +23,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 import java.io.IOException;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +37,7 @@ import java.util.Map;
 @Api(tags = "Patient Controlleur", value="Patient Management System")
 public class PatientController {
 
-    private final static Logger logger = (Logger) LoggerFactory.getLogger(PatientController.class);
+    private final static Logger logger = LoggerFactory.getLogger(PatientController.class);
 
 
     @Autowired
@@ -124,29 +121,24 @@ public class PatientController {
      * @param photo
      * @return Photo id
      */
-	@ApiOperation(value = "Ajouter Image du Patient", response = ResponseEntity.class)
-	@PostMapping("/{username}/avatar/")
-	public ResponseEntity<MessageResponse> uploadPhoto(
-			@PathVariable("username") String username,
-			@RequestParam("avatar") MultipartFile file){
-	    String message = "";
+	@ApiOperation(value = "Ajouter Image du Patient", response = Photo.class)
+	@PostMapping("/{id}/avatar/")
+	public ResponseEntity<Photo> uploadPhoto(
+			@PathVariable("id") String id,
+			@RequestParam("avatar") MultipartFile file) throws Exception, IOException{
 	    Photo photo = new Photo(); 
-        try {
+ 
+	    Patient patient = patientService.findPatientById(id)
+	    		.orElseThrow(() -> new ResourceNotFoundException("Could Find Patient: " + id));;
 			photo.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
-			photo.setOwnerId(username);
-			String avatarId = photoService.savePhoto(photo).get();
-			Patient patient = patientService.findByUsername(username).get();
-			patient.setAvatar(avatarId);
-			patientService.save(patient);
-			message = avatarId;
-		    return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse(message));
-		   
-		} catch (IOException e) {
+			//photo.setOwnerId(id);
+			photo = photoService.save(photo).orElseThrow(() -> new Exception("photo could not be saved"));
 			
-			e.printStackTrace();
-			 message = "Could not upload the file: " + file.getOriginalFilename() + "!";
-		     return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new MessageResponse(message));
-		}   
+			patient.setAvatar(photo);
+			patientService.save(patient);
+		    return ResponseEntity.ok().body(photo);
+		   
+		 
 	   
 	  }
 	
@@ -155,14 +147,13 @@ public class PatientController {
      * @param photo
      * @return Photo Base64 Encoded
      */
-	@ApiOperation(value = "Trouver Image du Patient", response = ResponseEntity.class)
-	@GetMapping("/photo/{photoId}")
-	  public ResponseEntity<String> getPhoto(@PathVariable("photoId") String photoId) throws ResourceNotFoundException {
-			Photo photo = photoService
-					.getPhoto(photoId)
-					.orElseThrow(()-> new ResourceNotFoundException("could not find photo with id"));
-			String base64Image = Base64.getEncoder().encodeToString(photo.getImage().getData());
-			return ResponseEntity.ok().body(base64Image);
+	@ApiOperation(value = "Trouver Image du Patient", response = Photo.class)
+	@GetMapping("/{id}/avatar")
+	  public ResponseEntity<Photo> getPhoto(@PathVariable("id") String id) throws ResourceNotFoundException {
+			Patient patient = patientService
+					.findPatientById(id)
+					.orElseThrow(()-> new ResourceNotFoundException("could not find Patient with id"));
+			return ResponseEntity.ok().body(patient.getAvatar());
 	    }
 
 	/**
@@ -172,26 +163,24 @@ public class PatientController {
      * @return Photo Base64 Encoded
      */
 	@ApiOperation(value = "Update Image du Patient", response = ResponseEntity.class)
-	@PutMapping("/photo/{photoId}")
-	  public ResponseEntity<MessageResponse> getUpdatePhoto(
-			  @PathVariable("photoId") String photoId, 
-			  @RequestParam("photo") MultipartFile file) throws ResourceNotFoundException {
-		String message = "";
-			Photo photo = photoService
-					.getPhoto(photoId)
-					.orElseThrow(()-> new ResourceNotFoundException("could not find photo with id"));
-			try {
+	@PutMapping("/{id}/avatar")
+	  public ResponseEntity<Photo> getUpdatePhoto(
+			  @PathVariable("id") String id, 
+			  @RequestParam("photo") MultipartFile file) throws ResourceNotFoundException , IOException{
+		
+			Patient patient = patientService
+					.findPatientById(id)
+					.orElseThrow(()-> new ResourceNotFoundException("could not find Patient with id" + id));
+			Photo photo = patient.getAvatar();
 				photo.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
-				photoService.savePhoto(photo);
-				message = "Photo updated successfully";
-			    return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse(message));
-			   
-			} catch (IOException e) {
 				
-				e.printStackTrace();
-				 message = "Could not update the Photo: " + file.getOriginalFilename() + "!";
-			     return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new MessageResponse(message));
-			}   
+					patient.setAvatar(photoService
+							.save(photo)
+							.orElseThrow(() -> new ResourceNotFoundException("could Not update Photo")));
+				patientService.save(patient);
+				
+			    return ResponseEntity.ok().body(photo);
+			 
 	  }
 	
 
