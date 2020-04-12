@@ -27,7 +27,7 @@ npm install
 ng serve --open
 ```
 
-#Contribution au code:
+## Contribution au code:
 1. creé un branch basé sur la branch de Develop
 ```bash
 git checkout develop
