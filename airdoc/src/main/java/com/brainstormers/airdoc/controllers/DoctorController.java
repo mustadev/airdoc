@@ -1,10 +1,13 @@
 package com.brainstormers.airdoc.controllers;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+import org.bson.BsonBinarySubType;
+import org.bson.types.Binary;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -21,11 +24,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
 import com.brainstormers.airdoc.exceptions.ResourceAlreadyExistsException;
+import com.brainstormers.airdoc.models.Clinic;
 import com.brainstormers.airdoc.models.Doctor;
+import com.brainstormers.airdoc.models.Photo;
+import com.brainstormers.airdoc.payload.response.MessageResponse;
 import com.brainstormers.airdoc.services.DoctorService;
+import com.brainstormers.airdoc.services.PhotoService;
 
 import ch.qos.logback.classic.Logger;
 import io.swagger.annotations.Api;
@@ -48,6 +56,9 @@ public class DoctorController {
 	
 	@Autowired
 	private DoctorService doctorService;
+	
+	@Autowired
+	private PhotoService photoService;
 	
 	
 	/**
@@ -161,17 +172,130 @@ public class DoctorController {
     /**
      * supprimer un Doctor par son ID
      * @param id
+     * @return Map<String, Object>
      */
 	@ApiOperation(value = "supprimer un doctor", response = ResponseEntity.class)
     @DeleteMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<Map<String, Object>> deleteDoctor(@PathVariable String id) {
+    public ResponseEntity<Map<String, String>> deleteDoctor(@PathVariable String id) {
     	doctorService.deleteById(id);
     	//doctorService.deleteDoctor(doctorService.findBy(studentNumber).getId());
-	Map<String, Object> msg = new HashMap<>();
+	Map<String, String> msg = new HashMap<>();
 	msg.put("doctorId", id);
 	msg.put("message", "doctor successfully deleted");
-	return new ResponseEntity<Map<String, Object>>(msg , HttpStatus.OK);
+	return new ResponseEntity<Map<String, String>>(msg , HttpStatus.OK);
     }
 
+	
+	/**
+     * Ajouter Image du Doctor
+     * @param photo
+     * @return Photo id
+     */
+	@ApiOperation(value = "Ajouter Image du Doctor", response = ResponseEntity.class)
+	@PostMapping("/{username}/avatar/")
+	public ResponseEntity<MessageResponse> uploadPhoto(
+			@PathVariable("username") String username,
+			@RequestParam("avatar") MultipartFile file){
+	    String message = "";
+	    Photo photo = new Photo(); 
+        try {
+			photo.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
+			photo.setOwnerId(username);
+			String avatarId = photoService.savePhoto(photo).get();
+			Doctor doctor = doctorService.findByUsername(username).get();
+			doctor.setAvatar(avatarId);
+			doctorService.save(doctor);
+			message = avatarId;
+		    return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse(message));
+		   
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+			 message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+		     return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new MessageResponse(message));
+		}   
+	   
+	  }
+	
+	/**
+     * Trouver Image du Doctor
+     * @param photo
+     * @return Photo Base64 Encoded
+     */
+	@ApiOperation(value = "Trouver Image du Doctor", response = ResponseEntity.class)
+	@GetMapping("/photo/{photoId}")
+	  public ResponseEntity<MessageResponse> getPhoto(@PathVariable("photoId") String photoId) throws ResourceNotFoundException {
+			Photo photo = photoService
+					.getPhoto(photoId)
+					.orElseThrow(()-> new ResourceNotFoundException("could not find photo with id"));
+			String base64Image = Base64.getEncoder().encodeToString(photo.getImage().getData());
+			return ResponseEntity.ok().body(new MessageResponse(base64Image));
+	    }
 
+	/**
+     * Update Image du Doctor
+     * @param photoId 
+     * @param file
+     * @return Photo Base64 Encoded
+     */
+	@ApiOperation(value = "Update Image du Doctor", response = ResponseEntity.class)
+	@PutMapping("/photo/{photoId}")
+	  public ResponseEntity<MessageResponse> getUpdatePhoto(
+			  @PathVariable("photoId") String photoId, 
+			  @RequestParam("photo") MultipartFile file) throws ResourceNotFoundException {
+		String message = "";
+			Photo photo = photoService
+					.getPhoto(photoId)
+					.orElseThrow(()-> new ResourceNotFoundException("could not find photo with id"));
+			try {
+				photo.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
+				photoService.savePhoto(photo);
+				message = "Photo updated successfully";
+			    return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse(message));
+			   
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+				 message = "Could not update the Photo: " + file.getOriginalFilename() + "!";
+			     return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new MessageResponse(message));
+			}   
+	  }
+	/**
+     * Ajouter Image du Clinic
+     * @param photo
+     * @return Clinic Photo Id
+     */
+	@ApiOperation(value = "Ajouter Image du Clinic", response = ResponseEntity.class)
+	@PostMapping("/{username}/clinic/")
+	public ResponseEntity<MessageResponse> uploadClinicPhoto(
+			@PathVariable("username") String username,
+			@RequestParam("clinic") MultipartFile file){
+	    String message = "";
+	    Photo photo = new Photo(); 
+        try {
+        	System.out.println("::::::::::::::: File name: " + file.getOriginalFilename());
+			photo.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
+			System.out.println("::::::::::::::: File binary: " + photo.getImage().getData().toString());
+			photo.setOwnerId(username);
+			String photoId = photoService.savePhoto(photo).orElseThrow(() -> new Exception("::::::::::could not upload photo"));
+			System.out.println(":::::::: Photo Id: " + photoId);
+			Doctor doctor = doctorService.findByUsername(username).orElseThrow(() -> new Exception(" ok could not upload photo"));
+			doctor.getClinic().addPhoto(photoId); //TODO make sure max is 4
+			Doctor doc = doctorService.save(doctor).get();
+			System.out.println("Doctor clinic photos: " + doc.getClinic().getPhotos().toString());
+			message = photoId;
+		    return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse(message));
+		   
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			 message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+		     return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new MessageResponse(message));
+		}   
+	   
+	  }
 }
+
+
+
+

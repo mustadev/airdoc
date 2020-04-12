@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.brainstormers.airdoc.models.Doctor;
 
 import org.springframework.data.domain.Sort;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * une services  pour accéder et modifier la base de données
@@ -36,6 +37,7 @@ public interface DoctorService {
 	 * ajouter ou modifier un Doctor
 	 * @param doctor
 	 */
+	@Transactional 
 	Optional<Doctor> save(Doctor doctor);
 	/**
 	

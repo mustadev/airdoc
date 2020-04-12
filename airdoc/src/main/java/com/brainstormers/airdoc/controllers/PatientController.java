@@ -1,20 +1,31 @@
 package com.brainstormers.airdoc.controllers;
 
 
+import org.bson.BsonBinarySubType;
+import org.bson.types.Binary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.brainstormers.airdoc.exceptions.ResourceAlreadyExistsException;
 import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
+import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.Patient;
+import com.brainstormers.airdoc.models.Photo;
+import com.brainstormers.airdoc.payload.response.MessageResponse;
 import com.brainstormers.airdoc.services.PatientService;
+import com.brainstormers.airdoc.services.PhotoService;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,12 +42,11 @@ public class PatientController {
 
     private final static Logger logger = (Logger) LoggerFactory.getLogger(PatientController.class);
 
-    private final PatientService patientService;
 
-    public PatientController(PatientService patientService) {
-        this.patientService = patientService;
-    }
+    @Autowired
+    private PatientService patientService;
 
+    @Autowired PhotoService photoService;
     /**
      * pour trouver tous les patientes
      * @return List<Patient>
@@ -47,10 +57,6 @@ public class PatientController {
            List<Patient> result = patientService
                    .findAll()
                    .orElseThrow(()-> new ResourceNotFoundException("no patient found"));
-           result.forEach((patient)-> {
-                   // String msg = String.format("patient name: %s patient mail: %s",patient.getFirstname(),patient.getEmail());
-                   // logger.debug(msg);
-           });
            return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
@@ -112,6 +118,82 @@ public class PatientController {
         return new ResponseEntity<Map<String, Object>>(msg , HttpStatus.OK);
     }
 
+    
+    /**
+     * Ajouter Image du Patient
+     * @param photo
+     * @return Photo id
+     */
+	@ApiOperation(value = "Ajouter Image du Patient", response = ResponseEntity.class)
+	@PostMapping("/{username}/avatar/")
+	public ResponseEntity<MessageResponse> uploadPhoto(
+			@PathVariable("username") String username,
+			@RequestParam("avatar") MultipartFile file){
+	    String message = "";
+	    Photo photo = new Photo(); 
+        try {
+			photo.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
+			photo.setOwnerId(username);
+			String avatarId = photoService.savePhoto(photo).get();
+			Patient patient = patientService.findByUsername(username).get();
+			patient.setAvatar(avatarId);
+			patientService.save(patient);
+			message = avatarId;
+		    return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse(message));
+		   
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+			 message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+		     return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new MessageResponse(message));
+		}   
+	   
+	  }
+	
+	/**
+     * Trouver Image du Patient
+     * @param photo
+     * @return Photo Base64 Encoded
+     */
+	@ApiOperation(value = "Trouver Image du Patient", response = ResponseEntity.class)
+	@GetMapping("/photo/{photoId}")
+	  public ResponseEntity<String> getPhoto(@PathVariable("photoId") String photoId) throws ResourceNotFoundException {
+			Photo photo = photoService
+					.getPhoto(photoId)
+					.orElseThrow(()-> new ResourceNotFoundException("could not find photo with id"));
+			String base64Image = Base64.getEncoder().encodeToString(photo.getImage().getData());
+			return ResponseEntity.ok().body(base64Image);
+	    }
+
+	/**
+     * Update Image du Patient
+     * @param photoId 
+     * @param file
+     * @return Photo Base64 Encoded
+     */
+	@ApiOperation(value = "Update Image du Patient", response = ResponseEntity.class)
+	@PutMapping("/photo/{photoId}")
+	  public ResponseEntity<MessageResponse> getUpdatePhoto(
+			  @PathVariable("photoId") String photoId, 
+			  @RequestParam("photo") MultipartFile file) throws ResourceNotFoundException {
+		String message = "";
+			Photo photo = photoService
+					.getPhoto(photoId)
+					.orElseThrow(()-> new ResourceNotFoundException("could not find photo with id"));
+			try {
+				photo.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
+				photoService.savePhoto(photo);
+				message = "Photo updated successfully";
+			    return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse(message));
+			   
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+				 message = "Could not update the Photo: " + file.getOriginalFilename() + "!";
+			     return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new MessageResponse(message));
+			}   
+	  }
+	
 
 
 }

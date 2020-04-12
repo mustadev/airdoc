@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 
 import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.repositories.DoctorRepository;
@@ -43,7 +43,7 @@ public class DoctorServiceImpl implements DoctorService {
 
 	@Override
 	public Optional<Doctor> save(Doctor doctor) {
-		return Optional.of(doctorRepository.save(doctor));
+		return Optional.ofNullable(doctorRepository.save(doctor));
 	}
 
 	@Override
@@ -60,12 +60,6 @@ public class DoctorServiceImpl implements DoctorService {
 	public Optional<List<Doctor>> searchByCity(String city, Sort sort) {
 		List<Doctor> results = doctorRepository.searchByCity(city, sort);
 		return Optional.of(results);
-	/*  Query jquery = new Query();
-		jquery.fields().exclude("description");
-		jquery.addCriteria(Criteria.where("name").regex(query));
-		List<Doctor> results = doctorRepository.fin;
-		return Optional.of(results); 
-	*/
 	}
 
 	 public void deleteByEmail(String email) {
@@ -104,8 +98,5 @@ public class DoctorServiceImpl implements DoctorService {
 		
 		return doctorRepository.existsByEmail(email);
 	}
-
-	
-	
 	
 }

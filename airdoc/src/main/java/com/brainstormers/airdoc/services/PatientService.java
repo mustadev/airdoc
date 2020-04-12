@@ -77,6 +77,8 @@ public interface PatientService {
     
     public void deleteAll();
 
+    Optional<Patient> save(Patient patient);
+
 
 }
 

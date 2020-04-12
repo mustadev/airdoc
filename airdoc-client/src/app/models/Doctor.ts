@@ -7,6 +7,7 @@ export class Doctor {
     lastname:string;
     username:string;
     email:string;
+    avatar:string;
     speciality:string;
     clinic:Clinic;
     reviews:Array<Review>;

@@ -1,6 +1,7 @@
 package com.brainstormers.airdoc.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -22,7 +23,7 @@ public interface DoctorRepository extends MongoRepository<Doctor, String> {
 		 * @param id
 		 * @return doctor {@link Doctor Doctor.class}
 		 */
-//		Doctor findDoctorById(String id);
+		Optional<Doctor> findById(String id);
 		@Query("{ 'clinic.city' : { $regex: ?0 , '$options' : 'i'} }")
 		List<Doctor> searchByCity(String query, Sort sort);
 		//$text: { $search: "clinic" }

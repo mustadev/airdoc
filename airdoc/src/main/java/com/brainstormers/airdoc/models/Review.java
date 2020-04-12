@@ -1,14 +1,8 @@
 package com.brainstormers.airdoc.models;
-import java.util.Set;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 
 
@@ -20,7 +14,8 @@ import lombok.ToString;
  * 
  */
 @ApiModel(description = "Détails de la revue")
-@Data @ToString @AllArgsConstructor @NoArgsConstructor
+@Document
+//@Data @ToString @AllArgsConstructor @NoArgsConstructor
 public class Review {
 	
 	/**
@@ -29,10 +24,17 @@ public class Review {
 	@ApiModelProperty(notes = "le contenu de la revue")
 	private String content;
 	/**
-	 * ID auteur de la revue
+
+	 * Id auteur de la revue
 	 */
-	@ApiModelProperty(notes = "ID auteur de la revue")
+	@ApiModelProperty(notes = "auteur de la revue")
 	private String autherId;
+	
+	/**
+	 * Nom d'utilisateur  de l'auteur de la revue
+	 */
+	@ApiModelProperty(notes = "Nom d'utilisateur de l'auteur de la revue")
+	private String autherUsername;
 	/**
 	 * nombre des likes
 	 */
@@ -45,6 +47,50 @@ public class Review {
 	@ApiModelProperty(notes = "nombre des dislikes")
 	private int dislikes;
 	
+	/******** Getters and Setter and Constructors ********/
+	
+	public Review(String content, String autherId, String autherUsername, int likes, int dislikes) {
+		super();
+		this.content = content;
+		this.autherId = autherId;
+		this.autherUsername = autherUsername;
+		this.likes = likes;
+		this.dislikes = dislikes;
+	}
+	
+	
+	public String getContent() {
+		return content;
+	}
+	
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public int getLikes() {
+		return likes;
+	}
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
+	public String getAutherId() {
+		return autherId;
+	}
+
+
+	public void setAutherId(String autherId) {
+		this.autherId = autherId;
+	}
+
+
+	public String getAutherUsername() {
+		return autherUsername;
+	}
+
+
+	public void setAutherUsername(String autherUsername) {
+		this.autherUsername = autherUsername;
+	}
 	
 	
 }

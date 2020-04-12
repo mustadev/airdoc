@@ -1,8 +1,10 @@
 package com.brainstormers.airdoc.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import io.swagger.annotations.ApiModel;
@@ -68,6 +70,18 @@ public class Clinic {
 	 */
 	@ApiModelProperty(notes = "Address de clinique")
 	private String address;
+	
+	/**
+	 * Id des images de clinique
+	 */
+	
+	@ApiModelProperty(notes = "Id des images de clinique")
+	private List<String> photos = new ArrayList<String>();
+	
+	public void addPhoto(String photoId) {
+		photos.add(photoId);
+		
+	}
 	
 	
 }
