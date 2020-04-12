@@ -51,7 +51,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 
-	 public void deleteByEmail(String email) {
+	 @Override
+	public void deleteByEmail(String email) {
 		    adminRepository.deleteByEmail(email);
 	 }
 

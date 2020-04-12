@@ -20,7 +20,6 @@ public class RoleStartUpRunner implements CommandLineRunner  {
 			
 	@Override
 	public void run(String... args) throws Exception {
-		roleService.deleteAll();
 		
 		roleService.save(ERole.ROLE_USER);
 		roleService.save(ERole.ROLE_ADMIN);

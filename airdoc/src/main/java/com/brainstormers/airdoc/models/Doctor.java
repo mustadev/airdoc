@@ -21,12 +21,11 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * le Model Doctor 
  * @author Mustapha Ouarrain
- * @since 13-03-2020
+ * @since version 0.0.1
  * 
  */
 @ApiModel(description = "Doctor Details")
 @Document(collection = "doctors")
-//@Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor
 public class Doctor{
 
 	/**
@@ -72,10 +71,12 @@ public class Doctor{
 	private String password;
 	
 	/**
-	 * Id Image de doctor
+	 * Image de doctor
 	 */
-	@ApiModelProperty(notes = "Id Image de doctor")
-	private String avatar;
+	@ApiModelProperty(notes = "Image de doctor")
+	@DBRef
+	@JsonIgnore
+	private Photo avatar;
 	
 	/**
 	 * À propos de doctor
@@ -84,9 +85,10 @@ public class Doctor{
 	private String aboutMe;
 	
 	/**
-	 * Clinique doctor
+	 * ID Clinique de doctor
 	 */
-	@ApiModelProperty(notes = "Clinique de doctor")
+	@ApiModelProperty(notes = "ID Clinique de doctor")
+	@JsonIgnore
 	private Clinic clinic;
 
 
@@ -144,136 +146,76 @@ public class Doctor{
 			@NotBlank @Size(max = 50) @Email String email,
 			@NotBlank @Size(max = 120) String password, 
 			@NotBlank @Size(max = 20) String username) {
-		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
 		this.password = password;
 		this.username = username;
 	}
+
 	
-	
-	public Doctor(String id, @NotBlank @Size(max = 50) String firstname, @NotBlank @Size(max = 50) String lastname,
-			@NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password,
-			@NotBlank @Size(max = 20) String username, List<Review> reviews,
-			Set<Role> roles, String speciality,
-			float rating, int averageRating) {
-		super();
-		this.id = id;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-		this.password = password;
-		this.username = username;
-		this.reviews = reviews;
-		this.roles = roles;
-		this.speciality = speciality;
-		this.rating = rating;
-		this.averageRating = averageRating;
+
+	public Doctor() {
 	}
-	
-	
 
-
-	public Doctor() {}
 
 
 	public String getId() {
 		return id;
 	}
 
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 
 	public String getFirstname() {
 		return firstname;
 	}
 
+
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
+
 
 	public String getLastname() {
 		return lastname;
 	}
 
+
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
+
 
 	public String getEmail() {
 		return email;
 	}
 
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 
 	public String getPassword() {
 		return password;
 	}
 
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public String getUsername() {
-		return username;
-	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-
-	public List<Review> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
-	}
-
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
-
-	public String getSpeciality() {
-		return speciality;
-	}
-
-	public void setSpeciality(String speciality) {
-		this.speciality = speciality;
-	}
-
-	public float getRating() {
-		return rating;
-	}
-
-	public void setRating(float rating) {
-		this.rating = rating;
-	}
-
-	public int getAverageRating() {
-		return averageRating;
-	}
-
-	public void setAverageRating(int averageRating) {
-		this.averageRating = averageRating;
-	}
-
-
-	public String getAvatar() {
+	public Photo getAvatar() {
 		return avatar;
 	}
 
 
-	public void setAvatar(String avatar) {
+	public void setAvatar(Photo avatar) {
 		this.avatar = avatar;
 	}
 
@@ -295,6 +237,66 @@ public class Doctor{
 
 	public void setClinic(Clinic clinic) {
 		this.clinic = clinic;
+	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+
+	public String getSpeciality() {
+		return speciality;
+	}
+
+
+	public void setSpeciality(String speciality) {
+		this.speciality = speciality;
+	}
+
+
+	public float getRating() {
+		return rating;
+	}
+
+
+	public void setRating(float rating) {
+		this.rating = rating;
+	}
+
+
+	public int getAverageRating() {
+		return averageRating;
+	}
+
+
+	public void setAverageRating(int averageRating) {
+		this.averageRating = averageRating;
 	}
 	
 	

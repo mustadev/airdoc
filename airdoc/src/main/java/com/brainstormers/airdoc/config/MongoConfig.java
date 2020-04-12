@@ -21,11 +21,12 @@ public class MongoConfig {
     	mongoTemplate.indexOps("doctors").dropAllIndexes();
     	
     	TextIndexDefinition  textIndex = new TextIndexDefinitionBuilder()
-    			.onField("clinic.name")
-    			.onField("clinic.description")
+    			//.onField("clinic.name")
+    			//.onField("clinic.description")
     			.onField("lastname")
     			.onField("firstname")
     			.onField("username")
+    			.onField("aboutMe")
     			.build();
     	mongoTemplate.indexOps("doctors") // collection name string or .class
         .ensureIndex(textIndex);

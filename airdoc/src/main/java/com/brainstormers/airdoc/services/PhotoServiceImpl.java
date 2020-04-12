@@ -1,5 +1,6 @@
 package com.brainstormers.airdoc.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,35 @@ public class PhotoServiceImpl implements PhotoService {
     @Autowired
     private PhotoRepository photoRepository;
  
-    public Optional<String> savePhoto(Photo photo){   
-        photo = photoRepository.save(photo); 
-        return Optional.ofNullable(photo.getId()); 
+    @Override
+	public Optional<Photo> save(Photo photo){ 
+        return Optional.ofNullable(photoRepository.save(photo)); 
     }
  
 
-    public Optional<Photo> getPhoto(String id) { 
+    @Override
+	public Optional<Photo> findById(String id) { 
         return photoRepository.findById(id); 
     }
+
+
+//	@Override
+//	public Optional<List<Photo>> findByOwnerId(String ownerId) {
+//		
+//		return Optional.ofNullable(photoRepository.findByOwnerId(ownerId));
+//	}
+
+
+	@Override
+	public void deleteById(String id) {
+		photoRepository.deleteById(id);
+		
+	}
+
+
+	@Override
+	public void deleteAll() {
+		photoRepository.deleteAll();
+		
+	}
 }

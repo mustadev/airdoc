@@ -1,16 +1,15 @@
 package com.brainstormers.airdoc.models;
 
-
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
-import lombok.Data;
-import lombok.ToString;
-
+/**
+ * rôles d'utilisateur
+ * @author Mustapha De BrainStormers
+ * @since version 0.0.2
+ * 
+ */
 @Document(collection = "roles")
-//@Data @ToString  
 public class Role {
   @Id
   private String id;

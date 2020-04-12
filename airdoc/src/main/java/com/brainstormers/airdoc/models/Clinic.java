@@ -7,17 +7,33 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
+/**
+ * La Clinique
+ * @author Mustapha De BrainStormers
+ * @since version 0.0.2
+ * 
+ */
 @ApiModel(description = "Clinic details")
-@Data @NoArgsConstructor @AllArgsConstructor
-@Document
+//@Document("clinics")
 public class Clinic {
 	
+//	/**
+//	 * ID de Clinique
+//	 */
+//	@ApiModelProperty(notes = "Clinique ID")
+//	@Id
+//    private String id;
+	
+//	/**
+//	 * ID de Clinique
+//	 */
+//	@ApiModelProperty(notes = "Doctor ID")
+//    private String doctorId;
 	/**
 	 * Nom de clinique
 	 */
@@ -76,12 +92,100 @@ public class Clinic {
 	 */
 	
 	@ApiModelProperty(notes = "Id des images de clinique")
-	private List<String> photos = new ArrayList<String>();
+	@DBRef
+	@JsonIgnore
+	private List<Photo> photos = new ArrayList<Photo>();
 	
-	public void addPhoto(String photoId) {
-		photos.add(photoId);
-		
+
+	public String getName() {
+		return name;
 	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public float getConsultPrice() {
+		return consultPrice;
+	}
+
+	public void setConsultPrice(float consultPrice) {
+		this.consultPrice = consultPrice;
+	}
+
+	public int getMinPrice() {
+		return minPrice;
+	}
+
+	public void setMinPrice(int minPrice) {
+		this.minPrice = minPrice;
+	}
+
+	public int getMaxPrice() {
+		return maxPrice;
+	}
+
+	public void setMaxPrice(int maxPrice) {
+		this.maxPrice = maxPrice;
+	}
+
+	public List<String> getServices() {
+		return services;
+	}
+
+	public void setServices(List<String> services) {
+		this.services = services;
+	}
+
+	public List<String> getSpecialities() {
+		return specialities;
+	}
+
+	public void setSpecialities(List<String> specialities) {
+		this.specialities = specialities;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public List<Photo> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<Photo> photos) {
+		this.photos = photos;
+	}
+	
+	
 	
 	
 }
