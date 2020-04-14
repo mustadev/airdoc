@@ -11,6 +11,7 @@ import com.brainstormers.airdoc.services.AdminService;
 import com.brainstormers.airdoc.services.DoctorService;
 import com.brainstormers.airdoc.services.PatientService;
 import com.brainstormers.airdoc.services.PhotoService;
+import com.brainstormers.airdoc.services.ReviewService;
 import com.brainstormers.airdoc.services.RoleService;
 
 @Order(1)
@@ -30,6 +31,9 @@ public class DBStartupRunner implements CommandLineRunner {
 	
 	
 	@Autowired
+	private ReviewService reviewService;
+	
+	@Autowired
 	private PhotoService photoService;
 	
 	@Autowired
@@ -40,6 +44,7 @@ public class DBStartupRunner implements CommandLineRunner {
 		logger.debug("deleting all databse");
 		roleService.deleteAll();
 		photoService.deleteAll();
+		reviewService.deleteAll();
 		adminService.deleteAll();
 		doctorService.deleteAll();
 		patientService.deleteAll();

@@ -8,9 +8,11 @@ import java.util.Set;
 import com.brainstormers.airdoc.models.Clinic;
 import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.ERole;
+import com.brainstormers.airdoc.models.Like;
 import com.brainstormers.airdoc.models.Review;
 import com.brainstormers.airdoc.models.Role;
 import com.brainstormers.airdoc.services.DoctorService;
+import com.brainstormers.airdoc.services.ReviewService;
 import com.brainstormers.airdoc.services.RoleService;
 
 import org.slf4j.Logger;
@@ -30,6 +32,8 @@ public class DoctorStartupRunner implements CommandLineRunner {
 	@Autowired
 	private DoctorService doctorService;
 	
+	@Autowired
+	private ReviewService reviewService;
 	
 	@Autowired
 	private RoleService roleService;
@@ -56,10 +60,29 @@ public class DoctorStartupRunner implements CommandLineRunner {
 		clinic.setConsultPrice(100);
 		clinic.setMaxPrice(400);
 		clinic.setMinPrice(150);
+		
 		List<Review> reviews = Arrays.asList(
-				new Review("review Content1", "authorId1", "authorUsername1", 15, 2),
-				new Review("review Content2", "authorId2", "authorUsername2", 14, 5), 
-				new Review("review Content3", "authorId3", "authorUsername3",  12, 7));
+				reviewService.save(new Review(
+						"content", 
+						"authorId",
+						new HashSet<Like>(Arrays.asList( 
+								new Like("author2"))
+								))).get(),
+				reviewService.save(new Review(
+						"content", 
+						"authorId",
+						new HashSet<Like>(Arrays.asList(
+								new Like("author2"), 
+								new Like("author4"))
+								))).get(),
+				reviewService.save(new Review(
+						"content", 
+						"authorId",
+						new HashSet<Like>(Arrays.asList(
+								new Like("author5"),
+								new Like("author7"), 
+								new Like("author3"))
+								))).get());
 		Doctor doctor1 = new Doctor();
 		doctor1.setFirstname("Max");
 		doctor1.setLastname("Plank");

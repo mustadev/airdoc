@@ -3,6 +3,8 @@ package com.brainstormers.airdoc.controllers;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
 import org.slf4j.LoggerFactory;
@@ -26,10 +28,13 @@ import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
 import com.brainstormers.airdoc.exceptions.ResourceAlreadyExistsException;
 import com.brainstormers.airdoc.models.Clinic;
 import com.brainstormers.airdoc.models.Doctor;
+import com.brainstormers.airdoc.models.Like;
 import com.brainstormers.airdoc.models.Photo;
+import com.brainstormers.airdoc.models.Review;
 import com.brainstormers.airdoc.payload.response.MessageResponse;
 import com.brainstormers.airdoc.services.DoctorService;
 import com.brainstormers.airdoc.services.PhotoService;
+import com.brainstormers.airdoc.services.ReviewService;
 
 import ch.qos.logback.classic.Logger;
 import io.swagger.annotations.Api;
@@ -55,6 +60,9 @@ public class DoctorController {
 
 	@Autowired
 	private PhotoService photoService;
+	
+	@Autowired
+	private ReviewService reviewService;
 
 
 	/**
@@ -312,7 +320,6 @@ public class DoctorController {
 		Doctor doctor = doctorService.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Could Find Doctor: " + id));
 		photo.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
-		//photo.setOwnerId(id);
 		photo = photoService.save(photo)
 				.orElseThrow(() -> new ResourceNotFoundException("Could Not Save Photo"));
 		
@@ -323,8 +330,6 @@ public class DoctorController {
 		return ResponseEntity.status(HttpStatus.OK).body(photo);
 	}
 	
-	
-
 	/**
 	 * Trouver les Images  du Clinique
 	 * @param photo
@@ -342,9 +347,9 @@ public class DoctorController {
 	}
 
 	/**
-	 * Update Image du Doctor
-	 * @param photoId 
-	 * @param file
+	 * Supprimer Image du Doctor
+	 * @param Doctor ID
+	 * @param Photo ID 
 	 * @return message {@link MessageResponse}
 	 */
 	@ApiOperation(value = "Update Image du Doctor", response = Photo.class)
@@ -356,18 +361,133 @@ public class DoctorController {
 				.findById(id)
 				.orElseThrow(()-> new ResourceNotFoundException("could not find Doctor with id" + id ));
 		photoService.deleteById(photoId);
-		//		.orElseThrow(()-> new ResourceNotFoundException("could not find photo with id" + photoId));
-		//photoService.deleteById(photoId);
 		List<Photo> photos = doctor.getClinic()
 				.getPhotos();
 		photos.removeIf((Photo photo) -> photo.getId() == photoId);
 		doctor.getClinic().setPhotos(photos);
-
+		doctorService.save(doctor).orElseThrow(()-> new ResourceNotFoundException("could not save Doctor with id" + id ));;
 		return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Photo Deleted"));
 
 	}
 	
+
+	/**
+	 * Ajouter Revue sur le Doctor
+	 * @param {@link Review} review
+	 * @return {@link Review review } 
+	 */
+	@ApiOperation(value = "Ajouter Revue sur le Doctor", response = Review.class)
+	@PostMapping("/{id}/reviews")
+	public ResponseEntity<Review> addReview(
+			@PathVariable("id") String id,
+			@RequestBody Review review) throws ResourceNotFoundException{
+		Doctor doctor = doctorService.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Could Find Doctor: " + id));
+		review = reviewService.save(review)
+				.orElseThrow(() -> new ResourceNotFoundException("Could Not Save Review"));
+		
+		List<Review> reviews = doctor.getReviews();
+		reviews.add(review);
+		doctor.setReviews(reviews);
+		doctorService.save(doctor);
+		return ResponseEntity.status(HttpStatus.OK).body(review);
+	}
 	
+	
+
+	/**
+	 * Trouver les Revues sur le Doctor
+	 * @param {@link Review} review
+	 * @return {@link List<Review>  } reviews
+	 */
+	@ApiOperation(value = "Trouver les Revues sur le Doctor", response = List.class)
+	@GetMapping("/{id}/reviews")
+	public ResponseEntity<List<Review>> getReview(@PathVariable("id") String id) throws ResourceNotFoundException {
+		List<Review> reviews = doctorService
+				.findById(id)
+				.orElseThrow(()-> new ResourceNotFoundException("Could not find Doctor with ID: " + id))
+				.getReviews();
+		return ResponseEntity.ok().body(reviews);
+	}
+
+	/**
+	 * Update Revue 
+	 * @param revue id reviewId 
+	 * @param {@link Review} review
+	 * @return {@link Review} review
+	 */
+	@ApiOperation(value = "Update Revue ", response = Review.class)
+	@PutMapping("/reviews/{reviewId}")
+	public ResponseEntity<Review> getUpdateReview(
+			@PathVariable("reviewId") String reviewId,
+			@RequestBody Review review) throws ResourceNotFoundException {
+		Review oldReview = reviewService.findById(reviewId)
+				.orElseThrow(()-> new ResourceNotFoundException("could not find Review with ID: " + reviewId));
+		oldReview.setContent(review.getContent());
+		Review updatedReview = reviewService.save(oldReview)
+			.orElseThrow(() -> new ResourceNotFoundException("could not Update Review  with ID"));
+		return ResponseEntity.status(HttpStatus.OK).body(updatedReview);
+
+	}
+	
+	/**
+	 * Supprimer Revue du Doctor
+	 * @param doctorId 
+	 * @param reviewId 
+	 * @return message {@link MessageResponse}
+	 */
+	@ApiOperation(value = "Supprimer un Revue", response = MessageResponse.class)
+	@DeleteMapping("/reviews/{reviewId}")
+	public ResponseEntity<MessageResponse> deleteReview(
+			@PathVariable("reviewId") String reviewId) throws ResourceNotFoundException{
+		reviewService.deleteById(reviewId);
+		return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Review Deleted"));
+	}
+	
+	/**
+	 * ajouter like à un Revue 
+	 * @param reviewId 
+	 * @param like {@link Like}
+	 * @return message {@link MessageResponse}
+	 */
+	@ApiOperation(value = "Aimer un Revue", response = MessageResponse.class)
+	@PostMapping("/reviews/{reviewId}/like")
+	public ResponseEntity<MessageResponse> likeReview(
+			@PathVariable("reviewId") String reviewId,
+			@RequestBody Like like ) throws ResourceNotFoundException{
+		Review review = reviewService.findById(reviewId)
+				.orElseThrow(() -> new ResourceNotFoundException("could not Find Review  with ID: " + reviewId));
+		Set<Like> likes = review.getLikes();
+		if(!likes.add(like)) {
+			return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Review Already Liked"));
+		};
+		review.setLikes(likes);
+		reviewService.save(review)
+			.orElseThrow(() -> new ResourceNotFoundException("could not Save Review  with ID: " + reviewId));
+		return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Review Liked"));
+	}
+	/**
+	 * supprimer like d'un Revue 
+	 * @param reviewId 
+	 * @param like {@link Like}
+	 * @return message {@link MessageResponse}
+	 */
+	@ApiOperation(value = "Unlike un Revue", response = MessageResponse.class)
+	@PostMapping("/reviews/{reviewId}/unlike")
+	public ResponseEntity<MessageResponse> unlikeReview(
+			@PathVariable("reviewId") String reviewId,
+			@RequestBody Like like ) throws ResourceNotFoundException{
+		Review review = reviewService.findById(reviewId)
+				.orElseThrow(() -> new ResourceNotFoundException("could not Find Review  with ID: " + reviewId));
+		Set<Like> likes = review.getLikes();
+		System.out.println("::::::::: likes length: " + likes.size());
+		likes.remove(like);
+		System.out.println("::::::::: after remove likes length: " + likes.size());
+		review.setLikes(likes);
+		reviewService.save(review)
+			.orElseThrow(() -> new ResourceNotFoundException("could not Save Review  with ID: " + reviewId));
+		return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Review Unliked"));
+	}
 }
 
 

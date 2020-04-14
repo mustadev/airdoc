@@ -106,6 +106,7 @@ public class Doctor{
 	 * les revues de doctor
 	 */
 	@ApiModelProperty(notes = "les revues de doctor")
+	@DBRef
     private List<Review> reviews = new ArrayList<>();
 
 	/**
