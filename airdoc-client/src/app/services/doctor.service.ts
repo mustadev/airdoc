@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient ,  HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Doctor } from '../models/Doctor';
+import { Clinic } from '../models/Clinic';
 
 const API_URL = 'http://localhost:8080/api/test/';
 
@@ -13,29 +14,16 @@ export class DoctorService {
   
   constructor(private http:HttpClient) { }
 
-  //FOR TEST
-  // getPublicContent(): Observable<any> {
-  //   return this.http.get(API_URL + 'all', { responseType: 'text' });
-  // }
-
-  // getUserBoard(): Observable<any> {
-  //   return this.http.get(API_URL + 'user', { responseType: 'text' });
-  // }
-
-  // getModeratorBoard(): Observable<any> {
-  //   return this.http.get(API_URL + 'mod', { responseType: 'text' });
-  // }
-
-  // getAdminBoard(): Observable<any> {
-  //   return this.http.get(API_URL + 'admin', { responseType: 'text' });
-  // }
   
   getDoctors():Observable<Doctor[]> {
     return this.http.get<Doctor[]>(this.doctorUrl);
   }
 
+  getById(id:string):Observable<Doctor>{
+    return this.http.get<Doctor>(this.doctorUrl + "/" + id);
+  }
+  
   getByUsername(username:string):Observable<Doctor>{
-    
     return this.http.get<Doctor>(this.doctorUrl + "/username/" + username);
   }
 
@@ -49,6 +37,15 @@ export class DoctorService {
   }
 
   getAvatar(id:string): Observable<any>{
-    return this.http.get(this.doctorUrl + '/photo/' + id);
+    return this.http.get(this.doctorUrl +  "/" + id + '/avatar');
   }
+
+  getClinic(id:string): Observable<Clinic>{
+    return this.http.get<Clinic>(this.doctorUrl +  "/" + id + '/clinic');
+  }
+
+  getClinicPhotos(id:string): Observable<Array<any>>{
+    return this.http.get<Array<any>>(this.doctorUrl +  "/" + id + '/clinic/photos');
+  }
+
 }
