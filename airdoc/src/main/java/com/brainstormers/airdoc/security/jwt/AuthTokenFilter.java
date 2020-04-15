@@ -44,6 +44,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 			if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
 				String username = jwtUtils.getUserNameFromJwtToken(jwt);
 				String userType = request.getHeader("User-Type");
+				System.out.println("::::::::: username: " + username);
 				
 				UserDetails userDetails;
 				switch(userType) {

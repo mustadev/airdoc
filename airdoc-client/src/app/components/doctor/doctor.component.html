@@ -3,64 +3,48 @@
         <div class="doctor-widget">
             <div class="doc-info-left">
                 <div class="doctor-img">
-                    <a routerLink="/doctor/profile/{{doctor.username}}">
-                        <!-- <img src="assets/img/doctors/doctor-thumb-01.jpg" class="img-fluid" alt="Doctor Image"> -->
+                    <a routerLink="/doctor/profile/{{doctor?.id}}">
                         <img [src]="retrievedAvatar" class="img-fluid" alt="Doctor Image">
                     </a>
                 </div>
                 <div class="doc-info-cont">
-                    <h4 class="doc-name"><a routerLink="/doctor/profile/{{doctor.username}}">{{doctor.firstname | titlecase}} {{doctor.lastname | titlecase}}</a></h4>
-                    <p class="doc-speciality">{{doctor.speciality }}</p>
-                    <h5 class="doc-department"><img src="assets/img/specialities/specialities-05.png" class="img-fluid" alt="Speciality">{{doctor.speciality}}</h5>
+                    <h4 class="doc-name"><a routerLink="/doctor/profile/{{doctor?.id}}">{{doctor?.firstname | titlecase}} {{doctor?.lastname | titlecase}}</a></h4>
+                    <p class="doc-speciality">{{doctor?.speciality }}</p>
+                    <h5 class="doc-department">{{doctor?.speciality}}</h5>
                     <div class="rating">
                         <i class="fas fa-star filled"></i>
                         <i class="fas fa-star filled"></i>
                         <i class="fas fa-star filled"></i>
                         <i class="fas fa-star filled"></i>
                         <i class="fas fa-star"></i>
-                        <span class="d-inline-block average-rating">({{doctor.averageRating}})</span>
+                        <span class="d-inline-block average-rating">({{doctor?.averageRating}})</span>
                     </div>
                     <div class="clinic-details">
-                        <p class="doc-location"><i class="fas fa-map-marker-alt"></i>  {{doctor.clinic.country | titlecase }} {{doctor.clinic.city | titlecase}}</p>
+                        <p class="doc-location"><i class="fas fa-map-marker-alt"></i>  {{clinic?.country | titlecase }} {{clinic?.city | titlecase}}</p>
                         <ul class="clinic-gallery">
-                            <li>
-                                <a href="assets/img/features/feature-01.jpg" data-fancybox="gallery">
-                                    <img src="assets/img/features/feature-01.jpg" alt="Feature">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="assets/img/features/feature-02.jpg" data-fancybox="gallery">
-                                    <img  src="assets/img/features/feature-02.jpg" alt="Feature">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="assets/img/features/feature-03.jpg" data-fancybox="gallery">
-                                    <img src="assets/img/features/feature-03.jpg" alt="Feature">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="assets/img/features/feature-04.jpg" data-fancybox="gallery">
-                                    <img src="assets/img/features/feature-04.jpg" alt="Feature">
+                            <li *ngFor="let photo of clinicPhotos">
+                                <a routerLink="/doctor/profile/{{doctor?.id}}" data-fancybox="gallery">
+                                <img [src]="photo" alt="Feature">  
                                 </a>
                             </li>
                         </ul>
                     </div>
                     <div class="clinic-services">
-                        <span *ngFor=" let service of doctor.clinic.services"> {{service}} </span>
+                        <span *ngFor=" let service of clinic?.services"> {{service}} </span>
                     </div>
                 </div>
             </div>
             <div class="doc-info-right">
                 <div class="clini-infos">
                     <ul>
-                        <li><i class="far fa-comment"></i> {{doctor.reviews.length}} Feedback</li>
-                        <li><i class="fas fa-map-marker-alt"></i> {{doctor.clinic.country + " " + doctor.clinic.city}}</li>
-                        <li><i class="far fa-money-bill-alt"></i> {{doctor.clinic.minPrice | currency}} - ${{doctor.clinic.maxPrice | currency}}  </li>
+                        <li><i class="far fa-comment"></i> {{doctor?.reviews?.length}} Feedback</li>
+                        <li><i class="fas fa-map-marker-alt"></i> {{clinic?.country + " " + clinic?.city}}</li>
+                        <li><i class="far fa-money-bill-alt"></i> {{clinic?.minPrice | currency}} - {{clinic?.maxPrice | currency}}  </li>
                     </ul>
                 </div>
                 <div class="clinic-booking">
-                    <a class="view-pro-btn" routerLink="/doctor/profile/{{doctor.username}}">Voir Doctor</a>
-                    <a class="apt-btn" routerLink="/booking/{{doctor.username}}">BOOK APPOINTMENT</a>
+                    <a class="view-pro-btn" routerLink="/doctor/profile/{{doctor?.id}}">Voir Doctor</a>
+                    <a class="apt-btn" routerLink="/booking/{{doctor?.id}}">BOOK APPOINTMENT</a>
                 </div>
             </div>
         </div>
