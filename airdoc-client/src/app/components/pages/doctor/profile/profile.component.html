@@ -1,7 +1,5 @@
 <div class="content">
 	<div class="container">
-
-
 		<!-- Doctor Widget -->
 		<div class="card">
 			<div class="card-body">
@@ -11,20 +9,20 @@
 							<img [src]="avatar" class="img-fluid" alt="Doctor Image">
 						</div>
 						<div class="doc-info-cont">
-							<h4 class="doc-name">Dr. {{doctor.firstname | titlecase}} {{doctor.lastname | titlecase}}
+							<h4 class="doc-name">Dr. {{doctor?.firstname | titlecase}} {{doctor?.lastname | titlecase}}
 							</h4>
-							<p class="doc-speciality">{{doctor.speciality | titlecase}}</p>
+							<p class="doc-speciality">{{doctor?.speciality | titlecase}}</p>
 							<div class="rating">
 								<i class="fas fa-star filled"></i>
 								<i class="fas fa-star filled"></i>
 								<i class="fas fa-star filled"></i>
 								<i class="fas fa-star filled"></i>
 								<i class="fas fa-star"></i>
-								<span class="d-inline-block average-rating">({{doctor.averageRating}})</span>
+								<span class="d-inline-block average-rating">({{doctor?.averageRating}})</span>
 							</div>
 							<div class="clinic-details">
 								<p class="doc-location"><i class="fas fa-map-marker-alt"></i>
-									{{clinic.city | titlecase}}, {{clinic.country | titlecase}} </p>
+									{{clinic?.city | titlecase}}, {{clinic?.country | titlecase}} </p>
 							</div>
 							<div class="clinic-services">
 								<span *ngFor="let service of clinic.services">{{service}}</span>
@@ -34,15 +32,15 @@
 					<div class="doc-info-right">
 						<div class="clini-infos">
 							<ul>
-								<li><i class="far fa-comment"></i> {{doctor.reviews.length}} Feedback</li>
-								<li><i class="fas fa-map-marker-alt"></i> {{clinic.city | titlecase}},
-									{{clinic.country | titlecase}}</li>
-								<li><i class="far fa-money-bill-alt"></i> {{clinic.maxPrice | currency}} per hour
+								<li><i class="far fa-comment"></i> {{doctor?.reviews?.length}} Feedback</li>
+								<li><i class="fas fa-map-marker-alt"></i> {{clinic?.city | titlecase}},
+									{{clinic?.country | titlecase}}</li>
+								<li><i class="far fa-money-bill-alt"></i> {{clinic?.maxPrice | currency}} per hour
 								</li>
 							</ul>
 						</div>
 						<div class="clinic-booking">
-							<a class="apt-btn" routerLink="booking">Book Appointment</a>
+							<a class="apt-btn" routerLink="/booking/{{doctor?.id}}">Book Appointment</a>
 						</div>
 					</div>
 				</div>
@@ -125,11 +123,11 @@
 								<!-- Clinic Content -->
 								<div class="col-md-6">
 									<div class="clinic-content">
-										<h4 class="clinic-name">{{clinic.name}}</h4>
-										<p class="doc-speciality">{{doctor.speciality}}</p>
+										<h4 class="clinic-name">{{clinic?.name}}</h4>
+										<p class="doc-speciality">{{doctor?.speciality}}</p>
 										<div class="clinic-details mb-0">
 											<h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i>
-												{{clinic.address}} <br></h5>
+												{{clinic?.address}} <br></h5>
 										</div>
 									</div>
 								</div>
@@ -137,7 +135,7 @@
 
 								<div class="col-md-2">
                                     <div class="consult-price">
-                                        {{clinic.consultPrice | currency}}
+                                        {{clinic?.consultPrice | currency}}
                                     </div>
                                 </div>
 							</div>
@@ -158,7 +156,7 @@
 						
 						 <!-- Write Review -->
 						 <div *ngIf="isPatient" class="write-review">
-                            <h4>Write a review for <strong> Dr. {{doctor.firstname | titlecase}} {{doctor.lastname | titlecase}}</strong></h4>
+                            <h4>Write a review for <strong> Dr. {{doctor?.firstname | titlecase}} {{doctor?.lastname | titlecase}}</strong></h4>
                             
                             <!-- Write Review Form -->
                             <form>
