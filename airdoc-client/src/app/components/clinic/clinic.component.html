@@ -1,0 +1,20 @@
+<div class="row">
+    <!-- Clinic Content -->
+    <div class="col-md-6">
+        <div class="clinic-content">
+            <h4 class="clinic-name">{{clinic?.name}}</h4>
+            <p class="doc-speciality">{{doctor?.speciality}}</p>
+            <div class="clinic-details mb-0">
+                <h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i>
+                    {{clinic?.address}} <br></h5>
+            </div>
+        </div>
+    </div>
+    <!-- /Clinic Content -->
+
+    <div class="col-md-2">
+        <div class="consult-price">
+            {{clinic?.consultPrice | currency}}
+        </div>
+    </div>
+</div>

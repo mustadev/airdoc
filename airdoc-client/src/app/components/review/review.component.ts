@@ -17,7 +17,7 @@ export class ReviewComponent implements OnInit {
 
   ngOnInit(): void {
     //TODO get author
-    //this.patientService.getById(this.review.authorId)
+    this.patientService.getById(this.review.authorId);
   }
 
   

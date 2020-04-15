@@ -1,12 +1,12 @@
  <!-- Comment List -->
  <li>
     <div class="comment">
-        <img class="avatar avatar-sm rounded-circle" alt="Doctor Image" src="assets/img/patients/patient.jpg">
+        <img class="avatar avatar-sm rounded-circle" alt="Patient Image" src="assets/img/patients/patient.jpg">
         <div class="comment-body">
 
             <div class="meta-data">
                 <span class="comment-author">Richard Wilson</span>
-                
+                <app-rating-star [ratedCount]="5" [readonly]="true"></app-rating-star>
                 <p class="comment-content">{{review.content}}</p>
                 
             </div>

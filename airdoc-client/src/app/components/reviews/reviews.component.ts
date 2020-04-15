@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Doctor } from 'src/app/models/Doctor';
 
 @Component({
   selector: 'app-reviews',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReviewsComponent implements OnInit {
 
+  @Input() doctor:Doctor;
+  @Input() isPatient:boolean;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onRating(data){
+    console.log("rating: ", data);
+  }
 }

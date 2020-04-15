@@ -1,0 +1,12 @@
+/* .rating{
+    display: flex;
+    flex-direction: row;
+}*/
+.ratingIcon{
+    display:inline-block;
+    margin-right:3px;
+    cursor:pointer;
+    color:#ccc;
+}
+.ratingHover:hover{color:#FFD700;}
+.filled {color:#FFD700;} 

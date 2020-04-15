@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
         this.doctor = res;
       });
       this.doctorService.getAvatar(this.id).subscribe(res => {
-        this.avatar = 'data:image/jpeg;base64,' + res.image.data;
+        this.avatar = 'data:image/jpeg;base64,' + res?.image?.data;
       });
       this.doctorService.getClinic(this.id).subscribe(res => {
         this.clinic = res;

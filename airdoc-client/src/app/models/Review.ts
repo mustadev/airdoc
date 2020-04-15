@@ -1,6 +1,7 @@
 export class Review {
     content:string;
     likes:number;
+    rating:number;
     dislikes:number;
     authorId:string;
     

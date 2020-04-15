@@ -33,7 +33,10 @@ import { DoctorDashBoardComponent } from './components/pages/doctor/doctor-dash-
 import { PatientDashBoardComponent } from './components/pages/patient/patient-dash-board/patient-dash-board.component';
 import { DoctorProfileSettingsComponent } from './components/pages/doctor/doctor-profile-settings/doctor-profile-settings.component';
 import { BookingComponent } from './components/pages/booking/booking.component';
+import { RatingStarComponent} from './components/rating-star/rating-star.component';
 import { AppointementsComponent } from './components/pages/doctor/appointements/appointements.component';
+import { ClinicComponent } from './components/clinic/clinic.component';
+import { DoctorOverViewComponent } from './components/doctor-over-view/doctor-over-view.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,10 @@ import { AppointementsComponent } from './components/pages/doctor/appointements/
     PatientDashBoardComponent,
     DoctorProfileSettingsComponent,
     BookingComponent,
-    AppointementsComponent
+    RatingStarComponent,
+    AppointementsComponent,
+    ClinicComponent,
+    DoctorOverViewComponent
   ],
   imports: [
     BrowserModule,
