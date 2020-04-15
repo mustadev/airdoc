@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import com.brainstormers.airdoc.models.Contact;
 import com.brainstormers.airdoc.models.Photo;
 
 /**
@@ -12,7 +13,7 @@ import com.brainstormers.airdoc.models.Photo;
  * @author Mustapha Ouarrain
  *
  */
-public interface PhotoService {
+public interface ContactService {
 	
 	
 	/**
@@ -21,7 +22,7 @@ public interface PhotoService {
 	 * @return photoID
 	 * @throws IOException
 	 */
-	Optional<Photo> save(Photo photo);
+	Optional<Contact> save(Contact contact);
 	
 
 	/**
@@ -29,13 +30,11 @@ public interface PhotoService {
 	 * @param id
 	 * @return photo
 	 */
-	Optional<Photo> findById(String id);
+	Optional<List<Contact>> findAll();
 
 
-	//Optional<List<Photo>> findByOwnerId(String photoId);
+	//Optional<List<Contact>> findByOwnerId(String photoId);
 
-
-	void deleteById(String id);
 
 
 	void deleteAll();

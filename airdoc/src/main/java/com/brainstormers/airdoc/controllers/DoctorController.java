@@ -371,5 +371,3 @@ public class DoctorController {
 }
 
 
-
-
