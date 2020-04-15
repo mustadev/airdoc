@@ -1,7 +1,6 @@
 package com.brainstormers.airdoc.controllers;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.List;
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;

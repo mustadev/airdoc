@@ -29,6 +29,11 @@ import { AdminLoginComponent } from './components/pages/admin/admin-login/admin-
 import { AppointmentComponent } from './components/pages/patient/appointment/appointment.component';
 import { ChangePasswordComponent} from './components/pages/patient/change-password/change-password.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
+import { DoctorDashBoardComponent } from './components/pages/doctor/doctor-dash-board/doctor-dash-board.component';
+import { PatientDashBoardComponent } from './components/pages/patient/patient-dash-board/patient-dash-board.component';
+import { DoctorProfileSettingsComponent } from './components/pages/doctor/doctor-profile-settings/doctor-profile-settings.component';
+import { BookingComponent } from './components/pages/booking/booking.component';
+import { AppointementsComponent } from './components/pages/doctor/appointements/appointements.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +57,12 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
     AdminLoginComponent,
     AppointmentComponent,
     ChangePasswordComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    DoctorDashBoardComponent,
+    PatientDashBoardComponent,
+    DoctorProfileSettingsComponent,
+    BookingComponent,
+    AppointementsComponent
   ],
   imports: [
     BrowserModule,

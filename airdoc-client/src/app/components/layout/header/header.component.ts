@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
   }
 
   updateHeader(user:User){
-    console.log("subscribe " + user);
+    console.log("LoggerInUser ", user);
       this.isLoggedIn = true;
       this.loggedInUser = user;
       console.log("logged in user : " + this.loggedInUser);

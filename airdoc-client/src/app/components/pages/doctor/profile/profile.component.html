@@ -1,48 +1,46 @@
 <div class="content">
 	<div class="container">
-
-
 		<!-- Doctor Widget -->
 		<div class="card">
 			<div class="card-body">
 				<div class="doctor-widget">
 					<div class="doc-info-left">
 						<div class="doctor-img">
-							<img src="assets/img/doctors/doctor-thumb-02.jpg" class="img-fluid" alt="User Image">
+							<img [src]="avatar" class="img-fluid" alt="Doctor Image">
 						</div>
 						<div class="doc-info-cont">
-							<h4 class="doc-name">Dr. {{doctor.firstname | titlecase}} {{doctor.lastname | titlecase}}
+							<h4 class="doc-name">Dr. {{doctor?.firstname | titlecase}} {{doctor?.lastname | titlecase}}
 							</h4>
-							<p class="doc-speciality">{{doctor.speciality | titlecase}}</p>
+							<p class="doc-speciality">{{doctor?.speciality | titlecase}}</p>
 							<div class="rating">
 								<i class="fas fa-star filled"></i>
 								<i class="fas fa-star filled"></i>
 								<i class="fas fa-star filled"></i>
 								<i class="fas fa-star filled"></i>
 								<i class="fas fa-star"></i>
-								<span class="d-inline-block average-rating">({{doctor.averageRating}})</span>
+								<span class="d-inline-block average-rating">({{doctor?.averageRating}})</span>
 							</div>
 							<div class="clinic-details">
 								<p class="doc-location"><i class="fas fa-map-marker-alt"></i>
-									{{doctor.clinic.city | titlecase}}, {{doctor.clinic.country | titlecase}} </p>
+									{{clinic?.city | titlecase}}, {{clinic?.country | titlecase}} </p>
 							</div>
 							<div class="clinic-services">
-								<span *ngFor="let service of doctor.clinic.services">{{service}}</span>
+								<span *ngFor="let service of clinic.services">{{service}}</span>
 							</div>
 						</div>
 					</div>
 					<div class="doc-info-right">
 						<div class="clini-infos">
 							<ul>
-								<li><i class="far fa-comment"></i> {{doctor.reviews.length}} Feedback</li>
-								<li><i class="fas fa-map-marker-alt"></i> {{doctor.clinic.city | titlecase}},
-									{{doctor.clinic.country | titlecase}}</li>
-								<li><i class="far fa-money-bill-alt"></i> {{doctor.clinic.maxPrice | currency}} per hour
+								<li><i class="far fa-comment"></i> {{doctor?.reviews?.length}} Feedback</li>
+								<li><i class="fas fa-map-marker-alt"></i> {{clinic?.city | titlecase}},
+									{{clinic?.country | titlecase}}</li>
+								<li><i class="far fa-money-bill-alt"></i> {{clinic?.maxPrice | currency}} per hour
 								</li>
 							</ul>
 						</div>
 						<div class="clinic-booking">
-							<a class="apt-btn" routerLink="booking">Book Appointment</a>
+							<a class="apt-btn" routerLink="/booking/{{doctor?.id}}">Book Appointment</a>
 						</div>
 					</div>
 				</div>
@@ -66,7 +64,7 @@
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link" href="#doc_locations" data-toggle="tab">Locations</a>
+							<a class="nav-link" href="#doc_clinic" data-toggle="tab">Clinic</a>
 						</li>
 
 						<li class="nav-item">
@@ -98,7 +96,7 @@
 								<div class="service-list">
 									<h4>Services</h4>
 									<ul class="clearfix">
-										<li *ngFor="let service of doctor.clinic.services">{{service}} </li>
+										<li *ngFor="let service of clinic.services">{{service}} </li>
 									</ul>
 								</div>
 								<!-- /Services List -->
@@ -107,7 +105,7 @@
 								<div class="service-list">
 									<h4>Specializations</h4>
 									<ul class="clearfix">
-										<li *ngFor="let speciality of doctor.clinic.specialities">{{speciality}} </li>
+										<li *ngFor="let speciality of clinic.specialities">{{speciality}} </li>
 									</ul>
 								</div>
 								<!-- /Specializations List -->
@@ -118,18 +116,18 @@
 					<!-- /Overview Content -->
 
 					<!-- Locations Content -->
-					<div role="tabpanel" id="doc_locations" class="tab-pane fade">
+					<div role="tabpanel" id="doc_clinic" class="tab-pane fade">
 						<!-- Location List -->
 						<div class="location-list">
 							<div class="row">
 								<!-- Clinic Content -->
 								<div class="col-md-6">
 									<div class="clinic-content">
-										<h4 class="clinic-name">{{doctor.clinic.name}}</h4>
-										<p class="doc-speciality">{{doctor.speciality}}</p>
+										<h4 class="clinic-name">{{clinic?.name}}</h4>
+										<p class="doc-speciality">{{doctor?.speciality}}</p>
 										<div class="clinic-details mb-0">
 											<h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i>
-												{{doctor.clinic.address}} <br></h5>
+												{{clinic?.address}} <br></h5>
 										</div>
 									</div>
 								</div>
@@ -137,7 +135,7 @@
 
 								<div class="col-md-2">
                                     <div class="consult-price">
-                                        {{doctor.clinic.consultPrice | currency}}
+                                        {{clinic?.consultPrice | currency}}
                                     </div>
                                 </div>
 							</div>
@@ -158,7 +156,7 @@
 						
 						 <!-- Write Review -->
 						 <div *ngIf="isPatient" class="write-review">
-                            <h4>Write a review for <strong> Dr. {{doctor.firstname | titlecase}} {{doctor.lastname | titlecase}}</strong></h4>
+                            <h4>Write a review for <strong> Dr. {{doctor?.firstname | titlecase}} {{doctor?.lastname | titlecase}}</strong></h4>
                             
                             <!-- Write Review Form -->
                             <form>
