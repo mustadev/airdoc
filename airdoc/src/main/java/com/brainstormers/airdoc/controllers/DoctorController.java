@@ -1,7 +1,6 @@
 package com.brainstormers.airdoc.controllers;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -489,7 +488,5 @@ public class DoctorController {
 		return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Review Unliked"));
 	}
 }
-
-
 
 

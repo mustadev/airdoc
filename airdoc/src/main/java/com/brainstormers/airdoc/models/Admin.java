@@ -1,6 +1,7 @@
 package com.brainstormers.airdoc.models;
 
 import java.util.HashSet;
+
 import java.util.Set;
 
 import javax.validation.constraints.Email;

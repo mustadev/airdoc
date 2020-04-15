@@ -11,6 +11,7 @@ import { DoctorProfileSettingsComponent } from './components/pages/doctor/doctor
 import { LoginComponent as PatientLoginComponent } from './components/pages/patient/login/login.component';
 import { SignupComponent as PatientSingupComponent} from './components/pages/patient/signup/signup.component';
 import { ProfileComponent as PatientProfileComponent } from './components/pages/patient/profile/profile.component';
+import { PatientDashBoardComponent } from './components/pages/patient/patient-dash-board/patient-dash-board.component';
 import { SearchComponent } from './components/pages/search/search.component';
 
 import { DoctorAuthGuard } from './services/doctor-auth.guard';
@@ -34,10 +35,11 @@ const routes: Routes = [
   { path: 'patient/profile' , component: PatientProfileComponent},
   { path: 'patient/login' , component: PatientLoginComponent },
   { path: 'patient/signup' , component: PatientSingupComponent },
+  { path: 'patient/dashboard' , component: PatientDashBoardComponent},
   { path: 'search' , component: SearchComponent },
-  { path: 'booking/:id' , component: BookingComponent},
+  { path: 'booking/:id' , component: BookingComponent, canActivate: [PatientAuthGuard]},
   { path: 'patient/appointment' , component: AppointmentComponent},
-  { path :  'patient/editPassword' , component: ChangePasswordComponent},
+  { path: 'patient/editPassword' , component: ChangePasswordComponent},
   { path: '**', redirectTo: 'home' } //this must be the last
 
 ];

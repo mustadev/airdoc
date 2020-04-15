@@ -54,7 +54,7 @@ public class PatientServiceImpl implements PatientService {
 	
 	@Override
 	public Optional<Patient> findByEmail(String email) {
-		return Optional.of(patientRepository.findByEmail(email));
+		return Optional.ofNullable(patientRepository.findByEmail(email));
 		
 	}
 	

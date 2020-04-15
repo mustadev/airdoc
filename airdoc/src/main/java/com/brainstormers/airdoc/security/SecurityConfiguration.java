@@ -48,8 +48,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 		authenticationManagerBuilder.authenticationProvider(getAdminAuthenticationProvider());
-		authenticationManagerBuilder.authenticationProvider(getAdminAuthenticationProvider());
-		authenticationManagerBuilder.authenticationProvider(getAdminAuthenticationProvider());
+		authenticationManagerBuilder.authenticationProvider(getDoctorAuthenticationProvider());
+		authenticationManagerBuilder.authenticationProvider(getPatientAuthenticationProvider());
 
 	}
 

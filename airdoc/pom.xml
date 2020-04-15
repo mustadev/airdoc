@@ -9,7 +9,16 @@
 <artifactId>spring-boot-starter-parent</artifactId>
 <version>2.2.5.RELEASE</version>
 </parent>
+	
+    <properties>
+		<java.version>1.8</java.version>
+		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+	</properties>
+	
+	
+	
 	<dependencies>
+	 
 	<dependency>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-web</artifactId>
@@ -51,22 +60,22 @@
 			</exclusion>
 		</exclusions>
 	</dependency>
-<!-- comment out spring restassured
+<!-- comment out spring RestAssured
  <dependency>
       <groupId>io.rest-assured</groupId>
-      <artifactId>spring-mock-mvc</artifactId>
+      <artifactId>spring-mock-MVC</artifactId>
       <version>4.3.0</version>
       <scope>test</scope>
 </dependency>
 <dependency>
       <groupId>io.rest-assured</groupId>
-      <artifactId>xml-path</artifactId>
+      <artifactId>XML-path</artifactId>
       <version>4.3.0</version>
       <scope>test</scope>
 </dependency>
 -->
 
-<!--  restassured dependancies  -->
+<!--  RestAssured Dependencies  -->
 <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
@@ -113,13 +122,14 @@
     <artifactId>springfox-bean-validators</artifactId>
     <version>2.9.2</version>
 </dependency>	
-<!-- pour XML Converter pour Java 9 et java 11 -->
+<!-- pour XML Converter pour Java 9 , java 11 -->
 
 <!-- Runtime, com.sun.xml.bind module -->
 <dependency>
     <groupId>org.glassfish.jaxb</groupId>
     <artifactId>jaxb-runtime</artifactId>
     <version>2.3.2</version>
+    
 </dependency>
       <dependency>
             <groupId>org.projectlombok</groupId>
