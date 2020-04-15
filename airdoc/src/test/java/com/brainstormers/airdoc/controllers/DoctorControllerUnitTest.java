@@ -1,10 +1,11 @@
 package com.brainstormers.airdoc.controllers;
 
-import static org.hamcrest.Matchers.containsString;
+
+
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.Optional;
 import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.services.DoctorService;
 
-import org.junit.jupiter.api.Disabled;
+
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;

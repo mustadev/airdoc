@@ -1,6 +1,7 @@
 package com.brainstormers.airdoc.models;
 
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
