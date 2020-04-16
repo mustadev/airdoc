@@ -1,8 +1,6 @@
 package com.brainstormers.airdoc.init;
 
 import java.util.Arrays;
-import com.brainstormers.airdoc.services.AdminService;
-import com.brainstormers.airdoc.services.RoleService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import com.brainstormers.airdoc.services.AdminService;
+import com.brainstormers.airdoc.services.RoleService;
 
 @Order(4)
 @Component

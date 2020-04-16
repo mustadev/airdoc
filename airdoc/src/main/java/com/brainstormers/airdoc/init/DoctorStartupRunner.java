@@ -5,6 +5,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+
 import com.brainstormers.airdoc.models.Clinic;
 import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.ERole;
@@ -14,14 +22,6 @@ import com.brainstormers.airdoc.models.Role;
 import com.brainstormers.airdoc.services.DoctorService;
 import com.brainstormers.airdoc.services.ReviewService;
 import com.brainstormers.airdoc.services.RoleService;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.core.annotation.Order;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 
 @Order(2)
 @Component
@@ -60,29 +60,27 @@ public class DoctorStartupRunner implements CommandLineRunner {
 		clinic.setConsultPrice(100);
 		clinic.setMaxPrice(400);
 		clinic.setMinPrice(150);
-		
-		List<Review> reviews = Arrays.asList(
-				reviewService.save(new Review(
-						"content", 
-						"authorId",
-						new HashSet<Like>(Arrays.asList( 
-								new Like("author2"))
-								))).get(),
-				reviewService.save(new Review(
-						"content", 
-						"authorId",
-						new HashSet<Like>(Arrays.asList(
-								new Like("author2"), 
-								new Like("author4"))
-								))).get(),
-				reviewService.save(new Review(
-						"content", 
-						"authorId",
-						new HashSet<Like>(Arrays.asList(
-								new Like("author5"),
-								new Like("author7"), 
-								new Like("author3"))
-								))).get());
+//		Review review1 = new Review();
+//		Set<Review> reviews = new HashSet<>(Arrays.asList(
+//				reviewService.save(new Review(
+//						"content", 
+//						"authorId3",
+//						new HashSet<Like>(Arrays.asList( 
+//								new Like("author2"))
+//								), 1)).get(),
+//				reviewService.save(new Review(
+//						"content", 
+//						"authorId2",
+//						new HashSet<Like>(Arrays.asList(
+//								new Like("author2"), 
+//								new Like("author4"))
+//								), 2)).get(),
+//				reviewService.save(new Review(
+//						"content", 
+//						"authorId1",
+//						new HashSet<Like>(
+//								Arrays.asList(new Like("author5"),new Like("author7"), new Like("author3"))), 
+//						3)).get()));
 		Doctor doctor1 = new Doctor();
 		doctor1.setFirstname("Max");
 		doctor1.setLastname("Plank");
@@ -94,7 +92,7 @@ public class DoctorStartupRunner implements CommandLineRunner {
 		doctor1.setRating(3.5f);
 		doctor1.setAverageRating(85);
 		doctor1.setSpeciality("Dentist");
-		doctor1.setReviews(reviews);
+//		doctor1.setReviews(reviews);
 		Set<Role> roles = new HashSet<Role>();
 		roles.add(roleService.findByName(ERole.ROLE_USER).
 				orElseThrow(() -> new Exception("Role " + ERole.ROLE_USER + " not Found in DB")));

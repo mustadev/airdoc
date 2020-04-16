@@ -12,11 +12,7 @@
                     <p class="doc-speciality">{{doctor?.speciality }}</p>
                     <h5 class="doc-department">{{doctor?.speciality}}</h5>
                     <div class="rating">
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star"></i>
+                        <app-rating-star [ratedCount]="doctor?.rating" ></app-rating-star>
                         <span class="d-inline-block average-rating">({{doctor?.averageRating}})</span>
                     </div>
                     <div class="clinic-details">

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
+import javax.validation.Valid;
+
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
 import org.slf4j.LoggerFactory;
@@ -23,8 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
 import com.brainstormers.airdoc.exceptions.ResourceAlreadyExistsException;
+import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
 import com.brainstormers.airdoc.models.Clinic;
 import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.Like;
@@ -147,7 +149,7 @@ public class DoctorController {
 	@ApiOperation(value = "ajouter un Doctor ", response = Doctor.class, code = 201)
 	@PostMapping(consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Doctor> createDoctor(
-			@ApiParam(value = "Doctor", required = true) @RequestBody Doctor doctor) throws ResourceAlreadyExistsException{
+			@ApiParam(value = "Doctor", required = true) @RequestBody @Valid Doctor doctor) throws ResourceAlreadyExistsException{
 		Doctor result =  doctorService.save(doctor).
 				orElseThrow(() -> new ResourceAlreadyExistsException("could not create " +	doctor.toString()));
 		return new ResponseEntity<Doctor>(result, HttpStatus.CREATED);
@@ -162,7 +164,7 @@ public class DoctorController {
 	//    @PreAuthorize("#doctor.id == principal.id")
 	@PutMapping(consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Doctor>  updateDoctor(
-			@ApiParam(value = "Doctor", required = true) @RequestBody Doctor doctor) throws ResourceAlreadyExistsException{
+			@ApiParam(value = "Doctor", required = true) @RequestBody @Valid Doctor doctor) throws ResourceAlreadyExistsException{
 		//doctorService.saveDoctor(doctor);
 		//return new ResponseEntity<>("Doctor added successfully", HttpStatus.OK);
 		Doctor result = doctorService.
@@ -258,7 +260,7 @@ public class DoctorController {
 	@PostMapping("/{id}/clinic/")
 	public ResponseEntity<Clinic> addClinic(
 			@PathVariable("id") String id,
-			@RequestBody Clinic clinic) throws ResourceNotFoundException{
+			@RequestBody @Valid Clinic clinic) throws ResourceNotFoundException{
 	
 		Doctor doctor = doctorService.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Could Find Doctor: " + id));
@@ -295,7 +297,7 @@ public class DoctorController {
 	@PutMapping("/{id}/clinic")
 	public ResponseEntity<Clinic> updateClinic(
 			@PathVariable("id") String id,
-			@RequestBody Clinic clinic) throws ResourceNotFoundException, IOException {
+			@RequestBody @Valid Clinic clinic) throws ResourceNotFoundException, IOException {
 		Doctor doctor = doctorService
 				.findById(id)
 				.orElseThrow(()-> new ResourceNotFoundException("could not find photo with id"));
@@ -379,13 +381,21 @@ public class DoctorController {
 	@PostMapping("/{id}/reviews")
 	public ResponseEntity<Review> addReview(
 			@PathVariable("id") String id,
-			@RequestBody Review review) throws ResourceNotFoundException{
+			@RequestBody  Review review) throws ResourceNotFoundException{
+		if (review.getPatientId() == null) {
+			System.out.println("::::::::::: review with authorId null");
+		}
 		Doctor doctor = doctorService.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Could Find Doctor: " + id));
+		Set<Review> reviews = doctor.getReviews();
+		if (reviews.contains(review)) {
+			System.out.println("::::::::::: containes Review author id: " + review.getPatientId());
+			return ResponseEntity.unprocessableEntity().body(review);
+		}
 		review = reviewService.save(review)
 				.orElseThrow(() -> new ResourceNotFoundException("Could Not Save Review"));
 		
-		List<Review> reviews = doctor.getReviews();
+		
 		reviews.add(review);
 		doctor.setReviews(reviews);
 		doctorService.save(doctor);
@@ -399,13 +409,18 @@ public class DoctorController {
 	 * @param {@link Review} review
 	 * @return {@link List<Review>  } reviews
 	 */
-	@ApiOperation(value = "Trouver les Revues sur le Doctor", response = List.class)
+	@ApiOperation(value = "Trouver les Revues sur le Doctor", response = Set.class)
 	@GetMapping("/{id}/reviews")
-	public ResponseEntity<List<Review>> getReview(@PathVariable("id") String id) throws ResourceNotFoundException {
-		List<Review> reviews = doctorService
+	public ResponseEntity<Set<Review>> getReview(@PathVariable("id") String id) throws ResourceNotFoundException {
+		Set<Review> reviews = doctorService
 				.findById(id)
 				.orElseThrow(()-> new ResourceNotFoundException("Could not find Doctor with ID: " + id))
 				.getReviews();
+		if(reviews.contains(null)) {
+			System.out.println(" ::::::::::: set contains null");
+			
+			reviews.remove(null);
+		}
 		return ResponseEntity.ok().body(reviews);
 	}
 
@@ -419,7 +434,7 @@ public class DoctorController {
 	@PutMapping("/reviews/{reviewId}")
 	public ResponseEntity<Review> getUpdateReview(
 			@PathVariable("reviewId") String reviewId,
-			@RequestBody Review review) throws ResourceNotFoundException {
+			@RequestBody @Valid Review review) throws ResourceNotFoundException {
 		Review oldReview = reviewService.findById(reviewId)
 				.orElseThrow(()-> new ResourceNotFoundException("could not find Review with ID: " + reviewId));
 		oldReview.setContent(review.getContent());
@@ -453,7 +468,7 @@ public class DoctorController {
 	@PostMapping("/reviews/{reviewId}/like")
 	public ResponseEntity<MessageResponse> likeReview(
 			@PathVariable("reviewId") String reviewId,
-			@RequestBody Like like ) throws ResourceNotFoundException{
+			@RequestBody  @Valid Like like ) throws ResourceNotFoundException{
 		Review review = reviewService.findById(reviewId)
 				.orElseThrow(() -> new ResourceNotFoundException("could not Find Review  with ID: " + reviewId));
 		Set<Like> likes = review.getLikes();
@@ -475,7 +490,7 @@ public class DoctorController {
 	@PostMapping("/reviews/{reviewId}/unlike")
 	public ResponseEntity<MessageResponse> unlikeReview(
 			@PathVariable("reviewId") String reviewId,
-			@RequestBody Like like ) throws ResourceNotFoundException{
+			@RequestBody @Valid Like like ) throws ResourceNotFoundException{
 		Review review = reviewService.findById(reviewId)
 				.orElseThrow(() -> new ResourceNotFoundException("could not Find Review  with ID: " + reviewId));
 		Set<Like> likes = review.getLikes();

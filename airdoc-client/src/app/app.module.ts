@@ -37,6 +37,7 @@ import { RatingStarComponent} from './components/rating-star/rating-star.compone
 import { AppointementsComponent } from './components/pages/doctor/appointements/appointements.component';
 import { ClinicComponent } from './components/clinic/clinic.component';
 import { DoctorOverViewComponent } from './components/doctor-over-view/doctor-over-view.component';
+import { ReviewFormComponent } from './components/review-form/review-form.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { DoctorOverViewComponent } from './components/doctor-over-view/doctor-ov
     RatingStarComponent,
     AppointementsComponent,
     ClinicComponent,
-    DoctorOverViewComponent
+    DoctorOverViewComponent,
+    ReviewFormComponent
   ],
   imports: [
     BrowserModule,

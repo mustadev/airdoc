@@ -3,7 +3,9 @@ package com.brainstormers.airdoc.models;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -34,37 +36,44 @@ public class Review {
 	 * le contenu de la revue
 	 */
 	@ApiModelProperty(notes = "le contenu de la revue")
-	@NotEmpty
+	@NotBlank
 	private String content;
 	/**
 
 	 * Id auteur de la revue
 	 */
 	@ApiModelProperty(notes = "auteur de la revue")
-	@NotEmpty
-	private String autherId;
+	@NotBlank
+	private String patientId;
 	
 	/**
 	 * nombre des likes
 	 */
 	@ApiModelProperty(notes = "nombre des likes")
+	@NotNull
 	private Set<Like> likes = new HashSet<Like>();
+	
+	/**
+	 * Evaluation de Doctor
+	 */
+	@ApiModelProperty(notes = "nombre des likes")
+	@NotNull
+	private int rating = 0;
 	
 	
 	/******** Getters and Setter and Constructors ********/
 	
-	public Review( @NotEmpty String content, @NotEmpty String autherId, Set<Like> likes) {
-		this.content = content;
-		this.autherId = autherId;
-		this.likes = likes;
+	
+	
+	public Review() {
 	}
 
-	
+
+
 	public String getId() {
 		return id;
 	}
-	
-	
+
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -86,13 +95,60 @@ public class Review {
 		this.likes = likes;
 	}
 
-	public String getAutherId() {
-		return autherId;
+
+
+
+	public int getRating() {
+		return rating;
 	}
 
 
-	public void setAutherId(String autherId) {
-		this.autherId = autherId;
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
+
+
+
+	public String getPatientId() {
+		return patientId;
+	}
+
+
+
+	public void setPatientId(String patientId) {
+		this.patientId = patientId;
+	}
+
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((patientId == null) ? 0 : patientId.hashCode());
+		return result;
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Review other = (Review) obj;
+		if (patientId == null) {
+			if (other.patientId != null)
+				return false;
+		} else if (!patientId.equals(other.patientId))
+			return false;
+		return true;
+	}
+
+
+	
 	
 }

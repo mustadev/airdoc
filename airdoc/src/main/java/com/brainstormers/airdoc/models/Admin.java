@@ -1,11 +1,11 @@
 package com.brainstormers.airdoc.models;
 
 import java.util.HashSet;
-
 import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
@@ -80,6 +80,7 @@ public class Admin {
 	 */
 	@ApiModelProperty(notes = "les authorité de employé")
 	@DBRef
+	@NotNull
 	private Set<Role> roles = new HashSet<>();
 
 	
@@ -87,7 +88,7 @@ public class Admin {
 	
 	public Admin(String id, @NotBlank @Size(max = 50) String firstname, @NotBlank @Size(max = 50) String lastname,
 			@NotBlank @Size(max = 50) String username, @NotBlank @Size(max = 50) String password,
-			@NotBlank @Size(max = 70) @Email String email, Set<Role> roles) {
+			@NotBlank @Size(max = 70) @Email String email, @NotNull Set<Role> roles) {
 		super();
 		this.id = id;
 		this.firstname = firstname;

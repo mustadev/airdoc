@@ -3,10 +3,10 @@ package com.brainstormers.airdoc.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.brainstormers.airdoc.models.Doctor;
-
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.brainstormers.airdoc.models.Doctor;
 
 /**
  * une services  pour accéder et modifier la base de données

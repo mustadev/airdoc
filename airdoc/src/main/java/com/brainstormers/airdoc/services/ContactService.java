@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.brainstormers.airdoc.models.Contact;
-import com.brainstormers.airdoc.models.Photo;
 
 /**
  * Service de getion des images des utilisateurs

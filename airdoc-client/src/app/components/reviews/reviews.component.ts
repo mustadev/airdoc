@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Doctor } from 'src/app/models/Doctor';
+import { ReviewService } from 'src/app/services/review.service';
+import { Review } from 'src/app/models/Review';
 
 @Component({
   selector: 'app-reviews',
@@ -10,12 +12,46 @@ export class ReviewsComponent implements OnInit {
 
   @Input() doctor:Doctor;
   @Input() isPatient:boolean;
-  constructor() { }
+  reviews:Review[]
+  rating:number;
+  constructor(private reviewService:ReviewService) { }
 
   ngOnInit(): void {
+    this.refreshReviews();
   }
 
-  onRating(data){
-    console.log("rating: ", data);
+
+  addReview(review:Review){
+    console.log('review : ' + JSON.stringify(review))
+    this.reviewService.addReview(this.doctor.id, review).subscribe(res => {
+      console.log("doctor reviews : ", JSON.stringify(res))
+      this.refreshReviews()
+    });
+  }
+
+  deleteReview(review:Review){
+    this.reviewService.deleteReview(review.id).subscribe(res => {
+      console.log("doctor reviews : ", JSON.stringify(res))
+      // const index = this.reviews.indexOf(review, 0);
+      //     if (index > -1) {
+      //        this.reviews.splice(index, 1);
+      //     }
+      this.refreshReviews();
+    });
+  }
+
+  editReview(review:Review){
+    this.reviewService.updateReview(review).subscribe(res => {
+      console.log("doctor reviews : ", JSON.stringify(res))
+      this.refreshReviews()
+    });
+  }
+
+  refreshReviews(){
+    console.log("doctor: ", JSON.stringify(this.doctor))
+    this.reviewService.getReviews(this.doctor?.id).subscribe(res => {
+      console.log("doctor reviews : ", JSON.stringify(res))
+      this.reviews = res;
+    })
   }
 }

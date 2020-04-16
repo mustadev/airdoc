@@ -1,12 +1,12 @@
 package com.brainstormers.airdoc.services;
 
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.brainstormers.airdoc.models.Patient;
-
-import java.util.List;
-import java.util.Optional;
 
 /** 
  * cet interface pour déclarer toutes les méthodes de  la classe PatientServiceImpl

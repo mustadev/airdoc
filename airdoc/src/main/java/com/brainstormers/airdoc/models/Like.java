@@ -1,10 +1,12 @@
 package com.brainstormers.airdoc.models;
 
+import javax.validation.constraints.NotNull;
+
 public class Like {
+	
+	@NotNull
 	private String authorId;
 
-	
-	
 	
 	public Like() {}
 
@@ -19,16 +21,30 @@ public class Like {
 	public void setAuthorId(String authorId) {
 		this.authorId = authorId;
 	}
-	
+
 	@Override
 	public int hashCode() {
-		return this.authorId.hashCode();
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((authorId == null) ? 0 : authorId.hashCode());
+		return result;
 	}
-	
+
 	@Override
-	public boolean equals(Object object) {
-		Like like = (Like) object;
-		return like.getAuthorId().equals(this.authorId);
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Like other = (Like) obj;
+		if (authorId == null) {
+			if (other.authorId != null)
+				return false;
+		} else if (!authorId.equals(other.authorId))
+			return false;
+		return true;
 	}
 	
 }

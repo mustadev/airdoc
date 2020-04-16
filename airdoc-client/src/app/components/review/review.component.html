@@ -1,17 +1,28 @@
- <!-- Comment List -->
- <li>
+<li>
     <div class="comment">
-        <img class="avatar avatar-sm rounded-circle" alt="Patient Image" src="assets/img/patients/patient.jpg">
+        <img class="avatar avatar-sm rounded-circle" alt="User Image" src="assets/img/patients/patient2.jpg">
         <div class="comment-body">
-
             <div class="meta-data">
-                <span class="comment-author">Richard Wilson</span>
-                <app-rating-star [ratedCount]="5" [readonly]="true"></app-rating-star>
-                <p class="comment-content">{{review.content}}</p>
-                
+                <span *ngIf="author" class="comment-author">{{author.firstname | titlecase}} {{author.lastname | titlecase}}</span>
+                <app-rating-star [ratedCount]="review?.rating" [readonly]="true"></app-rating-star>
             </div>
-
+            <p class="comment-content">
+                {{review?.content}}
+            </p>
+            <div class="comment-reply">
+                <p class="recommend-btn">
+                    <a (click)="toggleLike()" class="like-btn">
+                        <i [ngClass]="setClass()"></i> (21)
+                    </a>
+                    <a *ngIf="author && currentUserId && author.id == currentUserId" (click)="onEdit()" class="edit-btn">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a *ngIf="author && currentUserId && author.id == currentUserId" (click)="onDelete()" class="trash-btn">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </p>
+            </div>
         </div>
     </div>
+<br>
 </li>
-<!-- /Comment List -->

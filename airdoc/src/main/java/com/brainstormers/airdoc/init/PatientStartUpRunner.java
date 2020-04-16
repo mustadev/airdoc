@@ -11,9 +11,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-
 import com.brainstormers.airdoc.models.Patient;
-
 import com.brainstormers.airdoc.repositories.PatientRepository;
 
 /**

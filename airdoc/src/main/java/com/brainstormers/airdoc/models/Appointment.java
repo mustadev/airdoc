@@ -1,7 +1,6 @@
 package com.brainstormers.airdoc.models;
 
 import java.util.ArrayList;
-
 import java.util.Collection;
 import java.util.Date;
 
