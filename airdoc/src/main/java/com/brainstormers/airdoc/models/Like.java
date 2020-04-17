@@ -1,10 +1,10 @@
 package com.brainstormers.airdoc.models;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 public class Like {
 	
-	@NotNull
+	@NotBlank
 	private String authorId;
 
 	

@@ -89,8 +89,8 @@ public class DoctorStartupRunner implements CommandLineRunner {
 		doctor1.setPassword(encoder.encode("password"));
 		doctor1.setAboutMe("About Me ");
 		doctor1.setClinic(clinic);
-		doctor1.setRating(3.5f);
-		doctor1.setAverageRating(85);
+		doctor1.setRating(3f);
+		doctor1.setAverageRating(1);
 		doctor1.setSpeciality("Dentist");
 //		doctor1.setReviews(reviews);
 		Set<Role> roles = new HashSet<Role>();
@@ -119,8 +119,8 @@ public class DoctorStartupRunner implements CommandLineRunner {
 		doctor2.setPassword(encoder.encode("password"));
 		doctor2.setAboutMe("About Bohr");
 		doctor2.setClinic(clinic2);
-		doctor2.setRating(4.5f);
-		doctor2.setAverageRating(85);
+		doctor2.setRating(1f);
+		doctor2.setAverageRating(2);
 		doctor2.setSpeciality("Dentist");
 		Set<Role> roles2 = new HashSet<Role>();
 		roles2.add(roleService.findByName(ERole.ROLE_USER).

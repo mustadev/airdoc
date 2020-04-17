@@ -16,6 +16,7 @@ export class ReviewComponent implements OnInit {
 
   currentUserId:string;
   author:Patient;
+  avatar:any;
   like:Like;
   isLiked:boolean;
   @Input() review:Review;
@@ -32,6 +33,10 @@ export class ReviewComponent implements OnInit {
     
     this.patientService.getById(this.review.patientId).subscribe(res => {
       this.author = res;
+    });
+    this.patientService.getAvatar(this.review.patientId).subscribe(res=> {
+        this.avatar = 'data:image/jpeg;base64,' + res?.image?.data;
+        console.log("Avatar: ", this.avatar);
     });
     this.autheService.getCurrentUser().subscribe(res => {
       this.currentUserId = res.id;

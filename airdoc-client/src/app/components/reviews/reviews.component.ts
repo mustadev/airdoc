@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Doctor } from 'src/app/models/Doctor';
 import { ReviewService } from 'src/app/services/review.service';
 import { Review } from 'src/app/models/Review';
@@ -12,6 +12,7 @@ export class ReviewsComponent implements OnInit {
 
   @Input() doctor:Doctor;
   @Input() isPatient:boolean;
+  @Output() refresh:EventEmitter<any> = new EventEmitter()
   reviews:Review[]
   rating:number;
   constructor(private reviewService:ReviewService) { }
@@ -30,7 +31,7 @@ export class ReviewsComponent implements OnInit {
   }
 
   deleteReview(review:Review){
-    this.reviewService.deleteReview(review.id).subscribe(res => {
+    this.reviewService.deleteReview(this.doctor.id, review.id).subscribe(res => {
       console.log("doctor reviews : ", JSON.stringify(res))
       // const index = this.reviews.indexOf(review, 0);
       //     if (index > -1) {
@@ -41,7 +42,7 @@ export class ReviewsComponent implements OnInit {
   }
 
   editReview(review:Review){
-    this.reviewService.updateReview(review).subscribe(res => {
+    this.reviewService.updateReview(this.doctor.id, review).subscribe(res => {
       console.log("doctor reviews : ", JSON.stringify(res))
       this.refreshReviews()
     });
@@ -49,6 +50,7 @@ export class ReviewsComponent implements OnInit {
 
   refreshReviews(){
     console.log("doctor: ", JSON.stringify(this.doctor))
+    this.refresh.emit("refresh");
     this.reviewService.getReviews(this.doctor?.id).subscribe(res => {
       console.log("doctor reviews : ", JSON.stringify(res))
       this.reviews = res;

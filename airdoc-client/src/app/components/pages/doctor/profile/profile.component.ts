@@ -47,5 +47,11 @@ export class ProfileComponent implements OnInit {
   );
   }
 
+  refresh(){
+    this.doctorService.getById(this.doctor.id).subscribe(res => {
+      this.doctor = res;
+    })
+  }
+
   
 }

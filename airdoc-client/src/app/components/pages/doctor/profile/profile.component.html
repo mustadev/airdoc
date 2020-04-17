@@ -93,7 +93,7 @@
 
 					<!-- Reviews Content -->
                     <div role="tabpanel" id="doc_reviews" class="tab-pane fade">
-						<app-reviews *ngIf="doctor" [doctor]="doctor" [isPatient]="isPatient"></app-reviews>
+						<app-reviews (refresh)="refresh()"  *ngIf="doctor" [doctor]="doctor" [isPatient]="isPatient"></app-reviews>
 					</div>
                     <!-- /Reviews Content -->
 

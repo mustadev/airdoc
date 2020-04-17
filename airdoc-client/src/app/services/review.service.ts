@@ -18,12 +18,12 @@ export class ReviewService {
     console.log("review in service: ", review);
     return this.http.post<Review>(this.doctorUrl + '/' + doctorId + '/reviews', review);
   }
-  updateReview(review:Review):Observable<Review>{
-    return this.http.put<Review>(this.doctorUrl+  '/reviews/' + review.id, review);
+  updateReview(doctorId:string, review:Review):Observable<Review>{
+    return this.http.put<Review>(this.doctorUrl+ '/' + doctorId + '/reviews/' + review.id, review);
   }
 
-  deleteReview(reviewId:string):Observable<any>{
-    return this.http.delete(this.doctorUrl + '/reviews/' + reviewId);
+  deleteReview(doctorId:string, reviewId:string):Observable<any>{
+    return this.http.delete(this.doctorUrl + '/' + doctorId + '/reviews/' + reviewId);
   }
 
   likeReview(reviewId:string, like:Like):Observable<Like>{

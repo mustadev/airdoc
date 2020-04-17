@@ -34,4 +34,9 @@ export class PatientService {
     return this.http.delete(baseUrl);
   }
 
+  getAvatar(id:string): Observable<any>{
+    return this.http.get(baseUrl +  "/" + id + '/avatar');
+  }
+
+
 }

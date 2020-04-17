@@ -381,7 +381,7 @@ public class DoctorController {
 	@PostMapping("/{id}/reviews")
 	public ResponseEntity<Review> addReview(
 			@PathVariable("id") String id,
-			@RequestBody  Review review) throws ResourceNotFoundException{
+			@RequestBody  @Valid Review review) throws ResourceNotFoundException{
 		if (review.getPatientId() == null) {
 			System.out.println("::::::::::: review with authorId null");
 		}
@@ -395,9 +395,11 @@ public class DoctorController {
 		review = reviewService.save(review)
 				.orElseThrow(() -> new ResourceNotFoundException("Could Not Save Review"));
 		
-		
+		float newRating = getNewRating(doctor.getRating(), doctor.getAverageRating(),review.getRating() );
 		reviews.add(review);
 		doctor.setReviews(reviews);
+		doctor.setRating(newRating);
+		doctor.setAverageRating(doctor.getAverageRating() + 1);
 		doctorService.save(doctor);
 		return ResponseEntity.status(HttpStatus.OK).body(review);
 	}
@@ -431,15 +433,24 @@ public class DoctorController {
 	 * @return {@link Review} review
 	 */
 	@ApiOperation(value = "Update Revue ", response = Review.class)
-	@PutMapping("/reviews/{reviewId}")
+	@PutMapping("/{id}/reviews/{reviewId}")
 	public ResponseEntity<Review> getUpdateReview(
+			@PathVariable("id") String id,
 			@PathVariable("reviewId") String reviewId,
 			@RequestBody @Valid Review review) throws ResourceNotFoundException {
+		Doctor doctor = doctorService.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Could Find Doctor: " + id));
 		Review oldReview = reviewService.findById(reviewId)
 				.orElseThrow(()-> new ResourceNotFoundException("could not find Review with ID: " + reviewId));
 		oldReview.setContent(review.getContent());
 		Review updatedReview = reviewService.save(oldReview)
 			.orElseThrow(() -> new ResourceNotFoundException("could not Update Review  with ID"));
+		float oldRating = getOldRating(doctor.getRating(), doctor.getAverageRating(), oldReview.getRating());
+		float newRating = getNewRating(oldRating, doctor.getAverageRating() -1 ,review.getRating()); 
+		doctor.setRating(newRating);
+		doctor.setAverageRating(doctor.getAverageRating() - 1);
+		reviewService.deleteById(reviewId);
+		doctorService.save(doctor);
 		return ResponseEntity.status(HttpStatus.OK).body(updatedReview);
 
 	}
@@ -451,10 +462,19 @@ public class DoctorController {
 	 * @return message {@link MessageResponse}
 	 */
 	@ApiOperation(value = "Supprimer un Revue", response = MessageResponse.class)
-	@DeleteMapping("/reviews/{reviewId}")
+	@DeleteMapping("/{id}/reviews/{reviewId}")
 	public ResponseEntity<MessageResponse> deleteReview(
+			@PathVariable("id") String id,
 			@PathVariable("reviewId") String reviewId) throws ResourceNotFoundException{
+		Doctor doctor = doctorService.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Could Find Doctor: " + id));
+		Review review = reviewService.findById(reviewId)
+				.orElseThrow(() -> new ResourceNotFoundException("could not Update Review  with ID"));
+		float rating = getOldRating(doctor.getRating(), doctor.getAverageRating(), review.getRating());
+		doctor.setRating(rating);
+		doctor.setAverageRating(doctor.getAverageRating() - 1);
 		reviewService.deleteById(reviewId);
+		doctorService.save(doctor);
 		return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Review Deleted"));
 	}
 	
@@ -473,7 +493,7 @@ public class DoctorController {
 				.orElseThrow(() -> new ResourceNotFoundException("could not Find Review  with ID: " + reviewId));
 		Set<Like> likes = review.getLikes();
 		if(!likes.add(like)) {
-			return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Review Already Liked"));
+			return ResponseEntity.badRequest().body(new MessageResponse("Review Already Liked"));
 		};
 		review.setLikes(likes);
 		reviewService.save(review)
@@ -501,6 +521,16 @@ public class DoctorController {
 		reviewService.save(review)
 			.orElseThrow(() -> new ResourceNotFoundException("could not Save Review  with ID: " + reviewId));
 		return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Review Unliked"));
+	}
+	
+	
+	private float getNewRating(float oldRating, int averageRating, int reviewRating) {
+		return (float) (oldRating * averageRating + reviewRating)/(averageRating + 1);
+		
+	}
+	private float getOldRating(float rating, int averageRating, int oldReviewRating) {
+		return (float) (rating * averageRating - oldReviewRating)/(averageRating - 1);
+		
 	}
 }
 

@@ -3,6 +3,8 @@ package com.brainstormers.airdoc.models;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -58,7 +60,9 @@ public class Review {
 	 */
 	@ApiModelProperty(notes = "nombre des likes")
 	@NotNull
-	private int rating = 0;
+	@Max(5)
+	@Min(1)
+	private int rating = 1;
 	
 	
 	/******** Getters and Setter and Constructors ********/
