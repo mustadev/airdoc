@@ -5,14 +5,16 @@ import { Patient } from 'src/app/models/Patient';
 import { PatientService } from 'src/app/services/patient.service';
 
 @Component({
-  selector: 'app-appoitment',
+  selector: 'app-appointment',
   templateUrl: './appoitment.component.html',
   styleUrls: ['./appoitment.component.css']
 })
-export class AppoitmentComponent implements OnInit {
+export class AppointmentComponent implements OnInit {
 
-  @Input() appointment:Appointment;
+  
+  appointment:Appointment;
   patient:Patient;
+  
   constructor(
     private appointmentService:AppointmentService,
     private patientService:PatientService) { }

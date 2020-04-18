@@ -6,15 +6,14 @@ import { DoctorService } from 'src/app/services/doctor.service';
 import { AppointmentService } from 'src/app/services/appointment.service';
 
 @Component({
-  selector: 'app-appoitments',
-  templateUrl: './appoitments.component.html',
-  styleUrls: ['./appoitments.component.css']
+  selector: 'app-doctor-appointments',
+  templateUrl: './doctor-appointments.component.html',
+  styleUrls: ['./doctor-appointments.component.css']
 })
-export class AppoitmentsComponent implements OnInit {
-
+export class DoctorAppointmentsComponent implements OnInit {
   avatar:any;
   doctor:Doctor;
-  appoitments:Appointment[];
+  appointments:Appointment[];
   constructor(
     private autService:AuthService,
     private doctorService:DoctorService,
@@ -29,7 +28,7 @@ export class AppoitmentsComponent implements OnInit {
         this.avatar = 'data:image/jpeg;base64,' + avatar?.image?.data;
       });
       this.appotmentService.getAllDoctorAppoitments(user.id).subscribe(apps => {
-        this.appoitments = apps;
+        this.appointments = apps;
       })
     });
   }

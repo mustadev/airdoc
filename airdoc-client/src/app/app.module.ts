@@ -26,26 +26,24 @@ import { PatientAuthGuard } from './services/patient-auth-guard';
 import { AdminAuthGuard } from './services/admin-auth.guard';
 import { AdminProfileComponent } from './components/pages/admin/admin-profile/admin-profile.component';
 import { AdminLoginComponent } from './components/pages/admin/admin-login/admin-login.component';
-import { AppointmentComponent } from './components/pages/patient/appointment/appointment.component';
 import { ChangePasswordComponent} from './components/pages/patient/change-password/change-password.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { DoctorDashBoardComponent } from './components/pages/doctor/doctor-dash-board/doctor-dash-board.component';
 import { PatientDashBoardComponent } from './components/pages/patient/patient-dash-board/patient-dash-board.component';
 import { DoctorProfileSettingsComponent } from './components/pages/doctor/doctor-profile-settings/doctor-profile-settings.component';
+import { PatientAppointmentsComponent } from './components/pages/patient/patient-appointments/patient-appointments.component';
+import { PatientAppointmentComponent } from './components/pages/patient/patient-appointment/patient-appointment.component';
+
 import { BookingComponent } from './components/pages/booking/booking.component';
 import { RatingStarComponent} from './components/rating-star/rating-star.component';
-import { AppointmentsComponent } from './components/pages/doctor/appointments/appointments.component';
 import { ClinicComponent } from './components/clinic/clinic.component';
 import { DoctorOverViewComponent } from './components/doctor-over-view/doctor-over-view.component';
 import { ReviewFormComponent } from './components/review-form/review-form.component';
 import { ClinicSettingsComponent } from './components/pages/doctor/clinic-settings/clinic-settings.component';
 import { DoctorSideBarComponent } from './components/pages/doctor/doctor-side-bar/doctor-side-bar.component';
 import { PatientSideBarComponent } from './components/pages/patient/patient-side-bar/patient-side-bar.component';
-import { AppoitmentsComponent } from './components/pages/patient/appoitments/appoitments.component';
-import { AppoitmentComponent } from './components/pages/doctor/appoitment/appoitment.component';
-import { DoctorAppoitmentComponent } from './components/pages/patient/doctor-appoitment/doctor-appoitment.component';
-import { PatientAppoitmentComponent } from './components/pages/doctor/patient-appoitment/patient-appoitment.component';
-import { PatientAppoitmentsComponent } from './components/pages/patient/patient-appoitments/patient-appoitments.component';
+import { DoctorAppointmentsComponent } from './components/pages/doctor/doctor-appointments/doctor-appointments.component';
+import { DoctorAppointmentComponent } from './components/pages/doctor/doctor-appointment/doctor-appointment.component';
 
 @NgModule({
   declarations: [
@@ -67,26 +65,23 @@ import { PatientAppoitmentsComponent } from './components/pages/patient/patient-
     PatientProfileComponent,
     AdminProfileComponent,
     AdminLoginComponent,
-    AppointmentComponent,
     ChangePasswordComponent,
     ReviewsComponent,
     DoctorDashBoardComponent,
     PatientDashBoardComponent,
+    PatientAppointmentsComponent,
+    PatientAppointmentComponent,
     DoctorProfileSettingsComponent,
     BookingComponent,
     RatingStarComponent,
-    AppointmentsComponent,
     ClinicComponent,
     DoctorOverViewComponent,
     ReviewFormComponent,
     ClinicSettingsComponent,
     DoctorSideBarComponent,
     PatientSideBarComponent,
-    AppoitmentsComponent,
-    AppoitmentComponent,
-    DoctorAppoitmentComponent,
-    PatientAppoitmentComponent,
-    PatientAppoitmentsComponent
+    DoctorAppointmentsComponent,
+    DoctorAppointmentComponent,
   ],
   imports: [
     BrowserModule,
