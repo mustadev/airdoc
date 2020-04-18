@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -148,8 +149,9 @@ public class DoctorController {
 	 */
 	@ApiOperation(value = "ajouter un Doctor ", response = Doctor.class, code = 201)
 	@PostMapping(consumes = "application/json", produces = "application/json")
+	//@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Doctor> createDoctor(
-			@ApiParam(value = "Doctor", required = true) @RequestBody @Valid Doctor doctor) throws ResourceAlreadyExistsException{
+			@ApiParam(value = "Doctor", required = true) @RequestBody  Doctor doctor) throws ResourceAlreadyExistsException{
 		Doctor result =  doctorService.save(doctor).
 				orElseThrow(() -> new ResourceAlreadyExistsException("could not create " +	doctor.toString()));
 		return new ResponseEntity<Doctor>(result, HttpStatus.CREATED);
@@ -164,7 +166,7 @@ public class DoctorController {
 	//    @PreAuthorize("#doctor.id == principal.id")
 	@PutMapping(consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Doctor>  updateDoctor(
-			@ApiParam(value = "Doctor", required = true) @RequestBody @Valid Doctor doctor) throws ResourceAlreadyExistsException{
+			@ApiParam(value = "Doctor", required = true) @RequestBody  Doctor doctor) throws ResourceAlreadyExistsException{
 		//doctorService.saveDoctor(doctor);
 		//return new ResponseEntity<>("Doctor added successfully", HttpStatus.OK);
 		Doctor result = doctorService.
@@ -257,7 +259,7 @@ public class DoctorController {
 	 * @return {@link Clinic}
 	 */
 	@ApiOperation(value = "Ajouter Clinic du Doctor", response = Clinic.class)
-	@PostMapping("/{id}/clinic/")
+	@PostMapping("/{id}/clinic")
 	public ResponseEntity<Clinic> addClinic(
 			@PathVariable("id") String id,
 			@RequestBody @Valid Clinic clinic) throws ResourceNotFoundException{
@@ -313,10 +315,10 @@ public class DoctorController {
 	 * @return Photo id
 	 */
 	@ApiOperation(value = "Ajouter Image du Doctor", response = Photo.class)
-	@PostMapping("/{id}/clinic/photos/")
+	@PostMapping("/{id}/clinic/photos")
 	public ResponseEntity<Photo> addPhoto(
 			@PathVariable("id") String id,
-			@RequestParam("avatar") MultipartFile file) throws ResourceNotFoundException, IOException{
+			@RequestParam("photo") MultipartFile file) throws ResourceNotFoundException, IOException{
 		Photo photo = new Photo(); 
 		Doctor doctor = doctorService.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Could Find Doctor: " + id));
@@ -413,7 +415,7 @@ public class DoctorController {
 	 */
 	@ApiOperation(value = "Trouver les Revues sur le Doctor", response = Set.class)
 	@GetMapping("/{id}/reviews")
-	public ResponseEntity<Set<Review>> getReview(@PathVariable("id") String id) throws ResourceNotFoundException {
+	public ResponseEntity<Set<Review>> getReviews(@PathVariable("id") String id) throws ResourceNotFoundException {
 		Set<Review> reviews = doctorService
 				.findById(id)
 				.orElseThrow(()-> new ResourceNotFoundException("Could not find Doctor with ID: " + id))

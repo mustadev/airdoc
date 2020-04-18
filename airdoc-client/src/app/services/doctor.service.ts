@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient ,  HttpHeaders, HttpParams} from '@angular/common/http';
+import { HttpClient , HttpParams, HttpEvent, HttpEventType, HttpRequest} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from  'rxjs/operators';
 import { Doctor } from '../models/Doctor';
 import { Clinic } from '../models/Clinic';
 
@@ -46,6 +47,26 @@ export class DoctorService {
 
   getClinicPhotos(id:string): Observable<Array<any>>{
     return this.http.get<Array<any>>(this.doctorUrl +  "/" + id + '/clinic/photos');
+  }
+
+  updateClinic(doctorId:string, clinic:Clinic):Observable<Clinic>{
+    return this.http.post<Clinic>(this.doctorUrl + '/' + doctorId + '/clinic', clinic);
+  }
+
+  deleteClinicPhoto(doctorId:string, photoId:string):Observable<any>{
+    return this.http.delete(this.doctorUrl + '/' + doctorId + '/clinic/photos/' + photoId);
+  }
+
+  uploadClinicPhoto(doctorId:string, file:File):Observable<HttpEvent<any>>{
+    const formData: FormData = new FormData();
+
+    formData.append('photo', file);
+    const req = new HttpRequest('POST', this.doctorUrl + '/' + doctorId + '/clinic/photos', formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+
   }
 
 }

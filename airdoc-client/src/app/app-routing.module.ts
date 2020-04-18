@@ -8,6 +8,7 @@ import { LoginComponent as DoctorLoginComponent } from './components/pages/docto
 import { SignupComponent as DoctorSingupComponent} from './components/pages/doctor/signup/signup.component';
 import { DoctorDashBoardComponent } from './components/pages/doctor/doctor-dash-board/doctor-dash-board.component';
 import { DoctorProfileSettingsComponent } from './components/pages/doctor/doctor-profile-settings/doctor-profile-settings.component';
+import { ClinicSettingsComponent } from './components/pages/doctor/clinic-settings/clinic-settings.component';
 import { LoginComponent as PatientLoginComponent } from './components/pages/patient/login/login.component';
 import { SignupComponent as PatientSingupComponent} from './components/pages/patient/signup/signup.component';
 import { ProfileComponent as PatientProfileComponent } from './components/pages/patient/profile/profile.component';
@@ -30,8 +31,9 @@ const routes: Routes = [
   { path: 'doctor/profile/:id' , component: DoctorProfileComponent, },
   { path: 'doctor/login' , component: DoctorLoginComponent },
   { path: 'doctor/signup' , component: DoctorSingupComponent },
-  { path: 'doctor/dashboard' , component: DoctorDashBoardComponent},
-  { path: 'doctor/profile-settings' , component: DoctorProfileSettingsComponent},
+  { path: 'doctor/dashboard' , component: DoctorDashBoardComponent, canActivate: [DoctorAuthGuard]},
+  { path: 'doctor/profile-settings' , component: DoctorProfileSettingsComponent, canActivate: [DoctorAuthGuard]},
+  { path: 'doctor/clinic-settings' , component: ClinicSettingsComponent, canActivate: [DoctorAuthGuard]},
   { path: 'patient/profile' , component: PatientProfileComponent},
   { path: 'patient/login' , component: PatientLoginComponent },
   { path: 'patient/signup' , component: PatientSingupComponent },

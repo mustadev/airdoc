@@ -38,6 +38,9 @@ import { AppointementsComponent } from './components/pages/doctor/appointements/
 import { ClinicComponent } from './components/clinic/clinic.component';
 import { DoctorOverViewComponent } from './components/doctor-over-view/doctor-over-view.component';
 import { ReviewFormComponent } from './components/review-form/review-form.component';
+import { ClinicSettingsComponent } from './components/pages/doctor/clinic-settings/clinic-settings.component';
+import { DoctorSideBarComponent } from './components/pages/doctor/doctor-side-bar/doctor-side-bar.component';
+import { PatientSideBarComponent } from './components/pages/patient/patient-side-bar/patient-side-bar.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +73,10 @@ import { ReviewFormComponent } from './components/review-form/review-form.compon
     AppointementsComponent,
     ClinicComponent,
     DoctorOverViewComponent,
-    ReviewFormComponent
+    ReviewFormComponent,
+    ClinicSettingsComponent,
+    DoctorSideBarComponent,
+    PatientSideBarComponent
   ],
   imports: [
     BrowserModule,
