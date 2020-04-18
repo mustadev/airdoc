@@ -34,13 +34,18 @@ import { PatientDashBoardComponent } from './components/pages/patient/patient-da
 import { DoctorProfileSettingsComponent } from './components/pages/doctor/doctor-profile-settings/doctor-profile-settings.component';
 import { BookingComponent } from './components/pages/booking/booking.component';
 import { RatingStarComponent} from './components/rating-star/rating-star.component';
-import { AppointementsComponent } from './components/pages/doctor/appointements/appointements.component';
+import { AppointmentsComponent } from './components/pages/doctor/appointments/appointments.component';
 import { ClinicComponent } from './components/clinic/clinic.component';
 import { DoctorOverViewComponent } from './components/doctor-over-view/doctor-over-view.component';
 import { ReviewFormComponent } from './components/review-form/review-form.component';
 import { ClinicSettingsComponent } from './components/pages/doctor/clinic-settings/clinic-settings.component';
 import { DoctorSideBarComponent } from './components/pages/doctor/doctor-side-bar/doctor-side-bar.component';
 import { PatientSideBarComponent } from './components/pages/patient/patient-side-bar/patient-side-bar.component';
+import { AppoitmentsComponent } from './components/pages/patient/appoitments/appoitments.component';
+import { AppoitmentComponent } from './components/pages/doctor/appoitment/appoitment.component';
+import { DoctorAppoitmentComponent } from './components/pages/patient/doctor-appoitment/doctor-appoitment.component';
+import { PatientAppoitmentComponent } from './components/pages/doctor/patient-appoitment/patient-appoitment.component';
+import { PatientAppoitmentsComponent } from './components/pages/patient/patient-appoitments/patient-appoitments.component';
 
 @NgModule({
   declarations: [
@@ -70,13 +75,18 @@ import { PatientSideBarComponent } from './components/pages/patient/patient-side
     DoctorProfileSettingsComponent,
     BookingComponent,
     RatingStarComponent,
-    AppointementsComponent,
+    AppointmentsComponent,
     ClinicComponent,
     DoctorOverViewComponent,
     ReviewFormComponent,
     ClinicSettingsComponent,
     DoctorSideBarComponent,
-    PatientSideBarComponent
+    PatientSideBarComponent,
+    AppoitmentsComponent,
+    AppoitmentComponent,
+    DoctorAppoitmentComponent,
+    PatientAppoitmentComponent,
+    PatientAppoitmentsComponent
   ],
   imports: [
     BrowserModule,

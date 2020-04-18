@@ -1,4 +1,4 @@
-export class Appointement {
+export class Appointment {
     patientId:string;
     doctorId:string;
     state:string;

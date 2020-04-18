@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
-import { Appointement } from 'src/app/models/Appointement';
+import { Appointment } from 'src/app/models/Appointment';
 import { Doctor } from 'src/app/models/Doctor';
 import { Patient } from 'src/app/models/Patient';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { PatientService } from 'src/app/services/patient.service';
-import { AppointementService } from 'src/app/services/appointement.service';
+import { AppointmentService } from 'src/app/services/appointment.service';
 
 @Component({
   selector: 'app-booking',
@@ -16,12 +16,12 @@ import { AppointementService } from 'src/app/services/appointement.service';
 export class BookingComponent implements OnInit {
   doctor:Doctor;
   patient:Patient;
-  appointement:Appointement = new Appointement();
+  appointment:Appointment = new Appointment();
   constructor(private route:ActivatedRoute, 
     private tokenStorage:TokenStorageService,
     private doctorService:DoctorService,
     private patientService:PatientService,
-    private appointementService:AppointementService) { }
+    private appointmentService:AppointmentService) { }
 
   ngOnInit(): void {
     this.route.params
@@ -30,14 +30,14 @@ export class BookingComponent implements OnInit {
        params['id'];
       this.doctorService.getById(params['id']).subscribe(res =>{
         this.doctor = res;
-        this.appointement.doctorId = this.doctor.id;
+        this.appointment.doctorId = this.doctor.id;
 
         console.log("Doctor: " + this.doctor.id);
       })
   });
   this.patientService.getById(this.tokenStorage.getUser().id).subscribe(res => {
     this.patient = res;
-    this.appointement.patientId = this.patient.id;
+    this.appointment.patientId = this.patient.id;
     console.log("Patient: " + this.patient.id);
   })
   
@@ -46,7 +46,7 @@ export class BookingComponent implements OnInit {
 onSubmit(formData){
   //DO LOGIC HERE
   // 
-  this.appointementService.add(this.appointement)
+  this.appointmentService.add(this.appointment)
 }
 
 }
