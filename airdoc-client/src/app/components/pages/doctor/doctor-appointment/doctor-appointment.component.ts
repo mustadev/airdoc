@@ -12,26 +12,36 @@ import { PatientService } from 'src/app/services/patient.service';
 export class DoctorAppointmentComponent implements OnInit {
 
   @Input() appointment:Appointment;
+  appointmentDate:Date;
   patient:Patient;
+  avatar:any;
   
   constructor(
     private appointmentService:AppointmentService,
     private patientService:PatientService) { }
 
   ngOnInit(): void {
+    this.appointmentDate = new Date(this.appointment.appointmentDate);
     this.patientService.getById(this.appointment.patientId).subscribe(res => {
       this.patient = res;
-    })
+    });
+    this.patientService.getAvatar(this.appointment.patientId).subscribe(avatar => {
+      this.avatar = 'data:image/jpeg;base64,' + avatar?.image?.data;
+    });
   }
 
-  viewAppointment(){
-    this.appointment.state = "accepted";
-    this.appointmentService.update(this.appointment);
+  acceptAppointment(){
+    this.appointment.state = "ACCEPTED";
+    this.appointmentService.update(this.appointment).subscribe(res => {
+      this.appointment = res;
+    });
   }
 
   cancelAppointment(){
-    this.appointment.state = "canceled";
-    this.appointmentService.update(this.appointment);
+    this.appointment.state = "CANCELED";
+    this.appointmentService.update(this.appointment).subscribe(res => {
+      this.appointment = res;
+    });
   }
 
   viewAppoitment(){

@@ -18,7 +18,7 @@ import java.util.Optional;
 public interface AppointmentService {
     /**
      * cette méthode pour récupérer tous les rendez-vous 
-     * @return List<Appointment_>
+     * @return List<Appointment>
      */
     Optional<List<Appointment>> findAll();
 
@@ -29,23 +29,23 @@ public interface AppointmentService {
      */
     Optional<Appointment> findAppointmentById(String id);
     
-    Optional<List<Appointment>>findAppotByIdDoctor(String id);
+    Optional<List<Appointment>>findAppotByDoctorId(String id);
     
-    Optional<List<Appointment>> findAppotByIdPatient(String id);
+    Optional<List<Appointment>> findAppotByPatientId(String id);
 
     /**
      * cette méthode sert à créer un nouvau rendez-vous
-     * @param appointment_
+     * @param appointment
      * @return
      */
     Optional<Appointment> insertAppointment(Appointment appointment);
 
     /**
      * cette méthode sert à modifier un rendez-vous
-     * @param appointment_
+     * @param appointment
      * @return
      */
-    Optional<Appointment> updateAppointment(Appointment appointment_);
+    Optional<Appointment> updateAppointment(Appointment appointment);
     /**
      * cette méthode sert à supprimer un rendez-vous
      * @param id

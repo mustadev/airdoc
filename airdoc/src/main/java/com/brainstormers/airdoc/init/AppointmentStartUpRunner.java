@@ -43,22 +43,22 @@ public class AppointmentStartUpRunner implements CommandLineRunner {
 	
 	//------------------------------------------------------------------------------
 	Appointment appointment = new Appointment();
-	appointment.setIdDoctor("idDoctor");
-	appointment.setIdPatient("idPatient");
-	appointment.setApptDate(new Date());
+	appointment.setDoctorId("doctorId");
+	appointment.setPatientId("patientId");
+	appointment.setAppointmentDate(new Date());
 	appointment.setBookingDate( null);
 	appointment.setDescription("i feel sickness !");
-	appointment.setStatus(null);
+	appointment.setState("PENGING");
 	Appointment appointment1 = appointmentRepository.save(appointment);
 	logger.debug("id: " +appointment1.getId());
     logger.debug("appointment "+appointment1.getId() + "saved");
     Appointment appointment2 = new Appointment();
-    appointment2.setIdDoctor("idDoctor2");
-    appointment2.setIdPatient("idPatient");
-    appointment2.setApptDate(new Date());
+    appointment2.setDoctorId("doctorId2");
+    appointment2.setPatientId("patientId");
+    appointment2.setAppointmentDate(new Date());
     appointment2.setBookingDate( null);
     appointment2.setDescription("i feel sickness !");
-    appointment2.setStatus(null);
+    appointment2.setState("PENDING");
 	appointment2 = appointmentRepository.save(appointment2);
 	logger.debug("id: " +appointment2.getId());
     logger.debug("appointment "+appointment2.getId() + "saved");

@@ -48,12 +48,12 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
 	@Override
-	public Optional<List<Appointment>> findAppotByIdDoctor(String idDoctor) {
-		return Optional.of(appointmentRepository.findByIdDoctor(idDoctor));
+	public Optional<List<Appointment>> findAppotByDoctorId(String doctorId) {
+		return Optional.of(appointmentRepository.findByDoctorId(doctorId));
 	}
 	
 	@Override
-	public Optional<List<Appointment>> findAppotByIdPatient(String idPatient) {
-		return Optional.of(appointmentRepository.findByIdPatient(idPatient));
+	public Optional<List<Appointment>> findAppotByPatientId(String patientId) {
+		return Optional.of(appointmentRepository.findByPatientId(patientId));
 	}
 }

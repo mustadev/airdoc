@@ -29,7 +29,6 @@ import { AdminLoginComponent } from './components/pages/admin/admin-login/admin-
 import { ChangePasswordComponent} from './components/pages/patient/change-password/change-password.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { DoctorDashBoardComponent } from './components/pages/doctor/doctor-dash-board/doctor-dash-board.component';
-import { PatientDashBoardComponent } from './components/pages/patient/patient-dash-board/patient-dash-board.component';
 import { DoctorProfileSettingsComponent } from './components/pages/doctor/doctor-profile-settings/doctor-profile-settings.component';
 import { PatientAppointmentsComponent } from './components/pages/patient/patient-appointments/patient-appointments.component';
 import { PatientAppointmentComponent } from './components/pages/patient/patient-appointment/patient-appointment.component';
@@ -68,7 +67,6 @@ import { DoctorAppointmentComponent } from './components/pages/doctor/doctor-app
     ChangePasswordComponent,
     ReviewsComponent,
     DoctorDashBoardComponent,
-    PatientDashBoardComponent,
     PatientAppointmentsComponent,
     PatientAppointmentComponent,
     DoctorProfileSettingsComponent,

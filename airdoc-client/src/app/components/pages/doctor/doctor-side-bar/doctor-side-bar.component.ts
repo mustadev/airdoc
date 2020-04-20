@@ -7,8 +7,7 @@ import { Doctor } from 'src/app/models/Doctor';
   styleUrls: ['./doctor-side-bar.component.css']
 })
 export class DoctorSideBarComponent implements OnInit {
-
-  @Input() active:string;
+  
   @Input() avatar:any;
   @Input() doctor:Doctor;
   constructor() { }

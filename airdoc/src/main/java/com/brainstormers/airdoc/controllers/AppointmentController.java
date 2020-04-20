@@ -28,7 +28,7 @@ import java.util.Map;
  * @since 17-03-2020
  */
 @ApiOperation(value="API pour les opérations sur les rendez-vous.", response=Appointment.class)
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "appointments")
 public class AppointmentController {
@@ -43,7 +43,7 @@ public class AppointmentController {
 
     /**
      * pour trouver tous les rendez vous
-     * @return List<Appointment_>
+     * @return List<Appointment>
      * @throws ResourceNotFoundException
      */
             
@@ -53,8 +53,8 @@ public class AppointmentController {
            List<Appointment> result = appointmentService
                    .findAll()
                    .orElseThrow(()-> new ResourceNotFoundException("no patient found"));
-           result.forEach((appointment_)-> {
-                    String msg = String.format("appointment id : %s",appointment_.getId());
+           result.forEach((appointment)-> {
+                    String msg = String.format("appointment id : %s",appointment.getId());
                     logger.debug(msg);
            });
            return new ResponseEntity<>(result, HttpStatus.OK);
@@ -79,31 +79,31 @@ public class AppointmentController {
 
     /**
      * cette méthode sert à prendre un rendez-vous
-     * @param appointment_
-     * @return appointment_
+     * @param appointment
+     * @return appointment
      * @throws ResourceAlreadyExistsException
      * @throws ResourceNotFoundException 
      */
     @ApiOperation(value = "prendre un rendez-vous ", response = Appointment.class, code = 200)
     @PostMapping(value = {""}, consumes = "application/json", produces = "application/json")
     public ResponseEntity<Appointment> createAppointment(
-    		@ApiParam(value = "Appointment_", required = true) @RequestBody Appointment appointment_) throws ResourceAlreadyExistsException{
-    	Appointment result = appointmentService.insertAppointment(appointment_)
-                    .orElseThrow(() -> new ResourceAlreadyExistsException("could not create " +	appointment_.toString()));
+    		@ApiParam(value = "Appointment", required = true) @RequestBody Appointment appointment) throws ResourceAlreadyExistsException{
+    	Appointment result = appointmentService.insertAppointment(appointment)
+                    .orElseThrow(() -> new ResourceAlreadyExistsException("could not create " +	appointment.toString()));
         return new ResponseEntity<Appointment>(result, HttpStatus.CREATED);
     }
 
     /**
      * cette méthode sert à modifier un rendez-vous
-     * @param appointment_
-     * @return appointment_
+     * @param appointment
+     * @return appointment
      * @throws ResourceNotFoundException
      */
     @ApiOperation(value = "modifier un rendez-vous ", response = Appointment.class, code =200)
     @PutMapping(value = {""},consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Appointment> updateAppointment(@RequestBody Appointment appointment_) throws ResourceNotFoundException{
-    	Appointment result = appointmentService.updateAppointment(appointment_)
-                .orElseThrow(() -> new ResourceNotFoundException("could not update " +	appointment_.toString()));
+    public ResponseEntity<Appointment> updateAppointment(@RequestBody Appointment appointment) throws ResourceNotFoundException{
+    	Appointment result = appointmentService.updateAppointment(appointment)
+                .orElseThrow(() -> new ResourceNotFoundException("could not update " +	appointment.toString()));
         return new ResponseEntity<Appointment>(result, HttpStatus.CREATED);
     }
 
@@ -126,10 +126,10 @@ public class AppointmentController {
     @GetMapping(value = {"/doctor/{doctorId}"},produces = "application/json" )
     public ResponseEntity<List<Appointment>> getAllDoctorAppoitment(@PathVariable String doctorId) throws ResourceNotFoundException {
            List<Appointment> result = appointmentService
-        		   .findAppotByIdDoctor(doctorId)
+        		   .findAppotByDoctorId(doctorId)
                    .orElseThrow(()-> new ResourceNotFoundException("no Doctor Appoitment found"));
-           result.forEach((appointment_)-> {
-                    String msg = String.format("appointment id : %s",appointment_.getId());
+           result.forEach((appointment)-> {
+                    String msg = String.format("appointment id : %s",appointment.getId());
                     logger.debug(msg);
            });
            return new ResponseEntity<>(result, HttpStatus.OK);
@@ -138,10 +138,10 @@ public class AppointmentController {
     @GetMapping(value = {"/patient/{patientId}"},produces = "application/json" )
     public ResponseEntity<List<Appointment>> getAllPatientAppoitment(@PathVariable String patientId) throws ResourceNotFoundException {
            List<Appointment> result = appointmentService
-        		   .findAppotByIdPatient(patientId)
+        		   .findAppotByPatientId(patientId)
                    .orElseThrow(()-> new ResourceNotFoundException("no Patient Appoitmentfound"));
-           result.forEach((appointment_)-> {
-                    String msg = String.format("appointment id : %s",appointment_.getId());
+           result.forEach((appointment)-> {
+                    String msg = String.format("appointment id : %s",appointment.getId());
                     logger.debug(msg);
            });
            return new ResponseEntity<>(result, HttpStatus.OK);

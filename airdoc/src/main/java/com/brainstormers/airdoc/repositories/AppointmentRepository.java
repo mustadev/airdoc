@@ -16,8 +16,8 @@ import com.brainstormers.airdoc.models.Appointment;
  */
 @Repository
 public interface AppointmentRepository extends MongoRepository<Appointment,String> {
-	List<Appointment> findByIdDoctor(String idDoctor);
-	List<Appointment> findByIdPatient(String idPatient);
+	List<Appointment> findByDoctorId(String doctorId);
+	List<Appointment> findByPatientId(String patientId);
 	
 }	
 

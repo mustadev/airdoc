@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class AppointmentService {
 
-  appoitmentUrl:string= "http://localhost:8080/doctors";
+  appoitmentUrl:string= "http://localhost:8080/appointments";
   constructor(private http:HttpClient) { }
 
 

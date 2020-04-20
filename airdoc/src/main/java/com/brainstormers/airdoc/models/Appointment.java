@@ -20,8 +20,8 @@ import lombok.ToString;
 
 
 /**
- * Modele Appointment_ {@link Appointment_ Appointment_.class}
- * c'est une classe "Appointment_" qui constitue toutes les attributes nécessaire pour prendre un rendez-vous
+ * Modele Appointment {@link Appointment Appointment.class}
+ * c'est une classe "Appointment" qui constitue toutes les attributes nécessaire pour prendre un rendez-vous
  * @author Ayoub BenHaimoud<ayoubbenhaimoud@gmail.com>
  * @since 18-03-2020
  * 
@@ -38,22 +38,22 @@ public class Appointment {
 	@Id
 	private String id;
 	/**
-	 * IdDoctor: c'est ID du médecin 
+	 * DoctorId: c'est ID du médecin 
 	 */
 	@ApiModelProperty(notes = "ID du médecin")
-	private String idDoctor;
+	private String doctorId;
 	/**
-	 * idPatient: c'est ID du patient 
+	 * patientId: c'est ID du patient 
 	 */
 	@ApiModelProperty(notes = "ID du patient")
-	private String idPatient;
+	private String patientId;
 	/**
-	 * apptDate: c'est la date du rendez-vous
+	 * appointmentDate: c'est la date du rendez-vous
 	 */
 	@ApiModelProperty(notes = "Date du rendez-vous")
 	//@NotBlank @Size(max = 30)
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ" )
-	private Date apptDate;
+	private Date appointmentDate;
 	/**
 	 * bookingDate: c'est la date de la réservation du rendez-vous
 	 */
@@ -66,7 +66,7 @@ public class Appointment {
 	 */
 	@ApiModelProperty(notes ="Etat du rendez-vous")
 	//@NotBlank @Size(max = 30)
-	private String status;
+	private String state;
 	/**
 	 * description: c'est la description du rendez-vous
 	 */

@@ -196,7 +196,7 @@ public class DoctorController {
 	 * @return Photo id
 	 */
 	@ApiOperation(value = "Ajouter Image du Doctor", response = Photo.class)
-	@PostMapping("/{id}/avatar/")
+	@PostMapping("/{id}/avatar")
 	public ResponseEntity<Photo> uploadPhoto(
 			@PathVariable("id") String id,
 			@RequestParam("avatar") MultipartFile file) throws ResourceNotFoundException, IOException{

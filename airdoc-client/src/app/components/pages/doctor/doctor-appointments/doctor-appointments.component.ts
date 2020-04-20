@@ -17,7 +17,7 @@ export class DoctorAppointmentsComponent implements OnInit {
   constructor(
     private autService:AuthService,
     private doctorService:DoctorService,
-    private appotmentService:AppointmentService ) { }
+    private appotmentService:AppointmentService) { }
 
   ngOnInit(): void {
     this.autService.getCurrentUser().subscribe(user => {
