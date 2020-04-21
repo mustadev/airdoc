@@ -3,9 +3,7 @@ package com.brainstormers.airdoc.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -39,53 +37,59 @@ public class Clinic {
 	 */
 	@ApiModelProperty(notes = "Nom de clinique")
 	
-	private String name;
+	private String name = "";
 	/**
 	 * Description de clinique
 	 */
 	@ApiModelProperty(notes = "Description de clinique")
-    private String description;
+    private String description = "";
 	/**
 	 * Prix de consultation de clinique
 	 */
 	@ApiModelProperty(notes = "Prix de consultation de clinique")
-	private float consultPrice;
+	private float consultPrice = 0.0f;
 	/**
 	 * Prix minimum
 	 */
 	@ApiModelProperty(notes = "Prix minimum")
-	private int minPrice;
+	private int minPrice = 0;
 	/**
 	 * Prix maximum
 	 */
 	@ApiModelProperty(notes = "Prix maximum")
-	private int maxPrice;
+	private int maxPrice = 0;
 	/**
 	 * Services de clinique
 	 */
 	@ApiModelProperty(notes = "Services de clinique")
-	private List<String> services;
+	private List<String> services = new ArrayList<>();
 	/**
 	 * Specialities de clinique
 	 */
 	@ApiModelProperty(notes = "Specialities de clinique")
-	private List<String> specialities;
+	private List<String> specialities = new ArrayList<>();
 	/**
 	 * Ville de clinique
 	 */
 	@ApiModelProperty(notes = "Ville de clinique")
-	private String city;
+	private String city = "";
 	/**
 	 * Pays de clinique
 	 */
 	@ApiModelProperty(notes = "Pays de clinique")
-	private String country;
+	private String country = "";
 	
 	/**
 	 * address de clinique
 	 */
 	@ApiModelProperty(notes = "Address de clinique")
-	private String address;
+	private String address = "";
+	
+	/**
+	 * Emplacement de la carte de clinique
+	 */
+	@ApiModelProperty(notes = "Emplacement de la carte de clinique")
+	private ClinicLocation location = new ClinicLocation(30.0f, -10.0f, 12); 
 	
 	/**
 	 * Id des images de clinique
@@ -95,6 +99,10 @@ public class Clinic {
 	@DBRef
 	@JsonIgnore
 	private List<Photo> photos = new ArrayList<Photo>();
+	
+
+	
+	
 	
 
 	public String getName() {
@@ -175,6 +183,14 @@ public class Clinic {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public ClinicLocation getLocation() {
+		return location;
+	}
+
+	public void setLocation(ClinicLocation location) {
+		this.location = location;
 	}
 
 	public List<Photo> getPhotos() {

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '../models/User';
 
 // const AUTH_API = 'http://localhost:8080/';
+const AUTH_USER = 'http://localhost:8080/api/auth/user'
 const DOCTOR_API = 'http://localhost:8080/api/auth/doctor/'; //TODO make this just /auth/doctor/
 const PATIENT_API = 'http://localhost:8080/api/auth/patient/';
 const ADMIN_API = 'http://localhost:8080/api/auth/admin/';
@@ -68,6 +69,10 @@ export class AuthService {
   //TODO define registration params
   adminRegister(user): Observable<any> {
     return this.register(user, ADMIN_API);
+  }
+
+  getCurrentUser():Observable<User>{
+    return this.http.get<User>(AUTH_USER);
   }
   
 }

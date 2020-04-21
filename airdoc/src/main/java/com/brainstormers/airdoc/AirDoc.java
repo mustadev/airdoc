@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * AirDoc application
  * le Airbnb de doctors
  * @author Mustapha De BrainStormers
- * @since 13-03-2020
+ * @since version 0.0.1
  * 
  */
 @SpringBootApplication

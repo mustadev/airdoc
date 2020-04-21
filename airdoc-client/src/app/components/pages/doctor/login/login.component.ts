@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
            if (this.retUrl!=null) {
                 this.router.navigate( [this.retUrl]);
            } else {
-                this.router.navigate( ['doctor/profile']);
+                this.router.navigate( ['doctor/appointments']);
            }
            
         

@@ -2,6 +2,7 @@ package com.brainstormers.airdoc.repositories;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
+
 import com.brainstormers.airdoc.models.Admin;
 
 /**

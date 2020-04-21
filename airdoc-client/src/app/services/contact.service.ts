@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Contact } from '../models/Contact';
-import { Doctor } from '../models/Doctor';
 
 
 @Injectable({
@@ -10,6 +9,7 @@ import { Doctor } from '../models/Doctor';
 })
 export class ContactService {
   contactUrl:string = "http://localhost:8080/contacts";
+  
   constructor(private http:HttpClient) { }
 
   getContacts():Observable<Contact[]> {

@@ -1,6 +1,6 @@
 package com.brainstormers.airdoc.services;
 
-import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.brainstormers.airdoc.models.Photo;
 import com.brainstormers.airdoc.repositories.PhotoRepository;
+
+/**
+ * Service de gestion des images des utilisateurs
+ * @author Mustapha Ouarrain
+ * @since version 0.0.2
+ */
 
 @Service
 public class PhotoServiceImpl implements PhotoService {

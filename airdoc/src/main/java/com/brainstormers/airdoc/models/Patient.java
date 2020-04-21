@@ -2,18 +2,18 @@ package com.brainstormers.airdoc.models;
 
 
 import java.util.HashSet;
-
 import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -70,13 +70,6 @@ public class Patient {
 	
 	
 	/**
-	 * Age d'utilisateur
-	 */
-	@ApiModelProperty(notes = "age du Patient")
-	@NotBlank
-	@Size(max = 2)
-    	private int age;
-	/**
 	 * Email d'utilisateur
 	 */
 
@@ -86,6 +79,14 @@ public class Patient {
 	@Email
    private String email;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd" )
+	 private String birthday;
+	 private String phone;
+	 private String bloodGroup;
+	 private String country;
+	 private String city;
+	 private String address;
+	 private String zipCode;
 	/**
 	 * Image de Patient
 	 */
@@ -104,32 +105,6 @@ public class Patient {
 
 
 	/*********** Getter and Setters and Constructors **************/
-	
-	public Patient(	
-			@NotBlank @Size(max = 50) String firstname,
-			@NotBlank @Size(max = 50) String lastname,
-			@NotBlank @Size(max = 2) int age,
-			@NotBlank @Size(max = 70) @Email String email) {
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.age = age;
-		this.email = email;
-		
-	}
-	
-	public Patient(String id, @NotBlank @Size(max = 20) String firstname, @NotBlank @Size(max = 20) String lastname,
-			@NotBlank @Size(max = 50) String username, @NotBlank @Size(max = 30) String password,
-			@NotBlank @Size(max = 2) int age, @NotBlank @Size(max = 70) @Email String email, Set<Role> roles) {
-		super();
-		this.id = id;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.username = username;
-		this.password = password;
-		this.age = age;
-		this.email = email;
-		this.roles = roles;
-	}
 	
 
 	
@@ -189,8 +164,6 @@ public class Patient {
 	}
 
 
-
-
 	public String getPassword() {
 		return password;
 	}
@@ -205,18 +178,76 @@ public class Patient {
 
 
 
-	public int getAge() {
-		return age;
+
+
+	public String getBirthday() {
+		return birthday;
 	}
 
 
-
-
-	public void setAge(int age) {
-		this.age = age;
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 
 
+	public String getPhone() {
+		return phone;
+	}
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+	public String getBloodGroup() {
+		return bloodGroup;
+	}
+
+
+	public void setBloodGroup(String bloodGroup) {
+		this.bloodGroup = bloodGroup;
+	}
+
+
+	public String getCountry() {
+		return country;
+	}
+
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+
+	public String getCity() {
+		return city;
+	}
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
 
 
 	public String getEmail() {

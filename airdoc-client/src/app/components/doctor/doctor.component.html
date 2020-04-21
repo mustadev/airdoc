@@ -4,7 +4,10 @@
             <div class="doc-info-left">
                 <div class="doctor-img">
                     <a routerLink="/doctor/profile/{{doctor?.id}}">
-                        <img [src]="retrievedAvatar" class="img-fluid" alt="Doctor Image">
+                        <!-- <img [src]="retrievedAvatar" class="img-fluid" alt="Doctor Image"> -->
+                        <img *ngIf="!showDefaultAvatar" [src]="retrievedAvatar" class="img-fluid"  alt="Doctor Image">
+                        <img *ngIf="showDefaultAvatar" src="assets/img/doctors/default-doctor.png"  class="img-fluid" alt="Doctor Image">
+                   
                     </a>
                 </div>
                 <div class="doc-info-cont">
@@ -12,11 +15,7 @@
                     <p class="doc-speciality">{{doctor?.speciality }}</p>
                     <h5 class="doc-department">{{doctor?.speciality}}</h5>
                     <div class="rating">
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star filled"></i>
-                        <i class="fas fa-star"></i>
+                        <app-rating-star [ratedCount]="doctor?.rating" ></app-rating-star>
                         <span class="d-inline-block average-rating">({{doctor?.averageRating}})</span>
                     </div>
                     <div class="clinic-details">

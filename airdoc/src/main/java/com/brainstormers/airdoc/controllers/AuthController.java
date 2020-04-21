@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -17,27 +18,28 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.brainstormers.airdoc.models.Admin;
 import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.ERole;
-import com.brainstormers.airdoc.models.Admin;
 import com.brainstormers.airdoc.models.Patient;
 import com.brainstormers.airdoc.models.Role;
 import com.brainstormers.airdoc.payload.request.LoginRequest;
 import com.brainstormers.airdoc.payload.request.SignupRequest;
 import com.brainstormers.airdoc.payload.response.JwtResponse;
 import com.brainstormers.airdoc.payload.response.MessageResponse;
-import com.brainstormers.airdoc.security.AuthProviders.DoctorAuthenticationProvider;
 import com.brainstormers.airdoc.security.AuthProviders.AdminAuthenticationProvider;
+import com.brainstormers.airdoc.security.AuthProviders.DoctorAuthenticationProvider;
 import com.brainstormers.airdoc.security.AuthProviders.PatientAuthenticationProvider;
 import com.brainstormers.airdoc.security.jwt.JwtUtils;
 import com.brainstormers.airdoc.security.services.UserDetailsImpl;
-import com.brainstormers.airdoc.services.DoctorService;
 import com.brainstormers.airdoc.services.AdminService;
+import com.brainstormers.airdoc.services.DoctorService;
 import com.brainstormers.airdoc.services.PatientService;
 import com.brainstormers.airdoc.services.RoleService;
 
@@ -134,8 +136,8 @@ public class AuthController {
 	
 	
 	@PostMapping("/doctor/signup") //TODO add throw  Exception
-	@ApiOperation(value = "Inscrire un médecin", response = ResponseEntity.class)
-	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+	@ApiOperation(value = "Inscrire un médecin", response = MessageResponse.class)
+	public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 		System.out.println("username : " + signUpRequest.getUsername());
 		System.out.println("lastname : " + signUpRequest.getLastname());
 		System.out.println("firstname : " + signUpRequest.getFirstname());
@@ -183,8 +185,8 @@ public class AuthController {
 	}
 	
 	@PostMapping("/patient/signup") //TODO add throw  Exception
-	@ApiOperation(value = "Inscrire un patient", response = ResponseEntity.class)
-	public ResponseEntity<?> registerPatient(@Valid @RequestBody SignupRequest signUpRequest) {
+	@ApiOperation(value = "Inscrire un patient", response = MessageResponse.class)
+	public ResponseEntity<MessageResponse> registerPatient(@Valid @RequestBody SignupRequest signUpRequest) {
 		System.out.println("username : " + signUpRequest.getUsername());
 		System.out.println("lastname : " + signUpRequest.getLastname());
 		System.out.println("firstname : " + signUpRequest.getFirstname());
@@ -229,8 +231,8 @@ public class AuthController {
 	}
 	
 	@PostMapping("/admin/signup") //TODO add throw  Exception
-	@ApiOperation(value = "Inscrire un admin", response = ResponseEntity.class)
-	public ResponseEntity<?> registerAdmin(@Valid @RequestBody SignupRequest signUpRequest) {
+	@ApiOperation(value = "Inscrire un admin", response = MessageResponse.class)
+	public ResponseEntity<MessageResponse> registerAdmin(@Valid @RequestBody SignupRequest signUpRequest) {
 		System.out.println("username : " + signUpRequest.getUsername());
 		System.out.println("lastname : " + signUpRequest.getLastname());
 		System.out.println("firstname : " + signUpRequest.getFirstname());
@@ -276,6 +278,34 @@ public class AuthController {
 		System.out.println(":::::::::::::::::::::: " + emp.get().toString());
 		return ResponseEntity.ok(new MessageResponse("Admin registered successfully!"));
 	}
+	
+	
+	@GetMapping("/user")
+	@ApiOperation(value = "recupirer utilisateur authentifié", response = JwtResponse.class)
+    public ResponseEntity<?> getAuthenticatedUser(){
+		
+		
+		try {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			String jwt = jwtUtils.generateJwtToken(authentication);
+			UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();		
+			List<String> roles = userDetails.getAuthorities().stream()
+					.map(item -> item.getAuthority())
+					.collect(Collectors.toList());
+
+			return ResponseEntity.ok(new JwtResponse(jwt, 
+													 userDetails.getId(), 
+													 userDetails.getUsername(), 
+													 userDetails.getEmail(), 
+													 userDetails.getUserType(),
+													 roles));
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("bad credentials"));
+		}
+		
+
+    }
 	
 	
 }

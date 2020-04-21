@@ -1,13 +1,16 @@
+import { Like } from './Like';
+
 export class Review {
+    id:string;
     content:string;
-    likes:number;
-    dislikes:number;
-    authorId:string;
+    rating:number;
+    patientId:string;
+    likes:Like[];
     
-    constructor(content:string, likes:number, dislikes:number, authorId:string){
+    constructor(content:string, likes:Like[], rating:number, authorId:string){
         this.content = content;
         this.likes = likes;
-        this.dislikes = dislikes;
-        this.authorId = authorId;
+        this.rating = rating;
+        this.patientId = authorId;
     };
 }

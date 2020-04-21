@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/User';
+import { Router } from '@angular/router';
 
 
   const DOCTOR = "DOCTOR";
@@ -26,7 +27,10 @@ export class HeaderComponent implements OnInit {
   username: string;
   loggedInUser:any;
 
-  constructor(private tokenStorageService: TokenStorageService, private authService: AuthService) { }
+  constructor(
+    private tokenStorageService: TokenStorageService, 
+    private authService: AuthService,
+    private router:Router) { }
 
   ngOnInit() {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -50,7 +54,10 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.tokenStorageService.signOut();
-    window.location.reload();
+    //window.location.reload();
+    this.router.navigate(["home"]).then(()=> {
+      window.location.reload();
+    });
   }
 
   updateHeader(user:User){

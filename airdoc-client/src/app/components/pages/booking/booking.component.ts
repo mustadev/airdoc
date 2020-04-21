@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
-import { Appointement } from 'src/app/models/Appointement';
+import { Appointment } from 'src/app/models/Appointment';
 import { Doctor } from 'src/app/models/Doctor';
 import { Patient } from 'src/app/models/Patient';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { PatientService } from 'src/app/services/patient.service';
-import { AppointementService } from 'src/app/services/appointement.service';
+import { AppointmentService } from 'src/app/services/appointment.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-booking',
@@ -15,13 +17,17 @@ import { AppointementService } from 'src/app/services/appointement.service';
 })
 export class BookingComponent implements OnInit {
   doctor:Doctor;
+  doctorAvatar:any
   patient:Patient;
-  appointement:Appointement = new Appointement();
-  constructor(private route:ActivatedRoute, 
-    private tokenStorage:TokenStorageService,
+  appointment:Appointment = new Appointment();
+  appointmentDate:string;
+  constructor(
+    private route:ActivatedRoute, 
+    private location:Location,
+    private authService:AuthService,
     private doctorService:DoctorService,
     private patientService:PatientService,
-    private appointementService:AppointementService) { }
+    private appointmentService:AppointmentService) { }
 
   ngOnInit(): void {
     this.route.params
@@ -30,23 +36,38 @@ export class BookingComponent implements OnInit {
        params['id'];
       this.doctorService.getById(params['id']).subscribe(res =>{
         this.doctor = res;
-        this.appointement.doctorId = this.doctor.id;
+        this.appointment.doctorId = this.doctor.id;
 
         console.log("Doctor: " + this.doctor.id);
+      });
+      this.doctorService.getAvatar(params['id']).subscribe(avatar =>{
+        this.doctorAvatar = 'data:image/jpeg;base64,' + avatar?.image?.data;
       })
   });
-  this.patientService.getById(this.tokenStorage.getUser().id).subscribe(res => {
-    this.patient = res;
-    this.appointement.patientId = this.patient.id;
-    console.log("Patient: " + this.patient.id);
-  })
+  this.authService.getCurrentUser().subscribe(user => {
+    this.patientService.getById(user.id).subscribe(res => {
+      this.patient = res;
+      this.appointment.patientId = this.patient.id;
+      console.log("Patient: " + this.patient.id);
+    })
+  });
   
 }
 
-onSubmit(formData){
-  //DO LOGIC HERE
-  // 
-  this.appointementService.add(this.appointement)
+onSubmit(){
+  console.log("date : ", this.appointmentDate);
+  console.log(JSON.stringify(this.appointment));
+  const appDate = new Date(this.appointmentDate);
+  const bookingDate = new Date(); //TODO cela devrait être fait à back-end
+  this.appointment.state = "PENDING";
+  this.appointment.appointmentDate = appDate.toISOString();
+  this.appointment.bookingDate = bookingDate.toISOString();
+  console.log("iso date", appDate.toISOString());
+  console.log("appoin", JSON.stringify(this.appointment));
+  this.appointmentService.add(this.appointment).subscribe(res => {
+    console.log("appointment added", JSON.stringify(res));
+  });
+  this.location.back();
 }
 
 }

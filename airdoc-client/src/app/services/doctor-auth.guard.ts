@@ -18,9 +18,7 @@ export class DoctorAuthGuard implements CanActivate {
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       
       if ((this.authStorage.getUser() == null) || (this.authStorage.getUserType() !== "DOCTOR")){
-        alert('You are not allowed to view this page. You are redirected to login Page');
-        console.log("next : " + next);
-        console.log("state : " + state);
+        // alert('You are not allowed to view this page. You are redirected to login Page');
         this.router.navigate(["doctor/login"],{ queryParams: { retUrl: state.url} });
             return false;
       }

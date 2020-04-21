@@ -1,6 +1,13 @@
 package com.brainstormers.airdoc.controllers;
 
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.validation.Valid;
+
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
 import org.slf4j.Logger;
@@ -8,24 +15,32 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.brainstormers.airdoc.exceptions.ResourceAlreadyExistsException;
 import com.brainstormers.airdoc.exceptions.ResourceNotFoundException;
+import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.Patient;
 import com.brainstormers.airdoc.models.Photo;
+import com.brainstormers.airdoc.payload.request.Password;
+import com.brainstormers.airdoc.payload.response.MessageResponse;
 import com.brainstormers.airdoc.services.PatientService;
 import com.brainstormers.airdoc.services.PhotoService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @Author Ayoub Benhaimoud <ayoubbenhaimoud@gmail.com>
@@ -43,7 +58,11 @@ public class PatientController {
     @Autowired
     private PatientService patientService;
 
-    @Autowired PhotoService photoService;
+    @Autowired 
+    private PhotoService photoService;
+    
+    @Autowired
+    private PasswordEncoder encoder;
     /**
      * pour trouver tous les patientes
      * @return List<Patient>
@@ -94,8 +113,15 @@ public class PatientController {
      * @return patient
      * @throws ResourceNotFoundException
      */
-    @PutMapping(value ="/")
+    @PutMapping(value = {"","/"})
     public ResponseEntity<Patient> updatePatient(@RequestBody Patient patient) throws ResourceNotFoundException{
+    	Patient old = patientService.findPatientById(patient.getId())
+    			.orElseThrow(() -> new ResourceNotFoundException("could not find " +	patient.toString()));
+        patient.setEmail(old.getEmail());
+        patient.setUsername(old.getUsername());
+        patient.setAvatar(old.getAvatar());
+        patient.setPassword(old.getPassword());
+        patient.setRoles(old.getRoles());
     	Patient result = patientService.updatePatient(patient)
                 .orElseThrow(() -> new ResourceNotFoundException("could not update " +	patient.toString()));
         return new ResponseEntity<Patient>(result, HttpStatus.CREATED);
@@ -122,7 +148,7 @@ public class PatientController {
      * @return Photo id
      */
 	@ApiOperation(value = "Ajouter Image du Patient", response = Photo.class)
-	@PostMapping("/{id}/avatar/")
+	@PostMapping("/{id}/avatar")
 	public ResponseEntity<Photo> uploadPhoto(
 			@PathVariable("id") String id,
 			@RequestParam("avatar") MultipartFile file) throws Exception, IOException{
@@ -184,5 +210,26 @@ public class PatientController {
 	  }
 	
 
+	@ApiOperation(value = "modifier le mot de pass", response = MessageResponse.class)
+	@PostMapping("/{id}/password")
+	public ResponseEntity<MessageResponse> changePassowrd(
+			@PathVariable("id") String id,
+			@RequestBody @Valid Password password ) throws ResourceNotFoundException{
+		Patient patient = patientService.findPatientById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("could not Find Patient  with ID: " + id));
+		
+		//String oldPassword = encoder.encode(password.getOldPassword());
+		//String originalPassword = doctor.getPassword();
+//		System.out.println(" :::::::::::::oldPassword: "+ oldPassword);
+//		System.out.println(":::::::::::::: Original Password: "+ originalPassword);
+		if (encoder.matches(password.getOldPassword(), patient.getPassword())) {
+			patient.setPassword(encoder.encode(password.getNewPassword()));
+			patientService.save(patient)
+			.orElseThrow(() -> new ResourceNotFoundException("could not Save Doctor  with ID: " + id));
+			return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Password Changed"));
+			}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MessageResponse("Old Password Is Not Correct"));
+			
+	}
 
 }

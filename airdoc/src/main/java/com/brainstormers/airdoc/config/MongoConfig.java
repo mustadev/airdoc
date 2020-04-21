@@ -21,8 +21,8 @@ public class MongoConfig {
     	mongoTemplate.indexOps("doctors").dropAllIndexes();
     	
     	TextIndexDefinition  textIndex = new TextIndexDefinitionBuilder()
-    			//.onField("clinic.name")
-    			//.onField("clinic.description")
+    			.onField("clinic.name")
+    			.onField("clinic.description")
     			.onField("lastname")
     			.onField("firstname")
     			.onField("username")

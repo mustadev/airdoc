@@ -1,40 +1,59 @@
 package com.brainstormers.airdoc.services;
 
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.brainstormers.airdoc.models.Patient;
+import com.brainstormers.airdoc.repositories.AppointmentRepository;
+import com.brainstormers.airdoc.repositories.PatientRepository;
+import com.brainstormers.airdoc.models.Appointment;
+
 import java.util.List;
 import java.util.Optional;
 
-import com.brainstormers.airdoc.models.Appointment;
-import com.brainstormers.airdoc.repositories.AppointmentRepository;
+/**
+ * cette classe implemente {@link PatientService}
+ * @author Ayoub BenHaimoud <ayoubbenhaimoud@gmail.com>
+ * @since 17-3-2020
+ */
+@Service
+public class AppointmentServiceImpl implements AppointmentService {
+    @Autowired
+    private AppointmentRepository appointmentRepository;
+    @Override
+    public Optional<List<Appointment>> findAll() {
+        return Optional.of(appointmentRepository.findAll());
+    }
 
-public class AppointmentServiceImpl implements AppointmentService{
+    @Override
+    public Optional<Appointment> findAppointmentById(String id) {
+        return appointmentRepository.findById(id);
+    }
+
+    @Override
+    public Optional<Appointment> insertAppointment(Appointment appointment) {
+        return Optional.of(appointmentRepository.save(appointment));
+    }
+
+    @Override
+    public Optional<Appointment> updateAppointment( Appointment appointment) {
+        return Optional.of(appointmentRepository.save(appointment));
+    }
+
+    @Override
+    public void deleteAppointmentById(String id) {
+    	appointmentRepository.deleteById(id);
+    }
+
+	@Override
+	public Optional<List<Appointment>> findAppotByDoctorId(String doctorId) {
+		return Optional.of(appointmentRepository.findByDoctorId(doctorId));
+	}
 	
-	private AppointmentRepository appRepository;
-
 	@Override
-	public Optional<List<Appointment>> findAll() {
-		return Optional.of(this.appRepository.findAll());
+	public Optional<List<Appointment>> findAppotByPatientId(String patientId) {
+		return Optional.of(appointmentRepository.findByPatientId(patientId));
 	}
-
-
-	@Override
-	public Optional<Appointment> save(Appointment appointment) {
-		
-		return Optional.of(this.appRepository.save(appointment));
-	}
-
-	@Override
-	public Optional<Appointment> update(Appointment appointment) {
-		
-		return Optional.of(this.appRepository.save(appointment)) ;
-	}
-
-
-	@Override
-	public void delete(Appointment appointment) {
-		this.appRepository.delete(appointment);
-		
-	}
-
-	
-
 }

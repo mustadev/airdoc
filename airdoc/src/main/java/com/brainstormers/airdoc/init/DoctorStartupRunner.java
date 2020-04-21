@@ -5,14 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.brainstormers.airdoc.models.Clinic;
-import com.brainstormers.airdoc.models.Doctor;
-import com.brainstormers.airdoc.models.ERole;
-import com.brainstormers.airdoc.models.Review;
-import com.brainstormers.airdoc.models.Role;
-import com.brainstormers.airdoc.services.DoctorService;
-import com.brainstormers.airdoc.services.RoleService;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +12,17 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import com.brainstormers.airdoc.models.Clinic;
+import com.brainstormers.airdoc.models.ClinicLocation;
+import com.brainstormers.airdoc.models.Doctor;
+import com.brainstormers.airdoc.models.ERole;
+import com.brainstormers.airdoc.models.Like;
+import com.brainstormers.airdoc.models.Review;
+import com.brainstormers.airdoc.models.Role;
+import com.brainstormers.airdoc.services.DoctorService;
+import com.brainstormers.airdoc.services.ReviewService;
+import com.brainstormers.airdoc.services.RoleService;
 
 @Order(2)
 @Component
@@ -30,6 +33,8 @@ public class DoctorStartupRunner implements CommandLineRunner {
 	@Autowired
 	private DoctorService doctorService;
 	
+	@Autowired
+	private ReviewService reviewService;
 	
 	@Autowired
 	private RoleService roleService;
@@ -51,15 +56,33 @@ public class DoctorStartupRunner implements CommandLineRunner {
 		clinic.setCity("Agadir");
 		clinic.setCountry("Morocco");
 		clinic.setAddress("Morocco full address here");
+		clinic.setLocation(new ClinicLocation(30.416068373487082f, -9.581001179762264f, 14));
 		clinic.setServices(Arrays.asList("Service1", "Service2", "Service3"));
 		clinic.setSpecialities(Arrays.asList("Speciality1", "Speciality2", "Speciality3", "Speciality4"));
 		clinic.setConsultPrice(100);
 		clinic.setMaxPrice(400);
 		clinic.setMinPrice(150);
-		List<Review> reviews = Arrays.asList(
-				new Review("review Content1", "authorId1", "authorUsername1", 15, 2),
-				new Review("review Content2", "authorId2", "authorUsername2", 14, 5), 
-				new Review("review Content3", "authorId3", "authorUsername3",  12, 7));
+//		Review review1 = new Review();
+//		Set<Review> reviews = new HashSet<>(Arrays.asList(
+//				reviewService.save(new Review(
+//						"content", 
+//						"authorId3",
+//						new HashSet<Like>(Arrays.asList( 
+//								new Like("author2"))
+//								), 1)).get(),
+//				reviewService.save(new Review(
+//						"content", 
+//						"authorId2",
+//						new HashSet<Like>(Arrays.asList(
+//								new Like("author2"), 
+//								new Like("author4"))
+//								), 2)).get(),
+//				reviewService.save(new Review(
+//						"content", 
+//						"authorId1",
+//						new HashSet<Like>(
+//								Arrays.asList(new Like("author5"),new Like("author7"), new Like("author3"))), 
+//						3)).get()));
 		Doctor doctor1 = new Doctor();
 		doctor1.setFirstname("Max");
 		doctor1.setLastname("Plank");
@@ -68,10 +91,10 @@ public class DoctorStartupRunner implements CommandLineRunner {
 		doctor1.setPassword(encoder.encode("password"));
 		doctor1.setAboutMe("About Me ");
 		doctor1.setClinic(clinic);
-		doctor1.setRating(3.5f);
-		doctor1.setAverageRating(85);
+		doctor1.setRating(3f);
+		doctor1.setAverageRating(1);
 		doctor1.setSpeciality("Dentist");
-		doctor1.setReviews(reviews);
+//		doctor1.setReviews(reviews);
 		Set<Role> roles = new HashSet<Role>();
 		roles.add(roleService.findByName(ERole.ROLE_USER).
 				orElseThrow(() -> new Exception("Role " + ERole.ROLE_USER + " not Found in DB")));
@@ -85,6 +108,7 @@ public class DoctorStartupRunner implements CommandLineRunner {
 		clinic2.setCity("casa");
 		clinic2.setCountry("morocco");
 		clinic2.setAddress("Bohr Clinic full address here");
+		clinic2.setLocation(new ClinicLocation(30.416068373487082f, -9.581001179762264f, 14));
 		clinic2.setServices(Arrays.asList("Service1", "Service2", "Service3"));
 		clinic2.setSpecialities(Arrays.asList("Speciality1", "Speciality2", "Speciality3", "Speciality4"));
 		clinic2.setConsultPrice(200);
@@ -98,8 +122,8 @@ public class DoctorStartupRunner implements CommandLineRunner {
 		doctor2.setPassword(encoder.encode("password"));
 		doctor2.setAboutMe("About Bohr");
 		doctor2.setClinic(clinic2);
-		doctor2.setRating(4.5f);
-		doctor2.setAverageRating(85);
+		doctor2.setRating(1f);
+		doctor2.setAverageRating(2);
 		doctor2.setSpeciality("Dentist");
 		Set<Role> roles2 = new HashSet<Role>();
 		roles2.add(roleService.findByName(ERole.ROLE_USER).

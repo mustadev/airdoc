@@ -6,33 +6,33 @@
 				<div class="doctor-widget">
 					<div class="doc-info-left">
 						<div class="doctor-img">
-							<img [src]="avatar" class="img-fluid" alt="Doctor Image">
+							<!-- <img [src]="avatar" class="img-fluid" alt="Doctor Image"> -->
+							<img *ngIf="!showDefaultAvatar" [src]="avatar" class="img-fluid" alt="Doctor Image">
+                			<img *ngIf="showDefaultAvatar" src="assets/img/doctors/default-doctor.png" class="img-fluid" alt="Doctor Image">
+            
 						</div>
 						<div class="doc-info-cont">
 							<h4 class="doc-name">Dr. {{doctor?.firstname | titlecase}} {{doctor?.lastname | titlecase}}
 							</h4>
 							<p class="doc-speciality">{{doctor?.speciality | titlecase}}</p>
-							<div class="rating">
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star"></i>
+							<div *ngIf="doctor?.rating" class="rating">
+								<app-rating-star [ratedCount]="doctor.rating" ></app-rating-star>
 								<span class="d-inline-block average-rating">({{doctor?.averageRating}})</span>
 							</div>
+							
 							<div class="clinic-details">
 								<p class="doc-location"><i class="fas fa-map-marker-alt"></i>
 									{{clinic?.city | titlecase}}, {{clinic?.country | titlecase}} </p>
 							</div>
 							<div class="clinic-services">
-								<span *ngFor="let service of clinic.services">{{service}}</span>
+								<span *ngFor="let service of clinic?.services">{{service}}</span>
 							</div>
 						</div>
 					</div>
 					<div class="doc-info-right">
 						<div class="clini-infos">
 							<ul>
-								<li><i class="far fa-comment"></i> {{doctor?.reviews?.length}} Feedback</li>
+								<li><i class="far fa-comment"></i> {{doctor?.averageRating}} Feedback</li>
 								<li><i class="fas fa-map-marker-alt"></i> {{clinic?.city | titlecase}},
 									{{clinic?.country | titlecase}}</li>
 								<li><i class="far fa-money-bill-alt"></i> {{clinic?.maxPrice | currency}} per hour
@@ -80,38 +80,7 @@
 				<div class="tab-content pt-0">
 					<!-- Overview Content -->
 					<div role="tabpanel" id="doc_overview" class="tab-pane fade show active">
-						<div class="row">
-
-							<div class="col-md-12 col-lg-9">
-
-								<!-- About Details -->
-								<div class="widget about-widget">
-									<h4 class="widget-title">About Me</h4>
-									<p>{{doctor.aboutMe}}</p>
-								</div>
-								<!-- /About Details -->
-
-
-								<!-- Services List -->
-								<div class="service-list">
-									<h4>Services</h4>
-									<ul class="clearfix">
-										<li *ngFor="let service of clinic.services">{{service}} </li>
-									</ul>
-								</div>
-								<!-- /Services List -->
-
-								<!-- Specializations List -->
-								<div class="service-list">
-									<h4>Specializations</h4>
-									<ul class="clearfix">
-										<li *ngFor="let speciality of clinic.specialities">{{speciality}} </li>
-									</ul>
-								</div>
-								<!-- /Specializations List -->
-							</div>
-
-						</div>
+						<app-over-view [doctor]="doctor" [clinic]="clinic"></app-over-view>
 					</div>
 					<!-- /Overview Content -->
 
@@ -119,26 +88,7 @@
 					<div role="tabpanel" id="doc_clinic" class="tab-pane fade">
 						<!-- Location List -->
 						<div class="location-list">
-							<div class="row">
-								<!-- Clinic Content -->
-								<div class="col-md-6">
-									<div class="clinic-content">
-										<h4 class="clinic-name">{{clinic?.name}}</h4>
-										<p class="doc-speciality">{{doctor?.speciality}}</p>
-										<div class="clinic-details mb-0">
-											<h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i>
-												{{clinic?.address}} <br></h5>
-										</div>
-									</div>
-								</div>
-								<!-- /Clinic Content -->
-
-								<div class="col-md-2">
-                                    <div class="consult-price">
-                                        {{clinic?.consultPrice | currency}}
-                                    </div>
-                                </div>
-							</div>
+							<app-clinic *ngIf="clinic" [clinic]="clinic" [doctor]="doctor" ></app-clinic>
 						</div>
 						<!-- /Location List -->
 					</div>
@@ -146,73 +96,7 @@
 
 					<!-- Reviews Content -->
                     <div role="tabpanel" id="doc_reviews" class="tab-pane fade">
-						<!-- Review Listing -->
-                        <div class="widget review-listing">
-							<ul class="comments-list">
-								<app-review *ngFor="let review of doctor.reviews" [review]="review"></app-review>
-							</ul>
-						</div>
-						<!-- /Review Listing -->
-						
-						 <!-- Write Review -->
-						 <div *ngIf="isPatient" class="write-review">
-                            <h4>Write a review for <strong> Dr. {{doctor?.firstname | titlecase}} {{doctor?.lastname | titlecase}}</strong></h4>
-                            
-                            <!-- Write Review Form -->
-                            <form>
-                                <div class="form-group">
-                                    <label>Review</label>
-                                    <div class="star-rating">
-                                        <input id="star-5" type="radio" name="rating" value="star-5">
-                                        <label for="star-5" title="5 stars">
-                                            <i class="active fa fa-star"></i>
-                                        </label>
-                                        <input id="star-4" type="radio" name="rating" value="star-4">
-                                        <label for="star-4" title="4 stars">
-                                            <i class="active fa fa-star"></i>
-                                        </label>
-                                        <input id="star-3" type="radio" name="rating" value="star-3">
-                                        <label for="star-3" title="3 stars">
-                                            <i class="active fa fa-star"></i>
-                                        </label>
-                                        <input id="star-2" type="radio" name="rating" value="star-2">
-                                        <label for="star-2" title="2 stars">
-                                            <i class="active fa fa-star"></i>
-                                        </label>
-                                        <input id="star-1" type="radio" name="rating" value="star-1">
-                                        <label for="star-1" title="1 star">
-                                            <i class="active fa fa-star"></i>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Title of your review</label>
-                                    <input class="form-control" type="text" placeholder="If you could say it in one sentence, what would you say?">
-                                </div>
-                                <div class="form-group">
-                                    <label>Your review</label>
-                                    <textarea id="review_desc" maxlength="100" class="form-control"></textarea>
-                                  
-                                  <div class="d-flex justify-content-between mt-3"><small class="text-muted"><span id="chars">100</span> characters remaining</small></div>
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                    <div class="terms-accept">
-                                        <div class="custom-checkbox">
-                                           <input type="checkbox" id="terms_accept">
-                                           <label for="terms_accept">I have read and accept <a href="#">Terms &amp; Conditions</a></label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="submit-section">
-                                    <button type="submit" class="btn btn-primary submit-btn">Add Review</button>
-                                </div>
-                            </form>
-                            <!-- /Write Review Form -->
-                            
-                        </div>
-                        <!-- /Write Review -->
-            
+						<app-reviews (refresh)="refresh()"  *ngIf="doctor" [doctor]="doctor" [isPatient]="isPatient"></app-reviews>
 					</div>
                     <!-- /Reviews Content -->
 

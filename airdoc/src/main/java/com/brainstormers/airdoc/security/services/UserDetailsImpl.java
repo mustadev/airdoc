@@ -9,8 +9,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.Admin;
+import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.Patient;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

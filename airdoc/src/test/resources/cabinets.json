@@ -25,19 +25,10 @@
             "speciality": {
                 "type": "string"
             },
-            "roles":{
-            	"type": "array",
-            	"items":{
-            		"type":"string"
-            	}
+            "clinic":{
+            	"type": "object"
             },
-            "services":{
-            	"type": "array",
-            	"items":{
-            		"type":"string"
-            	}
-            },
-	    	"description": {
+	    	"aboutMe": {
                 "type": "string"
             },
 	    	"city": {
@@ -52,18 +43,23 @@
                 "type": "array",
                 "items": {
                     "type": "object",
-		    "properties": {
-		        "content": {"type": "string"},
-		        "auther": {"type": "object"},
-		        "likes": {"type": "number"}
-		    }
+		    		"properties": {
+		    			"id": {"type": "string"},
+		      		    "content": {"type": "string"},
+		        		"patientId": {"type": "object"},
+		        		"likes": {
+		        			"type": "array", 
+		        			"items": {
+		        			"type": "object",
+		        			"properties": {
+		        				"authorId":"string"
+		        				}
+		        			}
+		    	}
                 }
-            },
-            "ownerId": {
-                "type": "string"
-                }
+            }
 
         },
-        "required": ["id", "name", "ownerId"]
+        "required": ["id", "email", "password"]
     }
 }
