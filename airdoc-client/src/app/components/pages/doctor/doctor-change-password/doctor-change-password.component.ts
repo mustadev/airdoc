@@ -29,7 +29,7 @@ export class DoctorChangePasswordComponent implements OnInit {
         this.doctor = doc;
       });
       this.doctorSerive.getAvatar(user.id).subscribe(avatar => {
-        this.avatar = 'data:image/jpeg;base64,' + avatar.image.data;
+        this.avatar = 'data:image/jpeg;base64,' + avatar?.image?.data;
       })
     })
   }
@@ -45,6 +45,7 @@ export class DoctorChangePasswordComponent implements OnInit {
       console.log("password success: ", JSON.stringify(message));
       this.isPasswordSuccess = true;
       this.successMessage = message.message;
+      setTimeout(() => this.successMessage = '', 2000);
     }, err => {
       this.isPasswordFailed = true;
       console.log("password failed: ", JSON.stringify(err));

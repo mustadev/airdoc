@@ -4,7 +4,10 @@
             <div class="doc-info-left">
                 <div class="doctor-img">
                     <a routerLink="/doctor/profile/{{doctor?.id}}">
-                        <img [src]="retrievedAvatar" class="img-fluid" alt="Doctor Image">
+                        <!-- <img [src]="retrievedAvatar" class="img-fluid" alt="Doctor Image"> -->
+                        <img *ngIf="!showDefaultAvatar" [src]="retrievedAvatar" class="img-fluid"  alt="Doctor Image">
+                        <img *ngIf="showDefaultAvatar" src="assets/img/doctors/default-doctor.png"  class="img-fluid" alt="Doctor Image">
+                   
                     </a>
                 </div>
                 <div class="doc-info-cont">

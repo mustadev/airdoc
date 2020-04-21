@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { Clinic } from 'src/app/models/Clinic';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { ClinicLocation } from 'src/app/models/ClinicLocation';
 
 @Component({
   selector: 'app-clinic-settings',
@@ -22,6 +23,7 @@ export class ClinicSettingsComponent implements OnInit {
   uploadProgress:number;
   uploadErrorMessage:string;
   currentSelectedPhoto:any;
+  successMessage:string='';
 
   constructor(private authService:AuthService, private doctorService:DoctorService) { }
 
@@ -35,13 +37,18 @@ export class ClinicSettingsComponent implements OnInit {
       });
       this.doctorService.getClinic(res.id).subscribe(clinic => {
         this.clinic = clinic;
+        console.log("Clinic : : ", JSON.stringify(this.clinic))
+        if (!!!this.clinic){
+          console.log("empty Clinic: ", JSON.stringify(this.clinic));
+          this.clinic = Clinic.empty();
+        }
         this.services = this.clinic.services.join(', ');
         this.specialities = this.clinic.specialities.join(', ');
       });
       this.doctorService.getClinicPhotos(res.id).subscribe(photos => {
-        photos.filter(photo => {
+        photos = photos.filter((photo) => {
           console.log("photo ", photo);
-          return photo === null;
+          return photo !== null;
         });
         this.clinicPhotos = photos.map(photo => {
           return {
@@ -59,8 +66,13 @@ export class ClinicSettingsComponent implements OnInit {
     this.clinic.services = this.services.split(',');
     this.clinic.specialities = this.specialities.split(',');
     console.log("clinic new name: ", JSON.stringify(this.clinic));
-     this.doctorService.updateClinic(this.doctor.id, this.clinic).subscribe(res => {
-       this.clinic = res;
+     this.doctorService.updateClinic(this.doctor.id, this.clinic).subscribe(clinic => {
+       this.clinic = clinic;
+       console.log("clinic: ", JSON.stringify(this.clinic))
+        this.successMessage = "Change Saved";
+        setTimeout(()=>{   
+          this.successMessage = '';
+     }, 3000);
     });
   }
 
@@ -70,13 +82,22 @@ export class ClinicSettingsComponent implements OnInit {
       console.log("photo Deleted", JSON.stringify(res));
       this.doctorService.getClinicPhotos(this.doctor.id).subscribe(photos => {
         console.log(JSON.stringify(photos));
-        photos = photos.filter((photo, index, photos) => {
+        // photos = photos.filter((photo, index, photos) => {
+        //   console.log("photo ", photo);
+        //   if(photo === null){
+        //     console.log("photo is null");
+        //     photos = photos.slice(index, 1);
+        //   };
+        // });
+        photos = photos.filter((photo) => {
           console.log("photo ", photo);
-          if(photo + "" === "null"){
+          if(photo === null){
             console.log("photo is null");
-            photos = photos.slice(index, 1);
+            return false;
           };
+          return true;
         });
+        console.log("photos after filter: ", JSON.stringify(photos));
         this.clinicPhotos = photos.map(photo => {
           console.log("photo : ", JSON.stringify(photo));
           return {
@@ -113,6 +134,19 @@ export class ClinicSettingsComponent implements OnInit {
         this.uploadErrorMessage = 'Could not upload the Photo!';
         this.currentSelectedPhoto = undefined;
       });
+  }
+
+  dragEnd(latitude:number, longitude:number){
+    console.log("latitude: ", latitude, "longitude: ", longitude);
+    this.clinic.location.latitude = latitude;
+    this.clinic.location.longitude = longitude;
+    
+  }
+
+  zoomChange(zoom:number){
+    console.log("zoom: ", zoom);
+    this.clinic.location.zoom = zoom;
+    
   }
 
 }

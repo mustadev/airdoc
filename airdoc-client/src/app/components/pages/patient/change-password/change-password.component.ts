@@ -45,6 +45,7 @@ export class ChangePasswordComponent implements OnInit {
       console.log("password success: ", JSON.stringify(message));
       this.isPasswordSuccess = true;
       this.successMessage = message.message;
+      setTimeout(() => this.successMessage = '', 2000);
     }, err => {
       this.isPasswordFailed = true;
       console.log("password failed: ", JSON.stringify(err));

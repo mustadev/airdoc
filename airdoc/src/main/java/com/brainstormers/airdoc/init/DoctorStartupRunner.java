@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.brainstormers.airdoc.models.Clinic;
+import com.brainstormers.airdoc.models.ClinicLocation;
 import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.ERole;
 import com.brainstormers.airdoc.models.Like;
@@ -55,6 +56,7 @@ public class DoctorStartupRunner implements CommandLineRunner {
 		clinic.setCity("Agadir");
 		clinic.setCountry("Morocco");
 		clinic.setAddress("Morocco full address here");
+		clinic.setLocation(new ClinicLocation(30.416068373487082f, -9.581001179762264f, 14));
 		clinic.setServices(Arrays.asList("Service1", "Service2", "Service3"));
 		clinic.setSpecialities(Arrays.asList("Speciality1", "Speciality2", "Speciality3", "Speciality4"));
 		clinic.setConsultPrice(100);
@@ -106,6 +108,7 @@ public class DoctorStartupRunner implements CommandLineRunner {
 		clinic2.setCity("casa");
 		clinic2.setCountry("morocco");
 		clinic2.setAddress("Bohr Clinic full address here");
+		clinic2.setLocation(new ClinicLocation(30.416068373487082f, -9.581001179762264f, 14));
 		clinic2.setServices(Arrays.asList("Service1", "Service2", "Service3"));
 		clinic2.setSpecialities(Arrays.asList("Speciality1", "Speciality2", "Speciality3", "Speciality4"));
 		clinic2.setConsultPrice(200);

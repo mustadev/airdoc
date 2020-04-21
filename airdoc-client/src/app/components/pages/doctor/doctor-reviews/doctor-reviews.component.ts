@@ -26,7 +26,7 @@ export class DoctorReviewsComponent implements OnInit {
         this.doctor = doc;
       })
       this.doctorService.getAvatar(user.id).subscribe(avatar => {
-        this.avatar = 'data:image/jpeg;base64,' + avatar.image.data;
+        this.avatar = 'data:image/jpeg;base64,' + avatar?.image?.data;
       });
       this.reviewService.getReviews(user.id).subscribe(reviews => {
         this.reviews = reviews;

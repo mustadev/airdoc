@@ -89,7 +89,7 @@ public class Doctor{
 	 */
 	@ApiModelProperty(notes = "ID Clinique de doctor")
 	@JsonIgnore
-	private Clinic clinic;
+	private Clinic clinic = new Clinic();
 
 
 	/**

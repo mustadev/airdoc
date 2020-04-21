@@ -16,6 +16,7 @@ export class DoctorComponent implements OnInit {
   retrieveResonse:any;
   base64Data:string;
   speciality: string;
+  showDefaultAvatar:boolean = false;
 
   constructor(private doctorService:DoctorService) { }
 
@@ -28,6 +29,11 @@ export class DoctorComponent implements OnInit {
       console.log(res);
       //console.log("base64", this.base64Data);
       console.log("retrievedAvatar: ", this.retrievedAvatar);
+      if (res?.image?.data === undefined){
+        this.showDefaultAvatar = true;
+        console.log("show default");
+        
+      }
     });
     //Get Doctor Clinic
     this.doctorService.getClinic(this.doctor.id).subscribe(res => {

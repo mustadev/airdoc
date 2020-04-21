@@ -52,6 +52,9 @@
                     </li>
                     <app-patient-appointment *ngFor="let appointment of appointments" [appointment]="appointment">
                     </app-patient-appointment>
+                    <li *ngIf="appointments.length === 0" class="list-group-item">
+                        <h6>You Have No appointments</h6>
+                    </li>
                 </ul>
             </div>
         </div>

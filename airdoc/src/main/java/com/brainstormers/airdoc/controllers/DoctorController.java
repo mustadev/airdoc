@@ -281,6 +281,8 @@ public class DoctorController {
 	
 		Doctor doctor = doctorService.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Could Find Doctor: " + id));
+		Clinic old = doctor.getClinic();
+		clinic.setPhotos(old.getPhotos());
 		doctor.setClinic(clinic);
 		
 		doctorService.save(doctor);
@@ -318,6 +320,8 @@ public class DoctorController {
 		Doctor doctor = doctorService
 				.findById(id)
 				.orElseThrow(()-> new ResourceNotFoundException("could not find photo with id"));
+		Clinic old = doctor.getClinic();
+		clinic.setPhotos(old.getPhotos());
 		doctor.setClinic(clinic);
 		doctorService.save(doctor);
 		return ResponseEntity.ok().body(clinic);
@@ -414,6 +418,7 @@ public class DoctorController {
 		
 		float newRating = getNewRating(doctor.getRating(), doctor.getAverageRating(),review.getRating() );
 		reviews.add(review);
+		System.out.println("new Rating is: " + newRating);
 		doctor.setReviews(reviews);
 		doctor.setRating(newRating);
 		doctor.setAverageRating(doctor.getAverageRating() + 1);
@@ -464,6 +469,7 @@ public class DoctorController {
 			.orElseThrow(() -> new ResourceNotFoundException("could not Update Review  with ID"));
 		float oldRating = getOldRating(doctor.getRating(), doctor.getAverageRating(), oldReview.getRating());
 		float newRating = getNewRating(oldRating, doctor.getAverageRating() -1 ,review.getRating()); 
+		System.out.println("new Rating is: " + newRating);
 		doctor.setRating(newRating);
 		doctor.setAverageRating(doctor.getAverageRating() - 1);
 		reviewService.deleteById(reviewId);
@@ -489,6 +495,7 @@ public class DoctorController {
 				.orElseThrow(() -> new ResourceNotFoundException("could not Update Review  with ID"));
 		float rating = getOldRating(doctor.getRating(), doctor.getAverageRating(), review.getRating());
 		doctor.setRating(rating);
+		System.out.println("new Rating is: " + rating);
 		doctor.setAverageRating(doctor.getAverageRating() - 1);
 		reviewService.deleteById(reviewId);
 		doctorService.save(doctor);
@@ -546,6 +553,9 @@ public class DoctorController {
 		
 	}
 	private float getOldRating(float rating, int averageRating, int oldReviewRating) {
+		if (averageRating == 1) {
+			return 0.0f;
+		}
 		return (float) (rating * averageRating - oldReviewRating)/(averageRating - 1);
 		
 	}

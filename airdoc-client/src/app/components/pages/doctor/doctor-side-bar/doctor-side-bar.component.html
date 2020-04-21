@@ -3,7 +3,8 @@
     <div class="widget-profile pro-widget-content">
         <div class="profile-info-widget">
             <a href="#" class="booking-doc-img">
-                <img [src]="avatar" alt="Doctor Image">
+                <img *ngIf="avatar.length > 100" [src]="avatar" alt="Doctor Image">
+                <img *ngIf="avatar.length < 100" src="assets/img/doctors/default-doctor.png"  alt="Doctor Image">
             </a>
             <div class="profile-det-info">
                 <h3>Dr. {{doctor?.firstname | titlecase}} {{doctor?.lastname | titlecase }}</h3>

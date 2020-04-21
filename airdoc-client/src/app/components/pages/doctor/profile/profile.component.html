@@ -6,14 +6,17 @@
 				<div class="doctor-widget">
 					<div class="doc-info-left">
 						<div class="doctor-img">
-							<img [src]="avatar" class="img-fluid" alt="Doctor Image">
+							<!-- <img [src]="avatar" class="img-fluid" alt="Doctor Image"> -->
+							<img *ngIf="!showDefaultAvatar" [src]="avatar" class="img-fluid" alt="Doctor Image">
+                			<img *ngIf="showDefaultAvatar" src="assets/img/doctors/default-doctor.png" class="img-fluid" alt="Doctor Image">
+            
 						</div>
 						<div class="doc-info-cont">
 							<h4 class="doc-name">Dr. {{doctor?.firstname | titlecase}} {{doctor?.lastname | titlecase}}
 							</h4>
 							<p class="doc-speciality">{{doctor?.speciality | titlecase}}</p>
-							<div class="rating">
-								<app-rating-star [ratedCount]="doctor?.rating" ></app-rating-star>
+							<div *ngIf="doctor?.rating" class="rating">
+								<app-rating-star [ratedCount]="doctor.rating" ></app-rating-star>
 								<span class="d-inline-block average-rating">({{doctor?.averageRating}})</span>
 							</div>
 							
@@ -29,7 +32,7 @@
 					<div class="doc-info-right">
 						<div class="clini-infos">
 							<ul>
-								<li><i class="far fa-comment"></i> {{doctor?.reviews?.length}} Feedback</li>
+								<li><i class="far fa-comment"></i> {{doctor?.averageRating}} Feedback</li>
 								<li><i class="fas fa-map-marker-alt"></i> {{clinic?.city | titlecase}},
 									{{clinic?.country | titlecase}}</li>
 								<li><i class="far fa-money-bill-alt"></i> {{clinic?.maxPrice | currency}} per hour
@@ -85,7 +88,7 @@
 					<div role="tabpanel" id="doc_clinic" class="tab-pane fade">
 						<!-- Location List -->
 						<div class="location-list">
-							<app-clinic [clinic]="clinic" [doctor]="doctor" ></app-clinic>
+							<app-clinic *ngIf="clinic" [clinic]="clinic" [doctor]="doctor" ></app-clinic>
 						</div>
 						<!-- /Location List -->
 					</div>
