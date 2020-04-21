@@ -2000,7 +2000,7 @@ html.menu-opened body {
 -----------------------*/
 
 .footer {
-    background-color: #15558d;
+    background-color: #1e8b4c;
 }
 .footer .footer-top {
 	padding: 40px 0;
@@ -2691,7 +2691,7 @@ html.menu-opened body {
 -----------------------*/
 
 .breadcrumb-bar {
-    background-color: #15558d;
+    background-color: #1E8B4C;
     padding: 15px 0;
 }
 .breadcrumb-bar .breadcrumb-title {
@@ -5982,7 +5982,7 @@ html.menu-opened body {
 		z-index: 1060;
 		transform: translateX(-260px);
 		transition: all 0.4s;
-		background-color: #15558d;
+		background-color: #1E8B4C;
 	}
 	.menu-header {
 		display: -webkit-box;

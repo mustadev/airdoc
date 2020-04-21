@@ -46,7 +46,6 @@ public class PatientStartUpRunner implements CommandLineRunner {
 	patient1.setFirstname("Ayoub");
 	patient1.setLastname("ben");
 	patient1.setUsername("ben");
-	patient1.setAge(23);
 	patient1.setEmail("ayoub@gmail.com");
 	patient1.setPassword(encoder.encode("password"));
 	Patient savedPatient1 = patientRepository.save(patient1);
@@ -59,7 +58,6 @@ public class PatientStartUpRunner implements CommandLineRunner {
     patient2.setFirstname("mehdi");
     patient2.setLastname("ozi");
     patient2.setUsername("ozi");
-    patient2.setAge(24);
     patient2.setEmail("mehdi@gmail.com");
     patient2.setPassword(encoder.encode("password"));
     Patient savedPatient2 = patientRepository.save(patient2);
@@ -71,7 +69,6 @@ public class PatientStartUpRunner implements CommandLineRunner {
     patient3.setFirstname("jean");
     patient3.setLastname("freroa");
     patient3.setUsername("freroa");
-    patient3.setAge(25);
     patient3.setEmail("jean@gmail.com");
     patient3.setPassword(encoder.encode("password"));
     Patient savedPatient3 = patientRepository.save(patient3);
@@ -82,7 +79,6 @@ public class PatientStartUpRunner implements CommandLineRunner {
     patient4.setFirstname("fatima");
     patient4.setLastname("koam");
     patient4.setUsername("koam");
-    patient4.setAge(25);
     patient4.setEmail("fatima@gmail.com");
     patient4.setPassword(encoder.encode("password"));
 	Patient savedPatient4 = patientRepository.save(patient4);

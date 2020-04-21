@@ -10,7 +10,7 @@
                 <h5><i class="far fa-clock"></i> {{appointmentDate | date:'full'}}</h5>
                 <!-- <h5><i class="fas fa-map-marker-alt"></i> Newyork, United States</h5> -->
                 <h5 *ngIf="patient.email"><i class="fas fa-envelope"></i> {{patient.email}}</h5>
-                <h5 *ngIf="patient.tel" class="mb-0"><i class="fas fa-phone"></i> {{patient.tel}}</h5>
+                <h5 *ngIf="patient.phone" class="mb-0"><i class="fas fa-phone"></i> {{patient.phone}}</h5>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Type } from '@angular/core';
 import { Doctor } from 'src/app/models/Doctor';
 import { AuthService } from 'src/app/services/auth.service';
 import { DoctorService } from 'src/app/services/doctor.service';
@@ -39,6 +39,10 @@ export class ClinicSettingsComponent implements OnInit {
         this.specialities = this.clinic.specialities.join(', ');
       });
       this.doctorService.getClinicPhotos(res.id).subscribe(photos => {
+        photos.filter(photo => {
+          console.log("photo ", photo);
+          return photo === null;
+        });
         this.clinicPhotos = photos.map(photo => {
           return {
             "id": photo.id,
@@ -65,7 +69,16 @@ export class ClinicSettingsComponent implements OnInit {
     this.doctorService.deleteClinicPhoto(this.doctor.id, photoId).subscribe(res =>{
       console.log("photo Deleted", JSON.stringify(res));
       this.doctorService.getClinicPhotos(this.doctor.id).subscribe(photos => {
+        console.log(JSON.stringify(photos));
+        photos = photos.filter((photo, index, photos) => {
+          console.log("photo ", photo);
+          if(photo + "" === "null"){
+            console.log("photo is null");
+            photos = photos.slice(index, 1);
+          };
+        });
         this.clinicPhotos = photos.map(photo => {
+          console.log("photo : ", JSON.stringify(photo));
           return {
             "id": photo.id,
             "image": 'data:image/jpeg;base64,' + photo.image.data
@@ -90,6 +103,8 @@ export class ClinicSettingsComponent implements OnInit {
                 "image": 'data:image/jpeg;base64,' + photo.image.data
               };
             });
+            this.uploadProgress = 0;
+            this.currentSelectedPhoto = undefined;
           });
         }
       },

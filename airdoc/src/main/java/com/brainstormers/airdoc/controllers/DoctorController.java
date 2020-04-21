@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +34,7 @@ import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.Like;
 import com.brainstormers.airdoc.models.Photo;
 import com.brainstormers.airdoc.models.Review;
+import com.brainstormers.airdoc.payload.request.Password;
 import com.brainstormers.airdoc.payload.response.MessageResponse;
 import com.brainstormers.airdoc.services.DoctorService;
 import com.brainstormers.airdoc.services.PhotoService;
@@ -65,6 +67,9 @@ public class DoctorController {
 	
 	@Autowired
 	private ReviewService reviewService;
+	
+	@Autowired
+	private PasswordEncoder encoder;
 
 
 	/**
@@ -167,10 +172,20 @@ public class DoctorController {
 	@PutMapping(consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Doctor>  updateDoctor(
 			@ApiParam(value = "Doctor", required = true) @RequestBody  Doctor doctor) throws ResourceAlreadyExistsException{
-		//doctorService.saveDoctor(doctor);
-		//return new ResponseEntity<>("Doctor added successfully", HttpStatus.OK);
+		Doctor old = doctorService.findById(doctor.getId())
+				.orElseThrow( () -> new ResourceAlreadyExistsException("could not update" +	doctor.toString()));
+//		doctor.setEmail(old.getEmail());
+//		doctor.setPassword(old.getPassword());
+//		doctor.setUsername(old.getUsername());
+//		doctor.setRating(old.getRating());
+//		doctor.setAverageRating(old.getAverageRating());
+//		doctor.setAvatar(old.getAvatar());
+		old.setFirstname(doctor.getFirstname());
+		old.setLastname(doctor.getLastname());
+		old.setSpeciality(doctor.getSpeciality());
+		old.setAboutMe(doctor.getAboutMe());
 		Doctor result = doctorService.
-				save(doctor).orElseThrow( () -> new ResourceAlreadyExistsException("could not update" +	doctor.toString()));
+				save(old).orElseThrow( () -> new ResourceAlreadyExistsException("could not update" +	doctor.toString()));
 		return new ResponseEntity<>(result, HttpStatus.OK);
 
 	}
@@ -534,6 +549,34 @@ public class DoctorController {
 		return (float) (rating * averageRating - oldReviewRating)/(averageRating - 1);
 		
 	}
+	
+	/**
+	 * modifier le mot de pass
+	 * @param Doctor Id 
+	 * @return message {@link MessageResponse}
+	 */
+	@ApiOperation(value = "modifier le mot de pass", response = MessageResponse.class)
+	@PostMapping("/{id}/password")
+	public ResponseEntity<MessageResponse> changePassowrd(
+			@PathVariable("id") String id,
+			@RequestBody @Valid Password password ) throws ResourceNotFoundException{
+		Doctor doctor = doctorService.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("could not Find Doctor  with ID: " + id));
+		
+		//String oldPassword = encoder.encode(password.getOldPassword());
+		//String originalPassword = doctor.getPassword();
+//		System.out.println(" :::::::::::::oldPassword: "+ oldPassword);
+//		System.out.println(":::::::::::::: Original Password: "+ originalPassword);
+		if (encoder.matches(password.getOldPassword(), doctor.getPassword())) {
+			doctor.setPassword(encoder.encode(password.getNewPassword()));
+			doctorService.save(doctor)
+			.orElseThrow(() -> new ResourceNotFoundException("could not Save Doctor  with ID: " + id));
+			return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Password Changed"));
+			}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MessageResponse("Old Password Is Not Correct"));
+			
+	}
+	
 }
 
 

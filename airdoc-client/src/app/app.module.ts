@@ -43,6 +43,9 @@ import { DoctorSideBarComponent } from './components/pages/doctor/doctor-side-ba
 import { PatientSideBarComponent } from './components/pages/patient/patient-side-bar/patient-side-bar.component';
 import { DoctorAppointmentsComponent } from './components/pages/doctor/doctor-appointments/doctor-appointments.component';
 import { DoctorAppointmentComponent } from './components/pages/doctor/doctor-appointment/doctor-appointment.component';
+import { DoctorChangePasswordComponent } from './components/pages/doctor/doctor-change-password/doctor-change-password.component';
+import { DoctorReviewsComponent } from './components/pages/doctor/doctor-reviews/doctor-reviews.component';
+import { DoctorReviewComponent } from './components/pages/doctor/doctor-review/doctor-review.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +83,9 @@ import { DoctorAppointmentComponent } from './components/pages/doctor/doctor-app
     PatientSideBarComponent,
     DoctorAppointmentsComponent,
     DoctorAppointmentComponent,
+    DoctorChangePasswordComponent,
+    DoctorReviewsComponent,
+    DoctorReviewComponent,
   ],
   imports: [
     BrowserModule,

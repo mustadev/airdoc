@@ -17,24 +17,24 @@
     <div class="dashboard-widget">
         <nav class="dashboard-menu">
             <ul>
-                <li routerLinkActive="active">
+                <!-- <li routerLinkActive="active">
                     <a routerLink="/doctor/dashboard">
                         <i class="fas fa-columns"></i>
                         <span>Dashboard</span>
                     </a>
-                </li>
+                </li> -->
                 <li  routerLinkActive="active">
                     <a routerLink="/doctor/appointments">
                         <i class="fas fa-calendar-check"></i>
                         <span>Appointments</span>
                     </a>
                 </li>
-                <li routerLinkActive="active">
+                <!-- <li routerLinkActive="active">
                     <a routerLink="/doctor/patients">
                         <i class="fas fa-user-injured"></i>
                         <span>My Patients</span>
                     </a>
-                </li>
+                </li> -->
                 <li routerLinkActive="active">
                     <a routerLink="/doctor/reviews">
                         <i class="fas fa-star"></i>
@@ -57,13 +57,13 @@
                 </li>
 
                 <li routerLinkActive="active">
-                    <a routerLink="/doctor/password">
+                    <a routerLink="/doctor/change-password">
                         <i class="fas fa-lock"></i>
                         <span>Change Password</span>
                     </a>
                 </li>
-                <li>
-                    <a href="index-2.html">
+                <li (click)="logout()">
+                    <a href="#">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Logout</span>
                     </a>

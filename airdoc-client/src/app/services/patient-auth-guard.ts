@@ -16,9 +16,7 @@ export class PatientAuthGuard implements CanActivate {
     state: RouterStateSnapshot):
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if ((this.authStorage.getUser() == null) || (this.authStorage.getUserType() !== "PATIENT")){
-        alert('You are not allowed to view this page. You are redirected to login Page');
-        console.log("next : " + next);
-        console.log("state : " + state);
+        //alert('You are not allowed to view this page. You are redirected to login Page');
         this.router.navigate(["patient/login"],{ queryParams: { retUrl: state.url} });
             return false;
       }

@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
-                <app-doctor-side-bar [avatar]="avatar" [doctor]="doctor"></app-doctor-side-bar>
+                <app-doctor-side-bar [avatar]="avatar" ></app-doctor-side-bar>
             </div>
             <div *ngIf="clinic" class="col-md-7 col-lg-8 col-xl-9">
                 <!-- Clinic Info -->
@@ -13,43 +13,50 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Clinic Name</label>
-                                    <input [value]="clinic.name" type="text" class="form-control" [(ngModel)]="clinic.name">
+                                    <input [value]="clinic.name" type="text" class="form-control"
+                                        [(ngModel)]="clinic.name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Clinic Full Address</label>
-                                    <input [value]="clinic.address" type="text" class="form-control" [(ngModel)]="clinic.address">
+                                    <input [value]="clinic.address" type="text" class="form-control"
+                                        [(ngModel)]="clinic.address">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Country</label>
-                                    <input [value]="clinic.country" type="text" class="form-control" [(ngModel)]="clinic.country">
+                                    <input [value]="clinic.country" type="text" class="form-control"
+                                        [(ngModel)]="clinic.country">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>City</label>
-                                    <input [value]="clinic.city" [(ngModel)]="clinic.city" type="text" class="form-control">
+                                    <input [value]="clinic.city" [(ngModel)]="clinic.city" type="text"
+                                        class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <textarea [value]="clinic.description" [(ngModel)]="clinic.description"  class="form-control" rows="5"></textarea>
+                                    <textarea [value]="clinic.description" [(ngModel)]="clinic.description"
+                                        class="form-control" rows="5"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Min Price</label>
-                                    <input [value]="clinic.minPrice" [(ngModel)]="clinic.minPrice"  type="text" class="form-control">
+                                    <input [value]="clinic.minPrice" [(ngModel)]="clinic.minPrice" type="text"
+                                        class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Max Price</label>
-                                    <input [value]="clinic.maxPrice" [(ngModel)]="clinic.maxPrice"  type="text" class="form-control">
+                                    <input [value]="clinic.maxPrice" [(ngModel)]="clinic.maxPrice" type="text"
+                                        class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -57,39 +64,46 @@
                                     <label>Clinic Images</label>
                                     <!-- <form action="#" class="dropzone"></form> -->
                                     <div *ngIf="currentSelectedPhoto" class="progress">
-                                        <div
-                                          class="progress-bar progress-bar-info progress-bar-striped"
-                                          role="progressbar"
-                                          attr.aria-valuenow="{{ uploadProgress }}"
-                                          aria-valuemin="0"
-                                          aria-valuemax="100"
-                                          [ngStyle]="{ width: uploadProgress + '%' }"
-                                        >
-                                          {{ uploadProgress }}%
+                                        <div class="progress-bar progress-bar-info progress-bar-striped"
+                                            role="progressbar" attr.aria-valuenow="{{ uploadProgress }}"
+                                            aria-valuemin="0" aria-valuemax="100"
+                                            [ngStyle]="{ width: uploadProgress + '%' }">
+                                            {{ uploadProgress }}%
                                         </div>
-                                      </div>
-                                    <input type="file" (change)="uploadClinicPhoto($event)" />
+                                    </div>
+                                    <div class="upload-img">
+                                        <div class="change-photo-btn">
+                                            <span><i class="fa fa-upload"></i> Upload Photo</span>
+                                            <input type="file" class="upload" (change)="uploadClinicPhoto($event)">
+                                        </div>
+                                        <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
+                                    </div>
+                                    <!-- <input type="file" class="upload" (change)="uploadClinicPhoto($event)" /> -->
                                 </div>
                                 <div class="upload-wrap">
                                     <div *ngFor="let clinicPhoto of clinicPhotos" class="upload-images">
                                         <img [src]="clinicPhoto.image" alt="Upload Image">
-                                        <a (click)="deleteClinicPhoto(clinicPhoto?.id)" class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+                                        <a (click)="deleteClinicPhoto(clinicPhoto?.id)"
+                                            class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-12 mt-5">
                                 <div class="form-group">
                                     <label>Services</label>
-                                    <input [value]="services" [(ngModel)]="services"  type="text" class="form-control">
-                                    <small class="form-text text-muted">Note : Type , to enter to multiple Services</small>
+                                    <input [value]="services" [(ngModel)]="services" type="text" class="form-control">
+                                    <small class="form-text text-muted">Note : Type , to enter to multiple
+                                        Services</small>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Specialisation</label>
-                                    <input  [value]="specialities" [(ngModel)]="specialities" type="text" class="form-control">
-                                    <small class="form-text text-muted">Note : Type , to enter to multiple Specializations</small>
+                                    <input [value]="specialities" [(ngModel)]="specialities" type="text"
+                                        class="form-control">
+                                    <small class="form-text text-muted">Note : Type , to enter to multiple
+                                        Specializations</small>
                                 </div>
                             </div>
                         </div>

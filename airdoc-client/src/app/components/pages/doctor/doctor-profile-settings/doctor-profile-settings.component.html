@@ -3,7 +3,7 @@
         <div *ngIf="doctor" class="row">
             <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
                
-                <app-doctor-side-bar [avatar]="avatar" [doctor]="doctor" ></app-doctor-side-bar>
+                <app-doctor-side-bar [avatar]="avatar" ></app-doctor-side-bar>
             </div>
             <div class="col-md-7 col-lg-8 col-xl-9">
                 <!-- Basic Information -->
@@ -18,9 +18,17 @@
                                             <img [src]="avatar" alt="Doctor Image">
                                         </div>
                                         <div class="upload-img">
+                                            <div *ngIf="currentSelectedAvatar" class="progress">
+                                                <div class="progress-bar progress-bar-info progress-bar-striped"
+                                                    role="progressbar" attr.aria-valuenow="{{ uploadProgress }}"
+                                                    aria-valuemin="0" aria-valuemax="100"
+                                                    [ngStyle]="{ width: uploadProgress + '%' }">
+                                                    {{ uploadProgress }}%
+                                                </div>
+                                            </div>
                                             <div class="change-photo-btn">
                                                 <span><i class="fa fa-upload"></i> Upload Photo</span>
-                                                <input type="file" class="upload">
+                                                <input type="file" class="upload" (change)="uploadAvatar($event)">
                                             </div>
                                             <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of
                                                 2MB</small>
