@@ -28,7 +28,7 @@ import lombok.ToString;
  */
 @ApiModel(description = "Détails du rendez-vous")
 @Document(collection = "appointments")
-@Data @ToString @AllArgsConstructor @NoArgsConstructor
+//@Data @ToString @AllArgsConstructor @NoArgsConstructor
 public class Appointment {
 	
 	/**
@@ -72,6 +72,48 @@ public class Appointment {
 	 */
 	@ApiModelProperty(notes ="Etat du rendez-vous")
 	private String description;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getDoctorId() {
+		return doctorId;
+	}
+	public void setDoctorId(String doctorId) {
+		this.doctorId = doctorId;
+	}
+	public String getPatientId() {
+		return patientId;
+	}
+	public void setPatientId(String patientId) {
+		this.patientId = patientId;
+	}
+	public Date getAppointmentDate() {
+		return appointmentDate;
+	}
+	public void setAppointmentDate(Date appointmentDate) {
+		this.appointmentDate = appointmentDate;
+	}
+	public Date getBookingDate() {
+		return bookingDate;
+	}
+	public void setBookingDate(Date bookingDate) {
+		this.bookingDate = bookingDate;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 		
 	
 }
