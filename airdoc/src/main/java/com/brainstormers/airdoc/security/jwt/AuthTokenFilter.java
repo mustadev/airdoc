@@ -23,6 +23,11 @@ import com.brainstormers.airdoc.security.services.DoctorDetailsServiceImpl;
 import com.brainstormers.airdoc.security.services.PatientDetailsServiceImpl;
 import com.brainstormers.airdoc.security.services.UserDetailsImpl;
 
+/**
+ * @author Mustapha Ouarrain
+ * @since version 1.0.0
+ *
+ */
 public class AuthTokenFilter extends OncePerRequestFilter {
 	@Autowired
 	private JwtUtils jwtUtils;

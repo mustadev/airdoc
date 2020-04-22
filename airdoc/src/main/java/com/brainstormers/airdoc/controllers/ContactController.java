@@ -20,6 +20,12 @@ import com.brainstormers.airdoc.services.ContactService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 
+
+/**
+ * @author  Belaid Atif
+ * @since version 1.0.0
+ * 
+ */
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("contacts")
@@ -47,7 +53,7 @@ public class ContactController {
     /**
      * send Message
      * @param contact
-     * @return
+     * @return Contact
      * @throws ResourceAlreadyExistsException
      */
     

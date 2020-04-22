@@ -10,6 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.brainstormers.airdoc.services.PatientService;
 
+/**
+ * @author Mustapha Ouarrain
+ * @since version 1.0.0
+ * 
+ */
 @Service
 public class PatientDetailsServiceImpl implements UserDetailsService {
 	

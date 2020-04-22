@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Contacts
- * @author Belaid De BrainStormers
+ * @author Belaid Atif
  * @since version 0.0.2
  * 
  */

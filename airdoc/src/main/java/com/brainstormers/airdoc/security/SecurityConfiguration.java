@@ -23,6 +23,11 @@ import com.brainstormers.airdoc.security.services.AdminDetailsServiceImpl;
 import com.brainstormers.airdoc.security.services.DoctorDetailsServiceImpl;
 import com.brainstormers.airdoc.security.services.PatientDetailsServiceImpl;
 
+/**
+ * @author Mustapha Ouarrain
+ * @since version 1.0.0
+ * Jwt Security Configuration 
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(

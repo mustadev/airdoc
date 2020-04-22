@@ -4,6 +4,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+/**
+ * @author Mustapha Ouarrain
+ * @since version 1.0.0
+ * 
+ */
 public class LoginRequest {
 	
 	@Email

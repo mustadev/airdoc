@@ -1,5 +1,10 @@
 package com.brainstormers.airdoc.payload.response;
 
+/**
+ * @author Mustapha Ouarrain
+ * @since version 1.0.0
+ * Message Response
+ */
 public class MessageResponse {
 	private String message;
 

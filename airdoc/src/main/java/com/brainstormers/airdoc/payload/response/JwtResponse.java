@@ -2,6 +2,11 @@ package com.brainstormers.airdoc.payload.response;
 
 import java.util.List;
 
+/**
+ * @author Mustapha Ouarrain
+ * @since version 1.0.0
+ * JSON Web Token Response
+ */
 public class JwtResponse {
 	private String token;
 	private String type = "Bearer";

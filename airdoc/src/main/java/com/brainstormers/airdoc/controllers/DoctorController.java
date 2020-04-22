@@ -46,8 +46,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 /**
- * @author Mustapha De BrainStormers
- * @since 13-03-2020
+ * @author Mustapha Ouarrain
+ * @since version 0.0.1
  * 
  */
 @RestController

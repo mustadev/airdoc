@@ -14,6 +14,11 @@ import com.brainstormers.airdoc.models.Doctor;
 import com.brainstormers.airdoc.models.Patient;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * @author Mustapha Ouarrain
+ * @since version 1.0.0
+ * 
+ */
 public class UserDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	

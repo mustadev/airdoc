@@ -2,6 +2,11 @@ package com.brainstormers.airdoc.payload.request;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * @author Mustapha Ouarrain
+ * @since version 1.0.0
+ * 
+ */
 public class Password {
 
 	@NotBlank

@@ -46,6 +46,13 @@ import com.brainstormers.airdoc.services.RoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+
+
+/**
+ * @author Mustapha Ouarrain
+ * @since version 1.0.0
+ * 
+ */
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @Api(tags = "Authentification Controlleur", value="Authentification System")
@@ -81,24 +88,42 @@ public class AuthController {
 
 	
 	
+	/**
+	 * Authentifie le doctors
+	 * @param loginRequest
+	 * @return JwtResponse
+	 */
 	@PostMapping("/doctor/signin")
 	@ApiOperation(value = "Authentifie le doctors", response = ResponseEntity.class)
 	public ResponseEntity<?> authenticateDoctor(@Valid @RequestBody LoginRequest loginRequest) {
 		return authenticate(loginRequest, doctorAuthenticationProvider);
 	}
 	
+	/**
+	 * Authentifie le patient
+	 * @param loginRequest
+	 * @return JwtResponse
+	 */
 	@PostMapping("/patient/signin")
 	@ApiOperation(value = "Authentifie le patient", response = ResponseEntity.class)
 	public ResponseEntity<?> authenticatePatient(@Valid @RequestBody LoginRequest loginRequest) {	
 		return authenticate(loginRequest, patientAuthenticationProvider);
 	}
-	
+	/**
+	 * Authentifie l'admin
+	 * @param loginRequest
+	 * @return JwtResponse
+	 */
 	@PostMapping("/admin/signin")
 	@ApiOperation(value = "Authentifie l'admin", response = ResponseEntity.class)
 	public ResponseEntity<?> authenticateAdmin(@Valid @RequestBody LoginRequest loginRequest) {
 		return authenticate(loginRequest, adminAuthenticationProvider);
 	}
 	
+	/**
+	 * @param loginRequest
+	 * @return JwtResponse
+	 */
 	public ResponseEntity<?> authenticate(@Valid @RequestBody LoginRequest loginRequest, DaoAuthenticationProvider daoAuthenticationProvider) {
 		System.out.println(":::::::::::::::::::::::::::::::::::: SIGNIN");
 		System.out.println(":::::::::::::::::::username : " + loginRequest.getEmail());
@@ -135,6 +160,11 @@ public class AuthController {
 	}
 	
 	
+	/**
+	 * Inscrire un médecin
+	 * @param signUpRequest
+	 * @return MessageResponse
+	 */
 	@PostMapping("/doctor/signup") //TODO add throw  Exception
 	@ApiOperation(value = "Inscrire un médecin", response = MessageResponse.class)
 	public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
@@ -187,6 +217,11 @@ public class AuthController {
 		
 	}
 	
+	/**
+	 * Patient Inscription
+	 * @param signUpRequest
+	 * @return MessageResponse
+	 */
 	@PostMapping("/patient/signup") //TODO add throw  Exception
 	@ApiOperation(value = "Inscrire un patient", response = MessageResponse.class)
 	public ResponseEntity<MessageResponse> registerPatient(@Valid @RequestBody SignupRequest signUpRequest) {
@@ -236,6 +271,11 @@ public class AuthController {
 		return ResponseEntity.ok(new MessageResponse("Patient registered successfully!"));
 	}
 	
+	/**
+	 * Admin Inscription 
+	 * @param signUpRequest
+	 * @return MessageResponse
+	 */
 	@PostMapping("/admin/signup") //TODO add throw  Exception
 	@ApiOperation(value = "Inscrire un admin", response = MessageResponse.class)
 	public ResponseEntity<MessageResponse> registerAdmin(@Valid @RequestBody SignupRequest signUpRequest) {
@@ -289,6 +329,10 @@ public class AuthController {
 	}
 	
 	
+	/**
+	 * récupérer utilisateur authentifié 
+	 * @return JwtResponse
+	 */
 	@GetMapping("/user")
 	@ApiOperation(value = "recupirer utilisateur authentifié", response = JwtResponse.class)
     public ResponseEntity<?> getAuthenticatedUser(){
