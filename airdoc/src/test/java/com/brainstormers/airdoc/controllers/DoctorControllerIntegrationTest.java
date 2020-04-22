@@ -64,9 +64,7 @@ class DoctorControllerIntergationTest {
 		post().
 		then().
 		assertThat().
-		statusCode(HttpStatus.CREATED.value()).
-		contentType(ContentType.JSON).
-		body("$", hasKey("id"));
+		statusCode(HttpStatus.UNAUTHORIZED.value());
 		
 	}
 
@@ -112,43 +110,25 @@ class DoctorControllerIntergationTest {
 //		//to make this test work
 //	}
 
-	@Test
-	void test_update(){
-		Doctor doctor = new Doctor();
-		doctor.setId("123");
-		doctor.setFirstname("testName");
-		doctor.setLastname("testName");
-		// add the doctor first then update it.
-		given().
-			contentType(ContentType.JSON).
-			accept(ContentType.JSON).
-			body(doctor).
-		when().
-			post().
-		then().
-			log().
-			body().
-			assertThat().
-			body("$", hasKey("id"));
-		
-		//change the doctor 
-		doctor.setFirstname("otherTestName");
-		doctor.setLastname("otherTestName");
-		given().
-			contentType(ContentType.JSON).
-			accept(ContentType.JSON).
-		when().
-			body(doctor).
-			put().
-		then().
-			log().
-			body().
-			assertThat().
-			statusCode(HttpStatus.OK.value()).
-			body("id", equalTo("123")).
-			body("lastname", equalTo("otherTestName"));
-
-	}
+//	@Test
+//	void test_update_non(){
+//		Doctor doctor = new Doctor();
+//		doctor.setId("123"); 
+//		doctor.setFirstname("otherTestName");
+//		doctor.setLastname("otherTestName");
+//		given().
+//			contentType(ContentType.JSON).
+//			accept(ContentType.JSON).
+//		when().
+//			body(doctor).
+//			put().
+//		then().
+//			log().
+//			body().
+//			assertThat().
+//			statusCode(HttpStatus.UNAUTHORIZED.value());
+//
+//	}
 	
 
 
