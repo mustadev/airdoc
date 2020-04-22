@@ -154,7 +154,7 @@ public class DoctorController {
 	 */
 	@ApiOperation(value = "ajouter un Doctor ", response = Doctor.class, code = 201)
 	@PostMapping(consumes = "application/json", produces = "application/json")
-	//@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Doctor> createDoctor(
 			@ApiParam(value = "Doctor", required = true) @RequestBody  Doctor doctor) throws ResourceAlreadyExistsException{
 		Doctor result =  doctorService.save(doctor).
@@ -168,7 +168,7 @@ public class DoctorController {
 	 * @return Doctor
 	 */
 	@ApiOperation(value = "modifier un Doctor ", response = Doctor.class)
-	//    @PreAuthorize("#doctor.id == principal.id")
+	@PreAuthorize("#doctor.id == principal.id")
 	@PutMapping(consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Doctor>  updateDoctor(
 			@ApiParam(value = "Doctor", required = true) @RequestBody  Doctor doctor) throws ResourceAlreadyExistsException{

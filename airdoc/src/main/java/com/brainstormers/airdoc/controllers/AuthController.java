@@ -166,7 +166,10 @@ public class AuthController {
 		Set<Role> roles = new HashSet<>();
 		Role userRole = roleService.findByName(ERole.ROLE_USER)
 				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+		Role doctorRole = roleService.findByName(ERole.ROLE_DOCTOR)
+				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 		roles.add(userRole);
+		roles.add(doctorRole);
 
 		user.setRoles(roles);
 		Optional<Doctor> doc = doctorService.save(user);
@@ -217,7 +220,10 @@ public class AuthController {
 		Set<Role> roles = new HashSet<>();
 		Role userRole = roleService.findByName(ERole.ROLE_USER)
 				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+		Role patientRole = roleService.findByName(ERole.ROLE_PATIENT)
+				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 		roles.add(userRole);
+		roles.add(patientRole);
 		user.setRoles(roles);
 		Optional<Patient> pat = patientService.insertPatient(user);
 		if(!pat.isPresent()) {
@@ -263,7 +269,10 @@ public class AuthController {
 		Set<Role> roles = new HashSet<>();
 		Role adminRole = roleService.findByName(ERole.ROLE_ADMIN)
 				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+		Role userRole = roleService.findByName(ERole.ROLE_USER)
+				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 		roles.add(adminRole);
+		roles.add(userRole);
 		user.setRoles(roles);
 		Optional<Admin> emp = adminService.save(user);
 		if(!emp.isPresent()) {

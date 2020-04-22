@@ -15,7 +15,9 @@
                                 <div class="form-group">
                                     <div class="change-avatar">
                                         <div class="profile-img">
-                                            <img [src]="avatar" alt="Doctor Image">
+                                            <!-- <img [src]="avatar" alt="Doctor Image"> -->
+                                            <img *ngIf="avatar.length > 100" [src]="avatar" alt="Doctor Image">
+                                            <img *ngIf="avatar.length < 100" src="assets/img/doctors/default-doctor.png"  alt="Doctor Image">
                                         </div>
                                         <div class="upload-img">
                                             <div *ngIf="currentSelectedAvatar" class="progress">

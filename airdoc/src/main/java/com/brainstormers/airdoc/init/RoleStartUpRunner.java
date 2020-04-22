@@ -23,6 +23,8 @@ public class RoleStartUpRunner implements CommandLineRunner  {
 		
 		roleService.save(ERole.ROLE_USER);
 		roleService.save(ERole.ROLE_ADMIN);
+		roleService.save(ERole.ROLE_DOCTOR);
+		roleService.save(ERole.ROLE_PATIENT);
 		roleService.save(ERole.ROLE_MODERATOR);
 		logger.info("all roles saved");
 	}
