@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'doctor/appointments' , component: DoctorAppointmentsComponent, canActivate: [DoctorAuthGuard]},
   { path: 'doctor/reviews' , component: DoctorReviewsComponent, canActivate: [DoctorAuthGuard]},
   { path: 'doctor/change-password', component: DoctorChangePasswordComponent, canActivate: [DoctorAuthGuard]},
-  { path: 'patient/profile' , component: PatientProfileComponent},
+  { path: 'patient/profile' , component: PatientProfileComponent, canActivate:[PatientAuthGuard]},
   { path: 'patient/login' , component: PatientLoginComponent },
   { path: 'patient/signup' , component: PatientSingupComponent },
   { path: 'search' , component: SearchComponent },

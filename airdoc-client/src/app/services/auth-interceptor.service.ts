@@ -16,20 +16,14 @@ export class AuthInterceptor implements HttpInterceptor {
     const userType = this.token.getUserType();
     let headers = req.headers;
     if (token != null) {
-    // console.log("auth-token", token);
-      //authReq = authReq.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
       headers = headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token);
     }
 
     if (userType != null) {
       console.log("userType", userType);
-
-      //authReq = authReq.clone({ headers: req.headers.set(USER_TYPE_HEADER_KEY, userType)});
       headers = headers.set(USER_TYPE_HEADER_KEY, userType);
     }
     authReq = req.clone({headers: headers});
-    // console.log("headers : " + JSON.stringify(headers));
-    // console.log("authReq : " + JSON.stringify(authReq));
     return next.handle(authReq);
   }
 }
