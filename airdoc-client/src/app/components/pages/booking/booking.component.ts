@@ -21,6 +21,7 @@ export class BookingComponent implements OnInit {
   patient:Patient;
   appointment:Appointment = new Appointment();
   appointmentDate:string;
+  successMessage:string="";
   constructor(
     private route:ActivatedRoute, 
     //private location:Location,
@@ -67,10 +68,16 @@ onSubmit(){
   console.log("appoin", JSON.stringify(this.appointment));
   this.appointmentService.add(this.appointment).subscribe(res => {
     console.log("appointment added", JSON.stringify(res));
+    this.appointmentDate = "";
+    this.appointment.description = "";
+    this.successMessage = "Appointments Sent";
+    setTimeout(()=>{   
+      this.successMessage = '';
+ }, 3000);
   });
   
   //this.location.back();
-  this.router.navigate(["/doctor/profile/" + this.doctor.id]);
+  //this.router.navigate(["home"]);
 }
 
 }
