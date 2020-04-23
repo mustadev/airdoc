@@ -243,7 +243,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       canActivate: [_services_doctor_auth_guard__WEBPACK_IMPORTED_MODULE_19__["DoctorAuthGuard"]]
     }, {
       path: 'patient/profile',
-      component: _components_pages_patient_profile_profile_component__WEBPACK_IMPORTED_MODULE_16__["ProfileComponent"]
+      component: _components_pages_patient_profile_profile_component__WEBPACK_IMPORTED_MODULE_16__["ProfileComponent"],
+      canActivate: [_services_patient_auth_guard__WEBPACK_IMPORTED_MODULE_20__["PatientAuthGuard"]]
     }, {
       path: 'patient/login',
       component: _components_pages_patient_login_login_component__WEBPACK_IMPORTED_MODULE_14__["LoginComponent"]
@@ -15068,22 +15069,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var headers = req.headers;
 
           if (token != null) {
-            // console.log("auth-token", token);
-            //authReq = authReq.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
             headers = headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token);
           }
 
           if (userType != null) {
-            console.log("userType", userType); //authReq = authReq.clone({ headers: req.headers.set(USER_TYPE_HEADER_KEY, userType)});
-
+            console.log("userType", userType);
             headers = headers.set(USER_TYPE_HEADER_KEY, userType);
           }
 
           authReq = req.clone({
             headers: headers
-          }); // console.log("headers : " + JSON.stringify(headers));
-          // console.log("authReq : " + JSON.stringify(authReq));
-
+          });
           return next.handle(authReq);
         }
       }]);

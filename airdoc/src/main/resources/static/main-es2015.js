@@ -97,7 +97,7 @@ const routes = [
     { path: 'doctor/appointments', component: _components_pages_doctor_doctor_appointments_doctor_appointments_component__WEBPACK_IMPORTED_MODULE_12__["DoctorAppointmentsComponent"], canActivate: [_services_doctor_auth_guard__WEBPACK_IMPORTED_MODULE_19__["DoctorAuthGuard"]] },
     { path: 'doctor/reviews', component: _components_pages_doctor_doctor_reviews_doctor_reviews_component__WEBPACK_IMPORTED_MODULE_13__["DoctorReviewsComponent"], canActivate: [_services_doctor_auth_guard__WEBPACK_IMPORTED_MODULE_19__["DoctorAuthGuard"]] },
     { path: 'doctor/change-password', component: _components_pages_doctor_doctor_change_password_doctor_change_password_component__WEBPACK_IMPORTED_MODULE_10__["DoctorChangePasswordComponent"], canActivate: [_services_doctor_auth_guard__WEBPACK_IMPORTED_MODULE_19__["DoctorAuthGuard"]] },
-    { path: 'patient/profile', component: _components_pages_patient_profile_profile_component__WEBPACK_IMPORTED_MODULE_16__["ProfileComponent"] },
+    { path: 'patient/profile', component: _components_pages_patient_profile_profile_component__WEBPACK_IMPORTED_MODULE_16__["ProfileComponent"], canActivate: [_services_patient_auth_guard__WEBPACK_IMPORTED_MODULE_20__["PatientAuthGuard"]] },
     { path: 'patient/login', component: _components_pages_patient_login_login_component__WEBPACK_IMPORTED_MODULE_14__["LoginComponent"] },
     { path: 'patient/signup', component: _components_pages_patient_signup_signup_component__WEBPACK_IMPORTED_MODULE_15__["SignupComponent"] },
     { path: 'search', component: _components_pages_search_search_component__WEBPACK_IMPORTED_MODULE_18__["SearchComponent"] },
@@ -7303,18 +7303,13 @@ class AuthInterceptor {
         const userType = this.token.getUserType();
         let headers = req.headers;
         if (token != null) {
-            // console.log("auth-token", token);
-            //authReq = authReq.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
             headers = headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token);
         }
         if (userType != null) {
             console.log("userType", userType);
-            //authReq = authReq.clone({ headers: req.headers.set(USER_TYPE_HEADER_KEY, userType)});
             headers = headers.set(USER_TYPE_HEADER_KEY, userType);
         }
         authReq = req.clone({ headers: headers });
-        // console.log("headers : " + JSON.stringify(headers));
-        // console.log("authReq : " + JSON.stringify(authReq));
         return next.handle(authReq);
     }
 }
