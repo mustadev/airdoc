@@ -3,7 +3,9 @@
     <div class="widget-profile pro-widget-content">
         <div class="profile-info-widget">
             <a href="#" class="booking-doc-img">
-                <img [src]="avatar" alt="Patient Image">
+                <!-- <img [src]="avatar" alt="Patient Image"> -->
+                <img *ngIf="avatar.length > 100" [src]="avatar" alt="Patient Image">
+                <img *ngIf="avatar.length < 100" src="assets/img/patients/default-patient.jpeg"  alt="Patient Image">
             </a>
             <div class="profile-det-info">
                 <h3>{{patient?.firstname | titlecase }} {{patient?.lastname | titlecase }}</h3>

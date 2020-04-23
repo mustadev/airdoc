@@ -12,6 +12,7 @@ import { PatientService } from 'src/app/services/patient.service';
 })
 export class PatientAppointmentsComponent implements OnInit {
 
+  avatar:any;
   appointments:Appointment[]
   patient:Patient;
   constructor(
@@ -23,6 +24,9 @@ export class PatientAppointmentsComponent implements OnInit {
     this.authService.getCurrentUser().subscribe(user => {
       this.patientService.getById(user.id).subscribe(patient =>{
         this.patient = patient;
+      });
+      this.patientService.getAvatar(user.id).subscribe(avatar => {
+        this.avatar = 'data:image/jpeg;base64,' + avatar?.image?.data;
       });
       this.appointmentService.getAllPatientAppoitments(user.id).subscribe(apps =>{
         this.appointments = apps;
