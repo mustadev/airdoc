@@ -1,0 +1,100 @@
+<header class="header">
+    <nav class="navbar navbar-expand-lg header-nav">
+        <div class="navbar-header">
+            <a id="mobile_btn" href="javascript:void(0);">
+                <span class="bar-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </a>
+            <a routerLink="home" class="navbar-brand logo">
+                <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+            </a>
+        </div>
+        <div class="main-menu-wrapper">
+            <div class="menu-header">
+                <a routerLink="home" class="menu-logo">
+                    <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+                </a>
+                <a id="menu_close" class="menu-close" routerLink="javascript:void(0);">
+                    <i class="fas fa-times"></i>
+                </a>
+            </div>
+            <ul class="main-nav" *ngIf="!showPatientMenu && !showDoctorMenu && !showAdminMenu">
+                <li routerLinkActive="active">
+                    <a routerLink="/home">Home</a>
+                </li>
+                <li class="has-submenu" routerLinkActive="active">
+                <li><a routerLink="/search">Search Doctors</a>
+                </li>
+                <li class="has-submenu" routerLinkActive="active">
+                    <a routerLink="/contact">Contact Us</a>
+                </li>
+                <li class="has-submenu" routerLinkActive="active">
+                    <a routerLink="/about">About Us</a>
+                </li>
+            </ul>
+            <ul class="main-nav" *ngIf="showPatientMenu">
+                <li routerLinkActive="active">
+                    <a routerLink="/home">Home</a>
+                </li>
+                <li class="has-submenu" routerLinkActive="active">
+                    <a routerLink="/patient/appointments">Appointments</a>
+                    <!-- <a href="#">Settings <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li routerLinkActive="active"><a routerLink="/patient/profile">Profile Settings</a></li>
+                        <li routerLinkActive="active"><a routerLink="/patient/edit-password">Change Password</a></li>
+                    </ul> -->
+                </li>
+                <li class="has-submenu" routerLinkActive="active"><a routerLink="/search" >Search Doctors</a>
+                </li>
+                <li class="has-submenu" routerLinkActive="active">
+                    <a routerLink="/contact">Contact Us</a>
+                </li>
+                <li class="has-submenu" routerLinkActive="active">
+                    <a routerLink="/about">About Us</a>
+                </li>
+            </ul>
+            <ul class="main-nav" *ngIf="showDoctorMenu">
+                <li routerLinkActive="active">
+                    <a routerLink="/home">Home</a>
+                </li>
+
+                <li class="has-submenu">
+                    <a routerLink="/doctor/appointments" routerLinkActive="active">Appointments</a>
+                    <!-- <ul class="submenu">
+                        <li routerLinkActive="active"><a routerLink="/doctor/profile-settings" routerLinkActive="active">Profile Settings</a></li>
+                        <li routerLinkActive="active"><a routerLink="/doctor/change-password" routerLinkActive="active">Change Password</a></li>
+                    </ul> -->
+                </li>
+                <li class="has-submenu">
+                    <a routerLink="/contact" routerLinkActive="active">Contact Us</a>
+                </li>
+                <li class="has-submenu" routerLinkActive="active">
+                    <a routerLink="/about">About Us</a>
+                </li>
+            </ul>
+            <ul class="main-nav" *ngIf="showAdminMenu">
+                <li routerLinkActive="active">
+                    <a routerLink="/home">Home</a>
+                </li>
+                <li class="has-submenu" routerLinkActive="active">
+                    <a routerLink="/admin" routerLinkActive="active">Admin</a>
+                </li>
+            </ul>
+        </div>
+        <ul class="nav header-navbar-rht" *ngIf="!isLoggedIn">
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link header-login" routerLink="/patient/login">login / Signup </a>
+            </li>
+        </ul>
+
+        <ul class="nav header-navbar-rht" *ngIf="isLoggedIn">
+
+            <li class="nav-item">
+                <a class="btn nav-link header-login" (click)="logout()">logout </a>
+            </li>
+        </ul>
+    </nav>
+</header>

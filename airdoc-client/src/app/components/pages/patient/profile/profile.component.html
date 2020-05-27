@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AirDoc</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+</head>
+<body>
+<div class="main-wrapper">
+  <div class="breadcrumb-bar">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col-md-12 col-12">
+          <nav aria-label="breadcrumb" class="page-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Patient</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Profile Settings</li>
+            </ol>
+          </nav>
+          <h2 class="breadcrumb-title">Profile Settings</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+          <app-patient-side-bar [avatar]="avatar"></app-patient-side-bar>
+        </div>
+        <div class="col-md-7 col-lg-8 col-xl-9">
+          <div class="card">
+            <div *ngIf="!!patient" class="card-body">
+
+              <!-- Profile Settings Form -->
+              <form (ngSubmit)="onSubmit()">
+                <div class="row form-row">
+                  <div class="col-12 col-md-12">
+                    <div class="form-group">
+                      <div class="change-avatar">
+                        <div class="profile-img">
+                            <!-- <img [src]="avatar" alt="Patient Image"> -->
+                            <img *ngIf="avatar.length > 100" [src]="avatar" alt="Patient Image">
+                            <img *ngIf="avatar.length < 100" src="assets/img/patients/default-patient.jpeg"  alt="Doctor Image">
+                                      
+                        </div>
+                        <div class="upload-img">
+                            <div *ngIf="currentSelectedAvatar" class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped"
+                                    role="progressbar" attr.aria-valuenow="{{ uploadProgress }}"
+                                    aria-valuemin="0" aria-valuemax="100"
+                                    [ngStyle]="{ width: uploadProgress + '%' }">
+                                    {{ uploadProgress }}%
+                                </div>
+                            </div>
+                            <div class="change-photo-btn">
+                                <span><i class="fa fa-upload"></i> Upload Photo</span>
+                                <input type="file" class="upload" (change)="uploadAvatar($event)">
+                            </div>
+                            <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of
+                                2MB</small>
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label>First Name</label>
+                      <input [value]="patient.firstname" [(ngModel)]="patient.firstname" name="firstname" type="text" class="form-control" >
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label>Last Name</label>
+                      <input [value]="patient.lastname" [(ngModel)]="patient.lastname" name="lastname" type="text" class="form-control" >
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label>Date of Birth</label>
+                        <input [(ngModel)]="patient.birthday" name="birthday" type="date" class="form-control ">
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label>Blood Group</label>
+                      <select [value]="patient?.bloodGroup" [(ngModel)]="patient.bloodGroup" name="bloodGroup" class="form-control select">
+                        <option>A-</option>
+                        <option>A+</option>
+                        <option>B-</option>
+                        <option>B+</option>
+                        <option>AB-</option>
+                        <option>AB+</option>
+                        <option>O-</option>
+                        <option>O+</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label>Email ID</label>
+                      <input [value]="patient.email" [(ngModel)]="patient.email" name="email" type="email" class="form-control" readonly>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label>Mobile</label>
+                      <input [value]="patient.phone" [(ngModel)]="patient.phone"  name="phone" type="text"class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label>Address</label>
+                      <input [value]="patient.address" [(ngModel)]="patient.address" name="address" type="text" class="form-control" >
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label>City</label>
+                      <input [value]="patient.city" [(ngModel)]="patient.city" name="city" type="text" class="form-control" >
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label>Zip Code</label>
+                      <input [value]="patient.zipCode" [(ngModel)]="patient.zipCode" name="zipCode" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label>Country</label>
+                      <input [value]="patient.country" [(ngModel)]="patient.country" name="country" type="text" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="submit-section">
+                  <button type="submit" class="btn btn-primary submit-btn">Save</button>
+                </div>
+              </form>
+              <!-- /Profile Settings Form -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /Page Content -->

@@ -1,0 +1,115 @@
+<div class="content">
+	<div class="container">
+		<!-- Doctor Widget -->
+		<div class="card">
+			<div class="card-body">
+				<div class="doctor-widget">
+					<div class="doc-info-left">
+						<div class="doctor-img">
+							<!-- <img [src]="avatar" class="img-fluid" alt="Doctor Image"> -->
+							<img *ngIf="!showDefaultAvatar" [src]="avatar" class="img-fluid" alt="Doctor Image">
+                			<img *ngIf="showDefaultAvatar" src="assets/img/doctors/default-doctor.png" class="img-fluid" alt="Doctor Image">
+            
+						</div>
+						<div class="doc-info-cont">
+							<h4 class="doc-name">Dr. {{doctor?.firstname | titlecase}} {{doctor?.lastname | titlecase}}
+							</h4>
+							<p class="doc-speciality">{{doctor?.speciality | titlecase}}</p>
+							<div *ngIf="doctor?.rating" class="rating">
+								<app-rating-star [ratedCount]="doctor.rating" ></app-rating-star>
+								<span class="d-inline-block average-rating">({{doctor?.averageRating}})</span>
+							</div>
+							
+							<div class="clinic-details">
+								<p class="doc-location"><i class="fas fa-map-marker-alt"></i>
+									{{clinic?.city | titlecase}}, {{clinic?.country | titlecase}} </p>
+							</div>
+							<div class="clinic-services">
+								<span *ngFor="let service of clinic?.services">{{service}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="doc-info-right">
+						<div class="clini-infos">
+							<ul>
+								<li><i class="far fa-comment"></i> {{doctor?.averageRating}} Feedback</li>
+								<li><i class="fas fa-map-marker-alt"></i> {{clinic?.city | titlecase}},
+									{{clinic?.country | titlecase}}</li>
+								<li><i class="far fa-money-bill-alt"></i> {{clinic?.maxPrice | currency}} per hour
+								</li>
+							</ul>
+						</div>
+						<div class="clinic-booking">
+							<a class="apt-btn" routerLink="/booking/{{doctor?.id}}">Book Appointment</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Doctor Widget -->
+
+
+		<!-- Doctor Details Tab -->
+		<div class="card">
+
+
+			<div class="card-body pt-0">
+
+				<!-- Tab Menu -->
+				<nav class="user-tabs mb-4">
+
+					<ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+						<li class="nav-item">
+							<a class="nav-link active" href="#doc_overview" data-toggle="tab">Overview</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="#doc_clinic" data-toggle="tab">Clinic</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="#doc_reviews" data-toggle="tab">Reviews</a>
+						</li>
+					</ul>
+
+				</nav>
+				<!-- /Tab Menu -->
+
+
+				<!-- Tab Content -->
+				<div class="tab-content pt-0">
+					<!-- Overview Content -->
+					<div role="tabpanel" id="doc_overview" class="tab-pane fade show active">
+						<app-over-view [doctor]="doctor" [clinic]="clinic"></app-over-view>
+					</div>
+					<!-- /Overview Content -->
+
+					<!-- Locations Content -->
+					<div role="tabpanel" id="doc_clinic" class="tab-pane fade">
+						<!-- Location List -->
+						<div class="location-list">
+							<app-clinic *ngIf="clinic" [clinic]="clinic" [doctor]="doctor" ></app-clinic>
+						</div>
+						<!-- /Location List -->
+					</div>
+					<!-- /Locations Content -->
+
+					<!-- Reviews Content -->
+                    <div role="tabpanel" id="doc_reviews" class="tab-pane fade">
+						<app-reviews (refresh)="refresh()"  *ngIf="doctor" [doctor]="doctor" [isPatient]="isPatient"></app-reviews>
+					</div>
+                    <!-- /Reviews Content -->
+
+
+				</div>
+				<!-- /Tab Content -->
+			</div>
+
+
+		</div>
+		<!-- /Doctor Details Tab -->
+
+
+
+	</div>
+</div>

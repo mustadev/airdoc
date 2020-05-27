@@ -1,0 +1,28 @@
+<li>
+    <div class="comment">
+        <img class="avatar avatar-sm rounded-circle" alt="Patient Image" [src]="avatar">
+        <div class="comment-body">
+            <div class="meta-data">
+                <span *ngIf="author" class="comment-author">{{author.firstname | titlecase}} {{author.lastname | titlecase}}</span>
+                <app-rating-star [ratedCount]="review?.rating" [readonly]="true"></app-rating-star>
+            </div>
+            <p class="comment-content">
+                {{review?.content}}
+            </p>
+            <div class="comment-reply">
+                <p class="recommend-btn">
+                    <a (click)="toggleLike()" class="like-btn">
+                        <i [ngClass]="setClass()"></i> ({{review?.likes?.length}})
+                    </a>
+                    <!-- <a *ngIf="author && currentUserId && author.id == currentUserId" (click)="onEdit()" class="edit-btn">
+                        <i class="fa fa-edit"></i>
+                    </a> -->
+                    <a *ngIf="author && currentUserId && author.id == currentUserId" (click)="onDelete()" class="trash-btn">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+<br>
+</li>

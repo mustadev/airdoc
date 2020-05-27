@@ -1,0 +1,51 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-8 col-12">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Search</li>
+                    </ol>
+                </nav>
+                <h2 class="breadcrumb-title">{{doctors.length}} matches found for : {{searchQuery}} In {{searchCity}}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+<!-- Search -->
+<div class="row mt-3 d-flex justify-content-center">
+    <div class="search-box">
+        <form>
+            <div class="form-group search-location">
+                <input #city type="text" class="form-control" placeholder="Search City">
+            </div>
+            <div class="form-group search-info">
+                <input #query type="text" class="form-control" placeholder="Search Doctors, Clinics, Hospitals, Diseases Etc">
+            </div>
+            <div class="btn-search">
+                <button (click)="search(city.value, query.value)" type="button" class="btn btn-block">Search</button>
+            </div>	
+            
+        </form>
+    </div>
+    </div>
+    <!-- Search end -->
+
+<!-- Page Content -->
+<div class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12 col-lg-8 col-xl-9 m-auto">
+                <app-doctor *ngFor="let doctor of doctors" [doctor]="doctor"></app-doctor>	
+            </div>
+        </div>
+
+    </div>
+
+</div>	
+
+
