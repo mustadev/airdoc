@@ -22,13 +22,11 @@ public class MongoConfig {
     	
     	TextIndexDefinition  textIndex = new TextIndexDefinitionBuilder()
     			.onField("clinic.name")
-    			.onField("clinic.description")
     			.onField("lastname")
     			.onField("firstname")
-    			.onField("username")
-    			.onField("aboutMe")
+    			.onField("speciality")
     			.build();
-    	mongoTemplate.indexOps("doctors") // collection name string or .class
+    	mongoTemplate.indexOps("doctors")
         .ensureIndex(textIndex);
     }
 }

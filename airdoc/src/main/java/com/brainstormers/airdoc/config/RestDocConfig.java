@@ -43,9 +43,9 @@ public class RestDocConfig {
     private ApiInfo apiEndPointsInfo() {
 
         return new ApiInfoBuilder()
-        	.title("Spring Boot REST API")
-            .description("Doctors Managements")
-            .contact(new Contact(  "Mustapha de brainstormers",          "github.com/mustadev", "ouarrain.mustapha@gmail.com"))
+        	.title("AirDoc REST API")
+            .description("AirDoc Projet Rest API ")
+            .contact(new Contact("Mustapha Ouarrain","github.com/mustadev", "ouarrain.mustapha@gmail.com"))
             .license("BrainStormers 1.0")
             .licenseUrl("http://www.brainstromers.com/licenses/LICENSE-2.0.html")
             .version("1.0.0")

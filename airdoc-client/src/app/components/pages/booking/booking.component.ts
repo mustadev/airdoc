@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { Appointment } from 'src/app/models/Appointment';
 import { Doctor } from 'src/app/models/Doctor';
@@ -21,9 +21,11 @@ export class BookingComponent implements OnInit {
   patient:Patient;
   appointment:Appointment = new Appointment();
   appointmentDate:string;
+  successMessage:string="";
   constructor(
     private route:ActivatedRoute, 
-    private location:Location,
+    //private location:Location,
+    private router:Router,
     private authService:AuthService,
     private doctorService:DoctorService,
     private patientService:PatientService,
@@ -66,8 +68,16 @@ onSubmit(){
   console.log("appoin", JSON.stringify(this.appointment));
   this.appointmentService.add(this.appointment).subscribe(res => {
     console.log("appointment added", JSON.stringify(res));
+    this.appointmentDate = "";
+    this.appointment.description = "";
+    this.successMessage = "Appointments Sent";
+    setTimeout(()=>{   
+      this.successMessage = '';
+ }, 3000);
   });
-  this.location.back();
+  
+  //this.location.back();
+  //this.router.navigate(["home"]);
 }
 
 }
