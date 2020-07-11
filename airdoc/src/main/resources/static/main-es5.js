@@ -243,7 +243,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       canActivate: [_services_doctor_auth_guard__WEBPACK_IMPORTED_MODULE_19__["DoctorAuthGuard"]]
     }, {
       path: 'patient/profile',
-      component: _components_pages_patient_profile_profile_component__WEBPACK_IMPORTED_MODULE_16__["ProfileComponent"]
+      component: _components_pages_patient_profile_profile_component__WEBPACK_IMPORTED_MODULE_16__["ProfileComponent"],
+      canActivate: [_services_patient_auth_guard__WEBPACK_IMPORTED_MODULE_20__["PatientAuthGuard"]]
     }, {
       path: 'patient/login',
       component: _components_pages_patient_login_login_component__WEBPACK_IMPORTED_MODULE_14__["LoginComponent"]
@@ -860,15 +861,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var clinicPhoto_r279 = ctx.$implicit;
+        var clinicPhoto_r280 = ctx.$implicit;
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("href", clinicPhoto_r279.image, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("href", clinicPhoto_r280.image, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", clinicPhoto_r279.image, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", clinicPhoto_r280.image, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
       }
     }
 
@@ -1099,11 +1100,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var service_r282 = ctx.$implicit;
+        var service_r283 = ctx.$implicit;
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", service_r282, " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", service_r283, " ");
       }
     }
 
@@ -1117,11 +1118,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var speciality_r283 = ctx.$implicit;
+        var speciality_r284 = ctx.$implicit;
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", speciality_r283, " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", speciality_r284, " ");
       }
     }
 
@@ -1311,9 +1312,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r225 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r226 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx_r225.retrievedAvatar, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx_r226.retrievedAvatar, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
       }
     }
 
@@ -1337,17 +1338,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var photo_r229 = ctx.$implicit;
+        var photo_r230 = ctx.$implicit;
 
-        var ctx_r227 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("routerLink", "/doctor/profile/", ctx_r227.doctor == null ? null : ctx_r227.doctor.id, "");
+        var ctx_r228 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", photo_r229, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("routerLink", "/doctor/profile/", ctx_r228.doctor == null ? null : ctx_r228.doctor.id, "");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", photo_r230, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
       }
     }
 
@@ -1361,11 +1362,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var service_r230 = ctx.$implicit;
+        var service_r231 = ctx.$implicit;
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", service_r230, " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", service_r231, " ");
       }
     }
 
@@ -1819,19 +1820,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r239 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r240 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](9);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx_r239.isLoggedIn);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx_r240.isLoggedIn);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx_r239.isLoggedIn);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx_r240.isLoggedIn);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r239.showPatientMenu);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r240.showPatientMenu);
       }
     }
 
@@ -1907,19 +1908,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r240 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r241 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r240.showDoctorMenu);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r241.showDoctorMenu);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx_r240.isLoggedIn);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx_r241.isLoggedIn);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx_r240.isLoggedIn);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx_r241.isLoggedIn);
       }
     }
 
@@ -2513,7 +2514,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function HeaderComponent_ul_21_Template(rf, ctx) {
       if (rf & 1) {
-        var _r238 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+        var _r239 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "ul", 26);
 
@@ -2522,11 +2523,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "a", 30);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function HeaderComponent_ul_21_Template_a_click_2_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r238);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r239);
 
-          var ctx_r237 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r238 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r237.logout();
+          return ctx_r238.logout();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, "logout ");
@@ -2911,11 +2912,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r253 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
+        var ctx_r254 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" Login failed: ", ctx_r253.errorMessage, " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" Login failed: ", ctx_r254.errorMessage, " ");
       }
     }
 
@@ -2963,32 +2964,32 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-        var _r256 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](12);
+        var _r257 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](12);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r256.errors.required);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r257.errors.required);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r256.errors.minlength);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r257.errors.minlength);
       }
     }
 
     function AdminLoginComponent_form_14_Template(rf, ctx) {
       if (rf & 1) {
-        var _r261 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+        var _r262 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "form", 11, 12);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngSubmit", function AdminLoginComponent_form_14_Template_form_ngSubmit_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r261);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r262);
 
-          var _r252 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
+          var _r253 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
 
-          var ctx_r260 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r261 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return _r252.form.valid && ctx_r260.onSubmit();
+          return _r253.form.valid && ctx_r261.onSubmit();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 13);
@@ -3002,11 +3003,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "input", 16, 17);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function AdminLoginComponent_form_14_Template_input_ngModelChange_5_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r261);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r262);
 
-          var ctx_r262 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r263 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r262.form.email = $event;
+          return ctx_r263.form.email = $event;
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -3026,11 +3027,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "input", 19, 20);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function AdminLoginComponent_form_14_Template_input_ngModelChange_11_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r261);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r262);
 
-          var ctx_r263 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r264 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r263.form.password = $event;
+          return ctx_r264.form.password = $event;
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -3065,33 +3066,33 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var _r252 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
+        var _r253 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
 
-        var _r254 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](6);
+        var _r255 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](6);
 
-        var _r256 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](12);
+        var _r257 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](12);
 
-        var ctx_r251 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r252 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r252.submitted && ctx_r251.isLoginFailed);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r253.submitted && ctx_r252.isLoginFailed);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx_r251.form.email);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx_r252.form.email);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r252.submitted && _r254.invalid);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r253.submitted && _r255.invalid);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx_r251.form.password);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx_r252.form.password);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r252.submitted && _r256.invalid);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r253.submitted && _r257.invalid);
       }
     }
 
@@ -3384,59 +3385,85 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! @angular/common */
-    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
-    /* harmony import */
-
-
-    var src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! src/app/services/auth.service */
     "./src/app/services/auth.service.ts");
     /* harmony import */
 
 
-    var src_app_services_doctor_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var src_app_services_doctor_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! src/app/services/doctor.service */
     "./src/app/services/doctor.service.ts");
     /* harmony import */
 
 
-    var src_app_services_patient_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var src_app_services_patient_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! src/app/services/patient.service */
     "./src/app/services/patient.service.ts");
     /* harmony import */
 
 
-    var src_app_services_appointment_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var src_app_services_appointment_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! src/app/services/appointment.service */
     "./src/app/services/appointment.service.ts");
     /* harmony import */
 
 
-    var _rating_star_rating_star_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    var _rating_star_rating_star_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! ../../rating-star/rating-star.component */
     "./src/app/components/rating-star/rating-star.component.ts");
     /* harmony import */
 
 
-    var _angular_forms__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! @angular/forms */
     "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
+    /* harmony import */
+
+
+    var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    /*! @angular/common */
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+
+    function BookingComponent_div_52_Template(rf, ctx) {
+      if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 37);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "strong");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "Success!");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+      }
+
+      if (rf & 2) {
+        var ctx_r225 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx_r225.successMessage, " ");
+      }
+    }
 
     var BookingComponent =
     /*#__PURE__*/
     function () {
-      function BookingComponent(route, location, authService, doctorService, patientService, appointmentService) {
+      function BookingComponent(route, //private location:Location,
+      router, authService, doctorService, patientService, appointmentService) {
         _classCallCheck(this, BookingComponent);
 
         this.route = route;
-        this.location = location;
+        this.router = router;
         this.authService = authService;
         this.doctorService = doctorService;
         this.patientService = patientService;
         this.appointmentService = appointmentService;
         this.appointment = new src_app_models_Appointment__WEBPACK_IMPORTED_MODULE_1__["Appointment"]();
+        this.successMessage = "";
       }
 
       _createClass(BookingComponent, [{
@@ -3470,6 +3497,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "onSubmit",
         value: function onSubmit() {
+          var _this8 = this;
+
           console.log("date : ", this.appointmentDate);
           console.log(JSON.stringify(this.appointment));
           var appDate = new Date(this.appointmentDate);
@@ -3482,8 +3511,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           console.log("appoin", JSON.stringify(this.appointment));
           this.appointmentService.add(this.appointment).subscribe(function (res) {
             console.log("appointment added", JSON.stringify(res));
-          });
-          this.location.back();
+            _this8.appointmentDate = "";
+            _this8.appointment.description = "";
+            _this8.successMessage = "Appointments Sent";
+            setTimeout(function () {
+              _this8.successMessage = '';
+            }, 3000);
+          }); //this.location.back();
+          //this.router.navigate(["home"]);
         }
       }]);
 
@@ -3491,15 +3526,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     BookingComponent.ɵfac = function BookingComponent_Factory(t) {
-      return new (t || BookingComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_doctor_service__WEBPACK_IMPORTED_MODULE_5__["DoctorService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_patient_service__WEBPACK_IMPORTED_MODULE_6__["PatientService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_appointment_service__WEBPACK_IMPORTED_MODULE_7__["AppointmentService"]));
+      return new (t || BookingComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_doctor_service__WEBPACK_IMPORTED_MODULE_4__["DoctorService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_patient_service__WEBPACK_IMPORTED_MODULE_5__["PatientService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_appointment_service__WEBPACK_IMPORTED_MODULE_6__["AppointmentService"]));
     };
 
     BookingComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
       type: BookingComponent,
       selectors: [["app-booking"]],
-      decls: 52,
-      vars: 14,
-      consts: [[1, "breadcrumb-bar"], [1, "container-fluid"], [1, "row", "align-items-center"], [1, "col-md-12", "col-12"], ["aria-label", "breadcrumb", 1, "page-breadcrumb"], [1, "breadcrumb"], [1, "breadcrumb-item"], ["href", "index-2.html"], ["aria-current", "page", 1, "breadcrumb-item", "active"], [1, "breadcrumb-title"], [1, "content"], [1, "container"], [1, "row"], [1, "col-12"], [1, "card"], [1, "card-body"], [1, "booking-doc-info"], [1, "booking-doc-img", 3, "routerLink"], ["alt", "Doctor Image", 3, "src"], [1, "booking-info"], [3, "routerLink"], [3, "ratedCount", "readonly"], [1, "d-inline-block", "average-rating"], [1, "card", "booking-schedule", "schedule-widget"], [1, "schedule-cont"], [1, "col-md-12"], [1, "panel", "panel-primary"], [1, "panel-heading"], [1, "panel-body"], [1, "col-md-8"], [1, "form-group"], [1, "control-label"], ["rows", "5", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "col-md-4"], ["type", "datetime-local", "name", "appointmentDate", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "submit", "value", "Submit", 1, "btn", "btn-primary", 3, "click"]],
+      decls: 53,
+      vars: 15,
+      consts: [[1, "breadcrumb-bar"], [1, "container-fluid"], [1, "row", "align-items-center"], [1, "col-md-12", "col-12"], ["aria-label", "breadcrumb", 1, "page-breadcrumb"], [1, "breadcrumb"], [1, "breadcrumb-item"], ["href", "index-2.html"], ["aria-current", "page", 1, "breadcrumb-item", "active"], [1, "breadcrumb-title"], [1, "content"], [1, "container"], [1, "row"], [1, "col-12"], [1, "card"], [1, "card-body"], [1, "booking-doc-info"], [1, "booking-doc-img", 3, "routerLink"], ["alt", "Doctor Image", 3, "src"], [1, "booking-info"], [3, "routerLink"], [3, "ratedCount", "readonly"], [1, "d-inline-block", "average-rating"], [1, "card", "booking-schedule", "schedule-widget"], [1, "schedule-cont"], [1, "col-md-12"], [1, "panel", "panel-primary"], [1, "panel-heading"], [1, "panel-body"], [1, "col-md-8"], [1, "form-group"], [1, "control-label"], ["rows", "5", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "col-md-4"], ["type", "datetime-local", "name", "appointmentDate", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "submit", "value", "Submit", 1, "btn", "btn-primary", 3, "click"], ["class", "alert alert-success", 4, "ngIf"], [1, "alert", "alert-success"]],
       template: function BookingComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -3678,6 +3713,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](52, BookingComponent_div_52_Template, 4, 1, "div", 36);
+
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -3714,7 +3751,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"]("Dr. ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](26, 10, ctx.doctor == null ? null : ctx.doctor.firstname), " ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](27, 12, ctx.doctor == null ? null : ctx.doctor.lastname), "");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"]("Dr. ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](26, 11, ctx.doctor == null ? null : ctx.doctor.firstname), " ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](27, 13, ctx.doctor == null ? null : ctx.doctor.lastname), "");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
 
@@ -3731,10 +3768,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.appointmentDate);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.successMessage);
         }
       },
-      directives: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterLinkWithHref"], _rating_star_rating_star_component__WEBPACK_IMPORTED_MODULE_8__["RatingStarComponent"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["NgModel"]],
-      pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["TitleCasePipe"]],
+      directives: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterLinkWithHref"], _rating_star_rating_star_component__WEBPACK_IMPORTED_MODULE_7__["RatingStarComponent"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgIf"]],
+      pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_9__["TitleCasePipe"]],
       styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcGFnZXMvYm9va2luZy9ib29raW5nLmNvbXBvbmVudC5jc3MifQ== */"]
     });
     /*@__PURE__*/
@@ -3751,15 +3792,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         return [{
           type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]
         }, {
-          type: _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"]
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
         }, {
-          type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]
+          type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]
         }, {
-          type: src_app_services_doctor_service__WEBPACK_IMPORTED_MODULE_5__["DoctorService"]
+          type: src_app_services_doctor_service__WEBPACK_IMPORTED_MODULE_4__["DoctorService"]
         }, {
-          type: src_app_services_patient_service__WEBPACK_IMPORTED_MODULE_6__["PatientService"]
+          type: src_app_services_patient_service__WEBPACK_IMPORTED_MODULE_5__["PatientService"]
         }, {
-          type: src_app_services_appointment_service__WEBPACK_IMPORTED_MODULE_7__["AppointmentService"]
+          type: src_app_services_appointment_service__WEBPACK_IMPORTED_MODULE_6__["AppointmentService"]
         }];
       }, null);
     })();
@@ -3947,14 +3988,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this8 = this;
+          var _this9 = this;
 
           this.submitted = true;
           console.log("submiting contact Contact ", JSON.stringify(this.contact));
           this.contactService.addContact(this.contact).subscribe(function (res) {
             console.log("submiting contact Contact ", JSON.stringify(res));
 
-            _this8.router.navigate(['home']);
+            _this9.router.navigate(['home']);
           });
         }
       }]);
@@ -4382,38 +4423,38 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ClinicSettingsComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this9 = this;
+          var _this10 = this;
 
           this.authService.getCurrentUser().subscribe(function (res) {
-            _this9.doctorService.getAvatar(res.id).subscribe(function (avatar) {
+            _this10.doctorService.getAvatar(res.id).subscribe(function (avatar) {
               var _a, _b;
 
-              _this9.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
+              _this10.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
             });
 
-            _this9.doctorService.getById(res.id).subscribe(function (doctor) {
-              _this9.doctor = doctor;
+            _this10.doctorService.getById(res.id).subscribe(function (doctor) {
+              _this10.doctor = doctor;
             });
 
-            _this9.doctorService.getClinic(res.id).subscribe(function (clinic) {
-              _this9.clinic = clinic;
-              console.log("Clinic : : ", JSON.stringify(_this9.clinic));
+            _this10.doctorService.getClinic(res.id).subscribe(function (clinic) {
+              _this10.clinic = clinic;
+              console.log("Clinic : : ", JSON.stringify(_this10.clinic));
 
-              if (!!!_this9.clinic) {
-                console.log("empty Clinic: ", JSON.stringify(_this9.clinic));
-                _this9.clinic = src_app_models_Clinic__WEBPACK_IMPORTED_MODULE_1__["Clinic"].empty();
+              if (!!!_this10.clinic) {
+                console.log("empty Clinic: ", JSON.stringify(_this10.clinic));
+                _this10.clinic = src_app_models_Clinic__WEBPACK_IMPORTED_MODULE_1__["Clinic"].empty();
               }
 
-              _this9.services = _this9.clinic.services.join(', ');
-              _this9.specialities = _this9.clinic.specialities.join(', ');
+              _this10.services = _this10.clinic.services.join(', ');
+              _this10.specialities = _this10.clinic.specialities.join(', ');
             });
 
-            _this9.doctorService.getClinicPhotos(res.id).subscribe(function (photos) {
+            _this10.doctorService.getClinicPhotos(res.id).subscribe(function (photos) {
               photos = photos.filter(function (photo) {
                 console.log("photo ", photo);
                 return photo !== null;
               });
-              _this9.clinicPhotos = photos.map(function (photo) {
+              _this10.clinicPhotos = photos.map(function (photo) {
                 return {
                   "id": photo.id,
                   "image": 'data:image/jpeg;base64,' + photo.image.data
@@ -4425,7 +4466,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this10 = this;
+          var _this11 = this;
 
           console.log("services: ", this.services.split(','));
           console.log("services: ", this.specialities.split(','));
@@ -4433,24 +4474,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.clinic.specialities = this.specialities.split(',');
           console.log("clinic new name: ", JSON.stringify(this.clinic));
           this.doctorService.updateClinic(this.doctor.id, this.clinic).subscribe(function (clinic) {
-            _this10.clinic = clinic;
-            console.log("clinic: ", JSON.stringify(_this10.clinic));
-            _this10.successMessage = "Change Saved";
+            _this11.clinic = clinic;
+            console.log("clinic: ", JSON.stringify(_this11.clinic));
+            _this11.successMessage = "Change Saved";
             setTimeout(function () {
-              _this10.successMessage = '';
+              _this11.successMessage = '';
             }, 3000);
           });
         }
       }, {
         key: "deleteClinicPhoto",
         value: function deleteClinicPhoto(photoId) {
-          var _this11 = this;
+          var _this12 = this;
 
           console.log("Photo ID: ", photoId);
           this.doctorService.deleteClinicPhoto(this.doctor.id, photoId).subscribe(function (res) {
             console.log("photo Deleted", JSON.stringify(res));
 
-            _this11.doctorService.getClinicPhotos(_this11.doctor.id).subscribe(function (photos) {
+            _this12.doctorService.getClinicPhotos(_this12.doctor.id).subscribe(function (photos) {
               console.log(JSON.stringify(photos)); // photos = photos.filter((photo, index, photos) => {
               //   console.log("photo ", photo);
               //   if(photo === null){
@@ -4471,7 +4512,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 return true;
               });
               console.log("photos after filter: ", JSON.stringify(photos));
-              _this11.clinicPhotos = photos.map(function (photo) {
+              _this12.clinicPhotos = photos.map(function (photo) {
                 console.log("photo : ", JSON.stringify(photo));
                 return {
                   "id": photo.id,
@@ -4484,28 +4525,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "uploadClinicPhoto",
         value: function uploadClinicPhoto(event) {
-          var _this12 = this;
+          var _this13 = this;
 
           this.currentSelectedPhoto = event.target.files.item(0);
           this.doctorService.uploadClinicPhoto(this.doctor.id, this.currentSelectedPhoto).subscribe(function (event) {
             if (event.type === _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpEventType"].UploadProgress) {
-              _this12.uploadProgress = Math.round(100 * event.loaded / event.total);
+              _this13.uploadProgress = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpResponse"]) {
-              _this12.doctorService.getClinicPhotos(_this12.doctor.id).subscribe(function (photos) {
-                _this12.clinicPhotos = photos.map(function (photo) {
+              _this13.doctorService.getClinicPhotos(_this13.doctor.id).subscribe(function (photos) {
+                _this13.clinicPhotos = photos.map(function (photo) {
                   return {
                     "id": photo.id,
                     "image": 'data:image/jpeg;base64,' + photo.image.data
                   };
                 });
-                _this12.uploadProgress = 0;
-                _this12.currentSelectedPhoto = undefined;
+                _this13.uploadProgress = 0;
+                _this13.currentSelectedPhoto = undefined;
               });
             }
           }, function (err) {
-            _this12.uploadProgress = 0;
-            _this12.uploadErrorMessage = 'Could not upload the Photo!';
-            _this12.currentSelectedPhoto = undefined;
+            _this13.uploadProgress = 0;
+            _this13.uploadErrorMessage = 'Could not upload the Photo!';
+            _this13.currentSelectedPhoto = undefined;
           });
         }
       }, {
@@ -5030,11 +5071,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r288 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r289 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx_r288.patient.email, "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx_r289.patient.email, "");
       }
     }
 
@@ -5050,26 +5091,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r289 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r290 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx_r289.patient.phone, "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx_r290.patient.phone, "");
       }
     }
 
     function DoctorAppointmentComponent_a_18_Template(rf, ctx) {
       if (rf & 1) {
-        var _r295 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+        var _r296 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "a", 18);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function DoctorAppointmentComponent_a_18_Template_a_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r295);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r296);
 
-          var ctx_r294 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r295 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r294.acceptAppointment();
+          return ctx_r295.acceptAppointment();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "i", 19);
@@ -5082,16 +5123,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function DoctorAppointmentComponent_a_19_Template(rf, ctx) {
       if (rf & 1) {
-        var _r297 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+        var _r298 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "a", 20);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function DoctorAppointmentComponent_a_19_Template_a_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r297);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r298);
 
-          var ctx_r296 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r297 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r296.cancelAppointment();
+          return ctx_r297.cancelAppointment();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "i", 21);
@@ -5114,11 +5155,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r292 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r293 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx_r292.appointment.state, " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx_r293.appointment.state, " ");
       }
     }
 
@@ -5134,11 +5175,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r293 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r294 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx_r293.appointment.state, " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx_r294.appointment.state, " ");
       }
     }
 
@@ -5155,36 +5196,36 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(DoctorAppointmentComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this13 = this;
+          var _this14 = this;
 
           this.appointmentDate = new Date(this.appointment.appointmentDate);
           this.patientService.getById(this.appointment.patientId).subscribe(function (res) {
-            _this13.patient = res;
+            _this14.patient = res;
           });
           this.patientService.getAvatar(this.appointment.patientId).subscribe(function (avatar) {
             var _a, _b;
 
-            _this13.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
+            _this14.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
           });
         }
       }, {
         key: "acceptAppointment",
         value: function acceptAppointment() {
-          var _this14 = this;
+          var _this15 = this;
 
           this.appointment.state = "ACCEPTED";
           this.appointmentService.update(this.appointment).subscribe(function (res) {
-            _this14.appointment = res;
+            _this15.appointment = res;
           });
         }
       }, {
         key: "cancelAppointment",
         value: function cancelAppointment() {
-          var _this15 = this;
+          var _this16 = this;
 
           this.appointment.state = "CANCELED";
           this.appointmentService.update(this.appointment).subscribe(function (res) {
-            _this15.appointment = res;
+            _this16.appointment = res;
           });
         }
       }, {
@@ -5458,21 +5499,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(DoctorAppointmentsComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this16 = this;
+          var _this17 = this;
 
           this.autService.getCurrentUser().subscribe(function (user) {
-            _this16.doctorService.getById(user.id).subscribe(function (doctor) {
-              _this16.doctor = doctor;
+            _this17.doctorService.getById(user.id).subscribe(function (doctor) {
+              _this17.doctor = doctor;
             });
 
-            _this16.doctorService.getAvatar(user.id).subscribe(function (avatar) {
+            _this17.doctorService.getAvatar(user.id).subscribe(function (avatar) {
               var _a, _b;
 
-              _this16.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
+              _this17.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
             });
 
-            _this16.appotmentService.getAllDoctorAppoitments(user.id).subscribe(function (apps) {
-              _this16.appointments = apps;
+            _this17.appotmentService.getAllDoctorAppoitments(user.id).subscribe(function (apps) {
+              _this17.appointments = apps;
             });
           });
         }
@@ -5936,24 +5977,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(DoctorChangePasswordComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this17 = this;
+          var _this18 = this;
 
           this.authService.getCurrentUser().subscribe(function (user) {
-            _this17.doctorSerive.getById(user.id).subscribe(function (doc) {
-              _this17.doctor = doc;
+            _this18.doctorSerive.getById(user.id).subscribe(function (doc) {
+              _this18.doctor = doc;
             });
 
-            _this17.doctorSerive.getAvatar(user.id).subscribe(function (avatar) {
+            _this18.doctorSerive.getAvatar(user.id).subscribe(function (avatar) {
               var _a, _b;
 
-              _this17.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
+              _this18.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
             });
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this18 = this;
+          var _this19 = this;
 
           if (this.form.newPassword !== this.form.confirmPassword) {
             this.passwordMatch = false;
@@ -5964,15 +6005,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var password = new src_app_models_Password__WEBPACK_IMPORTED_MODULE_1__["Password"](this.form.oldPassword, this.form.newPassword);
           this.doctorSerive.updatePassword(this.doctor.id, password).subscribe(function (message) {
             console.log("password success: ", JSON.stringify(message));
-            _this18.isPasswordSuccess = true;
-            _this18.successMessage = message.message;
+            _this19.isPasswordSuccess = true;
+            _this19.successMessage = message.message;
             setTimeout(function () {
-              return _this18.successMessage = '';
+              return _this19.successMessage = '';
             }, 2000);
           }, function (err) {
-            _this18.isPasswordFailed = true;
+            _this19.isPasswordFailed = true;
             console.log("password failed: ", JSON.stringify(err));
-            _this18.errorMessage = err.error.message;
+            _this19.errorMessage = err.error.message;
           });
         }
       }]);
@@ -6766,51 +6807,51 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(DoctorProfileSettingsComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this19 = this;
+          var _this20 = this;
 
           this.authService.getCurrentUser().subscribe(function (res) {
-            _this19.doctorService.getById(res.id).subscribe(function (doc) {
-              _this19.doctor = doc;
+            _this20.doctorService.getById(res.id).subscribe(function (doc) {
+              _this20.doctor = doc;
             });
 
-            _this19.doctorService.getAvatar(res.id).subscribe(function (avatar) {
+            _this20.doctorService.getAvatar(res.id).subscribe(function (avatar) {
               var _a, _b;
 
-              _this19.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
+              _this20.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
             });
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this20 = this;
+          var _this21 = this;
 
           console.log("clinic new name: ", JSON.stringify(this.doctor));
           this.doctorService.updateDoctor(this.doctor).subscribe(function (doc) {
-            _this20.doctor = doc;
+            _this21.doctor = doc;
             window.location.reload();
           });
         }
       }, {
         key: "uploadAvatar",
         value: function uploadAvatar(event) {
-          var _this21 = this;
+          var _this22 = this;
 
           this.currentSelectedAvatar = event.target.files.item(0);
           this.doctorService.uploadAvatar(this.doctor.id, this.currentSelectedAvatar).subscribe(function (event) {
             if (event.type === _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpEventType"].UploadProgress) {
-              _this21.uploadProgress = Math.round(100 * event.loaded / event.total);
+              _this22.uploadProgress = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpResponse"]) {
-              _this21.doctorService.getAvatar(_this21.doctor.id).subscribe(function (avatar) {
-                _this21.avatar = 'data:image/jpeg;base64,' + avatar.image.data;
-                _this21.uploadProgress = 0;
-                _this21.currentSelectedAvatar = undefined;
+              _this22.doctorService.getAvatar(_this22.doctor.id).subscribe(function (avatar) {
+                _this22.avatar = 'data:image/jpeg;base64,' + avatar.image.data;
+                _this22.uploadProgress = 0;
+                _this22.currentSelectedAvatar = undefined;
               });
             }
           }, function (err) {
-            _this21.uploadProgress = 0;
-            _this21.uploadErrorMessage = 'Could not upload the Photo!';
-            _this21.currentSelectedAvatar = undefined;
+            _this22.uploadProgress = 0;
+            _this22.uploadErrorMessage = 'Could not upload the Photo!';
+            _this22.currentSelectedAvatar = undefined;
           });
         }
       }]);
@@ -6930,11 +6971,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r298 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r299 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"]("", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](2, 2, ctx_r298.patient.firstname), " ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](3, 4, ctx_r298.patient.lastname), "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"]("", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](2, 2, ctx_r299.patient.firstname), " ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](3, 4, ctx_r299.patient.lastname), "");
       }
     }
 
@@ -6950,13 +6991,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(DoctorReviewComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this22 = this;
+          var _this23 = this;
 
           this.patientService.getById(this.review.patientId).subscribe(function (patient) {
-            _this22.patient = patient;
+            _this23.patient = patient;
           });
           this.patientService.getAvatar(this.review.patientId).subscribe(function (avatar) {
-            _this22.patientAvatar = 'data:image/jpeg;base64,' + avatar.image.data;
+            _this23.patientAvatar = 'data:image/jpeg;base64,' + avatar.image.data;
           });
         }
       }]);
@@ -7174,7 +7215,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /*#__PURE__*/
     function () {
       function DoctorReviewsComponent(authService, reviewService, doctorService) {
-        var _this23 = this;
+        var _this24 = this;
 
         _classCallCheck(this, DoctorReviewsComponent);
 
@@ -7184,18 +7225,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.authService.getCurrentUser().subscribe(function (user) {
           console.log("user ", JSON.stringify(user));
 
-          _this23.doctorService.getById(user.id).subscribe(function (doc) {
-            _this23.doctor = doc;
+          _this24.doctorService.getById(user.id).subscribe(function (doc) {
+            _this24.doctor = doc;
           });
 
-          _this23.doctorService.getAvatar(user.id).subscribe(function (avatar) {
+          _this24.doctorService.getAvatar(user.id).subscribe(function (avatar) {
             var _a, _b;
 
-            _this23.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
+            _this24.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
           });
 
-          _this23.reviewService.getReviews(user.id).subscribe(function (reviews) {
-            _this23.reviews = reviews;
+          _this24.reviewService.getReviews(user.id).subscribe(function (reviews) {
+            _this24.reviews = reviews;
           });
         });
       }
@@ -7420,9 +7461,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r284 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r285 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx_r284.avatar, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx_r285.avatar, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
       }
     }
 
@@ -7450,12 +7491,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(DoctorSideBarComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this24 = this;
+          var _this25 = this;
 
           this.authService.getCurrentUser().subscribe(function (user) {
-            _this24.doctorService.getById(user.id).subscribe(function (doc) {
-              _this24.doctor = doc;
-              console.log("print avatar : ", _this24.avatar); // if (!this.avatar) {
+            _this25.doctorService.getById(user.id).subscribe(function (doc) {
+              _this25.doctor = doc;
+              console.log("print avatar : ", _this25.avatar); // if (!this.avatar) {
               //   this.showDefaultAvatar = true;
               //   console.log("show default");
               // } else {
@@ -7996,7 +8037,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(LoginComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this25 = this;
+          var _this26 = this;
 
           if (this.tokenStorage.getToken()) {
             this.isLoggedIn = true;
@@ -8004,40 +8045,40 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           this.activatedRoute.queryParamMap.subscribe(function (params) {
-            _this25.retUrl = params.get('retUrl');
-            console.log('LoginComponent/ngOnInit ' + _this25.retUrl);
+            _this26.retUrl = params.get('retUrl');
+            console.log('LoginComponent/ngOnInit ' + _this26.retUrl);
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this26 = this;
+          var _this27 = this;
 
           this.authService.doctorLogin(this.form).subscribe(function (user) {
-            _this26.tokenStorage.saveToken(user.accessToken);
+            _this27.tokenStorage.saveToken(user.accessToken);
 
-            _this26.tokenStorage.saveUser(user);
+            _this27.tokenStorage.saveUser(user);
 
-            _this26.tokenStorage.saveUserType(user.userType);
+            _this27.tokenStorage.saveUserType(user.userType);
 
-            _this26.isLoginFailed = false;
-            _this26.isLoggedIn = true;
-            _this26.roles = _this26.tokenStorage.getUser().roles;
+            _this27.isLoginFailed = false;
+            _this27.isLoggedIn = true;
+            _this27.roles = _this27.tokenStorage.getUser().roles;
 
-            _this26.authService.getLoggedInUser.emit(user);
+            _this27.authService.getLoggedInUser.emit(user);
 
             console.log("login successful");
-            console.log(_this26.tokenStorage.getUser());
-            console.log('return to ' + _this26.retUrl);
+            console.log(_this27.tokenStorage.getUser());
+            console.log('return to ' + _this27.retUrl);
 
-            if (_this26.retUrl != null) {
-              _this26.router.navigate([_this26.retUrl]);
+            if (_this27.retUrl != null) {
+              _this27.router.navigate([_this27.retUrl]);
             } else {
-              _this26.router.navigate(['doctor/appointments']);
+              _this27.router.navigate(['doctor/appointments']);
             }
           }, function (err) {
-            _this26.errorMessage = err.error.message;
-            _this26.isLoginFailed = true;
+            _this27.errorMessage = err.error.message;
+            _this27.isLoginFailed = true;
           });
         }
       }]);
@@ -8336,51 +8377,51 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ProfileComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this27 = this;
+          var _this28 = this;
 
           this.route.params.subscribe(function (params) {
-            _this27.id = params['id'];
-            console.log("Doctor id" + _this27.id); //Get Doctor
+            _this28.id = params['id'];
+            console.log("Doctor id" + _this28.id); //Get Doctor
 
-            _this27.doctorService.getById(_this27.id).subscribe(function (res) {
-              _this27.doctor = res;
-              console.log("rating: ", _this27.doctor.rating);
+            _this28.doctorService.getById(_this28.id).subscribe(function (res) {
+              _this28.doctor = res;
+              console.log("rating: ", _this28.doctor.rating);
             });
 
-            _this27.doctorService.getAvatar(_this27.id).subscribe(function (res) {
+            _this28.doctorService.getAvatar(_this28.id).subscribe(function (res) {
               var _a, _b, _c, _d;
 
-              _this27.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = res) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
-              console.log("print avatar : ", _this27.avatar);
+              _this28.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = res) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
+              console.log("print avatar : ", _this28.avatar);
 
               if (((_d = (_c = res) === null || _c === void 0 ? void 0 : _c.image) === null || _d === void 0 ? void 0 : _d.data) === undefined) {
-                _this27.showDefaultAvatar = true;
+                _this28.showDefaultAvatar = true;
                 console.log("show default");
               }
             });
 
-            _this27.doctorService.getClinic(_this27.id).subscribe(function (res) {
-              _this27.clinic = res;
-              console.log("clinic from Profile", _this27.clinic);
+            _this28.doctorService.getClinic(_this28.id).subscribe(function (res) {
+              _this28.clinic = res;
+              console.log("clinic from Profile", _this28.clinic);
             });
 
-            _this27.doctorService.getClinicPhotos(_this27.id).subscribe(function (res) {
+            _this28.doctorService.getClinicPhotos(_this28.id).subscribe(function (res) {
               //Convert image to base64 and return it;
-              _this27.clinicPhotos = res.map(function (photo) {
+              _this28.clinicPhotos = res.map(function (photo) {
                 return 'data:image/jpeg;base64,' + photo.image.data;
               });
             });
 
-            _this27.isPatient = _this27.tokenStorage.getUserType() == "PATIENT";
+            _this28.isPatient = _this28.tokenStorage.getUserType() == "PATIENT";
           });
         }
       }, {
         key: "refresh",
         value: function refresh() {
-          var _this28 = this;
+          var _this29 = this;
 
           this.doctorService.getById(this.doctor.id).subscribe(function (res) {
-            _this28.doctor = res;
+            _this29.doctor = res;
           });
         }
       }]);
@@ -9417,17 +9458,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this29 = this;
+          var _this30 = this;
 
           this.authService.doctorRegister(this.form).subscribe(function (data) {
             console.log(data);
-            _this29.isSuccessful = true;
-            _this29.isSignUpFailed = false;
+            _this30.isSuccessful = true;
+            _this30.isSignUpFailed = false;
 
-            _this29.router.navigate(["doctor/login"]);
+            _this30.router.navigate(["doctor/login"]);
           }, function (err) {
-            _this29.errorMessage = err.error.message;
-            _this29.isSignUpFailed = true;
+            _this30.errorMessage = err.error.message;
+            _this30.isSignUpFailed = true;
           });
         }
       }]);
@@ -10048,24 +10089,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ChangePasswordComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this30 = this;
+          var _this31 = this;
 
           this.authService.getCurrentUser().subscribe(function (user) {
-            _this30.patientService.getById(user.id).subscribe(function (patient) {
-              _this30.patient = patient;
+            _this31.patientService.getById(user.id).subscribe(function (patient) {
+              _this31.patient = patient;
             });
 
-            _this30.patientService.getAvatar(user.id).subscribe(function (avatar) {
+            _this31.patientService.getAvatar(user.id).subscribe(function (avatar) {
               var _a, _b;
 
-              _this30.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
+              _this31.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
             });
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this31 = this;
+          var _this32 = this;
 
           if (this.form.newPassword !== this.form.confirmPassword) {
             this.passwordMatch = false;
@@ -10076,15 +10117,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var password = new src_app_models_Password__WEBPACK_IMPORTED_MODULE_1__["Password"](this.form.oldPassword, this.form.newPassword);
           this.patientService.updatePassword(this.patient.id, password).subscribe(function (message) {
             console.log("password success: ", JSON.stringify(message));
-            _this31.isPasswordSuccess = true;
-            _this31.successMessage = message.message;
+            _this32.isPasswordSuccess = true;
+            _this32.successMessage = message.message;
             setTimeout(function () {
-              return _this31.successMessage = '';
+              return _this32.successMessage = '';
             }, 2000);
           }, function (err) {
-            _this31.isPasswordFailed = true;
+            _this32.isPasswordFailed = true;
             console.log("password failed: ", JSON.stringify(err));
-            _this31.errorMessage = err.error.message;
+            _this32.errorMessage = err.error.message;
           });
         }
       }]);
@@ -10629,7 +10670,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(LoginComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this32 = this;
+          var _this33 = this;
 
           if (this.tokenStorage.getToken()) {
             this.isLoggedIn = true;
@@ -10637,40 +10678,40 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           this.activatedRoute.queryParamMap.subscribe(function (params) {
-            _this32.retUrl = params.get('retUrl');
-            console.log('LoginComponent/ngOnInit ' + _this32.retUrl);
+            _this33.retUrl = params.get('retUrl');
+            console.log('LoginComponent/ngOnInit ' + _this33.retUrl);
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this33 = this;
+          var _this34 = this;
 
           this.authService.patientLogin(this.form).subscribe(function (user) {
-            _this33.tokenStorage.saveToken(user.accessToken);
+            _this34.tokenStorage.saveToken(user.accessToken);
 
-            _this33.tokenStorage.saveUser(user);
+            _this34.tokenStorage.saveUser(user);
 
-            _this33.tokenStorage.saveUserType(user.userType);
+            _this34.tokenStorage.saveUserType(user.userType);
 
-            _this33.isLoginFailed = false;
-            _this33.isLoggedIn = true;
-            _this33.roles = _this33.tokenStorage.getUser().roles;
+            _this34.isLoginFailed = false;
+            _this34.isLoggedIn = true;
+            _this34.roles = _this34.tokenStorage.getUser().roles;
 
-            _this33.authService.getLoggedInUser.emit(user);
+            _this34.authService.getLoggedInUser.emit(user);
 
             console.log("login successful");
-            console.log(_this33.tokenStorage.getUser());
-            console.log('return to ' + _this33.retUrl);
+            console.log(_this34.tokenStorage.getUser());
+            console.log('return to ' + _this34.retUrl);
 
-            if (_this33.retUrl != null) {
-              _this33.router.navigate([_this33.retUrl]);
+            if (_this34.retUrl != null) {
+              _this34.router.navigate([_this34.retUrl]);
             } else {
-              _this33.router.navigate(['patient/appointments']);
+              _this34.router.navigate(['patient/appointments']);
             }
           }, function (err) {
-            _this33.errorMessage = err.error.message;
-            _this33.isLoginFailed = true;
+            _this34.errorMessage = err.error.message;
+            _this34.isLoginFailed = true;
           });
         }
       }]);
@@ -10832,11 +10873,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r272 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r273 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](3, 1, ctx_r272.appointment.state));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](3, 1, ctx_r273.appointment.state));
       }
     }
 
@@ -10856,11 +10897,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r273 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r274 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](3, 1, ctx_r273.appointment.state));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](3, 1, ctx_r274.appointment.state));
       }
     }
 
@@ -10876,15 +10917,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(PatientAppointmentComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this34 = this;
+          var _this35 = this;
 
           this.appointmentDate = new Date(this.appointment.appointmentDate);
           this.bookingDate = new Date(this.appointment.bookingDate);
           this.doctorSerivce.getById(this.appointment.doctorId).subscribe(function (doc) {
-            _this34.doctor = doc;
+            _this35.doctor = doc;
           });
           this.doctorSerivce.getAvatar(this.appointment.doctorId).subscribe(function (avatar) {
-            _this34.doctorAvatar = avatar;
+            _this35.doctorAvatar = avatar;
           });
         }
       }]);
@@ -11124,21 +11165,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(PatientAppointmentsComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this35 = this;
+          var _this36 = this;
 
           this.authService.getCurrentUser().subscribe(function (user) {
-            _this35.patientService.getById(user.id).subscribe(function (patient) {
-              _this35.patient = patient;
+            _this36.patientService.getById(user.id).subscribe(function (patient) {
+              _this36.patient = patient;
             });
 
-            _this35.patientService.getAvatar(user.id).subscribe(function (avatar) {
+            _this36.patientService.getAvatar(user.id).subscribe(function (avatar) {
               var _a, _b;
 
-              _this35.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
+              _this36.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
             });
 
-            _this35.appointmentService.getAllPatientAppoitments(user.id).subscribe(function (apps) {
-              _this35.appointments = apps;
+            _this36.appointmentService.getAllPatientAppoitments(user.id).subscribe(function (apps) {
+              _this36.appointments = apps;
               console.log("appointments: ", JSON.stringify(apps));
             });
           });
@@ -11372,9 +11413,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r286 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r287 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx_r286.avatar, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx_r287.avatar, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
       }
     }
 
@@ -11397,11 +11438,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(PatientSideBarComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this36 = this;
+          var _this37 = this;
 
           this.authService.getCurrentUser().subscribe(function (user) {
-            _this36.patientService.getById(user.id).subscribe(function (patient) {
-              _this36.patient = patient;
+            _this37.patientService.getById(user.id).subscribe(function (patient) {
+              _this37.patient = patient;
             });
           });
         }
@@ -12149,57 +12190,57 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ProfileComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this37 = this;
+          var _this38 = this;
 
           this.authService.getCurrentUser().subscribe(function (user) {
-            _this37.patientService.getById(user.id).subscribe(function (patient) {
-              _this37.patient = patient; // const isoBirthday = new Date(patient.birthday);
+            _this38.patientService.getById(user.id).subscribe(function (patient) {
+              _this38.patient = patient; // const isoBirthday = new Date(patient.birthday);
               // this.birthday = isoBirthday.toISOString().substr(0, 10);;
 
-              console.log("birthday : ", _this37.patient.birthday);
+              console.log("birthday : ", _this38.patient.birthday);
             });
 
-            _this37.patientService.getAvatar(user.id).subscribe(function (avatar) {
+            _this38.patientService.getAvatar(user.id).subscribe(function (avatar) {
               var _a, _b;
 
-              _this37.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
+              _this38.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = avatar) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
             });
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this38 = this;
+          var _this39 = this;
 
           console.log("patient new name: ", JSON.stringify(this.patient)); // const birthday = new Date(this.birthday)
           // this.patient.birthday = birthday.toISOString();
 
           this.patientService.updatePatient(this.patient).subscribe(function (patient) {
-            _this38.patient = patient;
+            _this39.patient = patient;
             window.location.reload();
           });
         }
       }, {
         key: "uploadAvatar",
         value: function uploadAvatar(event) {
-          var _this39 = this;
+          var _this40 = this;
 
           console.log("upload started");
           this.currentSelectedAvatar = event.target.files.item(0);
           this.patientService.uploadAvatar(this.patient.id, this.currentSelectedAvatar).subscribe(function (event) {
             if (event.type === _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpEventType"].UploadProgress) {
-              _this39.uploadProgress = Math.round(100 * event.loaded / event.total);
+              _this40.uploadProgress = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpResponse"]) {
-              _this39.patientService.getAvatar(_this39.patient.id).subscribe(function (avatar) {
-                _this39.avatar = 'data:image/jpeg;base64,' + avatar.image.data;
-                _this39.uploadProgress = 0;
-                _this39.currentSelectedAvatar = undefined;
+              _this40.patientService.getAvatar(_this40.patient.id).subscribe(function (avatar) {
+                _this40.avatar = 'data:image/jpeg;base64,' + avatar.image.data;
+                _this40.uploadProgress = 0;
+                _this40.currentSelectedAvatar = undefined;
               });
             }
           }, function (err) {
-            _this39.uploadProgress = 0;
-            _this39.uploadErrorMessage = 'Could not upload the Photo!';
-            _this39.currentSelectedAvatar = undefined;
+            _this40.uploadProgress = 0;
+            _this40.uploadErrorMessage = 'Could not upload the Photo!';
+            _this40.currentSelectedAvatar = undefined;
           });
         }
       }]);
@@ -13085,17 +13126,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this40 = this;
+          var _this41 = this;
 
           this.authService.patientRegister(this.form).subscribe(function (data) {
             console.log(data);
-            _this40.isSuccessful = true;
-            _this40.isSignUpFailed = false;
+            _this41.isSuccessful = true;
+            _this41.isSignUpFailed = false;
 
-            _this40.router.navigate(["patient/login"]);
+            _this41.router.navigate(["patient/login"]);
           }, function (err) {
-            _this40.errorMessage = err.error.message;
-            _this40.isSignUpFailed = true;
+            _this41.errorMessage = err.error.message;
+            _this41.isSignUpFailed = true;
           });
         }
       }]);
@@ -13289,13 +13330,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(SearchComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this41 = this;
+          var _this42 = this;
 
           this.activatedRoute.queryParamMap.subscribe(function (params) {
-            _this41.searchCity = params.get('city');
-            _this41.searchQuery = params.get('query');
+            _this42.searchCity = params.get('city');
+            _this42.searchQuery = params.get('query');
 
-            _this41.search(_this41.searchCity, _this41.searchQuery);
+            _this42.search(_this42.searchCity, _this42.searchQuery);
           }); // this.doctorService.getDoctors().subscribe((doctors) => {
           //     console.log(doctors);
           //     this.doctors = doctors;
@@ -13304,11 +13345,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "search",
         value: function search(location, query) {
-          var _this42 = this;
+          var _this43 = this;
 
           console.log("searchCom", "location: " + location, "query: " + query);
           this.doctorService.search(location, query).subscribe(function (doctors) {
-            return _this42.doctors = doctors;
+            return _this43.doctors = doctors;
           });
         }
       }]);
@@ -13587,29 +13628,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function RatingStarComponent_i_0_Template(rf, ctx) {
       if (rf & 1) {
-        var _r277 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+        var _r278 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "i", 1);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function RatingStarComponent_i_0_Template_i_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r277);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r278);
 
-          var s_r275 = ctx.$implicit;
+          var s_r276 = ctx.$implicit;
 
-          var ctx_r276 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r277 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r276.toggleRating(s_r275);
+          return ctx_r277.toggleRating(s_r276);
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
       }
 
       if (rf & 2) {
-        var s_r275 = ctx.$implicit;
+        var s_r276 = ctx.$implicit;
 
-        var ctx_r274 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r275 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", ctx_r274.setClass(s_r275));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", ctx_r275.setClass(s_r276));
       }
     }
 
@@ -13805,11 +13846,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ReviewFormComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this43 = this;
+          var _this44 = this;
 
           this.authService.getCurrentUser().subscribe(function (res) {
-            _this43.authorId = res.id;
-            console.log("::::::::: authorId: ", _this43.authorId);
+            _this44.authorId = res.id;
+            console.log("::::::::: authorId: ", _this44.authorId);
           });
         }
       }, {
@@ -14037,26 +14078,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r247 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r248 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"]("", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](2, 2, ctx_r247.author.firstname), " ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](3, 4, ctx_r247.author.lastname), "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"]("", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](2, 2, ctx_r248.author.firstname), " ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](3, 4, ctx_r248.author.lastname), "");
       }
     }
 
     function ReviewComponent_a_14_Template(rf, ctx) {
       if (rf & 1) {
-        var _r250 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+        var _r251 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "a", 13);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ReviewComponent_a_14_Template_a_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r250);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r251);
 
-          var ctx_r249 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r250 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r249.onDelete();
+          return ctx_r250.onDelete();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "i", 14);
@@ -14082,23 +14123,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ReviewComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this44 = this;
+          var _this45 = this;
 
           //TODO get author
           this.patientService.getById(this.review.patientId).subscribe(function (res) {
-            _this44.author = res;
+            _this45.author = res;
           });
           this.patientService.getAvatar(this.review.patientId).subscribe(function (res) {
             var _a, _b;
 
-            _this44.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = res) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
-            console.log("Avatar: ", _this44.avatar);
+            _this45.avatar = 'data:image/jpeg;base64,' + ((_b = (_a = res) === null || _a === void 0 ? void 0 : _a.image) === null || _b === void 0 ? void 0 : _b.data);
+            console.log("Avatar: ", _this45.avatar);
           });
           this.autheService.getCurrentUser().subscribe(function (res) {
-            _this44.currentUserId = res.id;
-            _this44.like = new src_app_models_Like__WEBPACK_IMPORTED_MODULE_1__["Like"](_this44.currentUserId);
+            _this45.currentUserId = res.id;
+            _this45.like = new src_app_models_Like__WEBPACK_IMPORTED_MODULE_1__["Like"](_this45.currentUserId);
 
-            _this44.setLiked(_this44.like);
+            _this45.setLiked(_this45.like);
           });
         }
       }, {
@@ -14115,16 +14156,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "toggleLike",
         value: function toggleLike() {
-          var _this45 = this;
+          var _this46 = this;
 
           if (!this.isLiked) {
             console.log("liking");
             this.reviewService.likeReview(this.review.id, this.like).subscribe(function (res) {
               console.log("liking: ", JSON.stringify(res));
 
-              _this45.review.likes.push(_this45.like);
+              _this46.review.likes.push(_this46.like);
 
-              _this45.isLiked = true;
+              _this46.isLiked = true;
             });
           }
 
@@ -14132,17 +14173,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             console.log("unliking");
             this.reviewService.unlikeReview(this.review.id, this.like).subscribe(function (res) {
               console.log("unliking: ", JSON.stringify(res));
-              var likes = _this45.review.likes;
+              var likes = _this46.review.likes;
               console.log("befor delete ", JSON.stringify(likes));
-              var index = likes.indexOf(_this45.like, 0);
+              var index = likes.indexOf(_this46.like, 0);
 
               if (index > -1) {
                 likes.splice(index, 1);
               }
 
               console.log("after delete ", JSON.stringify(likes));
-              _this45.review.likes = likes;
-              _this45.isLiked = false;
+              _this46.review.likes = likes;
+              _this46.isLiked = false;
             });
           }
         }
@@ -14362,37 +14403,37 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function ReviewsComponent_app_review_2_Template(rf, ctx) {
       if (rf & 1) {
-        var _r268 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+        var _r269 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "app-review", 4);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("deleteReview", function ReviewsComponent_app_review_2_Template_app_review_deleteReview_0_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r268);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r269);
 
-          var ctx_r267 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r268 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r267.deleteReview($event);
+          return ctx_r268.deleteReview($event);
         })("editReview", function ReviewsComponent_app_review_2_Template_app_review_editReview_0_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r268);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r269);
 
-          var ctx_r269 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r270 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r269.editReview($event);
+          return ctx_r270.editReview($event);
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
       }
 
       if (rf & 2) {
-        var review_r266 = ctx.$implicit;
+        var review_r267 = ctx.$implicit;
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("review", review_r266);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("review", review_r267);
       }
     }
 
     function ReviewsComponent_div_3_Template(rf, ctx) {
       if (rf & 1) {
-        var _r271 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+        var _r272 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 5);
 
@@ -14415,11 +14456,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "app-review-form", 6);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("addReview", function ReviewsComponent_div_3_Template_app_review_form_addReview_7_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r271);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r272);
 
-          var ctx_r270 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r271 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r270.addReview($event);
+          return ctx_r271.addReview($event);
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -14428,11 +14469,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r265 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r266 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"](" Dr. ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](5, 2, ctx_r265.doctor == null ? null : ctx_r265.doctor.firstname), " ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](6, 4, ctx_r265.doctor == null ? null : ctx_r265.doctor.lastname), "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"](" Dr. ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](5, 2, ctx_r266.doctor == null ? null : ctx_r266.doctor.firstname), " ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](6, 4, ctx_r266.doctor == null ? null : ctx_r266.doctor.lastname), "");
       }
     }
 
@@ -14454,19 +14495,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addReview",
         value: function addReview(review) {
-          var _this46 = this;
+          var _this47 = this;
 
           console.log('review : ' + JSON.stringify(review));
           this.reviewService.addReview(this.doctor.id, review).subscribe(function (res) {
             console.log("doctor reviews : ", JSON.stringify(res));
 
-            _this46.refreshReviews();
+            _this47.refreshReviews();
           });
         }
       }, {
         key: "deleteReview",
         value: function deleteReview(review) {
-          var _this47 = this;
+          var _this48 = this;
 
           this.reviewService.deleteReview(this.doctor.id, review.id).subscribe(function (res) {
             console.log("doctor reviews : ", JSON.stringify(res)); // const index = this.reviews.indexOf(review, 0);
@@ -14474,24 +14515,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             //        this.reviews.splice(index, 1);
             //     }
 
-            _this47.refreshReviews();
+            _this48.refreshReviews();
           });
         }
       }, {
         key: "editReview",
         value: function editReview(review) {
-          var _this48 = this;
+          var _this49 = this;
 
           this.reviewService.updateReview(this.doctor.id, review).subscribe(function (res) {
             console.log("doctor reviews : ", JSON.stringify(res));
 
-            _this48.refreshReviews();
+            _this49.refreshReviews();
           });
         }
       }, {
         key: "refreshReviews",
         value: function refreshReviews() {
-          var _this49 = this;
+          var _this50 = this;
 
           var _a;
 
@@ -14499,7 +14540,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.refresh.emit("refresh");
           this.reviewService.getReviews((_a = this.doctor) === null || _a === void 0 ? void 0 : _a.id).subscribe(function (res) {
             console.log("doctor reviews : ", JSON.stringify(res));
-            _this49.reviews = res;
+            _this50.reviews = res;
           });
         }
       }]);
@@ -15068,22 +15109,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var headers = req.headers;
 
           if (token != null) {
-            // console.log("auth-token", token);
-            //authReq = authReq.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
             headers = headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token);
           }
 
           if (userType != null) {
-            console.log("userType", userType); //authReq = authReq.clone({ headers: req.headers.set(USER_TYPE_HEADER_KEY, userType)});
-
+            console.log("userType", userType);
             headers = headers.set(USER_TYPE_HEADER_KEY, userType);
           }
 
           authReq = req.clone({
             headers: headers
-          }); // console.log("headers : " + JSON.stringify(headers));
-          // console.log("authReq : " + JSON.stringify(authReq));
-
+          });
           return next.handle(authReq);
         }
       }]);

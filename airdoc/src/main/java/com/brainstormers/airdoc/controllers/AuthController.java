@@ -193,6 +193,7 @@ public class AuthController {
 		user.setFirstname(signUpRequest.getFirstname());
 		user.setEmail( signUpRequest.getEmail());
 		user.setPassword(encoder.encode(signUpRequest.getPassword()));
+		//user.setPhone(encoder.encode(signUpRequest.getPassword())); //ADD phone to Doctor
 		Set<Role> roles = new HashSet<>();
 		Role userRole = roleService.findByName(ERole.ROLE_USER)
 				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -250,6 +251,7 @@ public class AuthController {
 		user.setLastname(signUpRequest.getLastname());
 		user.setFirstname(signUpRequest.getFirstname());
 		user.setEmail( signUpRequest.getEmail());
+		user.setPhone( signUpRequest.getPhone());
 		user.setPassword(encoder.encode(signUpRequest.getPassword()));
 
 		Set<Role> roles = new HashSet<>();
